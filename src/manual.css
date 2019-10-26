@@ -854,6 +854,11 @@ span.c003 {
     border-radius: 6px;
 }
 
+div.caml-example.toplevel div.caml-input::before{
+    content:"#";
+    color:#888;
+}
+
 .caml-input span.kw {
     font-weight: 500;
     color: #444;
