@@ -2,7 +2,22 @@
 
 open Soup
 open Printf
-    
+
+(* This is a wrapper to the 'higlo' command, because I was not able to tell dune
+   to load the proper files "higlo_ocaml.cmo" and "higlo_printers.cmo". Help
+   wanted. *)
+let highlight code =
+  let tmp = Filename.temp_file "higlo-" ".ml" in
+  let outch = open_out tmp in
+  output_string outch code;
+  close_out outch;
+  let tmp_xml = Filename.temp_file "higlo-" ".xml" in
+  if Sys.command ("higlo " ^ tmp ^ " > " ^ tmp_xml) <> 0
+  then failwith "Could not run higlo";
+  open_in tmp_xml
+  |> read_channel
+  |> parse
+  
 let convert chapters (title, file, outfile) =
 
   print_endline (file ^ " ==> " ^ outfile);
@@ -82,6 +97,20 @@ let convert chapters (title, file, outfile) =
   let logo_html = "<nav class=\"toc brand\"><a class=\"brand\" href=\"https://ocaml.org/\" ><img src=\"colour-logo-gray.svg\" class=\"svg\" alt=\"OCaml\" /></a></nav>" in
   let header = soup $ "header" in
   prepend_child header (parse logo_html);
+
+  (* Syntax highlighting *)
+  print_endline "Syntax highlighting";
+  let camls = soup $$ "pre .caml-input" in
+  iter (fun e ->
+      match leaf_text e with
+      | Some code ->
+        let h = highlight code in
+        let cs = classes e in
+        let div = create_element (name e) ~classes:cs in
+        append_child div h;
+        insert_after e div;
+        delete e
+      | _ -> ()) camls;
   
   (* Save new html file *)
   let new_html= to_string soup in
@@ -115,3 +144,23 @@ let () =
   
   List.iter (convert chapters) chapters
 
+
+(* faire: C-e
+
+#require "higlo";;
+let file = "sample.html";;
+let html = open_in file |> read_channel;;
+let soup = parse html;;
+let pre = soup $ "pre";;
+let caml = soup $ "pre .caml-input";;
+leaf_text caml;;
+let tokens = Higlo.parse ~lang:"ocaml" (leaf_text caml);;
+
+#load "higlo_ocaml.cmo";;
+#load "higlo_printers.cmo";;
+let tokens = Higlo.parse ~lang:"ocaml" "let f x = x + 1 in
+            f 3;;";;
+let pr = Higlo_printers.get_printer "xml";;
+pr tokens;;
+
+*)

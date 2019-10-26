@@ -1,7 +1,20 @@
 @charset "UTF-8";
-/* Copyright (c) 2016 The odoc contributors. All rights reserved.
+
+/* CSS file for the Ocaml manual, part I, 
+   https://sanette.github.io/ocaml-tutorial/core_tutorial.html
+*/
+
+/* This file is built upon the "odoc.css" file,
+   Copyright (c) 2016 The odoc contributors. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
    odoc 1.4.2 */
+
+/* This new version also distributed under the ISC licence.
+   San Vu Ngoc, 2019
+*/
+
+/* TODO: many elements of this file are currently never used by the
+   ocaml manual, and should be removed. */
 
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,500');
@@ -578,6 +591,18 @@ h1+.modules, h1+.sel {
   display: block;
 }
 
+/* lists in the main text */
+ul.itemize {
+    list-style: none;
+}
+
+ul.itemize li::before {
+    content: "▶";
+    color: #ec6a0d;
+    margin-right: 4px;
+    margin-left: -1em;
+}
+
 /* Sidebar and TOC */
 
 .toc ul:before {
@@ -798,11 +823,7 @@ div.caml-output.error {
     /* ocaml logo color */
     color: #ec6a0d;
 }
-
-ul {
-    list-style-type: square;
-}
-
+  
 ul.tutos_menu {
     font-family: "Fira Sans";
     text-align: right;
@@ -832,3 +853,35 @@ span.c003 {
     background-color: #f3ece6;
     border-radius: 6px;
 }
+
+.caml-input span.kw {
+    font-weight: 800;
+    color: #444;
+}
+
+.caml-input span.kw1 {
+    font-weight: 800;
+    color: #777;
+}
+
+.caml-input span.kw2 {
+    font-weight: 800;
+    color: #a28867;
+}
+
+.caml-input span.numeric {
+    color: #0086b3;
+}
+
+.caml-input span.id {
+    color: #795da3;
+}
+
+.caml-input span.string {
+    color: #df5000;
+}
+
+.caml-input span.comment {
+    color: #969896;
+}
+

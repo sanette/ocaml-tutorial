@@ -55,13 +55,13 @@ its value.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point =
-    object
-      val mutable x = 0
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="numeric">0</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   object val mutable x : int method get_x : int method move : int -&gt; unit end
 </div></pre>
 
@@ -71,8 +71,8 @@ its value.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let p = new point;;
-</div><div class="caml-output ok">val p : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : point = &lt;obj&gt;
 </div></pre>
 
 
@@ -86,16 +86,16 @@ of class <span class="c003">point</span> along with their types.</p><p>We now in
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 0
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 0
 </div></pre>
 
-<pre><div class="caml-input"> p#move 3;;
-</div><div class="caml-output ok">- : unit = ()
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">3</span><span class="text">;;
+</span></div><div class="caml-output ok">- : unit = ()
 </div></pre>
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 3
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 3
 </div></pre>
 
 
@@ -107,26 +107,26 @@ objects.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let x0 = ref 0;;
-</div><div class="caml-output ok">val x0 : int ref = {contents = 0}
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">x0</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">val x0 : int ref = {contents = 0}
 </div></pre>
 
-<pre><div class="caml-input"> class point =
-    object
-      val mutable x = incr x0; !x0
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">incr</span><span class="text"> </span><span class="id">x0</span><span class="text">; !</span><span class="id">x0</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   object val mutable x : int method get_x : int method move : int -&gt; unit end
 </div></pre>
 
-<pre><div class="caml-input"> new point#get_x;;
-</div><div class="caml-output ok">- : int = 1
+<pre><div class="caml-input"><span class="text"> </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 1
 </div></pre>
 
-<pre><div class="caml-input"> new point#get_x;;
-</div><div class="caml-output ok">- : int = 2
+<pre><div class="caml-input"><span class="text"> </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 2
 </div></pre>
 
 
@@ -136,13 +136,13 @@ the <span class="c003">x</span> coordinate.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point = fun x_init -&gt;
-    object
-      val mutable x = x_init
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x_init</span><span class="text"> -&gt;
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   int -&gt;
   object val mutable x : int method get_x : int method move : int -&gt; unit end
 </div></pre>
@@ -156,13 +156,13 @@ abbreviated as:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point x_init =
-    object
-      val mutable x = x_init
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   int -&gt;
   object val mutable x : int method get_x : int method move : int -&gt; unit end
 </div></pre>
@@ -176,12 +176,12 @@ initial parameter to create a point object:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> new point;;
-</div><div class="caml-output ok">- : int -&gt; point = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int -&gt; point = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let p = new point 7;;
-</div><div class="caml-output ok">val p : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="numeric">7</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : point = &lt;obj&gt;
 </div></pre>
 
 
@@ -195,14 +195,14 @@ initial position.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point x_init =
-    object
-      val mutable x = x_init
-      method get_x = x
-      method get_offset = x - x_init
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_offset</span><span class="text"> = </span><span class="id">x</span><span class="text"> - </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   int -&gt;
   object
     val mutable x : int
@@ -223,15 +223,15 @@ as follows:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class adjusted_point x_init =
-    let origin = (x_init / 10) * 10 in
-    object
-      val mutable x = origin
-      method get_x = x
-      method get_offset = x - origin
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class adjusted_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">adjusted_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw">let</span><span class="text"> </span><span class="id">origin</span><span class="text"> = (</span><span class="id">x_init</span><span class="text"> / </span><span class="numeric">10</span><span class="text">) * </span><span class="numeric">10</span><span class="text"> </span><span class="kw">in</span><span class="text">
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">origin</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_offset</span><span class="text"> = </span><span class="id">x</span><span class="text"> - </span><span class="id">origin</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class adjusted_point :
   int -&gt;
   object
     val mutable x : int
@@ -252,8 +252,8 @@ calling the definition of class <span class="c003">point</span> with the value o
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class adjusted_point x_init =  point ((x_init / 10) * 10);;
-</div><div class="caml-output ok">class adjusted_point : int -&gt; point
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">adjusted_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =  </span><span class="id">point</span><span class="text"> ((</span><span class="id">x_init</span><span class="text"> / </span><span class="numeric">10</span><span class="text">) * </span><span class="numeric">10</span><span class="text">);;
+</span></div><div class="caml-output ok">class adjusted_point : int -&gt; point
 </div></pre>
 
 
@@ -265,8 +265,8 @@ a special allocation function:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let new_adjusted_point x_init = new point ((x_init / 10) * 10);;
-</div><div class="caml-output ok">val new_adjusted_point : int -&gt; point = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">new_adjusted_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text"> ((</span><span class="id">x_init</span><span class="text"> / </span><span class="numeric">10</span><span class="text">) * </span><span class="numeric">10</span><span class="text">);;
+</span></div><div class="caml-output ok">val new_adjusted_point : int -&gt; point = &lt;fun&gt;
 </div></pre>
 
 
@@ -289,25 +289,25 @@ described in the rest of this section also apply to immediate objects.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let p =
-    object
-      val mutable x = 0
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">val p : &lt; get_x : int; move : int -&gt; unit &gt; = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="numeric">0</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : &lt; get_x : int; move : int -&gt; unit &gt; = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 0
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 0
 </div></pre>
 
-<pre><div class="caml-input"> p#move 3;;
-</div><div class="caml-output ok">- : unit = ()
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">3</span><span class="text">;;
+</span></div><div class="caml-output ok">- : unit = ()
 </div></pre>
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 3
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 3
 </div></pre>
 
 
@@ -318,10 +318,10 @@ environment.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let minmax x y =
-    if x &lt; y then object method min = x method max = y end
-    else object method min = y method max = x end;;
-</div><div class="caml-output ok">val minmax : 'a -&gt; 'a -&gt; &lt; max : 'a; min : 'a &gt; = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">minmax</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> =
+    </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> &lt; </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">min</span><span class="text"> = </span><span class="id">x</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">max</span><span class="text"> = </span><span class="id">y</span><span class="text"> </span><span class="kw1">end</span><span class="text">
+    </span><span class="kw1">else</span><span class="text"> </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">min</span><span class="text"> = </span><span class="id">y</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">max</span><span class="text"> = </span><span class="id">x</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">val minmax : 'a -&gt; 'a -&gt; &lt; max : 'a; min : 'a &gt; = &lt;fun&gt;
 </div></pre>
 
 
@@ -339,14 +339,14 @@ often choose the name <span class="c003">self</span>.)
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class printable_point x_init =
-    object (s)
-      val mutable x = x_init
-      method get_x = x
-      method move d = x &lt;- x + d
-      method print = print_int s#get_x
-    end;;
-</div><div class="caml-output ok">class printable_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">s</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_int</span><span class="text"> </span><span class="id">s</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class printable_point :
   int -&gt;
   object
     val mutable x : int
@@ -356,12 +356,12 @@ often choose the name <span class="c003">self</span>.)
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new printable_point 7;;
-</div><div class="caml-output ok">val p : printable_point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="numeric">7</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : printable_point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p#print;;
-</div><div class="caml-output ok">7- : unit = ()
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">print</span><span class="text">;;
+</span></div><div class="caml-output ok">7- : unit = ()
 </div></pre>
 
 
@@ -375,8 +375,8 @@ subclasses, you cannot fix it in advance. Here is a simple example.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let ints = ref [];;
-</div><div class="caml-output ok">val ints : '_weak1 list ref = {contents = []}
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">ints</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> [];;
+</span></div><div class="caml-output ok">val ints : '_weak1 list ref = {contents = []}
 </div></pre>
 
 <pre><div class="caml-input"> class my_int =
@@ -403,12 +403,12 @@ problem does not occur with them.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let my_int =
-    object (self)
-      method n = 1
-      method register = ints := self :: !ints
-    end;;
-</div><div class="caml-output ok">val my_int : &lt; n : int; register : unit &gt; = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">my_int</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="numeric">1</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">register</span><span class="text"> = </span><span class="id">ints</span><span class="text"> := </span><span class="id">self</span><span class="text"> :: !</span><span class="id">ints</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">val my_int : &lt; n : int; register : unit &gt; = &lt;obj&gt;
 </div></pre>
 
 
@@ -424,16 +424,16 @@ access self and the instance variables.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class printable_point x_init =
-    let origin = (x_init / 10) * 10 in
-    object (self)
-      val mutable x = origin
-      method get_x = x
-      method move d = x &lt;- x + d
-      method print = print_int self#get_x
-      initializer print_string "new point at "; self#print; print_newline ()
-    end;;
-</div><div class="caml-output ok">class printable_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw">let</span><span class="text"> </span><span class="id">origin</span><span class="text"> = (</span><span class="id">x_init</span><span class="text"> / </span><span class="numeric">10</span><span class="text">) * </span><span class="numeric">10</span><span class="text"> </span><span class="kw">in</span><span class="text">
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">origin</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_int</span><span class="text"> </span><span class="id">self</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">
+      </span><span class="kw">initializer</span><span class="text"> </span><span class="id">print_string</span><span class="text"> </span><span class="string">"new point at "</span><span class="text">; </span><span class="id">self</span><span class="kw1">#</span><span class="id">print</span><span class="text">; </span><span class="id">print_newline</span><span class="text"> ()
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class printable_point :
   int -&gt;
   object
     val mutable x : int
@@ -443,8 +443,8 @@ access self and the instance variables.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new printable_point 17;;
-</div><div class="caml-output ok">new point at 10
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="numeric">17</span><span class="text">;;
+</span></div><div class="caml-output ok">new point at 10
 val p : printable_point = &lt;obj&gt;
 </div></pre>
 
@@ -467,13 +467,13 @@ as other methods.)
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class virtual abstract_point x_init =
-    object (self)
-      method virtual get_x : int
-      method get_offset = self#get_x - x_init
-      method virtual move : int -&gt; unit
-    end;;
-</div><div class="caml-output ok">class virtual abstract_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">abstract_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">get_x</span><span class="text"> : </span><span class="kw3">int</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_offset</span><span class="text"> = </span><span class="id">self</span><span class="kw1">#</span><span class="id">get_x</span><span class="text"> - </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">move</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class virtual abstract_point :
   int -&gt;
   object
     method get_offset : int
@@ -482,14 +482,14 @@ as other methods.)
   end
 </div></pre>
 
-<pre><div class="caml-input"> class point x_init =
-    object
-      inherit abstract_point x_init
-      val mutable x = x_init
-      method get_x = x
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">abstract_point</span><span class="text"> </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point :
   int -&gt;
   object
     val mutable x : int
@@ -506,22 +506,22 @@ as with methods.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class virtual abstract_point2 =
-    object
-      val mutable virtual x : int
-      method move d = x &lt;- x + d
-    end;;
-</div><div class="caml-output ok">class virtual abstract_point2 :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">abstract_point2</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">x</span><span class="text"> : </span><span class="kw3">int</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class virtual abstract_point2 :
   object val mutable virtual x : int method move : int -&gt; unit end
 </div></pre>
 
-<pre><div class="caml-input"> class point2 x_init =
-    object
-      inherit abstract_point2
-      val mutable x = x_init
-      method get_offset = x - x_init
-    end;;
-</div><div class="caml-output ok">class point2 :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point2</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">abstract_point2</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_offset</span><span class="text"> = </span><span class="id">x</span><span class="text"> - </span><span class="id">x_init</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point2 :
   int -&gt;
   object
     val mutable x : int
@@ -540,14 +540,14 @@ They can only be invoked from other methods of the same object.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class restricted_point x_init =
-    object (self)
-      val mutable x = x_init
-      method get_x = x
-      method private move d = x &lt;- x + d
-      method bump = self#move 1
-    end;;
-</div><div class="caml-output ok">class restricted_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">restricted_point</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="kw">private</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">bump</span><span class="text"> = </span><span class="id">self</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">1</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class restricted_point :
   int -&gt;
   object
     val mutable x : int
@@ -557,8 +557,8 @@ They can only be invoked from other methods of the same object.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new restricted_point 0;;
-</div><div class="caml-output ok">val p : restricted_point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">restricted_point</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : restricted_point = &lt;obj&gt;
 </div></pre>
 
 <pre><div class="caml-input"> <u>p</u>#move 10 ;;
@@ -566,8 +566,8 @@ They can only be invoked from other methods of the same object.
        It has no method move
 </div></pre>
 
-<pre><div class="caml-input"> p#bump;;
-</div><div class="caml-output ok">- : unit = ()
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">bump</span><span class="text">;;
+</span></div><div class="caml-output ok">- : unit = ()
 </div></pre>
 
 
@@ -585,12 +585,12 @@ unless they are hidden by signature matching, as described below.</p><p>Private 
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point_again x =
-    object (self)
-      inherit restricted_point x
-      method virtual move : _
-    end;;
-</div><div class="caml-output ok">class point_again :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point_again</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">restricted_point</span><span class="text"> </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">move</span><span class="text"> : </span><span class="numeric">_</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point_again :
   int -&gt;
   object
     val mutable x : int
@@ -611,11 +611,11 @@ definition.</p><p>An alternative definition is
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point_again x =
-    object (self : &lt; move : _; ..&gt; )
-      inherit restricted_point x
-    end;;
-</div><div class="caml-output ok">class point_again :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point_again</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : &lt; </span><span class="id">move</span><span class="text"> : </span><span class="numeric">_</span><span class="text">; ..&gt; )
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">restricted_point</span><span class="text"> </span><span class="id">x</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point_again :
   int -&gt;
   object
     val mutable x : int
@@ -637,12 +637,12 @@ code, so yet another (heavier) solution would be:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class point_again x =
-    object
-      inherit restricted_point x as super
-      method move = super#move
-    end;;
-</div><div class="caml-output ok">class point_again :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">point_again</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">restricted_point</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw1">as</span><span class="text"> </span><span class="id">super</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> = </span><span class="id">super</span><span class="kw1">#</span><span class="id">move</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class point_again :
   int -&gt;
   object
     val mutable x : int
@@ -664,17 +664,17 @@ declarations, they also define a new type abbreviation.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type restricted_point_type =
-    object
-      method get_x : int
-      method bump : unit
-  end;;
-</div><div class="caml-output ok">class type restricted_point_type =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">restricted_point_type</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> : </span><span class="kw3">int</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">bump</span><span class="text"> : </span><span class="kw3">unit</span><span class="text">
+  </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class type restricted_point_type =
   object method bump : unit method get_x : int end
 </div></pre>
 
-<pre><div class="caml-input"> fun (x : restricted_point_type) -&gt; x;;
-</div><div class="caml-output ok">- : restricted_point_type -&gt; restricted_point_type = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">fun</span><span class="text"> (</span><span class="id">x</span><span class="text"> : </span><span class="id">restricted_point_type</span><span class="text">) -&gt; </span><span class="id">x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : restricted_point_type -&gt; restricted_point_type = &lt;fun&gt;
 </div></pre>
 
 
@@ -688,8 +688,8 @@ methods and virtual members, however, cannot.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class restricted_point' x = (restricted_point x : restricted_point_type);;
-</div><div class="caml-output ok">class restricted_point' : int -&gt; restricted_point_type
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">restricted_point</span><span class="text">' </span><span class="id">x</span><span class="text"> = (</span><span class="id">restricted_point</span><span class="text"> </span><span class="id">x</span><span class="text"> : </span><span class="id">restricted_point_type</span><span class="text">);;
+</span></div><div class="caml-output ok">class restricted_point' : int -&gt; restricted_point_type
 </div></pre>
 
 
@@ -700,8 +700,8 @@ Or, equivalently:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class restricted_point' = (restricted_point : int -&gt; restricted_point_type);;
-</div><div class="caml-output ok">class restricted_point' : int -&gt; restricted_point_type
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">restricted_point</span><span class="text">' = (</span><span class="id">restricted_point</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> -&gt; </span><span class="id">restricted_point_type</span><span class="text">);;
+</span></div><div class="caml-output ok">class restricted_point' : int -&gt; restricted_point_type
 </div></pre>
 
 
@@ -713,24 +713,24 @@ signature, and used to restrict the inferred signature of a module.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type POINT = sig
-    class restricted_point' : int -&gt;
-      object
-        method get_x : int
-        method bump : unit
-      end
-  end;;
-</div><div class="caml-output ok">module type POINT =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">POINT</span><span class="text"> = </span><span class="kw1">sig</span><span class="text">
+    </span><span class="kw">class</span><span class="text"> </span><span class="id">restricted_point</span><span class="text">' : </span><span class="kw3">int</span><span class="text"> -&gt;
+      </span><span class="kw1">object</span><span class="text">
+        </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> : </span><span class="kw3">int</span><span class="text">
+        </span><span class="kw">method</span><span class="text"> </span><span class="id">bump</span><span class="text"> : </span><span class="kw3">unit</span><span class="text">
+      </span><span class="kw1">end</span><span class="text">
+  </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type POINT =
   sig
     class restricted_point' :
       int -&gt; object method bump : unit method get_x : int end
   end
 </div></pre>
 
-<pre><div class="caml-input"> module Point : POINT = struct
-    class restricted_point' = restricted_point
-  end;;
-</div><div class="caml-output ok">module Point : POINT
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Point</span><span class="text"> : </span><span class="kw2">POINT</span><span class="text"> = </span><span class="kw1">struct</span><span class="text">
+    </span><span class="kw">class</span><span class="text"> </span><span class="id">restricted_point</span><span class="text">' = </span><span class="id">restricted_point</span><span class="text">
+  </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module Point : POINT
 </div></pre>
 
 
@@ -745,13 +745,13 @@ variable <span class="c003">c</span> and a new method <span class="c003">color</
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class colored_point x (c : string) =
-    object
-      inherit point x
-      val c = c
-      method color = c
-    end;;
-</div><div class="caml-output ok">class colored_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">colored_point</span><span class="text"> </span><span class="id">x</span><span class="text"> (</span><span class="id">c</span><span class="text"> : </span><span class="kw3">string</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="id">x</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">color</span><span class="text"> = </span><span class="id">c</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class colored_point :
   int -&gt;
   string -&gt;
   object
@@ -764,12 +764,12 @@ variable <span class="c003">c</span> and a new method <span class="c003">color</
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p' = new colored_point 5 "red";;
-</div><div class="caml-output ok">val p' : colored_point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text">' = </span><span class="kw1">new</span><span class="text"> </span><span class="id">colored_point</span><span class="text"> </span><span class="numeric">5</span><span class="text"> </span><span class="string">"red"</span><span class="text">;;
+</span></div><div class="caml-output ok">val p' : colored_point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p'#get_x, p'#color;;
-</div><div class="caml-output ok">- : int * string = (5, "red")
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="text">'</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">, </span><span class="id">p</span><span class="text">'</span><span class="kw1">#</span><span class="id">color</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int * string = (5, "red")
 </div></pre>
 
 
@@ -784,12 +784,12 @@ in the type). Thus, it applies to both points and colored points.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let get_succ_x p = p#get_x + 1;;
-</div><div class="caml-output ok">val get_succ_x : &lt; get_x : int; .. &gt; -&gt; int = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">get_succ_x</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text"> + </span><span class="numeric">1</span><span class="text">;;
+</span></div><div class="caml-output ok">val get_succ_x : &lt; get_x : int; .. &gt; -&gt; int = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> get_succ_x p + get_succ_x p';;
-</div><div class="caml-output ok">- : int = 8
+<pre><div class="caml-input"><span class="text"> </span><span class="id">get_succ_x</span><span class="text"> </span><span class="id">p</span><span class="text"> + </span><span class="id">get_succ_x</span><span class="text"> </span><span class="id">p</span><span class="text">';;
+</span></div><div class="caml-output ok">- : int = 8
 </div></pre>
 
 
@@ -800,12 +800,12 @@ Methods need not be declared previously, as shown by the example:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let set_x p = p#set_x;;
-</div><div class="caml-output ok">val set_x : &lt; set_x : 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">set_x</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="id">p</span><span class="kw1">#</span><span class="id">set_x</span><span class="text">;;
+</span></div><div class="caml-output ok">val set_x : &lt; set_x : 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let incr p = set_x p (get_succ_x p);;
-</div><div class="caml-output ok">val incr : &lt; get_x : int; set_x : int -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">incr</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="id">set_x</span><span class="text"> </span><span class="id">p</span><span class="text"> (</span><span class="id">get_succ_x</span><span class="text"> </span><span class="id">p</span><span class="text">);;
+</span></div><div class="caml-output ok">val incr : &lt; get_x : int; set_x : int -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
 
@@ -823,19 +823,19 @@ invoke a super-class method, as in <span class="c003">super#print</span>.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class printable_colored_point y c =
-    object (self)
-      val c = c
-      method color = c
-      inherit printable_point y as super
-      method! print =
-        print_string "(";
-        super#print;
-        print_string ", ";
-        print_string (self#color);
-        print_string ")"
-    end;;
-</div><div class="caml-output ok">class printable_colored_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">printable_colored_point</span><span class="text"> </span><span class="id">y</span><span class="text"> </span><span class="id">c</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">color</span><span class="text"> = </span><span class="id">c</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="id">y</span><span class="text"> </span><span class="kw1">as</span><span class="text"> </span><span class="id">super</span><span class="text">
+      </span><span class="kw">method</span><span class="text">! </span><span class="id">print</span><span class="text"> =
+        </span><span class="id">print_string</span><span class="text"> </span><span class="string">"("</span><span class="text">;
+        </span><span class="id">super</span><span class="kw1">#</span><span class="id">print</span><span class="text">;
+        </span><span class="id">print_string</span><span class="text"> </span><span class="string">", "</span><span class="text">;
+        </span><span class="id">print_string</span><span class="text"> (</span><span class="id">self</span><span class="kw1">#</span><span class="id">color</span><span class="text">);
+        </span><span class="id">print_string</span><span class="text"> </span><span class="string">")"</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class printable_colored_point :
   int -&gt;
   string -&gt;
   object
@@ -848,13 +848,13 @@ invoke a super-class method, as in <span class="c003">super#print</span>.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p' = new printable_colored_point 17 "red";;
-</div><div class="caml-output ok">new point at (10, red)
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text">' = </span><span class="kw1">new</span><span class="text"> </span><span class="id">printable_colored_point</span><span class="text"> </span><span class="numeric">17</span><span class="text"> </span><span class="string">"red"</span><span class="text">;;
+</span></div><div class="caml-output ok">new point at (10, red)
 val p' : printable_colored_point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p'#print;;
-</div><div class="caml-output ok">(10, red)- : unit = ()
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="text">'</span><span class="kw1">#</span><span class="id">print</span><span class="text">;;
+</span></div><div class="caml-output ok">(10, red)- : unit = ()
 </div></pre>
 
 
@@ -884,13 +884,13 @@ for <span class="c003">val</span> and <span class="c003">inherit</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class another_printable_colored_point y c c' =
-    object (self)
-    inherit printable_point y
-    inherit! printable_colored_point y c
-    val! c = c'
-    end;;
-</div><div class="caml-output ok">class another_printable_colored_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">another_printable_colored_point</span><span class="text"> </span><span class="id">y</span><span class="text"> </span><span class="id">c</span><span class="text"> </span><span class="id">c</span><span class="text">' =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+    </span><span class="kw">inherit</span><span class="text"> </span><span class="id">printable_point</span><span class="text"> </span><span class="id">y</span><span class="text">
+    </span><span class="kw">inherit</span><span class="text">! </span><span class="id">printable_colored_point</span><span class="text"> </span><span class="id">y</span><span class="text"> </span><span class="id">c</span><span class="text">
+    </span><span class="kw">val</span><span class="text">! </span><span class="id">c</span><span class="text"> = </span><span class="id">c</span><span class="text">'
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class another_printable_colored_point :
   int -&gt;
   string -&gt;
   string -&gt;
@@ -943,13 +943,13 @@ be defined by:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class oref (x_init:int) =
-    object
-      val mutable x = x_init
-      method get = x
-      method set y = x &lt;- y
-    end;;
-</div><div class="caml-output ok">class oref :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">oref</span><span class="text"> (</span><span class="id">x_init</span><span class="text">:</span><span class="kw3">int</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="id">y</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">y</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class oref :
   int -&gt;
   object val mutable x : int method get : int method set : int -&gt; unit end
 </div></pre>
@@ -963,13 +963,13 @@ no such restriction.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let new_oref x_init =
-    object
-      val mutable x = x_init
-      method get = x
-      method set y = x &lt;- y
-    end;;
-</div><div class="caml-output ok">val new_oref : 'a -&gt; &lt; get : 'a; set : 'a -&gt; unit &gt; = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">new_oref</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="id">y</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">y</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">val new_oref : 'a -&gt; &lt; get : 'a; set : 'a -&gt; unit &gt; = &lt;fun&gt;
 </div></pre>
 
 
@@ -983,18 +983,18 @@ bound somewhere in the class body by a type constraint.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] oref x_init =
-    object
-      val mutable x = (x_init : 'a)
-      method get = x
-      method set y = x &lt;- y
-    end;;
-</div><div class="caml-output ok">class ['a] oref :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">oref</span><span class="text"> </span><span class="id">x_init</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = (</span><span class="id">x_init</span><span class="text"> : '</span><span class="id">a</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="id">y</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">y</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] oref :
   'a -&gt; object val mutable x : 'a method get : 'a method set : 'a -&gt; unit end
 </div></pre>
 
-<pre><div class="caml-input"> let r = new oref 1 in r#set 2; (r#get);;
-</div><div class="caml-output ok">- : int = 2
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">r</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">oref</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="kw">in</span><span class="text"> </span><span class="id">r</span><span class="kw1">#</span><span class="id">set</span><span class="text"> </span><span class="numeric">2</span><span class="text">; (</span><span class="id">r</span><span class="kw1">#</span><span class="id">get</span><span class="text">);;
+</span></div><div class="caml-output ok">- : int = 2
 </div></pre>
 
 
@@ -1007,13 +1007,13 @@ the type parameter is displayed in the <span class="c003">constraint</span> clau
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] oref_succ (x_init:'a) =
-    object
-      val mutable x = x_init + 1
-      method get = x
-      method set y = x &lt;- y
-    end;;
-</div><div class="caml-output ok">class ['a] oref_succ :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">oref_succ</span><span class="text"> (</span><span class="id">x_init</span><span class="text">:'</span><span class="id">a</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x_init</span><span class="text"> + </span><span class="numeric">1</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="id">y</span><span class="text"> = </span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">y</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] oref_succ :
   'a -&gt;
   object
     constraint 'a = int
@@ -1034,14 +1034,14 @@ unaccounted for by the class type parameters.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] circle (c : 'a) =
-    object
-      val mutable center = c
-      method center = center
-      method set_center c = center &lt;- c
-      method move = (center#move : int -&gt; unit)
-    end;;
-</div><div class="caml-output ok">class ['a] circle :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">circle</span><span class="text"> (</span><span class="id">c</span><span class="text"> : '</span><span class="id">a</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">center</span><span class="text"> = </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">center</span><span class="text"> = </span><span class="id">center</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set_center</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">center</span><span class="text"> &lt;- </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> = (</span><span class="id">center</span><span class="kw1">#</span><span class="id">move</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">)
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] circle :
   'a -&gt;
   object
     constraint 'a = &lt; move : int -&gt; unit; .. &gt;
@@ -1068,15 +1068,15 @@ method <span class="c003">get_x</span>.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] circle (c : 'a) =
-    object
-      constraint 'a = #point
-      val mutable center = c
-      method center = center
-      method set_center c = center &lt;- c
-      method move = center#move
-    end;;
-</div><div class="caml-output ok">class ['a] circle :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">circle</span><span class="text"> (</span><span class="id">c</span><span class="text"> : '</span><span class="id">a</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">constraint</span><span class="text"> '</span><span class="id">a</span><span class="text"> = </span><span class="kw1">#</span><span class="id">point</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">center</span><span class="text"> = </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">center</span><span class="text"> = </span><span class="id">center</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">set_center</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">center</span><span class="text"> &lt;- </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> = </span><span class="id">center</span><span class="kw1">#</span><span class="id">move</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] circle :
   'a -&gt;
   object
     constraint 'a = #point
@@ -1099,13 +1099,13 @@ explicitly given. It is again written between <span class="c003">[</span> and <s
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] colored_circle c =
-    object
-      constraint 'a = #colored_point
-      inherit ['a] circle c
-      method color = center#color
-    end;;
-</div><div class="caml-output ok">class ['a] colored_circle :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">colored_circle</span><span class="text"> </span><span class="id">c</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">constraint</span><span class="text"> '</span><span class="id">a</span><span class="text"> = </span><span class="kw1">#</span><span class="id">colored_point</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">circle</span><span class="text"> </span><span class="id">c</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">color</span><span class="text"> = </span><span class="id">center</span><span class="kw1">#</span><span class="id">color</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] colored_circle :
   'a -&gt;
   object
     constraint 'a = #colored_point
@@ -1127,16 +1127,16 @@ are not enough to allow polymorphism of method use.</p><p>A classical example is
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> List.fold_left;;
-</div><div class="caml-output ok">- : ('a -&gt; 'b -&gt; 'a) -&gt; 'a -&gt; 'b list -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text">;;
+</span></div><div class="caml-output ok">- : ('a -&gt; 'b -&gt; 'a) -&gt; 'a -&gt; 'b list -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> class ['a] intlist (l : int list) =
-    object
-      method empty = (l = [])
-      method fold f (accu : 'a) = List.fold_left f accu l
-    end;;
-</div><div class="caml-output ok">class ['a] intlist :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">intlist</span><span class="text"> (</span><span class="id">l</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw3">list</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">empty</span><span class="text"> = (</span><span class="id">l</span><span class="text"> = [])
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> </span><span class="id">f</span><span class="text"> (</span><span class="id">accu</span><span class="text"> : '</span><span class="id">a</span><span class="text">) = </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> </span><span class="id">l</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] intlist :
   int list -&gt;
   object method empty : bool method fold : ('a -&gt; int -&gt; 'a) -&gt; 'a -&gt; 'a end
 </div></pre>
@@ -1150,16 +1150,16 @@ does not work in practice.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let l = new intlist [1; 2; 3];;
-</div><div class="caml-output ok">val l : '_weak2 intlist = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">intlist</span><span class="text"> [</span><span class="numeric">1</span><span class="text">; </span><span class="numeric">2</span><span class="text">; </span><span class="numeric">3</span><span class="text">];;
+</span></div><div class="caml-output ok">val l : '_weak2 intlist = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> l#fold (fun x y -&gt; x+y) 0;;
-</div><div class="caml-output ok">- : int = 6
+<pre><div class="caml-input"><span class="text"> </span><span class="id">l</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">+</span><span class="id">y</span><span class="text">) </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 6
 </div></pre>
 
-<pre><div class="caml-input"> l;;
-</div><div class="caml-output ok">- : int intlist = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="id">l</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int intlist = &lt;obj&gt;
 </div></pre>
 
 <pre><div class="caml-input"> l#fold (fun s x -&gt; <u>s</u> ^ Int.to_string x ^ " ") "" ;;
@@ -1181,27 +1181,27 @@ method definition.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class intlist (l : int list) =
-    object
-      method empty = (l = [])
-      method fold : 'a. ('a -&gt; int -&gt; 'a) -&gt; 'a -&gt; 'a =
-        fun f accu -&gt; List.fold_left f accu l
-    end;;
-</div><div class="caml-output ok">class intlist :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">intlist</span><span class="text"> (</span><span class="id">l</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw3">list</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">empty</span><span class="text"> = (</span><span class="id">l</span><span class="text"> = [])
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> : '</span><span class="id">a</span><span class="text">. ('</span><span class="id">a</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text">) -&gt; '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> =
+        </span><span class="kw">fun</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> -&gt; </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> </span><span class="id">l</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class intlist :
   int list -&gt;
   object method empty : bool method fold : ('a -&gt; int -&gt; 'a) -&gt; 'a -&gt; 'a end
 </div></pre>
 
-<pre><div class="caml-input"> let l = new intlist [1; 2; 3];;
-</div><div class="caml-output ok">val l : intlist = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">intlist</span><span class="text"> [</span><span class="numeric">1</span><span class="text">; </span><span class="numeric">2</span><span class="text">; </span><span class="numeric">3</span><span class="text">];;
+</span></div><div class="caml-output ok">val l : intlist = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> l#fold (fun x y -&gt; x+y) 0;;
-</div><div class="caml-output ok">- : int = 6
+<pre><div class="caml-input"><span class="text"> </span><span class="id">l</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">+</span><span class="id">y</span><span class="text">) </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 6
 </div></pre>
 
-<pre><div class="caml-input"> l#fold (fun s x -&gt; s ^ Int.to_string x ^ " ") "";;
-</div><div class="caml-output ok">- : string = "1 2 3 "
+<pre><div class="caml-input"><span class="text"> </span><span class="id">l</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">s</span><span class="text"> ^ </span><span class="kw2">Int</span><span class="text">.</span><span class="id">to_string</span><span class="text"> </span><span class="id">x</span><span class="text"> ^ </span><span class="string">" "</span><span class="text">) </span><span class="string">""</span><span class="text">;;
+</span></div><div class="caml-output ok">- : string = "1 2 3 "
 </div></pre>
 
 
@@ -1222,12 +1222,12 @@ Here is an example of method overriding.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class intlist_rev l =
-    object
-      inherit intlist l
-      method! fold f accu = List.fold_left f accu (List.rev l)
-    end;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">intlist_rev</span><span class="text"> </span><span class="id">l</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">intlist</span><span class="text"> </span><span class="id">l</span><span class="text">
+      </span><span class="kw">method</span><span class="text">! </span><span class="id">fold</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> (</span><span class="kw2">List</span><span class="text">.</span><span class="id">rev</span><span class="text"> </span><span class="id">l</span><span class="text">)
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div>
 </pre>
 
 
@@ -1238,17 +1238,17 @@ The following idiom separates description and definition.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type ['a] iterator =
-    object method fold : ('b -&gt; 'a -&gt; 'b) -&gt; 'b -&gt; 'b end;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">iterator</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> : ('</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text">) -&gt; '</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div>
 </pre>
 
-<pre><div class="caml-input"> class intlist' l =
-    object (self : int #iterator)
-      method empty = (l = [])
-      method fold f accu = List.fold_left f accu l
-    end;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">intlist</span><span class="text">' </span><span class="id">l</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw1">#</span><span class="id">iterator</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">empty</span><span class="text"> = (</span><span class="id">l</span><span class="text"> = [])
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">accu</span><span class="text"> </span><span class="id">l</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div>
 </pre>
 
 
@@ -1264,8 +1264,8 @@ to be monomorphic, and given an incompatible type.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let sum lst = lst#fold (fun x y -&gt; x+y) 0;;
-</div><div class="caml-output ok">val sum : &lt; fold : (int -&gt; int -&gt; int) -&gt; int -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sum</span><span class="text"> </span><span class="id">lst</span><span class="text"> = </span><span class="id">lst</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">+</span><span class="id">y</span><span class="text">) </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">val sum : &lt; fold : (int -&gt; int -&gt; int) -&gt; int -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
 <pre><div class="caml-input"> sum <u>l</u> ;;
@@ -1284,8 +1284,8 @@ parameter.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let sum (lst : _ #iterator) = lst#fold (fun x y -&gt; x+y) 0;;
-</div><div class="caml-output ok">val sum : int #iterator -&gt; int = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sum</span><span class="text"> (</span><span class="id">lst</span><span class="text"> : </span><span class="numeric">_</span><span class="text"> </span><span class="kw1">#</span><span class="id">iterator</span><span class="text">) = </span><span class="id">lst</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">+</span><span class="id">y</span><span class="text">) </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">val sum : int #iterator -&gt; int = &lt;fun&gt;
 </div></pre>
 
 
@@ -1297,9 +1297,9 @@ Only occurrences of quantified variables are required.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let sum lst =
-    (lst : &lt; fold : 'a. ('a -&gt; _ -&gt; 'a) -&gt; 'a -&gt; 'a; .. &gt;)#fold (+) 0;;
-</div><div class="caml-output ok">val sum : &lt; fold : 'a. ('a -&gt; int -&gt; 'a) -&gt; 'a -&gt; 'a; .. &gt; -&gt; int = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sum</span><span class="text"> </span><span class="id">lst</span><span class="text"> =
+    (</span><span class="id">lst</span><span class="text"> : &lt; </span><span class="id">fold</span><span class="text"> : '</span><span class="id">a</span><span class="text">. ('</span><span class="id">a</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text">) -&gt; '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text">; .. &gt;)</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> (+) </span><span class="numeric">0</span><span class="text">;;
+</span></div><div class="caml-output ok">val sum : &lt; fold : 'a. ('a -&gt; int -&gt; 'a) -&gt; 'a -&gt; 'a; .. &gt; -&gt; int = &lt;fun&gt;
 </div></pre>
 
 
@@ -1311,17 +1311,17 @@ class of their argument. This can be extended to methods.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type point0 = object method get_x : int end;;
-</div><div class="caml-output ok">class type point0 = object method get_x : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">point0</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class type point0 = object method get_x : int end
 </div></pre>
 
-<pre><div class="caml-input"> class distance_point x =
-    object
-      inherit point x
-      method distance : 'a. (#point0 as 'a) -&gt; int =
-        fun other -&gt; abs (other#get_x - x)
-    end;;
-</div><div class="caml-output ok">class distance_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">distance_point</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">distance</span><span class="text"> : '</span><span class="id">a</span><span class="text">. (</span><span class="kw1">#</span><span class="id">point0</span><span class="text"> </span><span class="kw1">as</span><span class="text"> '</span><span class="id">a</span><span class="text">) -&gt; </span><span class="kw3">int</span><span class="text"> =
+        </span><span class="kw">fun</span><span class="text"> </span><span class="id">other</span><span class="text"> -&gt; </span><span class="id">abs</span><span class="text"> (</span><span class="id">other</span><span class="kw1">#</span><span class="id">get_x</span><span class="text"> - </span><span class="id">x</span><span class="text">)
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class distance_point :
   int -&gt;
   object
     val mutable x : int
@@ -1332,9 +1332,9 @@ class of their argument. This can be extended to methods.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new distance_point 3 in
-  (p#distance (new point 8), p#distance (new colored_point 1 "blue"));;
-</div><div class="caml-output ok">- : int * int = (5, 2)
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">distance_point</span><span class="text"> </span><span class="numeric">3</span><span class="text"> </span><span class="kw">in</span><span class="text">
+  (</span><span class="id">p</span><span class="kw1">#</span><span class="id">distance</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="numeric">8</span><span class="text">), </span><span class="id">p</span><span class="kw1">#</span><span class="id">distance</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">colored_point</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"blue"</span><span class="text">));;
+</span></div><div class="caml-output ok">- : int * int = (5, 2)
 </div></pre>
 
 
@@ -1348,14 +1348,14 @@ inside object field it must be quantified independently.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class multi_poly =
-    object
-      method m1 : 'a. (&lt; n1 : 'b. 'b -&gt; 'b; .. &gt; as 'a) -&gt; _ =
-        fun o -&gt; o#n1 true, o#n1 "hello"
-      method m2 : 'a 'b. (&lt; n2 : 'b -&gt; bool; .. &gt; as 'a) -&gt; 'b -&gt; _ =
-        fun o x -&gt; o#n2 x
-    end;;
-</div><div class="caml-output ok">class multi_poly :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">multi_poly</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">m1</span><span class="text"> : '</span><span class="id">a</span><span class="text">. (&lt; </span><span class="id">n1</span><span class="text"> : '</span><span class="id">b</span><span class="text">. '</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text">; .. &gt; </span><span class="kw1">as</span><span class="text"> '</span><span class="id">a</span><span class="text">) -&gt; </span><span class="numeric">_</span><span class="text"> =
+        </span><span class="kw">fun</span><span class="text"> </span><span class="id">o</span><span class="text"> -&gt; </span><span class="id">o</span><span class="kw1">#</span><span class="id">n1</span><span class="text"> </span><span class="constant">true</span><span class="text">, </span><span class="id">o</span><span class="kw1">#</span><span class="id">n1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">m2</span><span class="text"> : '</span><span class="id">a</span><span class="text"> '</span><span class="id">b</span><span class="text">. (&lt; </span><span class="id">n2</span><span class="text"> : '</span><span class="id">b</span><span class="text"> -&gt; </span><span class="kw3">bool</span><span class="text">; .. &gt; </span><span class="kw1">as</span><span class="text"> '</span><span class="id">a</span><span class="text">) -&gt; '</span><span class="id">b</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> =
+        </span><span class="kw">fun</span><span class="text"> </span><span class="id">o</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">o</span><span class="kw1">#</span><span class="id">n2</span><span class="text"> </span><span class="id">x</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class multi_poly :
   object
     method m1 : &lt; n1 : 'b. 'b -&gt; 'b; .. &gt; -&gt; bool * string
     method m2 : &lt; n2 : 'b -&gt; bool; .. &gt; -&gt; 'b -&gt; bool
@@ -1379,17 +1379,17 @@ colored point can be coerced to a point, hiding its <span class="c003">color</sp
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let colored_point_to_point cp = (cp : colored_point :&gt; point);;
-</div><div class="caml-output ok">val colored_point_to_point : colored_point -&gt; point = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">colored_point_to_point</span><span class="text"> </span><span class="id">cp</span><span class="text"> = (</span><span class="id">cp</span><span class="text"> : </span><span class="id">colored_point</span><span class="text"> :&gt; </span><span class="id">point</span><span class="text">);;
+</span></div><div class="caml-output ok">val colored_point_to_point : colored_point -&gt; point = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let p = new point 3 and q = new colored_point 4 "blue";;
-</div><div class="caml-output ok">val p : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="numeric">3</span><span class="text"> </span><span class="kw">and</span><span class="text"> </span><span class="id">q</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">colored_point</span><span class="text"> </span><span class="numeric">4</span><span class="text"> </span><span class="string">"blue"</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : point = &lt;obj&gt;
 val q : colored_point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let l = [p; (colored_point_to_point q)];;
-</div><div class="caml-output ok">val l : point list = [&lt;obj&gt;; &lt;obj&gt;]
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = [</span><span class="id">p</span><span class="text">; (</span><span class="id">colored_point_to_point</span><span class="text"> </span><span class="id">q</span><span class="text">)];;
+</span></div><div class="caml-output ok">val l : point list = [&lt;obj&gt;; &lt;obj&gt;]
 </div></pre>
 
 
@@ -1430,8 +1430,8 @@ define:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let to_point cp = (cp :&gt; point);;
-</div><div class="caml-output ok">val to_point : #point -&gt; point = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">to_point</span><span class="text"> </span><span class="id">cp</span><span class="text"> = (</span><span class="id">cp</span><span class="text"> :&gt; </span><span class="id">point</span><span class="text">);;
+</span></div><div class="caml-output ok">val to_point : #point -&gt; point = &lt;fun&gt;
 </div></pre>
 
 
@@ -1445,8 +1445,8 @@ Consider, for example, the following class:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class c0 = object method m = {&lt; &gt;} method n = 0 end;;
-</div><div class="caml-output ok">class c0 : object ('a) method m : 'a method n : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">c0</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> = {&lt; &gt;} </span><span class="kw">method</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="numeric">0</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class c0 : object ('a) method m : 'a method n : int end
 </div></pre>
 
 
@@ -1458,8 +1458,8 @@ Consider now the type declaration:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type c1 =  object method m : c1 end;;
-</div><div class="caml-output ok">class type c1 = object method m : c1 end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">c1</span><span class="text"> =  </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> : </span><span class="id">c1</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class type c1 = object method m : c1 end
 </div></pre>
 
 
@@ -1472,8 +1472,8 @@ correct:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> fun (x:c0) -&gt; (x : c0 :&gt; c1);;
-</div><div class="caml-output ok">- : c0 -&gt; c1 = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">fun</span><span class="text"> (</span><span class="id">x</span><span class="text">:</span><span class="id">c0</span><span class="text">) -&gt; (</span><span class="id">x</span><span class="text"> : </span><span class="id">c0</span><span class="text"> :&gt; </span><span class="id">c1</span><span class="text">);;
+</span></div><div class="caml-output ok">- : c0 -&gt; c1 = &lt;fun&gt;
 </div></pre>
 
 
@@ -1486,12 +1486,12 @@ Sometimes, a change in the class-type definition can also solve the problem
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type c2 = object ('a) method m : 'a end;;
-</div><div class="caml-output ok">class type c2 = object ('a) method m : 'a end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">c2</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> ('</span><span class="id">a</span><span class="text">) </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class type c2 = object ('a) method m : 'a end
 </div></pre>
 
-<pre><div class="caml-input"> fun (x:c0) -&gt; (x :&gt; c2);;
-</div><div class="caml-output ok">- : c0 -&gt; c2 = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">fun</span><span class="text"> (</span><span class="id">x</span><span class="text">:</span><span class="id">c0</span><span class="text">) -&gt; (</span><span class="id">x</span><span class="text"> :&gt; </span><span class="id">c2</span><span class="text">);;
+</span></div><div class="caml-output ok">- : c0 -&gt; c2 = &lt;fun&gt;
 </div></pre>
 
 
@@ -1509,12 +1509,12 @@ The type of a coercion can always be seen as below:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let to_c1 x = (x :&gt; c1);;
-</div><div class="caml-output ok">val to_c1 : &lt; m : #c1; .. &gt; -&gt; c1 = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">to_c1</span><span class="text"> </span><span class="id">x</span><span class="text"> = (</span><span class="id">x</span><span class="text"> :&gt; </span><span class="id">c1</span><span class="text">);;
+</span></div><div class="caml-output ok">val to_c1 : &lt; m : #c1; .. &gt; -&gt; c1 = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let to_c2 x = (x :&gt; c2);;
-</div><div class="caml-output ok">val to_c2 : #c2 -&gt; c2 = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">to_c2</span><span class="text"> </span><span class="id">x</span><span class="text"> = (</span><span class="id">x</span><span class="text"> :&gt; </span><span class="id">c2</span><span class="text">);;
+</span></div><div class="caml-output ok">val to_c2 : #c2 -&gt; c2 = &lt;fun&gt;
 </div></pre>
 
 
@@ -1542,8 +1542,8 @@ the identity function, as in
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> function x -&gt; (x :&gt; 'a);;
-</div><div class="caml-output ok">- : 'a -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">function</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; (</span><span class="id">x</span><span class="text"> :&gt; '</span><span class="id">a</span><span class="text">);;
+</span></div><div class="caml-output ok">- : 'a -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
 
@@ -1583,8 +1583,8 @@ and properly typed.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class c = object (self) method m = (self :&gt; c) end;;
-</div><div class="caml-output ok">class c : object method m : c end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">) </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> = (</span><span class="id">self</span><span class="text"> :&gt; </span><span class="id">c</span><span class="text">) </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class c : object method m : c end
 </div></pre>
 
 
@@ -1596,16 +1596,16 @@ belonging to a class or its subclasses:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let all_c = ref [];;
-</div><div class="caml-output ok">val all_c : '_weak3 list ref = {contents = []}
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">all_c</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> [];;
+</span></div><div class="caml-output ok">val all_c : '_weak3 list ref = {contents = []}
 </div></pre>
 
-<pre><div class="caml-input"> class c (m : int) =
-    object (self)
-      method m = m
-      initializer all_c := (self :&gt; c) :: !all_c
-    end;;
-</div><div class="caml-output ok">class c : int -&gt; object method m : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> (</span><span class="id">m</span><span class="text"> : </span><span class="kw3">int</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="id">m</span><span class="text">
+      </span><span class="kw">initializer</span><span class="text"> </span><span class="id">all_c</span><span class="text"> := (</span><span class="id">self</span><span class="text"> :&gt; </span><span class="id">c</span><span class="text">) :: !</span><span class="id">all_c</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class c : int -&gt; object method m : int end
 </div></pre>
 
 
@@ -1617,14 +1617,14 @@ been weakened:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let rec lookup_obj obj = function [] -&gt; raise Not_found
-    | obj' :: l -&gt;
-       if (obj :&gt; &lt; &gt;) = (obj' :&gt; &lt; &gt;) then obj' else lookup_obj obj l ;;
-</div><div class="caml-output ok">val lookup_obj : &lt; .. &gt; -&gt; (&lt; .. &gt; as 'a) list -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">lookup_obj</span><span class="text"> </span><span class="id">obj</span><span class="text"> = </span><span class="kw">function</span><span class="text"> [] -&gt; </span><span class="id">raise</span><span class="text"> </span><span class="kw2">Not_found</span><span class="text">
+    | </span><span class="id">obj</span><span class="text">' :: </span><span class="id">l</span><span class="text"> -&gt;
+       </span><span class="kw1">if</span><span class="text"> (</span><span class="id">obj</span><span class="text"> :&gt; &lt; &gt;) = (</span><span class="id">obj</span><span class="text">' :&gt; &lt; &gt;) </span><span class="kw1">then</span><span class="text"> </span><span class="id">obj</span><span class="text">' </span><span class="kw1">else</span><span class="text"> </span><span class="id">lookup_obj</span><span class="text"> </span><span class="id">obj</span><span class="text"> </span><span class="id">l</span><span class="text"> ;;
+</span></div><div class="caml-output ok">val lookup_obj : &lt; .. &gt; -&gt; (&lt; .. &gt; as 'a) list -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let lookup_c obj = lookup_obj obj !all_c;;
-</div><div class="caml-output ok">val lookup_c : &lt; .. &gt; -&gt; &lt; m : int &gt; = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">lookup_c</span><span class="text"> </span><span class="id">obj</span><span class="text"> = </span><span class="id">lookup_obj</span><span class="text"> </span><span class="id">obj</span><span class="text"> !</span><span class="id">all_c</span><span class="text">;;
+</span></div><div class="caml-output ok">val lookup_c : &lt; .. &gt; -&gt; &lt; m : int &gt; = &lt;fun&gt;
 </div></pre>
 
 
@@ -1639,17 +1639,17 @@ defining the abbreviation, using a class type:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class type c' = object method m : int end;;
-</div><div class="caml-output ok">class type c' = object method m : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">c</span><span class="text">' = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class type c' = object method m : int end
 </div></pre>
 
-<pre><div class="caml-input"> class c : c' = object method m = 1 end
-  and d = object (self)
-    inherit c
-    method n = 2
-    method as_c = (self :&gt; c')
-  end;;
-</div><div class="caml-output ok">class c : c'
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> : </span><span class="id">c</span><span class="text">' = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="numeric">1</span><span class="text"> </span><span class="kw1">end</span><span class="text">
+  </span><span class="kw">and</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+    </span><span class="kw">inherit</span><span class="text"> </span><span class="id">c</span><span class="text">
+    </span><span class="kw">method</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="numeric">2</span><span class="text">
+    </span><span class="kw">method</span><span class="text"> </span><span class="id">as_c</span><span class="text"> = (</span><span class="id">self</span><span class="text"> :&gt; </span><span class="id">c</span><span class="text">')
+  </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class c : c'
 and d : object method as_c : c' method m : int method n : int end
 </div></pre>
 
@@ -1663,12 +1663,12 @@ type as the methods of <span class="c003">c'</span>.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class virtual c' = object method virtual m : int end;;
-</div><div class="caml-output ok">class virtual c' : object method virtual m : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">c</span><span class="text">' = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">m</span><span class="text"> : </span><span class="kw3">int</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class virtual c' : object method virtual m : int end
 </div></pre>
 
-<pre><div class="caml-input"> class c = object (self) inherit c' method m = 1 end;;
-</div><div class="caml-output ok">class c : object method m : int end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">) </span><span class="kw">inherit</span><span class="text"> </span><span class="id">c</span><span class="text">' </span><span class="kw">method</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="numeric">1</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class c : object method m : int end
 </div></pre>
 
 
@@ -1679,8 +1679,8 @@ One could think of defining the type abbreviation directly:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> type c' = &lt;m : int&gt;;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">c</span><span class="text">' = &lt;</span><span class="id">m</span><span class="text"> : </span><span class="kw3">int</span><span class="text">&gt;;;
+</span></div>
 </pre>
 
 
@@ -1695,8 +1695,8 @@ The closer you get to it is:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> type 'a c'_class = 'a constraint 'a = &lt; m : int; .. &gt;;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">c</span><span class="text">'</span><span class="id">_class</span><span class="text"> = '</span><span class="id">a</span><span class="text"> </span><span class="kw">constraint</span><span class="text"> '</span><span class="id">a</span><span class="text"> = &lt; </span><span class="id">m</span><span class="text"> : </span><span class="kw3">int</span><span class="text">; .. &gt;;;
+</span></div>
 </pre>
 
 
@@ -1713,14 +1713,14 @@ some instance variables.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class functional_point y =
-    object
-      val x = y
-      method get_x = x
-      method move d = {&lt; x = x + d &gt;}
-      method move_to x = {&lt; x &gt;}
-    end;;
-</div><div class="caml-output ok">class functional_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">functional_point</span><span class="text"> </span><span class="id">y</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">y</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = {&lt; </span><span class="id">x</span><span class="text"> = </span><span class="id">x</span><span class="text"> + </span><span class="id">d</span><span class="text"> &gt;}
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move_to</span><span class="text"> </span><span class="id">x</span><span class="text"> = {&lt; </span><span class="id">x</span><span class="text"> &gt;}
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class functional_point :
   int -&gt;
   object ('a)
     val x : int
@@ -1730,24 +1730,24 @@ some instance variables.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new functional_point 7;;
-</div><div class="caml-output ok">val p : functional_point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">functional_point</span><span class="text"> </span><span class="numeric">7</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : functional_point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 7
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 7
 </div></pre>
 
-<pre><div class="caml-input"> (p#move 3)#get_x;;
-</div><div class="caml-output ok">- : int = 10
+<pre><div class="caml-input"><span class="text"> (</span><span class="id">p</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">3</span><span class="text">)</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 10
 </div></pre>
 
-<pre><div class="caml-input"> (p#move_to 15)#get_x;;
-</div><div class="caml-output ok">- : int = 15
+<pre><div class="caml-input"><span class="text"> (</span><span class="id">p</span><span class="kw1">#</span><span class="id">move_to</span><span class="text"> </span><span class="numeric">15</span><span class="text">)</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 15
 </div></pre>
 
-<pre><div class="caml-input"> p#get_x;;
-</div><div class="caml-output ok">- : int = 7
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">;;
+</span></div><div class="caml-output ok">- : int = 7
 </div></pre>
 
 
@@ -1763,14 +1763,14 @@ to the following:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class bad_functional_point y =
-    object
-      val x = y
-      method get_x = x
-      method move d = new bad_functional_point (x+d)
-      method move_to x = new bad_functional_point x
-    end;;
-</div><div class="caml-output ok">class bad_functional_point :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">bad_functional_point</span><span class="text"> </span><span class="id">y</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">y</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">get_x</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">d</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">bad_functional_point</span><span class="text"> (</span><span class="id">x</span><span class="text">+</span><span class="id">d</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">move_to</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">bad_functional_point</span><span class="text"> </span><span class="id">x</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class bad_functional_point :
   int -&gt;
   object
     val x : int
@@ -1805,8 +1805,8 @@ will of course affect both the original and the copy.</p><p>The type of <span cl
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> Oo.copy;;
-</div><div class="caml-output ok">- : (&lt; .. &gt; as 'a) -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">Oo</span><span class="text">.</span><span class="id">copy</span><span class="text">;;
+</span></div><div class="caml-output ok">- : (&lt; .. &gt; as 'a) -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
 
@@ -1821,16 +1821,16 @@ Ellipsis actually behaves as a type variable.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let p = new point 5;;
-</div><div class="caml-output ok">val p : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">point</span><span class="text"> </span><span class="numeric">5</span><span class="text">;;
+</span></div><div class="caml-output ok">val p : point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let q = Oo.copy p;;
-</div><div class="caml-output ok">val q : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">q</span><span class="text"> = </span><span class="kw2">Oo</span><span class="text">.</span><span class="id">copy</span><span class="text"> </span><span class="id">p</span><span class="text">;;
+</span></div><div class="caml-output ok">val q : point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> q#move 7; (p#get_x, q#get_x);;
-</div><div class="caml-output ok">- : int * int = (5, 12)
+<pre><div class="caml-input"><span class="text"> </span><span class="id">q</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">7</span><span class="text">; (</span><span class="id">p</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">, </span><span class="id">q</span><span class="kw1">#</span><span class="id">get_x</span><span class="text">);;
+</span></div><div class="caml-output ok">- : int * int = (5, 12)
 </div></pre>
 
 
@@ -1844,12 +1844,12 @@ particular, an object and its copy are not equal.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let q = Oo.copy p;;
-</div><div class="caml-output ok">val q : point = &lt;obj&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">q</span><span class="text"> = </span><span class="kw2">Oo</span><span class="text">.</span><span class="id">copy</span><span class="text"> </span><span class="id">p</span><span class="text">;;
+</span></div><div class="caml-output ok">val q : point = &lt;obj&gt;
 </div></pre>
 
-<pre><div class="caml-input"> p = q, p = p;;
-</div><div class="caml-output ok">- : bool * bool = (false, true)
+<pre><div class="caml-input"><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="id">q</span><span class="text">, </span><span class="id">p</span><span class="text"> = </span><span class="id">p</span><span class="text">;;
+</span></div><div class="caml-output ok">- : bool * bool = (false, true)
 </div></pre>
 
 
@@ -1866,18 +1866,18 @@ overriding any field:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class copy =
-    object
-      method copy = {&lt; &gt;}
-    end;;
-</div><div class="caml-output ok">class copy : object ('a) method copy : 'a end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">copy</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">copy</span><span class="text"> = {&lt; &gt;}
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class copy : object ('a) method copy : 'a end
 </div></pre>
 
-<pre><div class="caml-input"> class copy =
-    object (self)
-      method copy = Oo.copy self
-    end;;
-</div><div class="caml-output ok">class copy : object ('a) method copy : 'a end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">copy</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">copy</span><span class="text"> = </span><span class="kw2">Oo</span><span class="text">.</span><span class="id">copy</span><span class="text"> </span><span class="id">self</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class copy : object ('a) method copy : 'a end
 </div></pre>
 
 
@@ -1890,13 +1890,13 @@ restoring the state of objects.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class backup =
-    object (self : 'mytype)
-      val mutable copy = None
-      method save = copy &lt;- Some {&lt; copy = None &gt;}
-      method restore = match copy with Some x -&gt; x | None -&gt; self
-    end;;
-</div><div class="caml-output ok">class backup :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">backup</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">mytype</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">copy</span><span class="text"> = </span><span class="kw2">None</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">save</span><span class="text"> = </span><span class="id">copy</span><span class="text"> &lt;- </span><span class="kw2">Some</span><span class="text"> {&lt; </span><span class="id">copy</span><span class="text"> = </span><span class="kw2">None</span><span class="text"> &gt;}
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">restore</span><span class="text"> = </span><span class="kw1">match</span><span class="text"> </span><span class="id">copy</span><span class="text"> </span><span class="kw1">with</span><span class="text"> </span><span class="kw2">Some</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text"> | </span><span class="kw2">None</span><span class="text"> -&gt; </span><span class="id">self</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class backup :
   object ('a)
     val mutable copy : 'a option
     method restore : 'a
@@ -1913,8 +1913,8 @@ The backup facility can be added to any class by using multiple inheritance.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] backup_ref x = object inherit ['a] oref x inherit backup end;;
-</div><div class="caml-output ok">class ['a] backup_ref :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">backup_ref</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">oref</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw">inherit</span><span class="text"> </span><span class="id">backup</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] backup_ref :
   'a -&gt;
   object ('b)
     val mutable copy : 'b option
@@ -1926,14 +1926,14 @@ The backup facility can be added to any class by using multiple inheritance.
   end
 </div></pre>
 
-<pre><div class="caml-input"> let rec get p n = if n = 0 then p # get else get (p # restore) (n-1);;
-</div><div class="caml-output ok">val get : (&lt; get : 'b; restore : 'a; .. &gt; as 'a) -&gt; int -&gt; 'b = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="numeric">0</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">get</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="id">get</span><span class="text"> (</span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">restore</span><span class="text">) (</span><span class="id">n</span><span class="numeric">-1</span><span class="text">);;
+</span></div><div class="caml-output ok">val get : (&lt; get : 'b; restore : 'a; .. &gt; as 'a) -&gt; int -&gt; 'b = &lt;fun&gt;
 </div></pre>
 
-<pre><div class="caml-input"> let p = new backup_ref 0  in
-  p # save; p # set 1; p # save; p # set 2;
-  [get p 0; get p 1; get p 2; get p 3; get p 4];;
-</div><div class="caml-output ok">- : int list = [2; 1; 1; 1; 1]
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">backup_ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">  </span><span class="kw">in</span><span class="text">
+  </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">save</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">save</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="numeric">2</span><span class="text">;
+  [</span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">0</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">2</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">3</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">4</span><span class="text">];;
+</span></div><div class="caml-output ok">- : int list = [2; 1; 1; 1; 1]
 </div></pre>
 
 
@@ -1945,14 +1945,14 @@ add a method <span class="c003">clear</span> to manually erase all copies.)
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class backup =
-    object (self : 'mytype)
-      val mutable copy = None
-      method save = copy &lt;- Some {&lt; &gt;}
-      method restore = match copy with Some x -&gt; x | None -&gt; self
-      method clear = copy &lt;- None
-    end;;
-</div><div class="caml-output ok">class backup :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">backup</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">mytype</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">copy</span><span class="text"> = </span><span class="kw2">None</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">save</span><span class="text"> = </span><span class="id">copy</span><span class="text"> &lt;- </span><span class="kw2">Some</span><span class="text"> {&lt; &gt;}
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">restore</span><span class="text"> = </span><span class="kw1">match</span><span class="text"> </span><span class="id">copy</span><span class="text"> </span><span class="kw1">with</span><span class="text"> </span><span class="kw2">Some</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text"> | </span><span class="kw2">None</span><span class="text"> -&gt; </span><span class="id">self</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">clear</span><span class="text"> = </span><span class="id">copy</span><span class="text"> &lt;- </span><span class="kw2">None</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class backup :
   object ('a)
     val mutable copy : 'a option
     method clear : unit
@@ -1964,8 +1964,8 @@ add a method <span class="c003">clear</span> to manually erase all copies.)
 
 </div><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class ['a] backup_ref x = object inherit ['a] oref x inherit backup end;;
-</div><div class="caml-output ok">class ['a] backup_ref :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">backup_ref</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">oref</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw">inherit</span><span class="text"> </span><span class="id">backup</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class ['a] backup_ref :
   'a -&gt;
   object ('b)
     val mutable copy : 'b option
@@ -1978,10 +1978,10 @@ add a method <span class="c003">clear</span> to manually erase all copies.)
   end
 </div></pre>
 
-<pre><div class="caml-input"> let p = new backup_ref 0  in
-  p # save; p # set 1; p # save; p # set 2;
-  [get p 0; get p 1; get p 2; get p 3; get p 4];;
-</div><div class="caml-output ok">- : int list = [2; 1; 0; 0; 0]
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">backup_ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">  </span><span class="kw">in</span><span class="text">
+  </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">save</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">save</span><span class="text">; </span><span class="id">p</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">set</span><span class="text"> </span><span class="numeric">2</span><span class="text">;
+  [</span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">0</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">2</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">3</span><span class="text">; </span><span class="id">get</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="numeric">4</span><span class="text">];;
+</span></div><div class="caml-output ok">- : int list = [2; 1; 0; 0; 0]
 </div></pre>
 
 
@@ -1994,17 +1994,17 @@ mutually recursive.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class window =
-    object
-      val mutable top_widget = (None : widget option)
-      method top_widget = top_widget
-    end
-  and widget (w : window) =
-    object
-      val window = w
-      method window = window
-    end;;
-</div><div class="caml-output ok">class window :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">window</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">top_widget</span><span class="text"> = (</span><span class="kw2">None</span><span class="text"> : </span><span class="id">widget</span><span class="text"> </span><span class="id">option</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">top_widget</span><span class="text"> = </span><span class="id">top_widget</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">
+  </span><span class="kw">and</span><span class="text"> </span><span class="id">widget</span><span class="text"> (</span><span class="id">w</span><span class="text"> : </span><span class="id">window</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="id">w</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="id">window</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class window :
   object
     val mutable top_widget : widget option
     method top_widget : widget option
@@ -2028,11 +2028,11 @@ allows writing recursive types.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class virtual comparable =
-    object (_ : 'a)
-      method virtual leq : 'a -&gt; bool
-    end;;
-</div><div class="caml-output ok">class virtual comparable : object ('a) method virtual leq : 'a -&gt; bool end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">comparable</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="numeric">_</span><span class="text"> : '</span><span class="id">a</span><span class="text">)
+      </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">leq</span><span class="text"> : '</span><span class="id">a</span><span class="text"> -&gt; </span><span class="kw3">bool</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class virtual comparable : object ('a) method virtual leq : 'a -&gt; bool end
 </div></pre>
 
 
@@ -2048,14 +2048,14 @@ of this class is an instance of <span class="c003">#comparable</span>.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class money (x : float) =
-    object
-      inherit comparable
-      val repr = x
-      method value = repr
-      method leq p = repr &lt;= p#value
-    end;;
-</div><div class="caml-output ok">class money :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">money</span><span class="text"> (</span><span class="id">x</span><span class="text"> : </span><span class="kw3">float</span><span class="text">) =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">comparable</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">value</span><span class="text"> = </span><span class="id">repr</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">leq</span><span class="text"> </span><span class="id">p</span><span class="text"> = </span><span class="id">repr</span><span class="text"> &lt;= </span><span class="id">p</span><span class="kw1">#</span><span class="id">value</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class money :
   float -&gt;
   object ('a)
     val repr : float
@@ -2079,12 +2079,12 @@ call to method <span class="c003">leq</span> on <span class="c003">m</span> with
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class money2 x =
-    object
-      inherit money x
-      method times k = {&lt; repr = k *. repr &gt;}
-    end;;
-</div><div class="caml-output ok">class money2 :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">money2</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text">
+      </span><span class="kw">inherit</span><span class="text"> </span><span class="id">money</span><span class="text"> </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">times</span><span class="text"> </span><span class="id">k</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">k</span><span class="text"> *. </span><span class="id">repr</span><span class="text"> &gt;}
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class money2 :
   float -&gt;
   object ('a)
     val repr : float
@@ -2107,9 +2107,9 @@ generates a new variable.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let min (x : #comparable) y =
-    if x#leq y then x else y;;
-</div><div class="caml-output ok">val min : (#comparable as 'a) -&gt; 'a -&gt; 'a = &lt;fun&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">min</span><span class="text"> (</span><span class="id">x</span><span class="text"> : </span><span class="kw1">#</span><span class="id">comparable</span><span class="text">) </span><span class="id">y</span><span class="text"> =
+    </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="kw1">#</span><span class="id">leq</span><span class="text"> </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="id">y</span><span class="text">;;
+</span></div><div class="caml-output ok">val min : (#comparable as 'a) -&gt; 'a -&gt; 'a = &lt;fun&gt;
 </div></pre>
 
 
@@ -2121,12 +2121,12 @@ or <span class="c003">money2</span>.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> (min (new money  1.3) (new money 3.1))#value;;
-</div><div class="caml-output ok">- : float = 1.3
+<pre><div class="caml-input"><span class="text"> (</span><span class="id">min</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">money</span><span class="text">  </span><span class="numeric">1.3</span><span class="text">) (</span><span class="kw1">new</span><span class="text"> </span><span class="id">money</span><span class="text"> </span><span class="numeric">3.1</span><span class="text">))</span><span class="kw1">#</span><span class="id">value</span><span class="text">;;
+</span></div><div class="caml-output ok">- : float = 1.3
 </div></pre>
 
-<pre><div class="caml-input"> (min (new money2 5.0) (new money2 3.14))#value;;
-</div><div class="caml-output ok">- : float = 3.14
+<pre><div class="caml-input"><span class="text"> (</span><span class="id">min</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">money2</span><span class="text"> </span><span class="numeric">5.0</span><span class="text">) (</span><span class="kw1">new</span><span class="text"> </span><span class="id">money2</span><span class="text"> </span><span class="numeric">3.14</span><span class="text">))</span><span class="kw1">#</span><span class="id">value</span><span class="text">;;
+</span></div><div class="caml-output ok">- : float = 3.14
 </div></pre>
 
 
@@ -2141,16 +2141,16 @@ direct definition:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class money x =
-    object (self : 'a)
-      val repr = x
-      method value = repr
-      method print = print_float repr
-      method times k = {&lt; repr = k *. x &gt;}
-      method leq (p : 'a) = repr &lt;= p#value
-      method plus (p : 'a) = {&lt; repr = x +. p#value &gt;}
-    end;;
-</div><div class="caml-output ok">class money :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">money</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">a</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">value</span><span class="text"> = </span><span class="id">repr</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_float</span><span class="text"> </span><span class="id">repr</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">times</span><span class="text"> </span><span class="id">k</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">k</span><span class="text"> *. </span><span class="id">x</span><span class="text"> &gt;}
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">leq</span><span class="text"> (</span><span class="id">p</span><span class="text"> : '</span><span class="id">a</span><span class="text">) = </span><span class="id">repr</span><span class="text"> &lt;= </span><span class="id">p</span><span class="kw1">#</span><span class="id">value</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">plus</span><span class="text"> (</span><span class="id">p</span><span class="text"> : '</span><span class="id">a</span><span class="text">) = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text"> +. </span><span class="id">p</span><span class="kw1">#</span><span class="id">value</span><span class="text"> &gt;}
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class money :
   float -&gt;
   object ('a)
     val repr : float
@@ -2178,13 +2178,13 @@ class (other than self).
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> class safe_money x =
-    object (self : 'a)
-      val repr = x
-      method print = print_float repr
-      method times k = {&lt; repr = k *. x &gt;}
-    end;;
-</div><div class="caml-output ok">class safe_money :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">safe_money</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+    </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">a</span><span class="text">)
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_float</span><span class="text"> </span><span class="id">repr</span><span class="text">
+      </span><span class="kw">method</span><span class="text"> </span><span class="id">times</span><span class="text"> </span><span class="id">k</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">k</span><span class="text"> *. </span><span class="id">x</span><span class="text"> &gt;}
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">class safe_money :
   float -&gt;
   object ('a)
     val repr : float
@@ -2204,36 +2204,36 @@ visibility of the representation using the module system.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type MONEY =
-    sig
-      type t
-      class c : float -&gt;
-        object ('a)
-          val repr : t
-          method value : t
-          method print : unit
-          method times : float -&gt; 'a
-          method leq : 'a -&gt; bool
-          method plus : 'a -&gt; 'a
-        end
-    end;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">MONEY</span><span class="text"> =
+    </span><span class="kw1">sig</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">t</span><span class="text">
+      </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> : </span><span class="kw3">float</span><span class="text"> -&gt;
+        </span><span class="kw1">object</span><span class="text"> ('</span><span class="id">a</span><span class="text">)
+          </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> : </span><span class="id">t</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">value</span><span class="text"> : </span><span class="id">t</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> : </span><span class="kw3">unit</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">times</span><span class="text"> : </span><span class="kw3">float</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">leq</span><span class="text"> : '</span><span class="id">a</span><span class="text"> -&gt; </span><span class="kw3">bool</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">plus</span><span class="text"> : '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text">
+        </span><span class="kw1">end</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div>
 </pre>
 
-<pre><div class="caml-input"> module Euro : MONEY =
-    struct
-      type t = float
-      class c x =
-        object (self : 'a)
-          val repr = x
-          method value = repr
-          method print = print_float repr
-          method times k = {&lt; repr = k *. x &gt;}
-          method leq (p : 'a) = repr &lt;= p#value
-          method plus (p : 'a) = {&lt; repr = x +. p#value &gt;}
-        end
-    end;;
-</div>
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Euro</span><span class="text"> : </span><span class="kw2">MONEY</span><span class="text"> =
+    </span><span class="kw1">struct</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">t</span><span class="text"> = </span><span class="kw3">float</span><span class="text">
+      </span><span class="kw">class</span><span class="text"> </span><span class="id">c</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+        </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">a</span><span class="text">)
+          </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">value</span><span class="text"> = </span><span class="id">repr</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_float</span><span class="text"> </span><span class="id">repr</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">times</span><span class="text"> </span><span class="id">k</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">k</span><span class="text"> *. </span><span class="id">x</span><span class="text"> &gt;}
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">leq</span><span class="text"> (</span><span class="id">p</span><span class="text"> : '</span><span class="id">a</span><span class="text">) = </span><span class="id">repr</span><span class="text"> &lt;= </span><span class="id">p</span><span class="kw1">#</span><span class="id">value</span><span class="text">
+          </span><span class="kw">method</span><span class="text"> </span><span class="id">plus</span><span class="text"> (</span><span class="id">p</span><span class="text"> : '</span><span class="id">a</span><span class="text">) = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">x</span><span class="text"> +. </span><span class="id">p</span><span class="kw1">#</span><span class="id">value</span><span class="text"> &gt;}
+        </span><span class="kw1">end</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div>
 </pre>
 
 

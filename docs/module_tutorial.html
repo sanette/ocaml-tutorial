@@ -36,33 +36,33 @@ packaging together a type of priority queues and their operations:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module PrioQueue =
-    struct
-      type priority = int
-      type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
-      let empty = Empty
-      let rec insert queue prio elt =
-        match queue with
-          Empty -&gt; Node(prio, elt, Empty, Empty)
-        | Node(p, e, left, right) -&gt;
-            if prio &lt;= p
-            then Node(prio, elt, insert right p e, left)
-            else Node(p, e, insert right prio elt, left)
-      exception Queue_is_empty
-      let rec remove_top = function
-          Empty -&gt; raise Queue_is_empty
-        | Node(prio, elt, left, Empty) -&gt; left
-        | Node(prio, elt, Empty, right) -&gt; right
-        | Node(prio, elt, (Node(lprio, lelt, _, _) as left),
-                          (Node(rprio, relt, _, _) as right)) -&gt;
-            if lprio &lt;= rprio
-            then Node(lprio, lelt, remove_top left, right)
-            else Node(rprio, relt, left, remove_top right)
-      let extract = function
-          Empty -&gt; raise Queue_is_empty
-        | Node(prio, elt, _, _) as queue -&gt; (prio, elt, remove_top queue)
-    end;;
-</div><div class="caml-output ok">module PrioQueue :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text"> =
+    </span><span class="kw1">struct</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">priority</span><span class="text"> = </span><span class="kw3">int</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text"> = </span><span class="kw2">Empty</span><span class="text"> | </span><span class="kw2">Node</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="id">priority</span><span class="text"> * '</span><span class="id">a</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> = </span><span class="kw2">Empty</span><span class="text">
+      </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">insert</span><span class="text"> </span><span class="id">queue</span><span class="text"> </span><span class="id">prio</span><span class="text"> </span><span class="id">elt</span><span class="text"> =
+        </span><span class="kw1">match</span><span class="text"> </span><span class="id">queue</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+          </span><span class="kw2">Empty</span><span class="text"> -&gt; </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">)
+        | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">p</span><span class="text">, </span><span class="id">e</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="id">right</span><span class="text">) -&gt;
+            </span><span class="kw1">if</span><span class="text"> </span><span class="id">prio</span><span class="text"> &lt;= </span><span class="id">p</span><span class="text">
+            </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="id">insert</span><span class="text"> </span><span class="id">right</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="id">e</span><span class="text">, </span><span class="id">left</span><span class="text">)
+            </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">p</span><span class="text">, </span><span class="id">e</span><span class="text">, </span><span class="id">insert</span><span class="text"> </span><span class="id">right</span><span class="text"> </span><span class="id">prio</span><span class="text"> </span><span class="id">elt</span><span class="text">, </span><span class="id">left</span><span class="text">)
+      </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text">
+      </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">remove_top</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+          </span><span class="kw2">Empty</span><span class="text"> -&gt; </span><span class="id">raise</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text">
+        | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">) -&gt; </span><span class="id">left</span><span class="text">
+        | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">, </span><span class="id">right</span><span class="text">) -&gt; </span><span class="id">right</span><span class="text">
+        | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, (</span><span class="kw2">Node</span><span class="text">(</span><span class="id">lprio</span><span class="text">, </span><span class="id">lelt</span><span class="text">, </span><span class="numeric">_</span><span class="text">, </span><span class="numeric">_</span><span class="text">) </span><span class="kw1">as</span><span class="text"> </span><span class="id">left</span><span class="text">),
+                          (</span><span class="kw2">Node</span><span class="text">(</span><span class="id">rprio</span><span class="text">, </span><span class="id">relt</span><span class="text">, </span><span class="numeric">_</span><span class="text">, </span><span class="numeric">_</span><span class="text">) </span><span class="kw1">as</span><span class="text"> </span><span class="id">right</span><span class="text">)) -&gt;
+            </span><span class="kw1">if</span><span class="text"> </span><span class="id">lprio</span><span class="text"> &lt;= </span><span class="id">rprio</span><span class="text">
+            </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">lprio</span><span class="text">, </span><span class="id">lelt</span><span class="text">, </span><span class="id">remove_top</span><span class="text"> </span><span class="id">left</span><span class="text">, </span><span class="id">right</span><span class="text">)
+            </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">rprio</span><span class="text">, </span><span class="id">relt</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="id">remove_top</span><span class="text"> </span><span class="id">right</span><span class="text">)
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">extract</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+          </span><span class="kw2">Empty</span><span class="text"> -&gt; </span><span class="id">raise</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text">
+        | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="numeric">_</span><span class="text">, </span><span class="numeric">_</span><span class="text">) </span><span class="kw1">as</span><span class="text"> </span><span class="id">queue</span><span class="text"> -&gt; (</span><span class="id">prio</span><span class="text">, </span><span class="id">elt</span><span class="text">, </span><span class="id">remove_top</span><span class="text"> </span><span class="id">queue</span><span class="text">)
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module PrioQueue :
   sig
     type priority = int
     type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
@@ -86,8 +86,8 @@ inside the structure <span class="c003">PrioQueue</span> and <span class="c003">
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> PrioQueue.insert PrioQueue.empty 1 "hello";;
-</div><div class="caml-output ok">- : string PrioQueue.queue =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text">.</span><span class="id">insert</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text">.</span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">;;
+</span></div><div class="caml-output ok">- : string PrioQueue.queue =
 PrioQueue.Node (1, "hello", PrioQueue.Empty, PrioQueue.Empty)
 </div></pre>
 
@@ -96,11 +96,11 @@ PrioQueue.Node (1, "hello", PrioQueue.Empty, PrioQueue.Empty)
 identifiers defined inside the module in the scope of the current
 structure.</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   open PrioQueue;;
-</div></pre>
+<pre><div class="caml-input"><span class="text">   </span><span class="kw">open</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text">;;
+</span></div></pre>
 
-<pre><div class="caml-input">   insert empty 1 "hello";;
-</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+<pre><div class="caml-input"><span class="text">   </span><span class="id">insert</span><span class="text"> </span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">;;
+</span></div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
 </div></pre>
 
 
@@ -110,9 +110,9 @@ has been defined. In particular, opened modules can shadow
 identifiers present in the current scope, potentially leading
 to confusing errors:</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   let empty = []
-    open PrioQueue;;
-</div><div class="caml-output ok">val empty : 'a list = []
+<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> = []
+    </span><span class="kw">open</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text">;;
+</span></div><div class="caml-output ok">val empty : 'a list = []
 </div></pre>
 
 <pre><div class="caml-input">   let x = 1 :: <u>empty</u> ;;
@@ -131,9 +131,9 @@ Two constructions are available for this purpose:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   let open PrioQueue in
-    insert empty 1 "hello";;
-</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="kw">open</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text"> </span><span class="kw">in</span><span class="text">
+    </span><span class="id">insert</span><span class="text"> </span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">;;
+</span></div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
 </div></pre>
 
 
@@ -144,8 +144,8 @@ and
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   PrioQueue.(insert empty 1 "hello");;
-</div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
+<pre><div class="caml-input"><span class="text">   </span><span class="kw2">PrioQueue</span><span class="text">.(</span><span class="id">insert</span><span class="text"> </span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">);;
+</span></div><div class="caml-output ok">- : string PrioQueue.queue = Node (1, "hello", Empty, Empty)
 </div></pre>
 
 
@@ -158,16 +158,16 @@ can be omitted. For instance,
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   PrioQueue.[empty] = PrioQueue.([empty]);;
-</div><div class="caml-output ok">- : bool = true
+<pre><div class="caml-input"><span class="text">   </span><span class="kw2">PrioQueue</span><span class="text">.[</span><span class="id">empty</span><span class="text">] = </span><span class="kw2">PrioQueue</span><span class="text">.([</span><span class="id">empty</span><span class="text">]);;
+</span></div><div class="caml-output ok">- : bool = true
 </div></pre>
 
-<pre><div class="caml-input">   PrioQueue.[|empty|] = PrioQueue.([|empty|]);;
-</div><div class="caml-output ok">- : bool = true
+<pre><div class="caml-input"><span class="text">   </span><span class="kw2">PrioQueue</span><span class="text">.[|</span><span class="id">empty</span><span class="text">|] = </span><span class="kw2">PrioQueue</span><span class="text">.([|</span><span class="id">empty</span><span class="text">|]);;
+</span></div><div class="caml-output ok">- : bool = true
 </div></pre>
 
-<pre><div class="caml-input">    PrioQueue.{ contents = empty } = PrioQueue.({ contents = empty });;
-</div><div class="caml-output ok">- : bool = true
+<pre><div class="caml-input"><span class="text">    </span><span class="kw2">PrioQueue</span><span class="text">.{ </span><span class="id">contents</span><span class="text"> = </span><span class="id">empty</span><span class="text"> } = </span><span class="kw2">PrioQueue</span><span class="text">.({ </span><span class="id">contents</span><span class="text"> = </span><span class="id">empty</span><span class="text"> });;
+</span></div><div class="caml-output ok">- : bool = true
 </div></pre>
 
 
@@ -178,8 +178,8 @@ becomes
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   PrioQueue.[insert empty 1 "hello"];;
-</div><div class="caml-output ok">- : string PrioQueue.queue list = [Node (1, "hello", Empty, Empty)]
+<pre><div class="caml-input"><span class="text">   </span><span class="kw2">PrioQueue</span><span class="text">.[</span><span class="id">insert</span><span class="text"> </span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">];;
+</span></div><div class="caml-output ok">- : string PrioQueue.queue list = [Node (1, "hello", Empty, Empty)]
 </div></pre>
 
 
@@ -192,17 +192,17 @@ an exception when the priority queue is empty.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   module PrioQueueOpt =
-    struct
-      include PrioQueue
+<pre><div class="caml-input"><span class="text">   </span><span class="kw">module</span><span class="text"> </span><span class="kw2">PrioQueueOpt</span><span class="text"> =
+    </span><span class="kw1">struct</span><span class="text">
+      </span><span class="kw">include</span><span class="text"> </span><span class="kw2">PrioQueue</span><span class="text">
 
-      let remove_top_opt x =
-        try Some(remove_top x) with Queue_is_empty -&gt; None
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">remove_top_opt</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+        </span><span class="kw1">try</span><span class="text"> </span><span class="kw2">Some</span><span class="text">(</span><span class="id">remove_top</span><span class="text"> </span><span class="id">x</span><span class="text">) </span><span class="kw1">with</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text"> -&gt; </span><span class="kw2">None</span><span class="text">
 
-      let extract_opt x =
-        try Some(extract x) with Queue_is_empty -&gt; None
-    end;;
-</div><div class="caml-output ok">module PrioQueueOpt :
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">extract_opt</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+        </span><span class="kw1">try</span><span class="text"> </span><span class="kw2">Some</span><span class="text">(</span><span class="id">extract</span><span class="text"> </span><span class="id">x</span><span class="text">) </span><span class="kw1">with</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text"> -&gt; </span><span class="kw2">None</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module PrioQueueOpt :
   sig
     type priority = int
     type 'a queue =
@@ -234,16 +234,16 @@ abstract (by not providing its actual representation as a concrete type).
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type PRIOQUEUE =
-    sig
-      type priority = int         (* still concrete *)
-      type 'a queue               (* now abstract *)
-      val empty : 'a queue
-      val insert : 'a queue -&gt; int -&gt; 'a -&gt; 'a queue
-      val extract : 'a queue -&gt; int * 'a * 'a queue
-      exception Queue_is_empty
-    end;;
-</div><div class="caml-output ok">module type PRIOQUEUE =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">PRIOQUEUE</span><span class="text"> =
+    </span><span class="kw1">sig</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">priority</span><span class="text"> = </span><span class="kw3">int</span><span class="text">         </span><span class="comment">(* still concrete *)</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">               </span><span class="comment">(* now abstract *)</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">empty</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">insert</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">extract</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> * '</span><span class="id">a</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">
+      </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Queue_is_empty</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type PRIOQUEUE =
   sig
     type priority = int
     type 'a queue
@@ -265,16 +265,16 @@ queues is hidden:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module AbstractPrioQueue = (PrioQueue : PRIOQUEUE);;
-</div><div class="caml-output ok">module AbstractPrioQueue : PRIOQUEUE
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">AbstractPrioQueue</span><span class="text"> = (</span><span class="kw2">PrioQueue</span><span class="text"> : </span><span class="kw2">PRIOQUEUE</span><span class="text">);;
+</span></div><div class="caml-output ok">module AbstractPrioQueue : PRIOQUEUE
 </div></pre>
 
 <pre><div class="caml-input"> <u>AbstractPrioQueue.remove_top</u> ;;
 </div><div class="caml-output error">Error: Unbound value AbstractPrioQueue.remove_top
 </div></pre>
 
-<pre><div class="caml-input"> AbstractPrioQueue.insert AbstractPrioQueue.empty 1 "hello";;
-</div><div class="caml-output ok">- : string AbstractPrioQueue.queue = &lt;abstr&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">AbstractPrioQueue</span><span class="text">.</span><span class="id">insert</span><span class="text"> </span><span class="kw2">AbstractPrioQueue</span><span class="text">.</span><span class="id">empty</span><span class="text"> </span><span class="numeric">1</span><span class="text"> </span><span class="string">"hello"</span><span class="text">;;
+</span></div><div class="caml-output ok">- : string AbstractPrioQueue.queue = &lt;abstr&gt;
 </div></pre>
 
 
@@ -291,12 +291,12 @@ its components inside the current signature. For instance, we
 can extend the PRIOQUEUE signature with the <span class="c003">extract_opt</span>
 function:</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type PRIOQUEUE_WITH_OPT =
-    sig
-      include PRIOQUEUE
-      val extract_opt : 'a queue -&gt; (int * 'a * 'a queue) option
-    end;;
-</div><div class="caml-output ok">module type PRIOQUEUE_WITH_OPT =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">PRIOQUEUE_WITH_OPT</span><span class="text"> =
+    </span><span class="kw1">sig</span><span class="text">
+      </span><span class="kw">include</span><span class="text"> </span><span class="kw2">PRIOQUEUE</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">extract_opt</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text"> -&gt; (</span><span class="kw3">int</span><span class="text"> * '</span><span class="id">a</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">queue</span><span class="text">) </span><span class="id">option</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type PRIOQUEUE_WITH_OPT =
   sig
     type priority = int
     type 'a queue
@@ -317,42 +317,42 @@ a specific implementation. For instance, a <span class="c003">Set</span> module 
 as sorted lists could be parameterized to work with any module that provides
 an element type and a comparison function <span class="c003">compare</span> (such as <span class="c003">OrderedString</span>):</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> type comparison = Less | Equal | Greater;;
-</div><div class="caml-output ok">type comparison = Less | Equal | Greater
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">comparison</span><span class="text"> = </span><span class="kw2">Less</span><span class="text"> | </span><span class="kw2">Equal</span><span class="text"> | </span><span class="kw2">Greater</span><span class="text">;;
+</span></div><div class="caml-output ok">type comparison = Less | Equal | Greater
 </div></pre>
 
-<pre><div class="caml-input"> module type ORDERED_TYPE =
-    sig
-      type t
-      val compare: t -&gt; t -&gt; comparison
-    end;;
-</div><div class="caml-output ok">module type ORDERED_TYPE = sig type t val compare : t -&gt; t -&gt; comparison end
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">ORDERED_TYPE</span><span class="text"> =
+    </span><span class="kw1">sig</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">t</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">compare</span><span class="text">: </span><span class="id">t</span><span class="text"> -&gt; </span><span class="id">t</span><span class="text"> -&gt; </span><span class="id">comparison</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type ORDERED_TYPE = sig type t val compare : t -&gt; t -&gt; comparison end
 </div></pre>
 
-<pre><div class="caml-input"> module Set =
-    functor (Elt: ORDERED_TYPE) -&gt;
-      struct
-        type element = Elt.t
-        type set = element list
-        let empty = []
-        let rec add x s =
-          match s with
-            [] -&gt; [x]
-          | hd::tl -&gt;
-             match Elt.compare x hd with
-               Equal   -&gt; s         (* x is already in s *)
-             | Less    -&gt; x :: s    (* x is smaller than all elements of s *)
-             | Greater -&gt; hd :: add x tl
-        let rec member x s =
-          match s with
-            [] -&gt; false
-          | hd::tl -&gt;
-              match Elt.compare x hd with
-                Equal   -&gt; true     (* x belongs to s *)
-              | Less    -&gt; false    (* x is smaller than all elements of s *)
-              | Greater -&gt; member x tl
-      end;;
-</div><div class="caml-output ok">module Set :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Set</span><span class="text"> =
+    </span><span class="kw">functor</span><span class="text"> (</span><span class="kw2">Elt</span><span class="text">: </span><span class="kw2">ORDERED_TYPE</span><span class="text">) -&gt;
+      </span><span class="kw1">struct</span><span class="text">
+        </span><span class="kw">type</span><span class="text"> </span><span class="id">element</span><span class="text"> = </span><span class="kw2">Elt</span><span class="text">.</span><span class="id">t</span><span class="text">
+        </span><span class="kw">type</span><span class="text"> </span><span class="id">set</span><span class="text"> = </span><span class="id">element</span><span class="text"> </span><span class="kw3">list</span><span class="text">
+        </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> = []
+        </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">add</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+          </span><span class="kw1">match</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+            [] -&gt; [</span><span class="id">x</span><span class="text">]
+          | </span><span class="id">hd</span><span class="text">::</span><span class="id">tl</span><span class="text"> -&gt;
+             </span><span class="kw1">match</span><span class="text"> </span><span class="kw2">Elt</span><span class="text">.</span><span class="id">compare</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">hd</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+               </span><span class="kw2">Equal</span><span class="text">   -&gt; </span><span class="id">s</span><span class="text">         </span><span class="comment">(* x is already in s *)</span><span class="text">
+             | </span><span class="kw2">Less</span><span class="text">    -&gt; </span><span class="id">x</span><span class="text"> :: </span><span class="id">s</span><span class="text">    </span><span class="comment">(* x is smaller than all elements of s *)</span><span class="text">
+             | </span><span class="kw2">Greater</span><span class="text"> -&gt; </span><span class="id">hd</span><span class="text"> :: </span><span class="id">add</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">tl</span><span class="text">
+        </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+          </span><span class="kw1">match</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+            [] -&gt; </span><span class="constant">false</span><span class="text">
+          | </span><span class="id">hd</span><span class="text">::</span><span class="id">tl</span><span class="text"> -&gt;
+              </span><span class="kw1">match</span><span class="text"> </span><span class="kw2">Elt</span><span class="text">.</span><span class="id">compare</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">hd</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+                </span><span class="kw2">Equal</span><span class="text">   -&gt; </span><span class="constant">true</span><span class="text">     </span><span class="comment">(* x belongs to s *)</span><span class="text">
+              | </span><span class="kw2">Less</span><span class="text">    -&gt; </span><span class="constant">false</span><span class="text">    </span><span class="comment">(* x is smaller than all elements of s *)</span><span class="text">
+              | </span><span class="kw2">Greater</span><span class="text"> -&gt; </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">tl</span><span class="text">
+      </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module Set :
   functor (Elt : ORDERED_TYPE) -&gt;
     sig
       type element = Elt.t
@@ -372,17 +372,17 @@ type, we obtain set operations for this type:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module OrderedString =
-    struct
-      type t = string
-      let compare x y = if x = y then Equal else if x &lt; y then Less else Greater
-    end;;
-</div><div class="caml-output ok">module OrderedString :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">OrderedString</span><span class="text"> =
+    </span><span class="kw1">struct</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">t</span><span class="text"> = </span><span class="kw3">string</span><span class="text">
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">compare</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Equal</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> &lt; </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Less</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Greater</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module OrderedString :
   sig type t = string val compare : 'a -&gt; 'a -&gt; comparison end
 </div></pre>
 
-<pre><div class="caml-input"> module StringSet = Set(OrderedString);;
-</div><div class="caml-output ok">module StringSet :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">StringSet</span><span class="text"> = </span><span class="kw2">Set</span><span class="text">(</span><span class="kw2">OrderedString</span><span class="text">);;
+</span></div><div class="caml-output ok">module StringSet :
   sig
     type element = OrderedString.t
     type set = element list
@@ -392,8 +392,8 @@ type, we obtain set operations for this type:
   end
 </div></pre>
 
-<pre><div class="caml-input"> StringSet.member "bar" (StringSet.add "foo" StringSet.empty);;
-</div><div class="caml-output ok">- : bool = false
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">StringSet</span><span class="text">.</span><span class="id">member</span><span class="text"> </span><span class="string">"bar"</span><span class="text"> (</span><span class="kw2">StringSet</span><span class="text">.</span><span class="id">add</span><span class="text"> </span><span class="string">"foo"</span><span class="text"> </span><span class="kw2">StringSet</span><span class="text">.</span><span class="id">empty</span><span class="text">);;
+</span></div><div class="caml-output ok">- : bool = false
 </div></pre>
 
 
@@ -409,16 +409,16 @@ functor signature:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type SETFUNCTOR =
-    functor (Elt: ORDERED_TYPE) -&gt;
-      sig
-        type element = Elt.t      (* concrete *)
-        type set                  (* abstract *)
-        val empty : set
-        val add : element -&gt; set -&gt; set
-        val member : element -&gt; set -&gt; bool
-      end;;
-</div><div class="caml-output ok">module type SETFUNCTOR =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">SETFUNCTOR</span><span class="text"> =
+    </span><span class="kw">functor</span><span class="text"> (</span><span class="kw2">Elt</span><span class="text">: </span><span class="kw2">ORDERED_TYPE</span><span class="text">) -&gt;
+      </span><span class="kw1">sig</span><span class="text">
+        </span><span class="kw">type</span><span class="text"> </span><span class="id">element</span><span class="text"> = </span><span class="kw2">Elt</span><span class="text">.</span><span class="id">t</span><span class="text">      </span><span class="comment">(* concrete *)</span><span class="text">
+        </span><span class="kw">type</span><span class="text"> </span><span class="id">set</span><span class="text">                  </span><span class="comment">(* abstract *)</span><span class="text">
+        </span><span class="kw">val</span><span class="text"> </span><span class="id">empty</span><span class="text"> : </span><span class="id">set</span><span class="text">
+        </span><span class="kw">val</span><span class="text"> </span><span class="id">add</span><span class="text"> : </span><span class="id">element</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text">
+        </span><span class="kw">val</span><span class="text"> </span><span class="id">member</span><span class="text"> : </span><span class="id">element</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text"> -&gt; </span><span class="kw3">bool</span><span class="text">
+      </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type SETFUNCTOR =
   functor (Elt : ORDERED_TYPE) -&gt;
     sig
       type element = Elt.t
@@ -429,12 +429,12 @@ functor signature:
     end
 </div></pre>
 
-<pre><div class="caml-input"> module AbstractSet = (Set : SETFUNCTOR);;
-</div><div class="caml-output ok">module AbstractSet : SETFUNCTOR
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">AbstractSet</span><span class="text"> = (</span><span class="kw2">Set</span><span class="text"> : </span><span class="kw2">SETFUNCTOR</span><span class="text">);;
+</span></div><div class="caml-output ok">module AbstractSet : SETFUNCTOR
 </div></pre>
 
-<pre><div class="caml-input"> module AbstractStringSet = AbstractSet(OrderedString);;
-</div><div class="caml-output ok">module AbstractStringSet :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">AbstractStringSet</span><span class="text"> = </span><span class="kw2">AbstractSet</span><span class="text">(</span><span class="kw2">OrderedString</span><span class="text">);;
+</span></div><div class="caml-output ok">module AbstractStringSet :
   sig
     type element = OrderedString.t
     type set = AbstractSet(OrderedString).set
@@ -444,8 +444,8 @@ functor signature:
   end
 </div></pre>
 
-<pre><div class="caml-input"> AbstractStringSet.add "gee" AbstractStringSet.empty;;
-</div><div class="caml-output ok">- : AbstractStringSet.set = &lt;abstr&gt;
+<pre><div class="caml-input"><span class="text"> </span><span class="kw2">AbstractStringSet</span><span class="text">.</span><span class="id">add</span><span class="text"> </span><span class="string">"gee"</span><span class="text"> </span><span class="kw2">AbstractStringSet</span><span class="text">.</span><span class="id">empty</span><span class="text">;;
+</span></div><div class="caml-output ok">- : AbstractStringSet.set = &lt;abstr&gt;
 </div></pre>
 
 
@@ -456,15 +456,15 @@ returned by the functor, then use that signature in the constraint:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module type SET =
-    sig
-      type element
-      type set
-      val empty : set
-      val add : element -&gt; set -&gt; set
-      val member : element -&gt; set -&gt; bool
-    end;;
-</div><div class="caml-output ok">module type SET =
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">SET</span><span class="text"> =
+    </span><span class="kw1">sig</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">element</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">set</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">empty</span><span class="text"> : </span><span class="id">set</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">add</span><span class="text"> : </span><span class="id">element</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text">
+      </span><span class="kw">val</span><span class="text"> </span><span class="id">member</span><span class="text"> : </span><span class="id">element</span><span class="text"> -&gt; </span><span class="id">set</span><span class="text"> -&gt; </span><span class="kw3">bool</span><span class="text">
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module type SET =
   sig
     type element
     type set
@@ -474,12 +474,12 @@ returned by the functor, then use that signature in the constraint:
   end
 </div></pre>
 
-<pre><div class="caml-input"> module WrongSet = (Set : functor(Elt: ORDERED_TYPE) -&gt; SET);;
-</div><div class="caml-output ok">module WrongSet : functor (Elt : ORDERED_TYPE) -&gt; SET
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">WrongSet</span><span class="text"> = (</span><span class="kw2">Set</span><span class="text"> : </span><span class="kw">functor</span><span class="text">(</span><span class="kw2">Elt</span><span class="text">: </span><span class="kw2">ORDERED_TYPE</span><span class="text">) -&gt; </span><span class="kw2">SET</span><span class="text">);;
+</span></div><div class="caml-output ok">module WrongSet : functor (Elt : ORDERED_TYPE) -&gt; SET
 </div></pre>
 
-<pre><div class="caml-input"> module WrongStringSet = WrongSet(OrderedString);;
-</div><div class="caml-output ok">module WrongStringSet :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">WrongStringSet</span><span class="text"> = </span><span class="kw2">WrongSet</span><span class="text">(</span><span class="kw2">OrderedString</span><span class="text">);;
+</span></div><div class="caml-output ok">module WrongStringSet :
   sig
     type element = WrongSet(OrderedString).element
     type set = WrongSet(OrderedString).set
@@ -512,9 +512,9 @@ with extra type equalities:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module AbstractSet2 =
-    (Set : functor(Elt: ORDERED_TYPE) -&gt; (SET with type element = Elt.t));;
-</div><div class="caml-output ok">module AbstractSet2 :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">AbstractSet2</span><span class="text"> =
+    (</span><span class="kw2">Set</span><span class="text"> : </span><span class="kw">functor</span><span class="text">(</span><span class="kw2">Elt</span><span class="text">: </span><span class="kw2">ORDERED_TYPE</span><span class="text">) -&gt; (</span><span class="kw2">SET</span><span class="text"> </span><span class="kw1">with</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">element</span><span class="text"> = </span><span class="kw2">Elt</span><span class="text">.</span><span class="id">t</span><span class="text">));;
+</span></div><div class="caml-output ok">module AbstractSet2 :
   functor (Elt : ORDERED_TYPE) -&gt;
     sig
       type element = Elt.t
@@ -541,18 +541,18 @@ distinguishing upper and lower case.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> module NoCaseString =
-    struct
-      type t = string
-      let compare s1 s2 =
-        OrderedString.compare (String.lowercase_ascii s1) (String.lowercase_ascii s2)
-    end;;
-</div><div class="caml-output ok">module NoCaseString :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">NoCaseString</span><span class="text"> =
+    </span><span class="kw1">struct</span><span class="text">
+      </span><span class="kw">type</span><span class="text"> </span><span class="id">t</span><span class="text"> = </span><span class="kw3">string</span><span class="text">
+      </span><span class="kw">let</span><span class="text"> </span><span class="id">compare</span><span class="text"> </span><span class="id">s1</span><span class="text"> </span><span class="id">s2</span><span class="text"> =
+        </span><span class="kw2">OrderedString</span><span class="text">.</span><span class="id">compare</span><span class="text"> (</span><span class="kw2">String</span><span class="text">.</span><span class="id">lowercase_ascii</span><span class="text"> </span><span class="id">s1</span><span class="text">) (</span><span class="kw2">String</span><span class="text">.</span><span class="id">lowercase_ascii</span><span class="text"> </span><span class="id">s2</span><span class="text">)
+    </span><span class="kw1">end</span><span class="text">;;
+</span></div><div class="caml-output ok">module NoCaseString :
   sig type t = string val compare : string -&gt; string -&gt; comparison end
 </div></pre>
 
-<pre><div class="caml-input"> module NoCaseStringSet = AbstractSet(NoCaseString);;
-</div><div class="caml-output ok">module NoCaseStringSet :
+<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">NoCaseStringSet</span><span class="text"> = </span><span class="kw2">AbstractSet</span><span class="text">(</span><span class="kw2">NoCaseString</span><span class="text">);;
+</span></div><div class="caml-output ok">module NoCaseStringSet :
   sig
     type element = NoCaseString.t
     type set = AbstractSet(NoCaseString).set
