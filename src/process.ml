@@ -32,7 +32,9 @@ let convert chapters (title, file, outfile) =
     |> Str.global_replace (Str.regexp_string "chapter") "tutorial"
     |> Str.global_replace (Str.regexp "Chapter \\([0-9]\\)") "<span>Tutorial \\1</span>"
     |> Str.global_replace (Str.regexp_string "Chapter") "Tutorial"
-    |> Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\) ") "\\1 "
+    |> Str.global_replace (Str.regexp ">[0-9]\\.\\([0-9]+\\) ") ">\\1 "
+    |> Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\.[0-9]+\\) ") "\\1 "
+    
   in
   let html = List.fold_left
       (fun s (_, file, outfile) ->
