@@ -14,9 +14,13 @@ let highlight code =
   let tmp_xml = Filename.temp_file "higlo-" ".xml" in
   if Sys.command ("higlo " ^ tmp ^ " > " ^ tmp_xml) <> 0
   then failwith "Could not run higlo";
-  open_in tmp_xml
-  |> read_channel
-  |> parse
+  let soup =
+    open_in tmp_xml
+    |> read_channel
+    |> parse in
+  Sys.remove tmp;
+  Sys.remove tmp_xml;
+  soup
   
 let convert chapters (title, file, outfile) =
 

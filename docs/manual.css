@@ -855,17 +855,17 @@ span.c003 {
 }
 
 .caml-input span.kw {
-    font-weight: 800;
+    font-weight: 500;
     color: #444;
 }
 
 .caml-input span.kw1 {
-    font-weight: 800;
+    font-weight: 500;
     color: #777;
 }
 
 .caml-input span.kw2 {
-    font-weight: 800;
+    font-weight: 500;
     color: #a28867;
 }
 
@@ -874,7 +874,7 @@ span.c003 {
 }
 
 .caml-input span.id {
-    color: #795da3;
+    color: #523b74;
 }
 
 .caml-input span.string {
