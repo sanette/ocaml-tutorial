@@ -9,25 +9,6 @@ let do_option f = function
   | None -> ()
   | Some x -> f x
                 
-(* This is a wrapper to the 'higlo' command, because I was not able to tell dune
-   to load the proper files "higlo_ocaml.cmo" and "higlo_printers.cmo". Help
-   wanted. *)
-let highlight_tmp code =
-  let tmp = Filename.temp_file "higlo-" ".ml" in
-  let outch = open_out tmp in
-  output_string outch code;
-  close_out outch;
-  let tmp_xml = Filename.temp_file "higlo-" ".xml" in
-  if Sys.command ("higlo " ^ tmp ^ " > " ^ tmp_xml) <> 0
-  then failwith "Could not run higlo";
-  let soup =
-    open_in tmp_xml
-    |> read_channel
-    |> parse in
-  Sys.remove tmp;
-  Sys.remove tmp_xml;
-  soup
-  
 let tokens_to_string tokens =
   List.map Higlo.token_to_xml tokens
   |> Xtmpl_xml.to_string
