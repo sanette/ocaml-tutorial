@@ -890,3 +890,6 @@ div.caml-example.toplevel div.caml-input::before{
     color: #969896;
 }
 
+.copyright {
+    font-size: smaller;
+}

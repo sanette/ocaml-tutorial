@@ -16,6 +16,13 @@ let tokens_to_string tokens =
 let highlight code =
   let tokens = Higlo.parse ~lang:"ocaml" code in
   parse (tokens_to_string tokens);;
+
+let copyright () =
+  "<div class=\"copyright\">The present documentation is copyright Institut \
+   National de Recherche en Informatique et en Automatique (INRIA). A complete \
+   version can be obtained from <a \
+   href=\"http://caml.inria.fr/pub/docs/manual-ocaml/\">this page</a>.</div>"
+  |> parse
   
 let convert chapters (title, file, outfile) =
 
@@ -119,6 +126,9 @@ let convert chapters (title, file, outfile) =
         insert_after e div;
         delete e
       | _ -> ()) camls;
+
+  (* Add copyright *)
+  append_child body (copyright ());
   
   (* Save new html file *)
   let new_html= to_string soup in
