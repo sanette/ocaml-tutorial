@@ -3,10 +3,16 @@
 open Soup
 open Printf
 
+let pr _ = ()
+           
+let do_option f = function
+  | None -> ()
+  | Some x -> f x
+                
 (* This is a wrapper to the 'higlo' command, because I was not able to tell dune
    to load the proper files "higlo_ocaml.cmo" and "higlo_printers.cmo". Help
    wanted. *)
-let highlight code =
+let highlight_tmp code =
   let tmp = Filename.temp_file "higlo-" ".ml" in
   let outch = open_out tmp in
   output_string outch code;
@@ -21,6 +27,14 @@ let highlight code =
   Sys.remove tmp;
   Sys.remove tmp_xml;
   soup
+  
+let tokens_to_string tokens =
+  List.map Higlo.token_to_xml tokens
+  |> Xtmpl_xml.to_string
+  
+let highlight code =
+  let tokens = Higlo.parse ~lang:"ocaml" code in
+  parse (tokens_to_string tokens);;
   
 let convert chapters (title, file, outfile) =
 
@@ -104,8 +118,15 @@ let convert chapters (title, file, outfile) =
   let header = soup $ "header" in
   prepend_child header (parse logo_html);
 
+  (* Move authors to the end *)
+  soup $? "span.c009"
+  |> do_option (fun authors ->
+      pr "Moving authors";
+      delete authors;
+      append_child body authors);
+
   (* Syntax highlighting *)
-  print_endline "Syntax highlighting";
+  pr "Syntax highlighting";
   let camls = soup $$ "pre .caml-input" in
   iter (fun e ->
       match leaf_text e with
