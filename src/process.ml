@@ -1,4 +1,8 @@
-(* Cf https://github.com/aantron/lambdasoup/blob/master/docs/postprocess.ml *)
+(* Post-processing the HTML of the OCaml Manual, Part 1
+
+   based on Lambdasoup
+
+ *)
 
 open Soup
 open Printf
@@ -36,7 +40,9 @@ let convert chapters (title, file, outfile) =
     |> Str.global_replace (Str.regexp_string "Chapter") "Tutorial"
     |> Str.global_replace (Str.regexp ">[0-9]\\.\\([0-9]+\\) ") ">\\1 "
     |> Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\.[0-9]+\\) ") "\\1 "
-    
+    |> Str.global_replace (Str.regexp_string file) ""
+    (* this one is not necessary; it's just cleaner not to link to oneself. *)
+
   in
   let html = List.fold_left
       (fun s (_, file, outfile) ->
@@ -60,13 +66,8 @@ let convert chapters (title, file, outfile) =
   wrap dummy (create_element "div" ~class_:"content");
   let body = body $ "body" in
   unwrap body;
-
-  (* Create TOC *)
-  let toc = soup $ "ul" in
-  let nav = create_element "nav" ~class_:"toc" in
-  wrap toc nav;
-  let nav = soup $ "nav" in
-  wrap nav (create_element "header");
+  (* let dummy = create_element "div" ~attributes:["id", "top"] in
+   * prepend_child body dummy; *)
 
   (* Remove first three links "Previous, Up, Next" *)
   soup $ "a"
@@ -88,6 +89,19 @@ let convert chapters (title, file, outfile) =
       | Some f when List.mem f links_to_remove ->
         delete e
       | _ -> ());
+
+  (* Create TOC *)
+  let toc = soup $ "ul" in
+  let nav = create_element "nav" ~class_:"toc" in
+  wrap toc nav;
+  let nav = soup $ "nav" in
+  wrap nav (create_element "header");
+  (* TOC - Create a "Top" entry in the menu *)
+  let a = create_element "a" ~inner_text:"Top"
+      ~attributes:["href", "#"] in
+  let li = create_element "li" ~class_:"top" in
+  append_child li a;
+  prepend_child toc li;
 
   (* Create new menu *)
   let menu = create_element "ul" ~class_:"tutos_menu" in
@@ -129,7 +143,7 @@ let convert chapters (title, file, outfile) =
 
   (* Add copyright *)
   append_child body (copyright ());
-  
+
   (* Save new html file *)
   let new_html= to_string soup in
   write_file ("docs/" ^ outfile) new_html
@@ -163,22 +177,3 @@ let () =
   List.iter (convert chapters) chapters
 
 
-(* faire: C-e
-
-#require "higlo";;
-let file = "sample.html";;
-let html = open_in file |> read_channel;;
-let soup = parse html;;
-let pre = soup $ "pre";;
-let caml = soup $ "pre .caml-input";;
-leaf_text caml;;
-let tokens = Higlo.parse ~lang:"ocaml" (leaf_text caml);;
-
-#load "higlo_ocaml.cmo";;
-#load "higlo_printers.cmo";;
-let tokens = Higlo.parse ~lang:"ocaml" "let f x = x + 1 in
-            f 3;;";;
-let pr = Higlo_printers.get_printer "xml";;
-pr tokens;;
-
-*)
