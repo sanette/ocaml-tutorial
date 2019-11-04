@@ -180,7 +180,9 @@ let convert version chapters (title, file) =
   let header = soup $ "header" in
   prepend_child header (parse logo_html);
 
-  (* Move authors to the end *)
+  (* Move authors to the end. TODO this only works for versions >= 4.05.  For
+     4.04 and 4.03 one should use c012, for 4.02 and 4.01: c013; for 4.01, only
+     <i>... But this is not very crucial. *)
   soup $? "span.c009"
   |> do_option (fun authors ->
       pr "Moving authors";
