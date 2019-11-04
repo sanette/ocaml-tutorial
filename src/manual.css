@@ -813,7 +813,8 @@ div.caml-example, div.toplevel  {
 div.caml-input {
 }
 
-div.caml-output.ok {
+div.caml-output.ok,
+span.c006 {
     color: #045804;
 }
 div.caml-output.error {
@@ -858,6 +859,11 @@ div.caml-example.toplevel div.caml-input::before{
     content:"#";
     color:#888;
 }
+
+span.c004 {
+    color: #888;
+}
+
 
 .caml-input span.kw {
     font-weight: 500;
