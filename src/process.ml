@@ -10,7 +10,7 @@
 open Soup
 open Printf
 
-let debug = false
+let debug = true
 let pr = if debug then print_endline else fun _ -> ()
                                                    
 (* Set this to the directory where to find the html sources of all versions *)
@@ -55,10 +55,27 @@ let index version =
         (R.attribute "href" a, R.leaf_text a |> remove_number) :: list) []
     |> List.rev in
   tutorials   
-  
+
+(* Some syntax... *)
 let do_option f = function
   | None -> ()
   | Some x -> f x
+
+let (|?>) o f = match o with None -> None | Some x -> Some (f x)
+
+let (<<) f g x = f (g x)
+    
+let onlyif f x = if f x then Some x else None
+
+(* For instance we want to do:
+   # "ABC" |> onlyif ((=) 3 << String.length) |?> print_endline |> ok;;
+   ABC
+   - : unit = ()
+   Which is a super complicated way to write
+   # let s = "ABC" in if String.length s = 3 then print_endline s
+*)
+
+let ok = function | None -> () | Some () -> ();;
                 
 let tokens_to_string tokens =
   List.map Higlo.token_to_xml tokens
@@ -130,25 +147,11 @@ let convert version chapters (title, file) =
    * prepend_child body dummy; *)
 
   (* Remove first three links "Previous, Up, Next" *)
-  soup $ "a"
-  |> delete;
-  soup $ "a"
-  |> delete;
-  soup $ "a"
-  |> delete;
-  soup $ "hr"
-  |> delete;
-
-  (* Remove the other "Previous, Up, Next" links at the end of the file *)
-  let links_to_remove =
-    List.map (fun (_, file) -> file) chapters
-    |> List.append ["index.html"; "foreword.html"; "language.html"] in
-  soup $$ "a"
-  |> iter (fun e ->
-      match attribute "href" e with
-      | Some f when List.mem f links_to_remove ->
-        delete e
-      | _ -> ());
+  soup $ "hr" |> delete;
+  ["Previous"; "Up"; "Next"]
+  |> List.iter (fun s ->
+      soup $$ ("img[alt=\"" ^ s ^ "\"]")
+      |> iter (do_option delete << parent));
 
   (* Create TOC *)
   let toc = soup $ "ul" in
@@ -180,14 +183,22 @@ let convert version chapters (title, file) =
   let header = soup $ "header" in
   prepend_child header (parse logo_html);
 
-  (* Move authors to the end. TODO this only works for versions >= 4.05.  For
-     4.04 and 4.03 one should use c012, for 4.02 and 4.01: c013; for 4.01, only
-     <i>... But this is not very crucial. *)
-  soup $? "span.c009"
-  |> do_option (fun authors ->
-      pr "Moving authors";
-      delete authors;
-      append_child body authors);
+  (* Move authors to the end. Versions >= 4.05 use c009.  4.04 and 4.03 use
+     c012, while 4.02 and 4.01: c013; for 4.00, only <i>. *)
+  ["span.c009"; "span.c012"; "span.c013"; "i"]
+  |> List.iter (fun selector ->
+      soup $? selector
+      |> do_option (fun authors ->
+          match leaf_text authors with
+          | None -> ()
+          | Some s ->
+            match Str.search_forward (Str.regexp "(.+written by.+)") s 0 with
+            | exception Not_found -> ()
+            | _ ->
+              pr "Moving authors";
+              delete authors;
+              add_class "authors" authors;
+              append_child body authors));
 
   (* Syntax highlighting *)
   pr "Syntax highlighting";

@@ -864,6 +864,9 @@ span.c004 {
     color: #888;
 }
 
+span.c009 {
+    font-style: italic;
+}
 
 .caml-input span.kw {
     font-weight: 500;
@@ -898,4 +901,8 @@ span.c004 {
 
 .copyright {
     font-size: smaller;
+}
+
+.dt-thefootnotes {
+    float: left;
 }
