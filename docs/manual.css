@@ -605,15 +605,20 @@ ul.itemize li::before {
 
 /* Sidebar and TOC */
 
-.toc ul:before {
+/*.toc ul:before */
+.toc_title
+{
   display: block;
-  content: "Contents";
-  text-transform: uppercase;
-  font-size: 1em;
-  margin: 1.414em 0 0.5em;
-  font-weight: 500;
-  color: #777;
-  line-height: 1.2;
+  /*content: "Contents";*/
+  /* text-transform: uppercase; */
+  margin: 0.5em 0 1.414em;  
+}
+
+.toc_title a {
+    color: #777;
+    font-size: 1em;
+    line-height: 1.2;
+    font-weight: 500;
 }
 
 .toc {
@@ -864,6 +869,9 @@ span.c004 {
     color: #888;
 }
 
+span.c009 {
+    font-style: italic;
+}
 
 .caml-input span.kw {
     font-weight: 500;
@@ -898,4 +906,8 @@ span.c004 {
 
 .copyright {
     font-size: smaller;
+}
+
+.dt-thefootnotes {
+    float: left;
 }
