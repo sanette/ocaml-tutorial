@@ -10,7 +10,7 @@
 open Soup
 open Printf
 
-let debug = true
+let debug = false
 let pr = if debug then print_endline else fun _ -> ()
                                                    
 (* Set this to the directory where to find the html sources of all versions: *)
@@ -144,7 +144,7 @@ let convert version chapters (title, file) =
   let new_title = create_element "title" ~inner_text:("Ocaml - " ^ title) in
   replace title_tag new_title;
 
-  (* Wrap body *)
+  (* Wrap body. TODO use set_name instead *)
   let body = soup $ "body" in
   wrap body (create_element "body");
   let body = soup $ "body" in
@@ -176,7 +176,7 @@ let convert version chapters (title, file) =
   prepend_child toc li;
   let toc_title = create_element "div" ~class_:"toc_title" in
   let a = create_element "a" ~inner_text:("Version " ^ version)
-      ~attributes:["href", "../index.html"] in
+      ~attributes:["href", "../index.html"; "id", "version-select"] in
   append_child toc_title a;
   prepend_child toc toc_title;
 
@@ -216,6 +216,11 @@ let convert version chapters (title, file) =
 
   (* Syntax highlighting *)
   pr "Syntax highlighting";
+  (* The manual for 4.05 <= version <= 4.09 has some "div" inside a "pre", which
+     is forbidden. See (https://github.com/ocaml/ocaml/issues/9109) We replace
+     it by code or span. TODO check when this is corrected upstream. *)
+  soup $$ "pre div"
+  |> iter (set_name "code");
   let camls = soup $$ "pre .caml-input" in
   iter (fun e ->
       match leaf_text e with
@@ -248,6 +253,9 @@ let convert version chapters (title, file) =
   let md = Filename.basename file
            |> Filename.remove_extension in
   let md = md ^ ".md" in
+  (* for ocaml.org, we modify the link on the version number *)
+  soup $$ "a#version-select"
+  |> iter (set_attribute "href" "/docs");
   soup $ "div.manual" |> to_string
   |> (^) md_head 
   |> write_file (ocamlorg_file version md)

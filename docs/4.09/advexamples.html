@@ -13,7 +13,7 @@
 
 
 <h1 class="tutorial" id="sec64"><span>Tutorial 6</span>&nbsp;&nbsp;Advanced examples with classes and modules</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="../index.html">Version 4.09</a></div><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.09</a></div><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec65">1&nbsp;&nbsp;Extended example: bank accounts</a>
 </li><li><a href="#sec66">2&nbsp;&nbsp;Simple modules as classes</a>
 </li><li><a href="#sec71">3&nbsp;&nbsp;The subject/observer pattern</a>
@@ -37,19 +37,19 @@ module <span class="c003">Euro</span> defined at the end of tutorial&nbsp;<a hre
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">euro</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Euro</span><span class="text">.</span><span class="id">c</span><span class="text">;;
-</span></div><div class="caml-output ok">val euro : float -&gt; Euro.c = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">euro</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Euro</span><span class="text">.</span><span class="id">c</span><span class="text">;;
+</span></code><code class="caml-output ok">val euro : float -&gt; Euro.c = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">zero</span><span class="text"> = </span><span class="id">euro</span><span class="text"> </span><span class="numeric">0</span><span class="text">.;;
-</span></div><div class="caml-output ok">val zero : Euro.c = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">zero</span><span class="text"> = </span><span class="id">euro</span><span class="text"> </span><span class="numeric">0</span><span class="text">.;;
+</span></code><code class="caml-output ok">val zero : Euro.c = &lt;obj&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">neg</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x</span><span class="kw1">#</span><span class="id">times</span><span class="text"> (</span><span class="numeric">-1</span><span class="text">.);;
-</span></div><div class="caml-output ok">val neg : &lt; times : float -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">neg</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x</span><span class="kw1">#</span><span class="id">times</span><span class="text"> (</span><span class="numeric">-1</span><span class="text">.);;
+</span></code><code class="caml-output ok">val neg : &lt; times : float -&gt; 'a; .. &gt; -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">balance</span><span class="text"> = </span><span class="id">zero</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">balance</span><span class="text"> = </span><span class="id">balance</span><span class="text">
@@ -57,18 +57,18 @@ module <span class="c003">Euro</span> defined at the end of tutorial&nbsp;<a hre
       </span><span class="kw">method</span><span class="text"> </span><span class="id">withdraw</span><span class="text"> </span><span class="id">x</span><span class="text"> =
         </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="kw1">#</span><span class="id">leq</span><span class="text"> </span><span class="id">balance</span><span class="text"> </span><span class="kw1">then</span><span class="text"> (</span><span class="id">balance</span><span class="text"> &lt;- </span><span class="id">balance</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">plus</span><span class="text"> (</span><span class="id">neg</span><span class="text"> </span><span class="id">x</span><span class="text">); </span><span class="id">x</span><span class="text">) </span><span class="kw1">else</span><span class="text"> </span><span class="id">zero</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class account :
+</span></code><code class="caml-output ok">class account :
   object
     val mutable balance : Euro.c
     method balance : Euro.c
     method deposit : Euro.c -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">account</span><span class="text"> </span><span class="kw">in</span><span class="text"> </span><span class="id">c</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">deposit</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">100</span><span class="text">.); </span><span class="id">c</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">withdraw</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">50</span><span class="text">.);;
-</span></div><div class="caml-output ok">- : Euro.c = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">account</span><span class="text"> </span><span class="kw">in</span><span class="text"> </span><span class="id">c</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">deposit</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">100</span><span class="text">.); </span><span class="id">c</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">withdraw</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">50</span><span class="text">.);;
+</span></code><code class="caml-output ok">- : Euro.c = &lt;obj&gt;
+</code></pre>
 
 
 </div><p>
@@ -78,12 +78,12 @@ We now refine this definition with a method to compute interest.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_interests</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_interests</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">account</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="kw">private</span><span class="text"> </span><span class="id">interest</span><span class="text"> = </span><span class="id">self</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">deposit</span><span class="text"> (</span><span class="id">self</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">balance</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">times</span><span class="text"> </span><span class="numeric">0.03</span><span class="text">)
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class account_with_interests :
+</span></code><code class="caml-output ok">class account_with_interests :
   object
     val mutable balance : Euro.c
     method balance : Euro.c
@@ -91,7 +91,7 @@ We now refine this definition with a method to compute interest.
     method private interest : unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -105,19 +105,19 @@ fix this directly:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">safe_account</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">safe_account</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">account</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">zero</span><span class="kw1">#</span><span class="id">leq</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">balance</span><span class="text"> &lt;- </span><span class="id">balance</span><span class="kw1">#</span><span class="id">plus</span><span class="text"> </span><span class="id">x</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class safe_account :
+</span></code><code class="caml-output ok">class safe_account :
   object
     val mutable balance : Euro.c
     method balance : Euro.c
     method deposit : Euro.c -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -127,21 +127,21 @@ However, the bug might be fixed more safely by the following definition:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">safe_account</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">safe_account</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">account</span><span class="text"> </span><span class="kw1">as</span><span class="text"> </span><span class="id">unsafe</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> =
         </span><span class="kw1">if</span><span class="text"> </span><span class="id">zero</span><span class="kw1">#</span><span class="id">leq</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">unsafe</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">deposit</span><span class="text"> </span><span class="id">x</span><span class="text">
         </span><span class="kw1">else</span><span class="text"> </span><span class="id">raise</span><span class="text"> (</span><span class="kw2">Invalid_argument</span><span class="text"> </span><span class="string">"deposit"</span><span class="text">)
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class safe_account :
+</span></code><code class="caml-output ok">class safe_account :
   object
     val mutable balance : Euro.c
     method balance : Euro.c
     method deposit : Euro.c -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -154,11 +154,11 @@ log. Then each method to be traced is redefined.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">operation</span><span class="text"> = </span><span class="kw2">Deposit</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> | </span><span class="kw2">Retrieval</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text">;;
-</span></div><div class="caml-output ok">type 'a operation = Deposit of 'a | Retrieval of 'a
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">operation</span><span class="text"> = </span><span class="kw2">Deposit</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> | </span><span class="kw2">Retrieval</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text">;;
+</span></code><code class="caml-output ok">type 'a operation = Deposit of 'a | Retrieval of 'a
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_history</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_history</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">safe_account</span><span class="text"> </span><span class="kw1">as</span><span class="text"> </span><span class="id">super</span><span class="text">
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">history</span><span class="text"> = []
@@ -167,7 +167,7 @@ log. Then each method to be traced is redefined.
       </span><span class="kw">method</span><span class="text"> </span><span class="id">withdraw</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">self</span><span class="kw1">#</span><span class="id">trace</span><span class="text"> (</span><span class="kw2">Retrieval</span><span class="text"> </span><span class="id">x</span><span class="text">); </span><span class="id">super</span><span class="kw1">#</span><span class="id">withdraw</span><span class="text"> </span><span class="id">x</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">history</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">rev</span><span class="text"> </span><span class="id">history</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class account_with_history :
+</span></code><code class="caml-output ok">class account_with_history :
   object
     val mutable balance : Euro.c
     val mutable history : Euro.c operation list
@@ -177,7 +177,7 @@ log. Then each method to be traced is redefined.
     method private trace : Euro.c operation -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -189,12 +189,12 @@ requirement, it can be achieved by using an initializer.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">account_with_history</span><span class="text">
       </span><span class="kw">initializer</span><span class="text"> </span><span class="id">balance</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class account_with_deposit :
+</span></code><code class="caml-output ok">class account_with_deposit :
   Euro.c -&gt;
   object
     val mutable balance : Euro.c
@@ -205,7 +205,7 @@ requirement, it can be achieved by using an initializer.
     method private trace : Euro.c operation -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -215,12 +215,12 @@ A better alternative is:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> </span><span class="id">x</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">inherit</span><span class="text"> </span><span class="id">account_with_history</span><span class="text">
       </span><span class="kw">initializer</span><span class="text"> </span><span class="id">self</span><span class="kw1">#</span><span class="id">deposit</span><span class="text"> </span><span class="id">x</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class account_with_deposit :
+</span></code><code class="caml-output ok">class account_with_deposit :
   Euro.c -&gt;
   object
     val mutable balance : Euro.c
@@ -231,7 +231,7 @@ A better alternative is:
     method private trace : Euro.c operation -&gt; unit
     method withdraw : Euro.c -&gt; Euro.c
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -243,11 +243,11 @@ Let’s test it:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">ccp</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">100</span><span class="text">.) </span><span class="kw">in</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">ccp</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">account_with_deposit</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">100</span><span class="text">.) </span><span class="kw">in</span><span class="text">
   </span><span class="kw">let</span><span class="text"> </span><span class="id">_balance</span><span class="text"> = </span><span class="id">ccp</span><span class="kw1">#</span><span class="id">withdraw</span><span class="text"> (</span><span class="id">euro</span><span class="text"> </span><span class="numeric">50</span><span class="text">.) </span><span class="kw">in</span><span class="text">
   </span><span class="id">ccp</span><span class="kw1">#</span><span class="id">history</span><span class="text">;;
-</span></div><div class="caml-output ok">- : Euro.c operation list = [Deposit &lt;obj&gt;; Retrieval &lt;obj&gt;]
-</div></pre>
+</span></code><code class="caml-output ok">- : Euro.c operation list = [Deposit &lt;obj&gt;; Retrieval &lt;obj&gt;]
+</code></pre>
 
 
 </div><p>
@@ -257,9 +257,9 @@ Closing an account can be done with the following polymorphic function:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">close</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">c</span><span class="kw1">#</span><span class="id">withdraw</span><span class="text"> </span><span class="id">c</span><span class="kw1">#</span><span class="id">balance</span><span class="text">;;
-</span></div><div class="caml-output ok">val close : &lt; balance : 'a; withdraw : 'a -&gt; 'b; .. &gt; -&gt; 'b = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">close</span><span class="text"> </span><span class="id">c</span><span class="text"> = </span><span class="id">c</span><span class="kw1">#</span><span class="id">withdraw</span><span class="text"> </span><span class="id">c</span><span class="kw1">#</span><span class="id">balance</span><span class="text">;;
+</span></code><code class="caml-output ok">val close : &lt; balance : 'a; withdraw : 'a -&gt; 'b; .. &gt; -&gt; 'b = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -270,7 +270,7 @@ abstracted over some currency.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">today</span><span class="text"> () = (</span><span class="numeric">01</span><span class="text">,</span><span class="numeric">01</span><span class="text">,</span><span class="numeric">2000</span><span class="text">) </span><span class="comment">(* an approximation *)</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">today</span><span class="text"> () = (</span><span class="numeric">01</span><span class="text">,</span><span class="numeric">01</span><span class="text">,</span><span class="numeric">2000</span><span class="text">) </span><span class="comment">(* an approximation *)</span><span class="text">
   </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Account</span><span class="text"> (</span><span class="kw2">M</span><span class="text">:</span><span class="kw2">MONEY</span><span class="text">) =
     </span><span class="kw1">struct</span><span class="text">
       </span><span class="kw">type</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="kw2">M</span><span class="text">.</span><span class="id">c</span><span class="text">
@@ -323,7 +323,7 @@ abstracted over some currency.
             </span><span class="kw1">if</span><span class="text"> </span><span class="id">today</span><span class="text">() &lt; (</span><span class="numeric">1998</span><span class="text">,</span><span class="numeric">10</span><span class="text">,</span><span class="numeric">30</span><span class="text">) </span><span class="kw1">then</span><span class="text"> </span><span class="id">c</span><span class="text"> </span><span class="kw1">#</span><span class="text"> </span><span class="id">deposit</span><span class="text"> (</span><span class="id">m</span><span class="text"> </span><span class="numeric">100</span><span class="text">.); </span><span class="id">c</span><span class="text">
         </span><span class="kw1">end</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div>
+</span></code>
 </pre>
 
 
@@ -340,16 +340,16 @@ extensions, refinements, etc. Conversely, the client will only be given the clie
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Euro_account</span><span class="text"> = </span><span class="kw2">Account</span><span class="text">(</span><span class="kw2">Euro</span><span class="text">);;
-</span></div>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Euro_account</span><span class="text"> = </span><span class="kw2">Account</span><span class="text">(</span><span class="kw2">Euro</span><span class="text">);;
+</span></code>
 </pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Client</span><span class="text"> = </span><span class="kw2">Euro_account</span><span class="text">.</span><span class="kw2">Client</span><span class="text"> (</span><span class="kw2">Euro_account</span><span class="text">);;
-</span></div>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Client</span><span class="text"> = </span><span class="kw2">Euro_account</span><span class="text">.</span><span class="kw2">Client</span><span class="text"> (</span><span class="kw2">Euro_account</span><span class="text">);;
+</span></code>
 </pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Client</span><span class="text">.</span><span class="id">account</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Euro</span><span class="text">.</span><span class="id">c</span><span class="text"> </span><span class="numeric">100</span><span class="text">.);;
-</span></div>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Client</span><span class="text">.</span><span class="id">account</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="kw2">Euro</span><span class="text">.</span><span class="id">c</span><span class="text"> </span><span class="numeric">100</span><span class="text">.);;
+</span></code>
 </pre>
 
 
@@ -373,7 +373,7 @@ the new definition to initialize a client’s view of the extended account.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Investment_account</span><span class="text"> (</span><span class="kw2">M</span><span class="text"> : </span><span class="kw2">MONEY</span><span class="text">) =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Investment_account</span><span class="text"> (</span><span class="kw2">M</span><span class="text"> : </span><span class="kw2">MONEY</span><span class="text">) =
     </span><span class="kw1">struct</span><span class="text">
       </span><span class="kw">type</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="kw2">M</span><span class="text">.</span><span class="id">c</span><span class="text">
       </span><span class="kw">module</span><span class="text"> </span><span class="kw2">A</span><span class="text"> = </span><span class="kw2">Account</span><span class="text">(</span><span class="kw2">M</span><span class="text">)
@@ -389,7 +389,7 @@ the new definition to initialize a client’s view of the extended account.
 
       </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Client</span><span class="text"> = </span><span class="kw2">A</span><span class="text">.</span><span class="kw2">Client</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div>
+</span></code>
 </pre>
 
 
@@ -401,7 +401,7 @@ account can be given to the client.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Internet_account</span><span class="text"> (</span><span class="kw2">M</span><span class="text"> : </span><span class="kw2">MONEY</span><span class="text">) =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Internet_account</span><span class="text"> (</span><span class="kw2">M</span><span class="text"> : </span><span class="kw2">MONEY</span><span class="text">) =
     </span><span class="kw1">struct</span><span class="text">
       </span><span class="kw">type</span><span class="text"> </span><span class="id">m</span><span class="text"> = </span><span class="kw2">M</span><span class="text">.</span><span class="id">c</span><span class="text">
       </span><span class="kw">module</span><span class="text"> </span><span class="kw2">A</span><span class="text"> = </span><span class="kw2">Account</span><span class="text">(</span><span class="kw2">M</span><span class="text">)
@@ -430,7 +430,7 @@ account can be given to the client.
             </span><span class="kw1">end</span><span class="text">
         </span><span class="kw1">end</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div>
+</span></code>
 </pre>
 
 
@@ -449,20 +449,20 @@ We show here how to do it for strings.</p>
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">ostring</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">ostring</span><span class="text"> </span><span class="id">s</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="kw2">String</span><span class="text">.</span><span class="id">get</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">n</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">print</span><span class="text"> = </span><span class="id">print_string</span><span class="text"> </span><span class="id">s</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">escaped</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">ostring</span><span class="text"> (</span><span class="kw2">String</span><span class="text">.</span><span class="id">escaped</span><span class="text"> </span><span class="id">s</span><span class="text">)
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ostring :
+</span></code><code class="caml-output ok">class ostring :
   string -&gt;
   object
     method escaped : ostring
     method get : int -&gt; char
     method print : unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -475,12 +475,12 @@ class.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">sub_string</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">sub_string</span><span class="text"> </span><span class="id">s</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
        </span><span class="kw">inherit</span><span class="text"> </span><span class="id">ostring</span><span class="text"> </span><span class="id">s</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">sub</span><span class="text"> </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">sub_string</span><span class="text"> (</span><span class="kw2">String</span><span class="text">.</span><span class="id">sub</span><span class="text"> </span><span class="id">s</span><span class="text">  </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text">)
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class sub_string :
+</span></code><code class="caml-output ok">class sub_string :
   string -&gt;
   object
     method escaped : ostring
@@ -488,7 +488,7 @@ class.
     method print : unit
     method sub : int -&gt; int -&gt; sub_string
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -500,7 +500,7 @@ containing the representation <span class="c003">s</span> of the string.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">better_string</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">better_string</span><span class="text"> </span><span class="id">s</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
        </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">s</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">get</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="kw2">String</span><span class="text">.</span><span class="id">get</span><span class="text"> </span><span class="id">repr</span><span class="text"> </span><span class="id">n</span><span class="text">
@@ -508,7 +508,7 @@ containing the representation <span class="c003">s</span> of the string.
        </span><span class="kw">method</span><span class="text"> </span><span class="id">escaped</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="kw2">String</span><span class="text">.</span><span class="id">escaped</span><span class="text"> </span><span class="id">repr</span><span class="text"> &gt;}
        </span><span class="kw">method</span><span class="text"> </span><span class="id">sub</span><span class="text"> </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="kw2">String</span><span class="text">.</span><span class="id">sub</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text"> &gt;}
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class better_string :
+</span></code><code class="caml-output ok">class better_string :
   string -&gt;
   object ('a)
     val repr : string
@@ -517,7 +517,7 @@ containing the representation <span class="c003">s</span> of the string.
     method print : unit
     method sub : int -&gt; int -&gt; 'a
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -532,7 +532,7 @@ strings:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">ostring</span><span class="text"> </span><span class="id">s</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">ostring</span><span class="text"> </span><span class="id">s</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text"> : '</span><span class="id">mytype</span><span class="text">)
        </span><span class="kw">val</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">s</span><span class="text">
        </span><span class="kw">method</span><span class="text"> </span><span class="id">repr</span><span class="text"> = </span><span class="id">repr</span><span class="text">
@@ -542,7 +542,7 @@ strings:
        </span><span class="kw">method</span><span class="text"> </span><span class="id">sub</span><span class="text"> </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text"> = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="kw2">String</span><span class="text">.</span><span class="id">sub</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">start</span><span class="text"> </span><span class="id">len</span><span class="text"> &gt;}
        </span><span class="kw">method</span><span class="text"> </span><span class="id">concat</span><span class="text"> (</span><span class="id">t</span><span class="text"> : '</span><span class="id">mytype</span><span class="text">) = {&lt; </span><span class="id">repr</span><span class="text"> = </span><span class="id">repr</span><span class="text"> ^ </span><span class="id">t</span><span class="kw1">#</span><span class="id">repr</span><span class="text"> &gt;}
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ostring :
+</span></code><code class="caml-output ok">class ostring :
   string -&gt;
   object ('a)
     val repr : string
@@ -553,7 +553,7 @@ strings:
     method repr : string
     method sub : int -&gt; int -&gt; 'a
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -564,9 +564,9 @@ string of a given length:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">cstring</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="id">ostring</span><span class="text"> (</span><span class="kw2">String</span><span class="text">.</span><span class="id">make</span><span class="text"> </span><span class="id">n</span><span class="text"> </span><span class="string">' '</span><span class="text">);;
-</span></div><div class="caml-output ok">class cstring : int -&gt; ostring
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="id">cstring</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="id">ostring</span><span class="text"> (</span><span class="kw2">String</span><span class="text">.</span><span class="id">make</span><span class="text"> </span><span class="id">n</span><span class="text"> </span><span class="string">' '</span><span class="text">);;
+</span></code><code class="caml-output ok">class cstring : int -&gt; ostring
+</code></pre>
 
 
 </div><p>
@@ -584,11 +584,11 @@ For instance, a stack can be straightforwardly implemented as a class:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Empty</span><span class="text">;;
-</span></div><div class="caml-output ok">exception Empty
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Empty</span><span class="text">;;
+</span></code><code class="caml-output ok">exception Empty
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">l</span><span class="text"> = ([] : '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text">)
       </span><span class="kw">method</span><span class="text"> </span><span class="id">push</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">l</span><span class="text"> &lt;- </span><span class="id">x</span><span class="text">::</span><span class="id">l</span><span class="text">
@@ -596,7 +596,7 @@ For instance, a stack can be straightforwardly implemented as a class:
       </span><span class="kw">method</span><span class="text"> </span><span class="id">clear</span><span class="text"> = </span><span class="id">l</span><span class="text"> &lt;- []
       </span><span class="kw">method</span><span class="text"> </span><span class="id">length</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">l</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] stack :
+</span></code><code class="caml-output ok">class ['a] stack :
   object
     val mutable l : 'a list
     method clear : unit
@@ -604,7 +604,7 @@ For instance, a stack can be straightforwardly implemented as a class:
     method pop : 'a
     method push : 'a -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -619,12 +619,12 @@ A naive approach is to make <span class="c003">'b</span> an extra parameter of c
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">stack2</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">stack2</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> </span><span class="id">f</span><span class="text"> (</span><span class="id">x</span><span class="text"> : '</span><span class="id">b</span><span class="text">) = </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">l</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a, 'b] stack2 :
+</span></code><code class="caml-output ok">class ['a, 'b] stack2 :
   object
     val mutable l : 'a list
     method clear : unit
@@ -633,7 +633,7 @@ A naive approach is to make <span class="c003">'b</span> an extra parameter of c
     method pop : 'a
     method push : 'a -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -644,17 +644,17 @@ applied to functions that all have the same type:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">s</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">stack2</span><span class="text">;;
-</span></div><div class="caml-output ok">val s : ('_weak1, '_weak2) stack2 = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">s</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">stack2</span><span class="text">;;
+</span></code><code class="caml-output ok">val s : ('_weak1, '_weak2) stack2 = &lt;obj&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">s</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> ( + ) </span><span class="numeric">0</span><span class="text">;;
-</span></div><div class="caml-output ok">- : int = 0
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">s</span><span class="kw1">#</span><span class="id">fold</span><span class="text"> ( + ) </span><span class="numeric">0</span><span class="text">;;
+</span></code><code class="caml-output ok">- : int = 0
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">s</span><span class="text">;;
-</span></div><div class="caml-output ok">- : (int, int) stack2 = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">s</span><span class="text">;;
+</span></code><code class="caml-output ok">- : (int, int) stack2 = &lt;obj&gt;
+</code></pre>
 
 
 </div><p>
@@ -670,13 +670,13 @@ the type checker cannot infer the polymorphic type by itself.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack3</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack3</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">stack</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">fold</span><span class="text"> : '</span><span class="id">b</span><span class="text">. ('</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text">) -&gt; '</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text">
                   = </span><span class="kw">fun</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">l</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] stack3 :
+</span></code><code class="caml-output ok">class ['a] stack3 :
   object
     val mutable l : 'a list
     method clear : unit
@@ -685,7 +685,7 @@ the type checker cannot infer the polymorphic type by itself.
     method pop : 'a
     method push : 'a -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div>
@@ -697,14 +697,14 @@ following class type.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">type</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">find</span><span class="text"> : '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">add</span><span class="text"> : '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class type ['a, 'b] hash_table =
+</span></code><code class="caml-output ok">class type ['a, 'b] hash_table =
   object method add : 'a -&gt; 'b -&gt; unit method find : 'a -&gt; 'b end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -715,14 +715,14 @@ to use an association list:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">small_hashtbl</span><span class="text"> : ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">small_hashtbl</span><span class="text"> : ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">table</span><span class="text"> = []
       </span><span class="kw">method</span><span class="text"> </span><span class="id">find</span><span class="text"> </span><span class="id">key</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="id">key</span><span class="text"> </span><span class="id">table</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">add</span><span class="text"> </span><span class="id">key</span><span class="text"> </span><span class="id">valeur</span><span class="text"> = </span><span class="id">table</span><span class="text"> &lt;- (</span><span class="id">key</span><span class="text">, </span><span class="id">valeur</span><span class="text">) :: </span><span class="id">table</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a, 'b] small_hashtbl : ['a, 'b] hash_table
-</div></pre>
+</span></code><code class="caml-output ok">class ['a, 'b] small_hashtbl : ['a, 'b] hash_table
+</code></pre>
 
 
 </div><p>
@@ -733,7 +733,7 @@ true hash table… whose elements are small hash tables!
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hashtbl</span><span class="text"> </span><span class="id">size</span><span class="text"> : ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hashtbl</span><span class="text"> </span><span class="id">size</span><span class="text"> : ['</span><span class="id">a</span><span class="text">, '</span><span class="id">b</span><span class="text">] </span><span class="id">hash_table</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">val</span><span class="text"> </span><span class="id">table</span><span class="text"> = </span><span class="kw2">Array</span><span class="text">.</span><span class="id">init</span><span class="text"> </span><span class="id">size</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">i</span><span class="text"> -&gt; </span><span class="kw1">new</span><span class="text"> </span><span class="id">small_hashtbl</span><span class="text">)
       </span><span class="kw">method</span><span class="text"> </span><span class="kw">private</span><span class="text"> </span><span class="id">hash</span><span class="text"> </span><span class="id">key</span><span class="text"> =
@@ -741,8 +741,8 @@ true hash table… whose elements are small hash tables!
       </span><span class="kw">method</span><span class="text"> </span><span class="id">find</span><span class="text"> </span><span class="id">key</span><span class="text"> = </span><span class="id">table</span><span class="text">.(</span><span class="id">self</span><span class="kw1">#</span><span class="id">hash</span><span class="text"> </span><span class="id">key</span><span class="text">) </span><span class="kw1">#</span><span class="text"> </span><span class="id">find</span><span class="text"> </span><span class="id">key</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">add</span><span class="text"> </span><span class="id">key</span><span class="text"> = </span><span class="id">table</span><span class="text">.(</span><span class="id">self</span><span class="kw1">#</span><span class="id">hash</span><span class="text"> </span><span class="id">key</span><span class="text">) </span><span class="kw1">#</span><span class="text"> </span><span class="id">add</span><span class="text"> </span><span class="id">key</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a, 'b] hashtbl : int -&gt; ['a, 'b] hash_table
-</div></pre>
+</span></code><code class="caml-output ok">class ['a, 'b] hashtbl : int -&gt; ['a, 'b] hash_table
+</code></pre>
 
 
 </div>
@@ -763,7 +763,7 @@ of the same type will share the same representation.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">SET</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">SET</span><span class="text"> =
     </span><span class="kw1">sig</span><span class="text">
       </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">tag</span><span class="text">
       </span><span class="kw">class</span><span class="text"> ['</span><span class="id">a</span><span class="text">] </span><span class="id">c</span><span class="text"> :
@@ -776,10 +776,10 @@ of the same type will share the same representation.
           </span><span class="kw">method</span><span class="text"> </span><span class="id">tag</span><span class="text"> : '</span><span class="id">a</span><span class="text"> </span><span class="id">tag</span><span class="text">
         </span><span class="kw1">end</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div>
+</span></code>
 </pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Set</span><span class="text"> : </span><span class="kw2">SET</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">Set</span><span class="text"> : </span><span class="kw2">SET</span><span class="text"> =
     </span><span class="kw1">struct</span><span class="text">
       </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">merge</span><span class="text"> </span><span class="id">l1</span><span class="text"> </span><span class="id">l2</span><span class="text"> =
         </span><span class="kw1">match</span><span class="text"> </span><span class="id">l1</span><span class="text"> </span><span class="kw1">with</span><span class="text">
@@ -803,7 +803,7 @@ of the same type will share the same representation.
           </span><span class="kw">method</span><span class="text"> </span><span class="id">tag</span><span class="text"> = </span><span class="id">repr</span><span class="text">
         </span><span class="kw1">end</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div>
+</span></code>
 </pre>
 
 
@@ -820,13 +820,13 @@ two arguments, a subject and an event to execute an action.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> ['</span><span class="id">subject</span><span class="text">, '</span><span class="id">event</span><span class="text">] </span><span class="id">observer</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> ['</span><span class="id">subject</span><span class="text">, '</span><span class="id">event</span><span class="text">] </span><span class="id">observer</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="kw">virtual</span><span class="text"> </span><span class="id">notify</span><span class="text"> : '</span><span class="id">subject</span><span class="text"> -&gt;  '</span><span class="id">event</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class virtual ['subject, 'event] observer :
+</span></code><code class="caml-output ok">class virtual ['subject, 'event] observer :
   object method virtual notify : 'subject -&gt; 'event -&gt; unit end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -838,21 +838,21 @@ and has a distinguished method <span class="c003">notify_observers</span> to bro
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">, '</span><span class="id">event</span><span class="text">] </span><span class="id">subject</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">, '</span><span class="id">event</span><span class="text">] </span><span class="id">subject</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">observers</span><span class="text"> = ([]:'</span><span class="id">observer</span><span class="text"> </span><span class="kw3">list</span><span class="text">)
       </span><span class="kw">method</span><span class="text"> </span><span class="id">add_observer</span><span class="text"> </span><span class="id">obs</span><span class="text"> = </span><span class="id">observers</span><span class="text"> &lt;- (</span><span class="id">obs</span><span class="text"> :: </span><span class="id">observers</span><span class="text">)
       </span><span class="kw">method</span><span class="text"> </span><span class="id">notify_observers</span><span class="text"> (</span><span class="id">e</span><span class="text"> : '</span><span class="id">event</span><span class="text">) =
           </span><span class="kw2">List</span><span class="text">.</span><span class="id">iter</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="kw1">#</span><span class="id">notify</span><span class="text"> </span><span class="id">self</span><span class="text"> </span><span class="id">e</span><span class="text">) </span><span class="id">observers</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a, 'event] subject :
+</span></code><code class="caml-output ok">class ['a, 'event] subject :
   object ('b)
     constraint 'a = &lt; notify : 'b -&gt; 'event -&gt; unit; .. &gt;
     val mutable observers : 'a list
     method add_observer : 'a -&gt; unit
     method notify_observers : 'event -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -864,20 +864,20 @@ OCaml, as shown on the following example manipulating windows.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">event</span><span class="text"> = </span><span class="kw2">Raise</span><span class="text"> | </span><span class="kw2">Resize</span><span class="text"> | </span><span class="kw2">Move</span><span class="text">;;
-</span></div><div class="caml-output ok">type event = Raise | Resize | Move
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">event</span><span class="text"> = </span><span class="kw2">Raise</span><span class="text"> | </span><span class="kw2">Resize</span><span class="text"> | </span><span class="kw2">Move</span><span class="text">;;
+</span></code><code class="caml-output ok">type event = Raise | Resize | Move
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">string_of_event</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">string_of_event</span><span class="text"> = </span><span class="kw">function</span><span class="text">
       </span><span class="kw2">Raise</span><span class="text"> -&gt; </span><span class="string">"Raise"</span><span class="text"> | </span><span class="kw2">Resize</span><span class="text"> -&gt; </span><span class="string">"Resize"</span><span class="text"> | </span><span class="kw2">Move</span><span class="text"> -&gt; </span><span class="string">"Move"</span><span class="text">;;
-</span></div><div class="caml-output ok">val string_of_event : event -&gt; string = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val string_of_event : event -&gt; string = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">count</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
-</span></div><div class="caml-output ok">val count : int ref = {contents = 0}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">count</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
+</span></code><code class="caml-output ok">val count : int ref = {contents = 0}
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">] </span><span class="id">window_subject</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">] </span><span class="id">window_subject</span><span class="text"> =
     </span><span class="kw">let</span><span class="text"> </span><span class="id">id</span><span class="text"> = </span><span class="id">count</span><span class="text"> := </span><span class="id">succ</span><span class="text"> !</span><span class="id">count</span><span class="text">; !</span><span class="id">count</span><span class="text"> </span><span class="kw">in</span><span class="text">
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">observer</span><span class="text">, </span><span class="id">event</span><span class="text">] </span><span class="id">subject</span><span class="text">
@@ -886,7 +886,7 @@ OCaml, as shown on the following example manipulating windows.
       </span><span class="kw">method</span><span class="text"> </span><span class="id">move</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">position</span><span class="text"> &lt;- </span><span class="id">position</span><span class="text"> + </span><span class="id">x</span><span class="text">; </span><span class="id">self</span><span class="kw1">#</span><span class="id">notify_observers</span><span class="text"> </span><span class="kw2">Move</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">draw</span><span class="text"> = </span><span class="kw2">Printf</span><span class="text">.</span><span class="id">printf</span><span class="text"> </span><span class="string">"{Position = %d}\n"</span><span class="text">  </span><span class="id">position</span><span class="text">;
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] window_subject :
+</span></code><code class="caml-output ok">class ['a] window_subject :
   object ('b)
     constraint 'a = &lt; notify : 'b -&gt; event -&gt; unit; .. &gt;
     val mutable observers : 'a list
@@ -897,19 +897,19 @@ OCaml, as shown on the following example manipulating windows.
     method move : int -&gt; unit
     method notify_observers : event -&gt; unit
   end
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">window_observer</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">window_observer</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">subject</span><span class="text">, </span><span class="id">event</span><span class="text">] </span><span class="id">observer</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">notify</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">e</span><span class="text"> = </span><span class="id">s</span><span class="kw1">#</span><span class="id">draw</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] window_observer :
+</span></code><code class="caml-output ok">class ['a] window_observer :
   object
     constraint 'a = &lt; draw : unit; .. &gt;
     method notify : 'a -&gt; event -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -919,10 +919,10 @@ As can be expected, the type of <span class="c003">window</span> is recursive.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">window_subject</span><span class="text">;;
-</span></div><div class="caml-output ok">val window : &lt; notify : 'a -&gt; event -&gt; unit; _.. &gt; window_subject as 'a =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">window_subject</span><span class="text">;;
+</span></code><code class="caml-output ok">val window : &lt; notify : 'a -&gt; event -&gt; unit; _.. &gt; window_subject as 'a =
   &lt;obj&gt;
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -933,18 +933,18 @@ mutually recursive.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window_observer</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">window_observer</span><span class="text">;;
-</span></div><div class="caml-output ok">val window_observer : &lt; draw : unit; _.. &gt; window_observer = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window_observer</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">window_observer</span><span class="text">;;
+</span></code><code class="caml-output ok">val window_observer : &lt; draw : unit; _.. &gt; window_observer = &lt;obj&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> </span><span class="id">window_observer</span><span class="text">;;
-</span></div><div class="caml-output ok">- : unit = ()
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> </span><span class="id">window_observer</span><span class="text">;;
+</span></code><code class="caml-output ok">- : unit = ()
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">1</span><span class="text">;;
-</span></div><div class="caml-output ok">{Position = 1}
+<pre><code class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">1</span><span class="text">;;
+</span></code><code class="caml-output ok">{Position = 1}
 - : unit = ()
-</div></pre>
+</code></pre>
 
 
 </div><p>Classes <span class="c003">window_observer</span> and <span class="c003">window_subject</span> can still be extended by
@@ -954,7 +954,7 @@ behaviors and refine the behavior of the observer.
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">] </span><span class="id">richer_window_subject</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">observer</span><span class="text">] </span><span class="id">richer_window_subject</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text"> (</span><span class="id">self</span><span class="text">)
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">observer</span><span class="text">] </span><span class="id">window_subject</span><span class="text">
       </span><span class="kw">val</span><span class="text"> </span><span class="kw">mutable</span><span class="text"> </span><span class="id">size</span><span class="text"> = </span><span class="numeric">1</span><span class="text">
@@ -963,7 +963,7 @@ behaviors and refine the behavior of the observer.
       </span><span class="kw">method</span><span class="text"> </span><span class="id">raise</span><span class="text"> = </span><span class="id">top</span><span class="text"> &lt;- </span><span class="constant">true</span><span class="text">; </span><span class="id">self</span><span class="kw1">#</span><span class="id">notify_observers</span><span class="text"> </span><span class="kw2">Raise</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">draw</span><span class="text"> = </span><span class="kw2">Printf</span><span class="text">.</span><span class="id">printf</span><span class="text"> </span><span class="string">"{Position = %d; Size = %d}\n"</span><span class="text">  </span><span class="id">position</span><span class="text"> </span><span class="id">size</span><span class="text">;
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] richer_window_subject :
+</span></code><code class="caml-output ok">class ['a] richer_window_subject :
   object ('b)
     constraint 'a = &lt; notify : 'b -&gt; event -&gt; unit; .. &gt;
     val mutable observers : 'a list
@@ -978,19 +978,19 @@ behaviors and refine the behavior of the observer.
     method raise : unit
     method resize : int -&gt; unit
   end
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">richer_window_observer</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">richer_window_observer</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">window_observer</span><span class="text"> </span><span class="kw1">as</span><span class="text"> </span><span class="id">super</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">notify</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">e</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">e</span><span class="text"> &lt;&gt; </span><span class="kw2">Raise</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">s</span><span class="kw1">#</span><span class="id">raise</span><span class="text">; </span><span class="id">super</span><span class="kw1">#</span><span class="id">notify</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">e</span><span class="text">
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] richer_window_observer :
+</span></code><code class="caml-output ok">class ['a] richer_window_observer :
   object
     constraint 'a = &lt; draw : unit; raise : unit; .. &gt;
     method notify : 'a -&gt; event -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -1000,19 +1000,19 @@ We can also create a different kind of observer:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">trace_observer</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">class</span><span class="text"> ['</span><span class="id">subject</span><span class="text">] </span><span class="id">trace_observer</span><span class="text"> =
     </span><span class="kw1">object</span><span class="text">
       </span><span class="kw">inherit</span><span class="text"> ['</span><span class="id">subject</span><span class="text">, </span><span class="id">event</span><span class="text">] </span><span class="id">observer</span><span class="text">
       </span><span class="kw">method</span><span class="text"> </span><span class="id">notify</span><span class="text"> </span><span class="id">s</span><span class="text"> </span><span class="id">e</span><span class="text"> =
         </span><span class="kw2">Printf</span><span class="text">.</span><span class="id">printf</span><span class="text">
           </span><span class="string">"&lt;Window %d &lt;== %s&gt;\n"</span><span class="text"> </span><span class="id">s</span><span class="kw1">#</span><span class="id">identity</span><span class="text"> (</span><span class="id">string_of_event</span><span class="text"> </span><span class="id">e</span><span class="text">)
     </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">class ['a] trace_observer :
+</span></code><code class="caml-output ok">class ['a] trace_observer :
   object
     constraint 'a = &lt; identity : int; .. &gt;
     method notify : 'a -&gt; event -&gt; unit
   end
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -1022,21 +1022,21 @@ and attach several observers to the same object:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">richer_window_subject</span><span class="text">;;
-</span></div><div class="caml-output ok">val window :
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">window</span><span class="text"> = </span><span class="kw1">new</span><span class="text"> </span><span class="id">richer_window_subject</span><span class="text">;;
+</span></code><code class="caml-output ok">val window :
   &lt; notify : 'a -&gt; event -&gt; unit; _.. &gt; richer_window_subject as 'a = &lt;obj&gt;
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">richer_window_observer</span><span class="text">);;
-</span></div><div class="caml-output ok">- : unit = ()
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">richer_window_observer</span><span class="text">);;
+</span></code><code class="caml-output ok">- : unit = ()
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">trace_observer</span><span class="text">);;
-</span></div><div class="caml-output ok">- : unit = ()
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">add_observer</span><span class="text"> (</span><span class="kw1">new</span><span class="text"> </span><span class="id">trace_observer</span><span class="text">);;
+</span></code><code class="caml-output ok">- : unit = ()
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">window</span><span class="kw1">#</span><span class="id">resize</span><span class="text"> </span><span class="numeric">2</span><span class="text">;;
-</span></div><div class="caml-output ok">&lt;Window 1 &lt;== Move&gt;
+<pre><code class="caml-input"><span class="text"> </span><span class="id">window</span><span class="kw1">#</span><span class="id">move</span><span class="text"> </span><span class="numeric">1</span><span class="text">; </span><span class="id">window</span><span class="kw1">#</span><span class="id">resize</span><span class="text"> </span><span class="numeric">2</span><span class="text">;;
+</span></code><code class="caml-output ok">&lt;Window 1 &lt;== Move&gt;
 &lt;Window 1 &lt;== Raise&gt;
 {Position = 1; Size = 1}
 {Position = 1; Size = 1}
@@ -1045,7 +1045,7 @@ and attach several observers to the same object:
 {Position = 1; Size = 3}
 {Position = 1; Size = 3}
 - : unit = ()
-</div></pre>
+</code></pre>
 
 
 </div>

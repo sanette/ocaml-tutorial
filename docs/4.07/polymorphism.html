@@ -13,7 +13,7 @@
 
 
 <h1 class="tutorial" id="sec51"><span>Tutorial 5</span>&nbsp;&nbsp;Polymorphism and its limitations</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="../index.html">Version 4.07</a></div><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.07</a></div><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec52">1&nbsp;&nbsp;Weak polymorphism and mutation</a>
 </li><li><a href="#sec58">2&nbsp;&nbsp;Polymorphic recursion</a>
 </li><li><a href="#sec61">3&nbsp;&nbsp;Higher-rank polymorphic functions</a>
@@ -40,9 +40,9 @@ appears when typing the following expression
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">store</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="kw2">None</span><span class="text"> ;;
-</span></div><div class="caml-output ok">val store : '_weak1 option ref = {contents = None}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">store</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="kw2">None</span><span class="text"> ;;
+</span></code><code class="caml-output ok">val store : '_weak1 option ref = {contents = None}
+</code></pre>
 
 
 </div><p>
@@ -61,14 +61,14 @@ we can define another option reference and store an <span class="c003">int</span
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">another_store</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="kw2">None</span><span class="text"> ;;
-</span></div><div class="caml-output ok">val another_store : '_weak2 option ref = {contents = None}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">another_store</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="kw2">None</span><span class="text"> ;;
+</span></code><code class="caml-output ok">val another_store : '_weak2 option ref = {contents = None}
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">another_store</span><span class="text"> := </span><span class="kw2">Some</span><span class="text"> </span><span class="numeric">0</span><span class="text">;
+<pre><code class="caml-input"><span class="text"> </span><span class="id">another_store</span><span class="text"> := </span><span class="kw2">Some</span><span class="text"> </span><span class="numeric">0</span><span class="text">;
   </span><span class="id">another_store</span><span class="text"> ;;
-</span></div><div class="caml-output ok">- : int option ref = {contents = Some 0}
-</div></pre>
+</span></code><code class="caml-output ok">- : int option ref = {contents = Some 0}
+</code></pre>
 
 
 </div><p>
@@ -83,11 +83,11 @@ with the value stored inside a <span class="c003">store</span> reference, if the
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">match</span><span class="text"> !</span><span class="id">store</span><span class="text"> </span><span class="kw1">with</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="kw1">match</span><span class="text"> !</span><span class="id">store</span><span class="text"> </span><span class="kw1">with</span><span class="text">
     | </span><span class="kw2">None</span><span class="text"> -&gt; </span><span class="id">store</span><span class="text"> := </span><span class="kw2">Some</span><span class="text"> </span><span class="id">x</span><span class="text">; </span><span class="id">x</span><span class="text">
     | </span><span class="kw2">Some</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">store</span><span class="text"> := </span><span class="kw2">Some</span><span class="text"> </span><span class="id">x</span><span class="text">; </span><span class="id">y</span><span class="text">;;
-</span></div><div class="caml-output ok">val swap : 'a option ref -&gt; 'a -&gt; 'a = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val swap : 'a option ref -&gt; 'a -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -97,13 +97,13 @@ We can apply this function to our store
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">one</span><span class="text"> = </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="numeric">1</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">one</span><span class="text"> = </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="numeric">1</span><span class="text">
   </span><span class="kw">let</span><span class="text"> </span><span class="id">one_again</span><span class="text"> = </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="numeric">2</span><span class="text">
   </span><span class="kw">let</span><span class="text"> </span><span class="id">two</span><span class="text"> = </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="numeric">3</span><span class="text">;;
-</span></div><div class="caml-output ok">val one : int = 1
+</span></code><code class="caml-output ok">val one : int = 1
 val one_again : int = 1
 val two : int = 2
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -115,10 +115,10 @@ instance a function:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let error = swap store <u>(fun x -&gt; x)</u>;;
-</div><div class="caml-output error">Error: This expression should not be a function, the expected type is
+<pre><code class="caml-input"> let error = swap store <u>(fun x -&gt; x)</u>;;
+</code><code class="caml-output error">Error: This expression should not be a function, the expected type is
 int
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -131,10 +131,10 @@ change manually the type of the value stored by <span class="c003">store</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> store := Some <u>(fun x -&gt; x)</u>;;
-</div><div class="caml-output error">Error: This expression should not be a function, the expected type is
+<pre><code class="caml-input"> store := Some <u>(fun x -&gt; x)</u>;;
+</code><code class="caml-output error">Error: This expression should not be a function, the expected type is
 int
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -145,9 +145,9 @@ been replaced by the type <span class="c003">int</span>
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">store</span><span class="text">;;
-</span></div><div class="caml-output ok">- : int option ref = {contents = Some 3}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">store</span><span class="text">;;
+</span></code><code class="caml-output ok">- : int option ref = {contents = Some 3}
+</code></pre>
 
 
 </div><p>
@@ -179,15 +179,15 @@ to implement a delayed identity function
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">make_fake_id</span><span class="text"> () =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">make_fake_id</span><span class="text"> () =
     </span><span class="kw">let</span><span class="text"> </span><span class="id">store</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="kw2">None</span><span class="text"> </span><span class="kw">in</span><span class="text">
     </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">swap</span><span class="text"> </span><span class="id">store</span><span class="text"> </span><span class="id">x</span><span class="text"> ;;
-</span></div><div class="caml-output ok">val make_fake_id : unit -&gt; 'a -&gt; 'a = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val make_fake_id : unit -&gt; 'a -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">fake_id</span><span class="text"> = </span><span class="id">make_fake_id</span><span class="text">();;
-</span></div><div class="caml-output ok">val fake_id : '_weak3 -&gt; '_weak3 = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">fake_id</span><span class="text"> = </span><span class="id">make_fake_id</span><span class="text">();;
+</span></code><code class="caml-output ok">val fake_id : '_weak3 -&gt; '_weak3 = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -208,9 +208,9 @@ safely generalized to a polymorphic type:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">not_id</span><span class="text"> = (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">);;
-</span></div><div class="caml-output ok">val not_id : '_weak4 -&gt; '_weak4 = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">not_id</span><span class="text"> = (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">);;
+</span></code><code class="caml-output ok">val not_id : '_weak4 -&gt; '_weak4 = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -222,9 +222,9 @@ function:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">id_again</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) </span><span class="id">x</span><span class="text">;;
-</span></div><div class="caml-output ok">val id_again : 'a -&gt; 'a = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">id_again</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">) </span><span class="id">x</span><span class="text">;;
+</span></code><code class="caml-output ok">val id_again : 'a -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -242,13 +242,13 @@ polymorphic types. For instance, the type <span class="c003">'a list</span> is c
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text"> () = [];;
-</span></div><div class="caml-output ok">val f : unit -&gt; 'a list = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text"> () = [];;
+</span></code><code class="caml-output ok">val f : unit -&gt; 'a list = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> = </span><span class="id">f</span><span class="text"> ();;
-</span></div><div class="caml-output ok">val empty : 'a list = []
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> = </span><span class="id">f</span><span class="text"> ();;
+</span></code><code class="caml-output ok">val empty : 'a list = []
+</code></pre>
 
 
 </div><p>
@@ -266,13 +266,13 @@ denoted <span class="c003">x :&gt; xy</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> </span><span class="id">x</span><span class="text"> = [ `</span><span class="kw2">X</span><span class="text"> ];;
-</span></div><div class="caml-output ok">type x = [ `X ]
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> </span><span class="id">x</span><span class="text"> = [ `</span><span class="kw2">X</span><span class="text"> ];;
+</span></code><code class="caml-output ok">type x = [ `X ]
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> </span><span class="id">xy</span><span class="text"> = [ `</span><span class="kw2">X</span><span class="text"> | `</span><span class="kw2">Y</span><span class="text"> ];;
-</span></div><div class="caml-output ok">type xy = [ `X | `Y ]
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> </span><span class="id">xy</span><span class="text"> = [ `</span><span class="kw2">X</span><span class="text"> | `</span><span class="kw2">Y</span><span class="text"> ];;
+</span></code><code class="caml-output ok">type xy = [ `X | `Y ]
+</code></pre>
 
 
 </div><p>
@@ -283,13 +283,13 @@ to a value of type <span class="c003">xy</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">:</span><span class="id">x</span><span class="text"> = `</span><span class="kw2">X</span><span class="text">;;
-</span></div><div class="caml-output ok">val x : x = `X
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">:</span><span class="id">x</span><span class="text"> = `</span><span class="kw2">X</span><span class="text">;;
+</span></code><code class="caml-output ok">val x : x = `X
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">' = ( </span><span class="id">x</span><span class="text"> :&gt; </span><span class="id">xy</span><span class="text">);;
-</span></div><div class="caml-output ok">val x' : xy = `X
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">' = ( </span><span class="id">x</span><span class="text"> :&gt; </span><span class="id">xy</span><span class="text">);;
+</span></code><code class="caml-output ok">val x' : xy = `X
+</code></pre>
 
 
 </div><p>
@@ -300,13 +300,13 @@ of type <span class="c003">xy list</span>, since we could convert each element o
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text">:</span><span class="id">x</span><span class="text"> </span><span class="kw3">list</span><span class="text"> = [`</span><span class="kw2">X</span><span class="text">; `</span><span class="kw2">X</span><span class="text">];;
-</span></div><div class="caml-output ok">val l : x list = [`X; `X]
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text">:</span><span class="id">x</span><span class="text"> </span><span class="kw3">list</span><span class="text"> = [`</span><span class="kw2">X</span><span class="text">; `</span><span class="kw2">X</span><span class="text">];;
+</span></code><code class="caml-output ok">val l : x list = [`X; `X]
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text">' = ( </span><span class="id">l</span><span class="text"> :&gt; </span><span class="id">xy</span><span class="text"> </span><span class="kw3">list</span><span class="text">);;
-</span></div><div class="caml-output ok">val l' : xy list = [`X; `X]
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text">' = ( </span><span class="id">l</span><span class="text"> :&gt; </span><span class="id">xy</span><span class="text"> </span><span class="kw3">list</span><span class="text">);;
+</span></code><code class="caml-output ok">val l' : xy list = [`X; `X]
+</code></pre>
 
 
 </div><p>
@@ -318,11 +318,11 @@ in its parameter <span class="c003">'a</span>.</p><p>Contrarily, if we have a fu
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text">: </span><span class="id">xy</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text">: </span><span class="id">xy</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text"> = </span><span class="kw">function</span><span class="text">
     | `</span><span class="kw2">X</span><span class="text"> -&gt; ()
     | `</span><span class="kw2">Y</span><span class="text"> -&gt; ();;
-</span></div><div class="caml-output ok">val f : xy -&gt; unit = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val f : xy -&gt; unit = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -332,9 +332,9 @@ it can also handle values of type <span class="c003">x</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text">' = (</span><span class="id">f</span><span class="text"> :&gt; </span><span class="id">x</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">);;
-</span></div><div class="caml-output ok">val f' : x -&gt; unit = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text">' = (</span><span class="id">f</span><span class="text"> :&gt; </span><span class="id">x</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">);;
+</span></code><code class="caml-output ok">val f' : x -&gt; unit = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -344,11 +344,11 @@ Note that we can rewrite the type of <span class="c003">f</span> and <span class
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">proc</span><span class="text"> = '</span><span class="id">a</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">proc</span><span class="text"> = '</span><span class="id">a</span><span class="text"> -&gt; </span><span class="kw3">unit</span><span class="text">
     </span><span class="kw">let</span><span class="text"> </span><span class="id">f</span><span class="text">' = (</span><span class="id">f</span><span class="text">: </span><span class="id">xy</span><span class="text"> </span><span class="id">proc</span><span class="text"> :&gt; </span><span class="id">x</span><span class="text"> </span><span class="id">proc</span><span class="text">);;
-</span></div><div class="caml-output ok">type 'a proc = 'a -&gt; unit
+</span></code><code class="caml-output ok">type 'a proc = 'a -&gt; unit
 val f' : x proc = &lt;fun&gt;
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -363,9 +363,9 @@ neither covariant nor contravariant. A typical example is a reference:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">: </span><span class="id">x</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> `</span><span class="kw2">X</span><span class="text">;;
-</span></div><div class="caml-output ok">val x : x ref = {contents = `X}
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">x</span><span class="text">: </span><span class="id">x</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> `</span><span class="kw2">X</span><span class="text">;;
+</span></code><code class="caml-output ok">val x : x ref = {contents = `X}
+</code></pre>
 
 
 </div><p>
@@ -391,7 +391,7 @@ module type collection as:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw1">sig</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw1">sig</span><span class="text">
     </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">t</span><span class="text">
     </span><span class="kw">val</span><span class="text"> </span><span class="id">empty</span><span class="text">: </span><span class="kw3">unit</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> </span><span class="id">t</span><span class="text">
   </span><span class="kw1">end</span><span class="text">
@@ -400,23 +400,23 @@ module type collection as:
     </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">t</span><span class="text"> = '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text">
     </span><span class="kw">let</span><span class="text"> </span><span class="id">empty</span><span class="text"> ()= []
   </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">module type COLLECTION = sig type 'a t val empty : unit -&gt; 'a t end
+</span></code><code class="caml-output ok">module type COLLECTION = sig type 'a t val empty : unit -&gt; 'a t end
 module Implementation :
   sig type 'a t = 'a list val empty : unit -&gt; 'a list end
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">List2</span><span class="text">: </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw2">Implementation</span><span class="text">;;
-</span></div><div class="caml-output ok">module List2 : COLLECTION
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw2">List2</span><span class="text">: </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw2">Implementation</span><span class="text">;;
+</span></code><code class="caml-output ok">module List2 : COLLECTION
+</code></pre>
 
 
 </div><p>In this situation, when coercing the module <span class="c003">List2</span> to the module type
 <span class="c003">COLLECTION</span>, the type checker forgets that <span class="c003">'a List2.t</span> was covariant
 in <span class="c003">'a</span>. Consequently, the relaxed value restriction does not apply anymore:</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw2">List2</span><span class="text">.</span><span class="id">empty</span><span class="text"> ();;
-</span></div><div class="caml-output ok">- : '_weak5 List2.t = &lt;abstr&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw2">List2</span><span class="text">.</span><span class="id">empty</span><span class="text"> ();;
+</span></code><code class="caml-output ok">- : '_weak5 List2.t = &lt;abstr&gt;
+</code></pre>
 
 
 </div><p>To keep the relaxed value restriction, we need to declare the abstract type
@@ -425,22 +425,22 @@ in <span class="c003">'a</span>. Consequently, the relaxed value restriction doe
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw1">sig</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">module</span><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw1">sig</span><span class="text">
     </span><span class="kw">type</span><span class="text"> +'</span><span class="id">a</span><span class="text"> </span><span class="id">t</span><span class="text">
     </span><span class="kw">val</span><span class="text"> </span><span class="id">empty</span><span class="text">: </span><span class="kw3">unit</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> </span><span class="id">t</span><span class="text">
   </span><span class="kw1">end</span><span class="text">
 
   </span><span class="kw">module</span><span class="text"> </span><span class="kw2">List2</span><span class="text">: </span><span class="kw2">COLLECTION</span><span class="text"> = </span><span class="kw2">Implementation</span><span class="text">;;
-</span></div><div class="caml-output ok">module type COLLECTION = sig type +'a t val empty : unit -&gt; 'a t end
+</span></code><code class="caml-output ok">module type COLLECTION = sig type +'a t val empty : unit -&gt; 'a t end
 module List2 : COLLECTION
-</div></pre>
+</code></pre>
 
 
 </div><p>We then recover polymorphism:</p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw2">List2</span><span class="text">.</span><span class="id">empty</span><span class="text"> ();;
-</span></div><div class="caml-output ok">- : 'a List2.t = &lt;abstr&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw2">List2</span><span class="text">.</span><span class="id">empty</span><span class="text"> ();;
+</span></code><code class="caml-output ok">- : 'a List2.t = &lt;abstr&gt;
+</code></pre>
 
 
 </div>
@@ -456,12 +456,12 @@ instance, we can look at arbitrarily nested list defined as:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">regular_nested</span><span class="text"> = </span><span class="kw2">List</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> | </span><span class="kw2">Nested</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">regular_nested</span><span class="text"> </span><span class="kw3">list</span><span class="text">
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">regular_nested</span><span class="text"> = </span><span class="kw2">List</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> | </span><span class="kw2">Nested</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">regular_nested</span><span class="text"> </span><span class="kw3">list</span><span class="text">
     </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = </span><span class="kw2">Nested</span><span class="text">[ </span><span class="kw2">List</span><span class="text"> [</span><span class="numeric">1</span><span class="text">]; </span><span class="kw2">Nested</span><span class="text"> [</span><span class="kw2">List</span><span class="text">[</span><span class="numeric">2</span><span class="text">;</span><span class="numeric">3</span><span class="text">]]; </span><span class="kw2">Nested</span><span class="text">[</span><span class="kw2">Nested</span><span class="text">[]] ];;
-</span></div><div class="caml-output ok">type 'a regular_nested = List of 'a list | Nested of 'a regular_nested list
+</span></code><code class="caml-output ok">type 'a regular_nested = List of 'a list | Nested of 'a regular_nested list
 val l : int regular_nested =
   Nested [List [1]; Nested [List [2; 3]]; Nested [Nested []]]
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -474,12 +474,12 @@ a classic recursive function
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">maximal_depth</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">maximal_depth</span><span class="text"> = </span><span class="kw">function</span><span class="text">
     | </span><span class="kw2">List</span><span class="text"> </span><span class="numeric">_</span><span class="text"> -&gt; </span><span class="numeric">1</span><span class="text">
     | </span><span class="kw2">Nested</span><span class="text"> [] -&gt; </span><span class="numeric">0</span><span class="text">
     | </span><span class="kw2">Nested</span><span class="text"> (</span><span class="id">a</span><span class="text">::</span><span class="id">q</span><span class="text">) -&gt; </span><span class="numeric">1</span><span class="text"> + </span><span class="id">max</span><span class="text"> (</span><span class="id">maximal_depth</span><span class="text"> </span><span class="id">a</span><span class="text">) (</span><span class="id">maximal_depth</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text"> </span><span class="id">q</span><span class="text">));;
-</span></div><div class="caml-output ok">val maximal_depth : 'a regular_nested -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val maximal_depth : 'a regular_nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>Non-regular recursive algebraic data types correspond to polymorphic algebraic
@@ -490,9 +490,9 @@ that ensures that all lists are nested at the same depth:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> = </span><span class="kw2">List</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> | </span><span class="kw2">Nested</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> </span><span class="id">nested</span><span class="text">;;
-</span></div><div class="caml-output ok">type 'a nested = List of 'a list | Nested of 'a list nested
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> = </span><span class="kw2">List</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> | </span><span class="kw2">Nested</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> </span><span class="id">nested</span><span class="text">;;
+</span></code><code class="caml-output ok">type 'a nested = List of 'a list | Nested of 'a list nested
+</code></pre>
 
 
 </div><p>
@@ -505,13 +505,13 @@ function defined on <span class="c003">regular_depth</span> into a <span class="
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"> let rec depth = function
+<pre><code class="caml-input"> let rec depth = function
     | List _ -&gt; 1
     | Nested n -&gt; 1 + depth <u>n</u>;;
-</div><div class="caml-output error">Error: This expression has type 'a list nested
+</code><code class="caml-output error">Error: This expression has type 'a list nested
        but an expression was expected of type 'a nested
        The type variable 'a occurs inside 'a list
-</div></pre>
+</code></pre>
 
 
 </div><p>
@@ -539,15 +539,15 @@ annotation for the type <span class="c003">'a</span>:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">depth</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">depth</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> = </span><span class="kw">function</span><span class="text">
     | </span><span class="kw2">List</span><span class="text"> </span><span class="numeric">_</span><span class="text"> -&gt; </span><span class="numeric">1</span><span class="text">
     | </span><span class="kw2">Nested</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="numeric">1</span><span class="text"> + </span><span class="id">depth</span><span class="text"> </span><span class="id">n</span><span class="text">;;
-</span></div><div class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">depth</span><span class="text"> ( </span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [</span><span class="numeric">7</span><span class="text">]; [</span><span class="numeric">8</span><span class="text">] ]) );;
-</span></div><div class="caml-output ok">- : int = 2
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">depth</span><span class="text"> ( </span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [</span><span class="numeric">7</span><span class="text">]; [</span><span class="numeric">8</span><span class="text">] ]) );;
+</span></code><code class="caml-output ok">- : int = 2
+</code></pre>
 
 
 </div><p>
@@ -568,9 +568,9 @@ following type annotation is perfectly valid
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">sum</span><span class="text">: '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">c</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text"> + </span><span class="id">y</span><span class="text">;;
-</span></div><div class="caml-output ok">val sum : int -&gt; int -&gt; int = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">sum</span><span class="text">: '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> -&gt; '</span><span class="id">c</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text"> + </span><span class="id">y</span><span class="text">;;
+</span></code><code class="caml-output ok">val sum : int -&gt; int -&gt; int = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -582,10 +582,10 @@ with a non-polymorphic type:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input">   let sum: 'a 'b 'c. 'a -&gt; 'b -&gt; 'c = <u>fun x y -&gt; x + y</u>;;
-</div><div class="caml-output error">Error: This definition has type int -&gt; int -&gt; int which is less general than
+<pre><code class="caml-input">   let sum: 'a 'b 'c. 'a -&gt; 'b -&gt; 'c = <u>fun x y -&gt; x + y</u>;;
+</code><code class="caml-output error">Error: This definition has type int -&gt; int -&gt; int which is less general than
          'a 'b 'c. 'a -&gt; 'b -&gt; 'c
-</div></pre>
+</code></pre>
 
 
 </div><p>An important remark here is that it is not needed to explicit fully
@@ -595,15 +595,15 @@ universally quantified type variables:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">depth</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> = </span><span class="kw">function</span><span class="text">
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">depth</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> = </span><span class="kw">function</span><span class="text">
     | </span><span class="kw2">List</span><span class="text"> </span><span class="numeric">_</span><span class="text"> -&gt; </span><span class="numeric">1</span><span class="text">
     | </span><span class="kw2">Nested</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="numeric">1</span><span class="text"> + </span><span class="id">depth</span><span class="text"> </span><span class="id">n</span><span class="text">;;
-</span></div><div class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val depth : 'a nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">depth</span><span class="text"> ( </span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [</span><span class="numeric">7</span><span class="text">]; [</span><span class="numeric">8</span><span class="text">] ]) );;
-</span></div><div class="caml-output ok">- : int = 2
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">depth</span><span class="text"> ( </span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [</span><span class="numeric">7</span><span class="text">]; [</span><span class="numeric">8</span><span class="text">] ]) );;
+</span></code><code class="caml-output ok">- : int = 2
+</code></pre>
 
 
 </div>
@@ -618,7 +618,7 @@ lists:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">len</span><span class="text"> </span><span class="id">nested</span><span class="text"> =
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">len</span><span class="text"> </span><span class="id">nested</span><span class="text"> =
       </span><span class="kw">let</span><span class="text"> </span><span class="id">map_and_sum</span><span class="text"> </span><span class="id">f</span><span class="text"> = </span><span class="kw2">List</span><span class="text">.</span><span class="id">fold_left</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">acc</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">acc</span><span class="text"> + </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text">) </span><span class="numeric">0</span><span class="text"> </span><span class="kw">in</span><span class="text">
       </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">len</span><span class="text">: '</span><span class="id">a</span><span class="text">. ('</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> ) -&gt; '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> =
       </span><span class="kw">fun</span><span class="text"> </span><span class="id">nested_len</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt;
@@ -627,12 +627,12 @@ lists:
         | </span><span class="kw2">Nested</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="id">len</span><span class="text"> (</span><span class="id">map_and_sum</span><span class="text"> </span><span class="id">nested_len</span><span class="text">) </span><span class="id">n</span><span class="text">
       </span><span class="kw">in</span><span class="text">
     </span><span class="id">len</span><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">nested</span><span class="text">;;
-</span></div><div class="caml-output ok">val len : 'a nested -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val len : 'a nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">len</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [ [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">]; [</span><span class="numeric">3</span><span class="text">] ]; [ []; [</span><span class="numeric">4</span><span class="text">]; [</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">7</span><span class="text">]]; [[]] ])));;
-</span></div><div class="caml-output ok">- : int = 7
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">len</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [ [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">]; [</span><span class="numeric">3</span><span class="text">] ]; [ []; [</span><span class="numeric">4</span><span class="text">]; [</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">7</span><span class="text">]]; [[]] ])));;
+</span></code><code class="caml-output ok">- : int = 7
+</code></pre>
 
 
 </div><p>Similarly, it may be necessary to use more than one explicitly
@@ -642,7 +642,7 @@ list lengths of the nested list:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">shape</span><span class="text"> </span><span class="id">n</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">shape</span><span class="text"> </span><span class="id">n</span><span class="text"> =
     </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">shape</span><span class="text">: '</span><span class="id">a</span><span class="text"> '</span><span class="id">b</span><span class="text">. ('</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> </span><span class="id">nested</span><span class="text">) -&gt;
       ('</span><span class="id">b</span><span class="text"> </span><span class="kw3">list</span><span class="text"> </span><span class="kw3">list</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> </span><span class="kw3">list</span><span class="text">) -&gt; '</span><span class="id">b</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="kw3">int</span><span class="text"> </span><span class="id">nested</span><span class="text">
       = </span><span class="kw">fun</span><span class="text"> </span><span class="id">nest</span><span class="text"> </span><span class="id">nested_shape</span><span class="text"> -&gt;
@@ -655,12 +655,12 @@ list lengths of the nested list:
           </span><span class="kw">let</span><span class="text"> </span><span class="id">nest</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">nest</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text"> </span><span class="id">x</span><span class="text">) </span><span class="kw">in</span><span class="text">
           </span><span class="id">shape</span><span class="text"> </span><span class="id">nest</span><span class="text"> </span><span class="id">nested_shape</span><span class="text"> </span><span class="id">n</span><span class="text"> </span><span class="kw">in</span><span class="text">
     </span><span class="id">shape</span><span class="text"> (</span><span class="kw">fun</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="id">n</span><span class="text"> ) (</span><span class="kw">fun</span><span class="text"> </span><span class="id">l</span><span class="text"> -&gt; </span><span class="kw2">List</span><span class="text">.</span><span class="id">map</span><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">l</span><span class="text"> ) </span><span class="id">n</span><span class="text">;;
-</span></div><div class="caml-output ok">val shape : 'a nested -&gt; int nested = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val shape : 'a nested -&gt; int nested = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">shape</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [ [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">]; [</span><span class="numeric">3</span><span class="text">] ]; [ []; [</span><span class="numeric">4</span><span class="text">]; [</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">7</span><span class="text">]]; [[]] ])));;
-</span></div><div class="caml-output ok">- : int nested = Nested (List [[2; 1]; [0; 1; 3]; [0]])
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">shape</span><span class="text"> (</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">Nested</span><span class="text">(</span><span class="kw2">List</span><span class="text"> [ [ [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">]; [</span><span class="numeric">3</span><span class="text">] ]; [ []; [</span><span class="numeric">4</span><span class="text">]; [</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">7</span><span class="text">]]; [[]] ])));;
+</span></code><code class="caml-output ok">- : int nested = Nested (List [[2; 1]; [0; 1; 3]; [0]])
+</code></pre>
 
 
 </div>
@@ -674,17 +674,17 @@ depth or length of two nested lists:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average_depth</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">depth</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">depth</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
-</span></div><div class="caml-output ok">val average_depth : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average_depth</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">depth</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">depth</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
+</span></code><code class="caml-output ok">val average_depth : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average_len</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">len</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">len</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
-</span></div><div class="caml-output ok">val average_len : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average_len</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">len</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">len</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
+</span></code><code class="caml-output ok">val average_len : 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">one</span><span class="text"> = </span><span class="id">average_len</span><span class="text"> (</span><span class="kw2">List</span><span class="text"> [</span><span class="numeric">2</span><span class="text">]) (</span><span class="kw2">List</span><span class="text"> [[]]);;
-</span></div><div class="caml-output ok">val one : int = 1
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">one</span><span class="text"> = </span><span class="id">average_len</span><span class="text"> (</span><span class="kw2">List</span><span class="text"> [</span><span class="numeric">2</span><span class="text">]) (</span><span class="kw2">List</span><span class="text"> [[]]);;
+</span></code><code class="caml-output ok">val one : int = 1
+</code></pre>
 
 
 </div><p>
@@ -694,9 +694,9 @@ It would be natural to factorize these two definitions as:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">     </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
-</span></div><div class="caml-output ok">val average : ('a -&gt; int) -&gt; 'a -&gt; 'a -&gt; int = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">     </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text">;;
+</span></code><code class="caml-output ok">val average : ('a -&gt; int) -&gt; 'a -&gt; 'a -&gt; int = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -708,14 +708,14 @@ be the same:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="id">average_len</span><span class="text"> (</span><span class="kw2">List</span><span class="text"> [</span><span class="numeric">2</span><span class="text">]) (</span><span class="kw2">List</span><span class="text"> [[]]);;
-</span></div><div class="caml-output ok">- : int = 1
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="id">average_len</span><span class="text"> (</span><span class="kw2">List</span><span class="text"> [</span><span class="numeric">2</span><span class="text">]) (</span><span class="kw2">List</span><span class="text"> [[]]);;
+</span></code><code class="caml-output ok">- : int = 1
+</code></pre>
 
-<pre><div class="caml-input">   average len (List [2]) (List [<u>[]</u>]);;
-</div><div class="caml-output error">Error: This expression has type 'a list
+<pre><code class="caml-input">   average len (List [2]) (List [<u>[]</u>]);;
+</code><code class="caml-output error">Error: This expression has type 'a list
        but an expression was expected of type int
-</div></pre>
+</code></pre>
 
 
 </div><p>As previously with polymorphic recursion, the problem stems from the fact that
@@ -739,13 +739,13 @@ quantified types: universally quantified record fields,
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">nested_reduction</span><span class="text"> = { </span><span class="id">f</span><span class="text">:'</span><span class="id">elt</span><span class="text">. '</span><span class="id">elt</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> };;
-</span></div><div class="caml-output ok">type 'a nested_reduction = { f : 'elt. 'elt nested -&gt; 'a; }
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">nested_reduction</span><span class="text"> = { </span><span class="id">f</span><span class="text">:'</span><span class="id">elt</span><span class="text">. '</span><span class="id">elt</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> };;
+</span></code><code class="caml-output ok">type 'a nested_reduction = { f : 'elt. 'elt nested -&gt; 'a; }
+</code></pre>
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">boxed_len</span><span class="text"> = { </span><span class="id">f</span><span class="text"> = </span><span class="id">len</span><span class="text"> };;
-</span></div><div class="caml-output ok">val boxed_len : int nested_reduction = {f = &lt;fun&gt;}
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">boxed_len</span><span class="text"> = { </span><span class="id">f</span><span class="text"> = </span><span class="id">len</span><span class="text"> };;
+</span></code><code class="caml-output ok">val boxed_len : int nested_reduction = {f = &lt;fun&gt;}
+</code></pre>
 
 
 </div><p>
@@ -755,9 +755,9 @@ and universally quantified object methods:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">obj_len</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">f</span><span class="text">:'</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> = </span><span class="id">len</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
-</span></div><div class="caml-output ok">val obj_len : &lt; f : 'a. 'a nested -&gt; int &gt; = &lt;obj&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">obj_len</span><span class="text"> = </span><span class="kw1">object</span><span class="text"> </span><span class="kw">method</span><span class="text"> </span><span class="id">f</span><span class="text">:'</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; '</span><span class="id">b</span><span class="text"> = </span><span class="id">len</span><span class="text"> </span><span class="kw1">end</span><span class="text">;;
+</span></code><code class="caml-output ok">val obj_len : &lt; f : 'a. 'a nested -&gt; int &gt; = &lt;obj&gt;
+</code></pre>
 
 
 </div><p>
@@ -767,9 +767,9 @@ To solve our problem, we can therefore use either the record solution:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> </span><span class="id">nsm</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">nsm</span><span class="text">.</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">nsm</span><span class="text">.</span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text"> ;;
-</span></div><div class="caml-output ok">val average : int nested_reduction -&gt; 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> </span><span class="id">nsm</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">nsm</span><span class="text">.</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">nsm</span><span class="text">.</span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text"> ;;
+</span></code><code class="caml-output ok">val average : int nested_reduction -&gt; 'a nested -&gt; 'b nested -&gt; int = &lt;fun&gt;
+</code></pre>
 
 
 </div><p>
@@ -779,10 +779,10 @@ or the object one:
 
 </p><div class="caml-example toplevel">
 
-<pre><div class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> (</span><span class="id">obj</span><span class="text">:&lt;</span><span class="id">f</span><span class="text">:'</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> &gt; ) </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">obj</span><span class="kw1">#</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">obj</span><span class="kw1">#</span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text"> ;;
-</span></div><div class="caml-output ok">val average : &lt; f : 'a. 'a nested -&gt; int &gt; -&gt; 'b nested -&gt; 'c nested -&gt; int =
+<pre><code class="caml-input"><span class="text">   </span><span class="kw">let</span><span class="text"> </span><span class="id">average</span><span class="text"> (</span><span class="id">obj</span><span class="text">:&lt;</span><span class="id">f</span><span class="text">:'</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> </span><span class="id">nested</span><span class="text"> -&gt; </span><span class="numeric">_</span><span class="text"> &gt; ) </span><span class="id">x</span><span class="text"> </span><span class="id">y</span><span class="text"> = (</span><span class="id">obj</span><span class="kw1">#</span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text"> + </span><span class="id">obj</span><span class="kw1">#</span><span class="id">f</span><span class="text"> </span><span class="id">y</span><span class="text">) / </span><span class="numeric">2</span><span class="text"> ;;
+</span></code><code class="caml-output ok">val average : &lt; f : 'a. 'a nested -&gt; int &gt; -&gt; 'b nested -&gt; 'c nested -&gt; int =
   &lt;fun&gt;
-</div></pre>
+</code></pre>
 
 
 </div>

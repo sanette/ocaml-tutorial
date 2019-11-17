@@ -271,11 +271,15 @@ pre {
     padding-left: 1ex;
 }
 
-p code, li code {
+p code, li code { /* useful ? */
   background-color: #f6f8fa;
   color: #0d2b3e;
   border-radius: 3px;
   padding: 0 0.3ex;
+}
+
+pre code {
+    background-color: inherit;
 }
 
 p a > code {
@@ -284,7 +288,7 @@ p a > code {
 
 /* Code blocks (e.g. Examples) */
 
-pre code {
+pre code.ocaml {
   font-size: 0.893rem;
 }
 
@@ -696,6 +700,7 @@ ul.itemize li::before {
 }
 
 /* Print adjustements. */
+/* This page can be nicely printed or saved to PDF */
 
 @media print {
   body {
@@ -703,7 +708,20 @@ ul.itemize li::before {
     background: white;
   }
   body nav:first-child {
-    visibility: hidden;
+      position: absolute;
+      background: transparent;
+  }
+  nav.toc {
+      margin-right: 1em;
+      float: left;
+  }
+  .toc {
+      position: initial;
+      background: #eee;
+  }
+  .content {
+      margin-left: 3em;
+      margin-right: 3em;
   }
 }
 
@@ -811,17 +829,18 @@ pre {
     background: linear-gradient(to left, white 0%, rgb(237, 232, 229) 100%);
 }
 
+code.caml-example,
 div.caml-example, div.toplevel  {
-//    background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%);
-}
-
-div.caml-input {
+/*    background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */
 }
 
 div.caml-output.ok,
+code.caml-output.ok,
 span.c006 {
     color: #045804;
 }
+
+code.caml-output.error,
 div.caml-output.error {
     color: orangered;
 }
@@ -860,7 +879,9 @@ span.c003 {
     border-radius: 6px;
 }
 
-div.caml-example.toplevel div.caml-input::before{
+div.caml-example.toplevel div.caml-input::before,
+div.caml-example.toplevel code.caml-input::before
+{
     content:"#";
     color:#888;
 }
@@ -911,3 +932,4 @@ span.c009 {
 .dt-thefootnotes {
     float: left;
 }
+

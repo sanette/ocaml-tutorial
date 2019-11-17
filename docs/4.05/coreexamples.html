@@ -10,7 +10,7 @@
 
 
 <h1 class="tutorial" id="sec7"><span>Tutorial 1</span>&nbsp;&nbsp;The core language</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a href="../index.html">Version 4.05</a></div><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.05</a></div><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec8">1&nbsp;&nbsp;Basics</a>
 </li><li><a href="#sec9">2&nbsp;&nbsp;Data types</a>
 </li><li><a href="#sec10">3&nbsp;&nbsp;Functions as values</a>
@@ -44,21 +44,21 @@ on the fly, executes them, and prints the outcome of evaluation.
 Phrases are either simple expressions, or <span class="c003">let</span> definitions of
 identifiers (either values or functions).
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="numeric">1</span><span class="numeric">+2</span><span class="text">*</span><span class="numeric">3</span><span class="text">;;
-</span></div><div class="caml-output ok">- : int = 7
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="numeric">1</span><span class="numeric">+2</span><span class="text">*</span><span class="numeric">3</span><span class="text">;;
+</span></code><code class="caml-output ok">- : int = 7
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">pi</span><span class="text"> = </span><span class="numeric">4.0</span><span class="text"> *. </span><span class="id">atan</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">;;
-</span></div><div class="caml-output ok">val pi : float = 3.14159265358979312
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">pi</span><span class="text"> = </span><span class="numeric">4.0</span><span class="text"> *. </span><span class="id">atan</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">;;
+</span></code><code class="caml-output ok">val pi : float = 3.14159265358979312
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">square</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x</span><span class="text"> *. </span><span class="id">x</span><span class="text">;;
-</span></div><div class="caml-output ok">val square : float -&gt; float = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">square</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">x</span><span class="text"> *. </span><span class="id">x</span><span class="text">;;
+</span></code><code class="caml-output ok">val square : float -&gt; float = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">square</span><span class="text"> (</span><span class="id">sin</span><span class="text"> </span><span class="id">pi</span><span class="text">) +. </span><span class="id">square</span><span class="text"> (</span><span class="id">cos</span><span class="text"> </span><span class="id">pi</span><span class="text">);;
-</span></div><div class="caml-output ok">- : float = 1.
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">square</span><span class="text"> (</span><span class="id">sin</span><span class="text"> </span><span class="id">pi</span><span class="text">) +. </span><span class="id">square</span><span class="text"> (</span><span class="id">cos</span><span class="text"> </span><span class="id">pi</span><span class="text">);;
+</span></code><code class="caml-output ok">- : float = 1.
+</code></pre>
 
 </div><p>The OCaml system computes both the value and the type for
 each phrase. Even function parameters need no explicit type declaration:
@@ -67,38 +67,38 @@ function. Notice also that integers and floating-point numbers are
 distinct types, with distinct operators: <span class="c003">+</span> and <span class="c003">*</span> operate on
 integers, but <span class="c003">+.</span> and <span class="c003">*.</span> operate on floats.
 </p><div class="caml-example">
-<pre><div class="caml-input"> <u>1.0</u> * 2;;
-</div><div class="caml-output error">Error: This expression has type float but an expression was expected of type
+<pre><code class="caml-input"> <u>1.0</u> * 2;;
+</code><code class="caml-output error">Error: This expression has type float but an expression was expected of type
          int
-</div></pre>
+</code></pre>
 
 </div><p>Recursive functions are defined with the <span class="c003">let rec</span> binding:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">fib</span><span class="text"> </span><span class="id">n</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">fib</span><span class="text"> </span><span class="id">n</span><span class="text"> =
     </span><span class="kw1">if</span><span class="text"> </span><span class="id">n</span><span class="text"> &lt; </span><span class="numeric">2</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">n</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="id">fib</span><span class="text"> (</span><span class="id">n</span><span class="numeric">-1</span><span class="text">) + </span><span class="id">fib</span><span class="text"> (</span><span class="id">n</span><span class="numeric">-2</span><span class="text">);;
-</span></div><div class="caml-output ok">val fib : int -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val fib : int -&gt; int = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">fib</span><span class="text"> </span><span class="numeric">10</span><span class="text">;;
-</span></div><div class="caml-output ok">- : int = 55
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">fib</span><span class="text"> </span><span class="numeric">10</span><span class="text">;;
+</span></code><code class="caml-output ok">- : int = 55
+</code></pre>
 
 </div>
 <h2 class="section" id="sec9">2&nbsp;&nbsp;Data types</h2>
 <p>In addition to integers and floating-point numbers, OCaml offers the
 usual basic data types: booleans, characters, and immutable character strings.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> (</span><span class="numeric">1</span><span class="text"> &lt; </span><span class="numeric">2</span><span class="text">) = </span><span class="constant">false</span><span class="text">;;
-</span></div><div class="caml-output ok">- : bool = false
-</div></pre>
+<pre><code class="caml-input"><span class="text"> (</span><span class="numeric">1</span><span class="text"> &lt; </span><span class="numeric">2</span><span class="text">) = </span><span class="constant">false</span><span class="text">;;
+</span></code><code class="caml-output ok">- : bool = false
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="string">'a'</span><span class="text">;;
-</span></div><div class="caml-output ok">- : char = 'a'
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="string">'a'</span><span class="text">;;
+</span></code><code class="caml-output ok">- : char = 'a'
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="string">"Hello world"</span><span class="text">;;
-</span></div><div class="caml-output ok">- : string = "Hello world"
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="string">"Hello world"</span><span class="text">;;
+</span></code><code class="caml-output ok">- : string = "Hello world"
+</code></pre>
 
 </div><p>Predefined data structures include tuples, arrays, and lists. General
 mechanisms for defining your own data structures are also provided.
@@ -108,13 +108,13 @@ semicolon-separated elements, or built from the empty list <span class="c003">[]
 (pronounce “nil”) by adding elements in front using the <span class="c003">::</span>
 (“cons”) operator.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = [</span><span class="string">"is"</span><span class="text">; </span><span class="string">"a"</span><span class="text">; </span><span class="string">"tale"</span><span class="text">; </span><span class="string">"told"</span><span class="text">; </span><span class="string">"etc."</span><span class="text">];;
-</span></div><div class="caml-output ok">val l : string list = ["is"; "a"; "tale"; "told"; "etc."]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">l</span><span class="text"> = [</span><span class="string">"is"</span><span class="text">; </span><span class="string">"a"</span><span class="text">; </span><span class="string">"tale"</span><span class="text">; </span><span class="string">"told"</span><span class="text">; </span><span class="string">"etc."</span><span class="text">];;
+</span></code><code class="caml-output ok">val l : string list = ["is"; "a"; "tale"; "told"; "etc."]
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="string">"Life"</span><span class="text"> :: </span><span class="id">l</span><span class="text">;;
-</span></div><div class="caml-output ok">- : string list = ["Life"; "is"; "a"; "tale"; "told"; "etc."]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="string">"Life"</span><span class="text"> :: </span><span class="id">l</span><span class="text">;;
+</span></code><code class="caml-output ok">- : string list = ["Life"; "is"; "a"; "tale"; "told"; "etc."]
+</code></pre>
 
 </div><p>As with all other OCaml data structures, lists do not need to be
 explicitly allocated and deallocated from memory: all memory
@@ -125,7 +125,7 @@ is performed by pattern-matching. List patterns have the exact same
 shape as list expressions, with identifier representing unspecified
 parts of the list. As an example, here is insertion sort on a list:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">sort</span><span class="text"> </span><span class="id">lst</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">sort</span><span class="text"> </span><span class="id">lst</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">lst</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       [] -&gt; []
     | </span><span class="id">head</span><span class="text"> :: </span><span class="id">tail</span><span class="text"> -&gt; </span><span class="id">insert</span><span class="text"> </span><span class="id">head</span><span class="text"> (</span><span class="id">sort</span><span class="text"> </span><span class="id">tail</span><span class="text">)
@@ -134,13 +134,13 @@ parts of the list. As an example, here is insertion sort on a list:
       [] -&gt; [</span><span class="id">elt</span><span class="text">]
     | </span><span class="id">head</span><span class="text"> :: </span><span class="id">tail</span><span class="text"> -&gt; </span><span class="kw1">if</span><span class="text"> </span><span class="id">elt</span><span class="text"> &lt;= </span><span class="id">head</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">elt</span><span class="text"> :: </span><span class="id">lst</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="id">head</span><span class="text"> :: </span><span class="id">insert</span><span class="text"> </span><span class="id">elt</span><span class="text"> </span><span class="id">tail</span><span class="text">
   ;;
-</span></div><div class="caml-output ok">val sort : 'a list -&gt; 'a list = &lt;fun&gt;
+</span></code><code class="caml-output ok">val sort : 'a list -&gt; 'a list = &lt;fun&gt;
 val insert : 'a -&gt; 'a list -&gt; 'a list = &lt;fun&gt;
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> </span><span class="id">l</span><span class="text">;;
-</span></div><div class="caml-output ok">- : string list = ["a"; "etc."; "is"; "tale"; "told"]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> </span><span class="id">l</span><span class="text">;;
+</span></code><code class="caml-output ok">- : string list = ["a"; "etc."; "is"; "tale"; "told"]
+</code></pre>
 
 </div><p>The type inferred for <span class="c003">sort</span>, <span class="c003">'a list -&gt; 'a list</span>, means that <span class="c003">sort</span>
 can actually apply to lists of any type, and returns a list of the
@@ -150,13 +150,13 @@ that the comparisons (<span class="c003">=</span>, <span class="c003">&lt;=</spa
 they operate between any two values of the same type. This makes
 <span class="c003">sort</span> itself polymorphic over all list types.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> [</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">2</span><span class="text">;</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">3</span><span class="text">];;
-</span></div><div class="caml-output ok">- : int list = [2; 3; 5; 6]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> [</span><span class="numeric">6</span><span class="text">;</span><span class="numeric">2</span><span class="text">;</span><span class="numeric">5</span><span class="text">;</span><span class="numeric">3</span><span class="text">];;
+</span></code><code class="caml-output ok">- : int list = [2; 3; 5; 6]
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> [</span><span class="numeric">3.14</span><span class="text">; </span><span class="numeric">2.718</span><span class="text">];;
-</span></div><div class="caml-output ok">- : float list = [2.718; 3.14]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">sort</span><span class="text"> [</span><span class="numeric">3.14</span><span class="text">; </span><span class="numeric">2.718</span><span class="text">];;
+</span></code><code class="caml-output ok">- : float list = [2.718; 3.14]
+</code></pre>
 
 </div><p>The <span class="c003">sort</span> function above does not modify its input list: it builds
 and returns a new list containing the same elements as the input list,
@@ -172,27 +172,27 @@ piece of data. For instance, here is a <span class="c003">deriv</span> function 
 float function as argument and returns an approximation of its
 derivative function:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">deriv</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">dx</span><span class="text"> = </span><span class="kw">function</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; (</span><span class="id">f</span><span class="text"> (</span><span class="id">x</span><span class="text"> +. </span><span class="id">dx</span><span class="text">) -. </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text">) /. </span><span class="id">dx</span><span class="text">;;
-</span></div><div class="caml-output ok">val deriv : (float -&gt; float) -&gt; float -&gt; float -&gt; float = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">deriv</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">dx</span><span class="text"> = </span><span class="kw">function</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; (</span><span class="id">f</span><span class="text"> (</span><span class="id">x</span><span class="text"> +. </span><span class="id">dx</span><span class="text">) -. </span><span class="id">f</span><span class="text"> </span><span class="id">x</span><span class="text">) /. </span><span class="id">dx</span><span class="text">;;
+</span></code><code class="caml-output ok">val deriv : (float -&gt; float) -&gt; float -&gt; float -&gt; float = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sin</span><span class="text">' = </span><span class="id">deriv</span><span class="text"> </span><span class="id">sin</span><span class="text"> </span><span class="numeric">1e-6</span><span class="text">;;
-</span></div><div class="caml-output ok">val sin' : float -&gt; float = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sin</span><span class="text">' = </span><span class="id">deriv</span><span class="text"> </span><span class="id">sin</span><span class="text"> </span><span class="numeric">1e-6</span><span class="text">;;
+</span></code><code class="caml-output ok">val sin' : float -&gt; float = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">sin</span><span class="text">' </span><span class="id">pi</span><span class="text">;;
-</span></div><div class="caml-output ok">- : float = -1.00000000013961143
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">sin</span><span class="text">' </span><span class="id">pi</span><span class="text">;;
+</span></code><code class="caml-output ok">- : float = -1.00000000013961143
+</code></pre>
 
 </div><p>Even function composition is definable:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">compose</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">g</span><span class="text"> = </span><span class="kw">function</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">f</span><span class="text"> (</span><span class="id">g</span><span class="text"> </span><span class="id">x</span><span class="text">);;
-</span></div><div class="caml-output ok">val compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">compose</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">g</span><span class="text"> = </span><span class="kw">function</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">f</span><span class="text"> (</span><span class="id">g</span><span class="text"> </span><span class="id">x</span><span class="text">);;
+</span></code><code class="caml-output ok">val compose : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">cos2</span><span class="text"> = </span><span class="id">compose</span><span class="text"> </span><span class="id">square</span><span class="text"> </span><span class="id">cos</span><span class="text">;;
-</span></div><div class="caml-output ok">val cos2 : float -&gt; float = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">cos2</span><span class="text"> = </span><span class="id">compose</span><span class="text"> </span><span class="id">square</span><span class="text"> </span><span class="id">cos</span><span class="text">;;
+</span></code><code class="caml-output ok">val cos2 : float -&gt; float = &lt;fun&gt;
+</code></pre>
 
 </div><p>Functions that take other functions as arguments are called
 “functionals”, or “higher-order functions”. Functionals are
@@ -201,20 +201,20 @@ over a data structure. For instance, the standard OCaml library
 provides a <span class="c003">List.map</span> functional that applies a given function to each
 element of a list, and returns the list of the results:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">map</span><span class="text"> (</span><span class="kw">function</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="id">n</span><span class="text"> * </span><span class="numeric">2</span><span class="text"> + </span><span class="numeric">1</span><span class="text">) [</span><span class="numeric">0</span><span class="text">;</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">;</span><span class="numeric">3</span><span class="text">;</span><span class="numeric">4</span><span class="text">];;
-</span></div><div class="caml-output ok">- : int list = [1; 3; 5; 7; 9]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">map</span><span class="text"> (</span><span class="kw">function</span><span class="text"> </span><span class="id">n</span><span class="text"> -&gt; </span><span class="id">n</span><span class="text"> * </span><span class="numeric">2</span><span class="text"> + </span><span class="numeric">1</span><span class="text">) [</span><span class="numeric">0</span><span class="text">;</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">;</span><span class="numeric">3</span><span class="text">;</span><span class="numeric">4</span><span class="text">];;
+</span></code><code class="caml-output ok">- : int list = [1; 3; 5; 7; 9]
+</code></pre>
 
 </div><p>This functional, along with a number of other list and array
 functionals, is predefined because it is often useful, but there is
 nothing magic with it: it can easily be defined as follows.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">map</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">l</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">map</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">l</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">l</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       [] -&gt; []
     | </span><span class="id">hd</span><span class="text"> :: </span><span class="id">tl</span><span class="text"> -&gt; </span><span class="id">f</span><span class="text"> </span><span class="id">hd</span><span class="text"> :: </span><span class="id">map</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">tl</span><span class="text">;;
-</span></div><div class="caml-output ok">val map : ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val map : ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list = &lt;fun&gt;
+</code></pre>
 
 </div>
 <h2 class="section" id="sec11">4&nbsp;&nbsp;Records and variants</h2>
@@ -224,19 +224,19 @@ nothing magic with it: it can easily be defined as follows.
 defined with the <span class="c003">type</span> declaration. Here, we declare a record type to
 represent rational numbers.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">ratio</span><span class="text"> = {</span><span class="id">num</span><span class="text">: </span><span class="kw3">int</span><span class="text">; </span><span class="id">denom</span><span class="text">: </span><span class="kw3">int</span><span class="text">};;
-</span></div><div class="caml-output ok">type ratio = { num : int; denom : int; }
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">ratio</span><span class="text"> = {</span><span class="id">num</span><span class="text">: </span><span class="kw3">int</span><span class="text">; </span><span class="id">denom</span><span class="text">: </span><span class="kw3">int</span><span class="text">};;
+</span></code><code class="caml-output ok">type ratio = { num : int; denom : int; }
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_ratio</span><span class="text"> </span><span class="id">r1</span><span class="text"> </span><span class="id">r2</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_ratio</span><span class="text"> </span><span class="id">r1</span><span class="text"> </span><span class="id">r2</span><span class="text"> =
     {</span><span class="id">num</span><span class="text"> = </span><span class="id">r1</span><span class="text">.</span><span class="id">num</span><span class="text"> * </span><span class="id">r2</span><span class="text">.</span><span class="id">denom</span><span class="text"> + </span><span class="id">r2</span><span class="text">.</span><span class="id">num</span><span class="text"> * </span><span class="id">r1</span><span class="text">.</span><span class="id">denom</span><span class="text">;
      </span><span class="id">denom</span><span class="text"> = </span><span class="id">r1</span><span class="text">.</span><span class="id">denom</span><span class="text"> * </span><span class="id">r2</span><span class="text">.</span><span class="id">denom</span><span class="text">};;
-</span></div><div class="caml-output ok">val add_ratio : ratio -&gt; ratio -&gt; ratio = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val add_ratio : ratio -&gt; ratio -&gt; ratio = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">add_ratio</span><span class="text"> {</span><span class="id">num</span><span class="text">=</span><span class="numeric">1</span><span class="text">; </span><span class="id">denom</span><span class="text">=</span><span class="numeric">3</span><span class="text">} {</span><span class="id">num</span><span class="text">=</span><span class="numeric">2</span><span class="text">; </span><span class="id">denom</span><span class="text">=</span><span class="numeric">5</span><span class="text">};;
-</span></div><div class="caml-output ok">- : ratio = {num = 11; denom = 15}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">add_ratio</span><span class="text"> {</span><span class="id">num</span><span class="text">=</span><span class="numeric">1</span><span class="text">; </span><span class="id">denom</span><span class="text">=</span><span class="numeric">3</span><span class="text">} {</span><span class="id">num</span><span class="text">=</span><span class="numeric">2</span><span class="text">; </span><span class="id">denom</span><span class="text">=</span><span class="numeric">5</span><span class="text">};;
+</span></code><code class="caml-output ok">- : ratio = {num = 11; denom = 15}
+</code></pre>
 
 </div><p>The declaration of a variant type lists all possible shapes for values
 of that type. Each case is identified by a name, called a constructor,
@@ -246,27 +246,27 @@ to distinguish them from variable names (which must start with a
 lowercase letter). For instance, here is a variant
 type for doing mixed arithmetic (integers and floats):
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">number</span><span class="text"> = </span><span class="kw2">Int</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">int</span><span class="text"> | </span><span class="kw2">Float</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">float</span><span class="text"> | </span><span class="kw2">Error</span><span class="text">;;
-</span></div><div class="caml-output ok">type number = Int of int | Float of float | Error
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">number</span><span class="text"> = </span><span class="kw2">Int</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">int</span><span class="text"> | </span><span class="kw2">Float</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">float</span><span class="text"> | </span><span class="kw2">Error</span><span class="text">;;
+</span></code><code class="caml-output ok">type number = Int of int | Float of float | Error
+</code></pre>
 
 </div><p>This declaration expresses that a value of type <span class="c003">number</span> is either an
 integer, a floating-point number, or the constant <span class="c003">Error</span> representing
 the result of an invalid operation (e.g. a division by zero).</p><p>Enumerated types are a special case of variant types, where all
 alternatives are constants:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">sign</span><span class="text"> = </span><span class="kw2">Positive</span><span class="text"> | </span><span class="kw2">Negative</span><span class="text">;;
-</span></div><div class="caml-output ok">type sign = Positive | Negative
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">sign</span><span class="text"> = </span><span class="kw2">Positive</span><span class="text"> | </span><span class="kw2">Negative</span><span class="text">;;
+</span></code><code class="caml-output ok">type sign = Positive | Negative
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sign_int</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">n</span><span class="text"> &gt;= </span><span class="numeric">0</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Positive</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Negative</span><span class="text">;;
-</span></div><div class="caml-output ok">val sign_int : int -&gt; sign = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">sign_int</span><span class="text"> </span><span class="id">n</span><span class="text"> = </span><span class="kw1">if</span><span class="text"> </span><span class="id">n</span><span class="text"> &gt;= </span><span class="numeric">0</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Positive</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Negative</span><span class="text">;;
+</span></code><code class="caml-output ok">val sign_int : int -&gt; sign = &lt;fun&gt;
+</code></pre>
 
 </div><p>To define arithmetic operations for the <span class="c003">number</span> type, we use
 pattern-matching on the two numbers involved:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_num</span><span class="text"> </span><span class="id">n1</span><span class="text"> </span><span class="id">n2</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_num</span><span class="text"> </span><span class="id">n1</span><span class="text"> </span><span class="id">n2</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> (</span><span class="id">n1</span><span class="text">, </span><span class="id">n2</span><span class="text">) </span><span class="kw1">with</span><span class="text">
       (</span><span class="kw2">Int</span><span class="text"> </span><span class="id">i1</span><span class="text">, </span><span class="kw2">Int</span><span class="text"> </span><span class="id">i2</span><span class="text">) -&gt;
         </span><span class="comment">(* Check for overflow of integer addition *)</span><span class="text">
@@ -278,19 +278,19 @@ pattern-matching on the two numbers involved:
     | (</span><span class="kw2">Float</span><span class="text"> </span><span class="id">f1</span><span class="text">, </span><span class="kw2">Float</span><span class="text"> </span><span class="id">f2</span><span class="text">) -&gt; </span><span class="kw2">Float</span><span class="text">(</span><span class="id">f1</span><span class="text"> +. </span><span class="id">f2</span><span class="text">)
     | (</span><span class="kw2">Error</span><span class="text">, </span><span class="numeric">_</span><span class="text">) -&gt; </span><span class="kw2">Error</span><span class="text">
     | (</span><span class="numeric">_</span><span class="text">, </span><span class="kw2">Error</span><span class="text">) -&gt; </span><span class="kw2">Error</span><span class="text">;;
-</span></div><div class="caml-output ok">val add_num : number -&gt; number -&gt; number = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val add_num : number -&gt; number -&gt; number = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">add_num</span><span class="text"> (</span><span class="kw2">Int</span><span class="text"> </span><span class="numeric">123</span><span class="text">) (</span><span class="kw2">Float</span><span class="text"> </span><span class="numeric">3.14159</span><span class="text">);;
-</span></div><div class="caml-output ok">- : number = Float 126.14159
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">add_num</span><span class="text"> (</span><span class="kw2">Int</span><span class="text"> </span><span class="numeric">123</span><span class="text">) (</span><span class="kw2">Float</span><span class="text"> </span><span class="numeric">3.14159</span><span class="text">);;
+</span></code><code class="caml-output ok">- : number = Float 126.14159
+</code></pre>
 
 </div><p>The most common usage of variant types is to describe recursive data
 structures. Consider for example the type of binary trees:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text"> = </span><span class="kw2">Empty</span><span class="text"> | </span><span class="kw2">Node</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text">;;
-</span></div><div class="caml-output ok">type 'a btree = Empty | Node of 'a * 'a btree * 'a btree
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text"> = </span><span class="kw2">Empty</span><span class="text"> | </span><span class="kw2">Node</span><span class="text"> </span><span class="kw">of</span><span class="text"> '</span><span class="id">a</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text"> * '</span><span class="id">a</span><span class="text"> </span><span class="id">btree</span><span class="text">;;
+</span></code><code class="caml-output ok">type 'a btree = Empty | Node of 'a * 'a btree * 'a btree
+</code></pre>
 
 </div><p>This definition reads as follows: a binary tree containing values of
 type <span class="c003">'a</span> (an arbitrary type) is either empty, or is a node containing
@@ -300,23 +300,23 @@ following the same structure as the type definition itself. For
 instance, here are functions performing lookup and insertion in
 ordered binary trees (elements increase from left to right):
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">btree</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">btree</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">btree</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       </span><span class="kw2">Empty</span><span class="text"> -&gt; </span><span class="constant">false</span><span class="text">
     | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">y</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="id">right</span><span class="text">) -&gt;
         </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> = </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="constant">true</span><span class="text"> </span><span class="kw1">else</span><span class="text">
         </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> &lt; </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">left</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="id">member</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">right</span><span class="text">;;
-</span></div><div class="caml-output ok">val member : 'a -&gt; 'a btree -&gt; bool = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val member : 'a -&gt; 'a btree -&gt; bool = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">insert</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">btree</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">insert</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">btree</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">btree</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       </span><span class="kw2">Empty</span><span class="text"> -&gt; </span><span class="kw2">Node</span><span class="text">(</span><span class="id">x</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">, </span><span class="kw2">Empty</span><span class="text">)
     | </span><span class="kw2">Node</span><span class="text">(</span><span class="id">y</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="id">right</span><span class="text">) -&gt;
         </span><span class="kw1">if</span><span class="text"> </span><span class="id">x</span><span class="text"> &lt;= </span><span class="id">y</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">y</span><span class="text">, </span><span class="id">insert</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">left</span><span class="text">, </span><span class="id">right</span><span class="text">)
                   </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Node</span><span class="text">(</span><span class="id">y</span><span class="text">, </span><span class="id">left</span><span class="text">, </span><span class="id">insert</span><span class="text"> </span><span class="id">x</span><span class="text"> </span><span class="id">right</span><span class="text">);;
-</span></div><div class="caml-output ok">val insert : 'a -&gt; 'a btree -&gt; 'a btree = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val insert : 'a -&gt; 'a btree -&gt; 'a btree = &lt;fun&gt;
+</code></pre>
 
 </div>
 <h2 class="section" id="sec12">5&nbsp;&nbsp;Imperative features</h2>
@@ -328,43 +328,43 @@ brackets, or allocated and initialized with the <span class="c003">Array.make</s
 function, then filled up later by assignments. For instance, the
 function below sums two vectors (represented as float arrays) componentwise.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_vect</span><span class="text"> </span><span class="id">v1</span><span class="text"> </span><span class="id">v2</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">add_vect</span><span class="text"> </span><span class="id">v1</span><span class="text"> </span><span class="id">v2</span><span class="text"> =
     </span><span class="kw">let</span><span class="text"> </span><span class="id">len</span><span class="text"> = </span><span class="id">min</span><span class="text"> (</span><span class="kw2">Array</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">v1</span><span class="text">) (</span><span class="kw2">Array</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">v2</span><span class="text">) </span><span class="kw">in</span><span class="text">
     </span><span class="kw">let</span><span class="text"> </span><span class="id">res</span><span class="text"> = </span><span class="kw2">Array</span><span class="text">.</span><span class="id">make</span><span class="text"> </span><span class="id">len</span><span class="text"> </span><span class="numeric">0.0</span><span class="text"> </span><span class="kw">in</span><span class="text">
     </span><span class="kw1">for</span><span class="text"> </span><span class="id">i</span><span class="text"> = </span><span class="numeric">0</span><span class="text"> </span><span class="kw1">to</span><span class="text"> </span><span class="id">len</span><span class="text"> - </span><span class="numeric">1</span><span class="text"> </span><span class="kw1">do</span><span class="text">
       </span><span class="id">res</span><span class="text">.(</span><span class="id">i</span><span class="text">) &lt;- </span><span class="id">v1</span><span class="text">.(</span><span class="id">i</span><span class="text">) +. </span><span class="id">v2</span><span class="text">.(</span><span class="id">i</span><span class="text">)
     </span><span class="kw1">done</span><span class="text">;
     </span><span class="id">res</span><span class="text">;;
-</span></div><div class="caml-output ok">val add_vect : float array -&gt; float array -&gt; float array = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val add_vect : float array -&gt; float array -&gt; float array = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">add_vect</span><span class="text"> [| </span><span class="numeric">1.0</span><span class="text">; </span><span class="numeric">2.0</span><span class="text"> |] [| </span><span class="numeric">3.0</span><span class="text">; </span><span class="numeric">4.0</span><span class="text"> |];;
-</span></div><div class="caml-output ok">- : float array = [|4.; 6.|]
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">add_vect</span><span class="text"> [| </span><span class="numeric">1.0</span><span class="text">; </span><span class="numeric">2.0</span><span class="text"> |] [| </span><span class="numeric">3.0</span><span class="text">; </span><span class="numeric">4.0</span><span class="text"> |];;
+</span></code><code class="caml-output ok">- : float array = [|4.; 6.|]
+</code></pre>
 
 </div><p>Record fields can also be modified by assignment, provided they are
 declared <span class="c003">mutable</span> in the definition of the record type:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">mutable_point</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text">: </span><span class="kw3">float</span><span class="text">; </span><span class="kw">mutable</span><span class="text"> </span><span class="id">y</span><span class="text">: </span><span class="kw3">float</span><span class="text"> };;
-</span></div><div class="caml-output ok">type mutable_point = { mutable x : float; mutable y : float; }
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">mutable_point</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">x</span><span class="text">: </span><span class="kw3">float</span><span class="text">; </span><span class="kw">mutable</span><span class="text"> </span><span class="id">y</span><span class="text">: </span><span class="kw3">float</span><span class="text"> };;
+</span></code><code class="caml-output ok">type mutable_point = { mutable x : float; mutable y : float; }
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">translate</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="id">dx</span><span class="text"> </span><span class="id">dy</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">translate</span><span class="text"> </span><span class="id">p</span><span class="text"> </span><span class="id">dx</span><span class="text"> </span><span class="id">dy</span><span class="text"> =
     </span><span class="id">p</span><span class="text">.</span><span class="id">x</span><span class="text"> &lt;- </span><span class="id">p</span><span class="text">.</span><span class="id">x</span><span class="text"> +. </span><span class="id">dx</span><span class="text">; </span><span class="id">p</span><span class="text">.</span><span class="id">y</span><span class="text"> &lt;- </span><span class="id">p</span><span class="text">.</span><span class="id">y</span><span class="text"> +. </span><span class="id">dy</span><span class="text">;;
-</span></div><div class="caml-output ok">val translate : mutable_point -&gt; float -&gt; float -&gt; unit = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val translate : mutable_point -&gt; float -&gt; float -&gt; unit = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">mypoint</span><span class="text"> = { </span><span class="id">x</span><span class="text"> = </span><span class="numeric">0.0</span><span class="text">; </span><span class="id">y</span><span class="text"> = </span><span class="numeric">0.0</span><span class="text"> };;
-</span></div><div class="caml-output ok">val mypoint : mutable_point = {x = 0.; y = 0.}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">mypoint</span><span class="text"> = { </span><span class="id">x</span><span class="text"> = </span><span class="numeric">0.0</span><span class="text">; </span><span class="id">y</span><span class="text"> = </span><span class="numeric">0.0</span><span class="text"> };;
+</span></code><code class="caml-output ok">val mypoint : mutable_point = {x = 0.; y = 0.}
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">translate</span><span class="text"> </span><span class="id">mypoint</span><span class="text"> </span><span class="numeric">1.0</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">;;
-</span></div><div class="caml-output ok">- : unit = ()
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">translate</span><span class="text"> </span><span class="id">mypoint</span><span class="text"> </span><span class="numeric">1.0</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">;;
+</span></code><code class="caml-output ok">- : unit = ()
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">mypoint</span><span class="text">;;
-</span></div><div class="caml-output ok">- : mutable_point = {x = 1.; y = 2.}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">mypoint</span><span class="text">;;
+</span></code><code class="caml-output ok">- : mutable_point = {x = 1.; y = 2.}
+</code></pre>
 
 </div><p>OCaml has no built-in notion of variable – identifiers whose current
 value can be changed by assignment. (The <span class="c003">let</span> binding is not an
@@ -375,7 +375,7 @@ the current contents of the reference and <span class="c003">:=</span> to assign
 Variables can then be emulated by <span class="c003">let</span>-binding a reference. For
 instance, here is an in-place insertion sort over arrays:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">insertion_sort</span><span class="text"> </span><span class="id">a</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">insertion_sort</span><span class="text"> </span><span class="id">a</span><span class="text"> =
     </span><span class="kw1">for</span><span class="text"> </span><span class="id">i</span><span class="text"> = </span><span class="numeric">1</span><span class="text"> </span><span class="kw1">to</span><span class="text"> </span><span class="kw2">Array</span><span class="text">.</span><span class="id">length</span><span class="text"> </span><span class="id">a</span><span class="text"> - </span><span class="numeric">1</span><span class="text"> </span><span class="kw1">do</span><span class="text">
       </span><span class="kw">let</span><span class="text"> </span><span class="id">val_i</span><span class="text"> = </span><span class="id">a</span><span class="text">.(</span><span class="id">i</span><span class="text">) </span><span class="kw">in</span><span class="text">
       </span><span class="kw">let</span><span class="text"> </span><span class="id">j</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="id">i</span><span class="text"> </span><span class="kw">in</span><span class="text">
@@ -385,38 +385,38 @@ instance, here is an in-place insertion sort over arrays:
       </span><span class="kw1">done</span><span class="text">;
       </span><span class="id">a</span><span class="text">.(!</span><span class="id">j</span><span class="text">) &lt;- </span><span class="id">val_i</span><span class="text">
     </span><span class="kw1">done</span><span class="text">;;
-</span></div><div class="caml-output ok">val insertion_sort : 'a array -&gt; unit = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val insertion_sort : 'a array -&gt; unit = &lt;fun&gt;
+</code></pre>
 
 </div><p>References are also useful to write functions that maintain a current
 state between two calls to the function. For instance, the following
 pseudo-random number generator keeps the last returned number in a
 reference:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">current_rand</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
-</span></div><div class="caml-output ok">val current_rand : int ref = {contents = 0}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">current_rand</span><span class="text"> = </span><span class="kw1">ref</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
+</span></code><code class="caml-output ok">val current_rand : int ref = {contents = 0}
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">random</span><span class="text"> () =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">random</span><span class="text"> () =
     </span><span class="id">current_rand</span><span class="text"> := !</span><span class="id">current_rand</span><span class="text"> * </span><span class="numeric">25713</span><span class="text"> + </span><span class="numeric">1345</span><span class="text">;
     !</span><span class="id">current_rand</span><span class="text">;;
-</span></div><div class="caml-output ok">val random : unit -&gt; int = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val random : unit -&gt; int = &lt;fun&gt;
+</code></pre>
 
 </div><p>Again, there is nothing magical with references: they are implemented as
 a single-field mutable record, as follows.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">contents</span><span class="text">: '</span><span class="id">a</span><span class="text"> };;
-</span></div><div class="caml-output ok">type 'a ref = { mutable contents : 'a; }
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> '</span><span class="id">a</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">contents</span><span class="text">: '</span><span class="id">a</span><span class="text"> };;
+</span></code><code class="caml-output ok">type 'a ref = { mutable contents : 'a; }
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> ( ! ) </span><span class="id">r</span><span class="text"> = </span><span class="id">r</span><span class="text">.</span><span class="id">contents</span><span class="text">;;
-</span></div><div class="caml-output ok">val ( ! ) : 'a ref -&gt; 'a = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> ( ! ) </span><span class="id">r</span><span class="text"> = </span><span class="id">r</span><span class="text">.</span><span class="id">contents</span><span class="text">;;
+</span></code><code class="caml-output ok">val ( ! ) : 'a ref -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> ( := ) </span><span class="id">r</span><span class="text"> </span><span class="id">newval</span><span class="text"> = </span><span class="id">r</span><span class="text">.</span><span class="id">contents</span><span class="text"> &lt;- </span><span class="id">newval</span><span class="text">;;
-</span></div><div class="caml-output ok">val ( := ) : 'a ref -&gt; 'a -&gt; unit = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> ( := ) </span><span class="id">r</span><span class="text"> </span><span class="id">newval</span><span class="text"> = </span><span class="id">r</span><span class="text">.</span><span class="id">contents</span><span class="text"> &lt;- </span><span class="id">newval</span><span class="text">;;
+</span></code><code class="caml-output ok">val ( := ) : 'a ref -&gt; 'a -&gt; unit = &lt;fun&gt;
+</code></pre>
 
 </div><p>In some special cases, you may need to store a polymorphic function in
 a data structure, keeping its polymorphism. Without user-provided
@@ -424,27 +424,27 @@ type annotations, this is not allowed, as polymorphism is only
 introduced on a global level. However, you can give explicitly
 polymorphic types to record fields.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">idref</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">id</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> };;
-</span></div><div class="caml-output ok">type idref = { mutable id : 'a. 'a -&gt; 'a; }
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">idref</span><span class="text"> = { </span><span class="kw">mutable</span><span class="text"> </span><span class="id">id</span><span class="text">: '</span><span class="id">a</span><span class="text">. '</span><span class="id">a</span><span class="text"> -&gt; '</span><span class="id">a</span><span class="text"> };;
+</span></code><code class="caml-output ok">type idref = { mutable id : 'a. 'a -&gt; 'a; }
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">r</span><span class="text"> = {</span><span class="id">id</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">};;
-</span></div><div class="caml-output ok">val r : idref = {id = &lt;fun&gt;}
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">r</span><span class="text"> = {</span><span class="id">id</span><span class="text"> = </span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">x</span><span class="text">};;
+</span></code><code class="caml-output ok">val r : idref = {id = &lt;fun&gt;}
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">g</span><span class="text"> </span><span class="id">s</span><span class="text"> = (</span><span class="id">s</span><span class="text">.</span><span class="id">id</span><span class="text"> </span><span class="numeric">1</span><span class="text">, </span><span class="id">s</span><span class="text">.</span><span class="id">id</span><span class="text"> </span><span class="constant">true</span><span class="text">);;
-</span></div><div class="caml-output ok">val g : idref -&gt; int * bool = &lt;fun&gt;
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">g</span><span class="text"> </span><span class="id">s</span><span class="text"> = (</span><span class="id">s</span><span class="text">.</span><span class="id">id</span><span class="text"> </span><span class="numeric">1</span><span class="text">, </span><span class="id">s</span><span class="text">.</span><span class="id">id</span><span class="text"> </span><span class="constant">true</span><span class="text">);;
+</span></code><code class="caml-output ok">val g : idref -&gt; int * bool = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">r</span><span class="text">.</span><span class="id">id</span><span class="text"> &lt;- (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">print_string</span><span class="text"> </span><span class="string">"called id\n"</span><span class="text">; </span><span class="id">x</span><span class="text">);;
-</span></div><div class="caml-output ok">- : unit = ()
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">r</span><span class="text">.</span><span class="id">id</span><span class="text"> &lt;- (</span><span class="kw">fun</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt; </span><span class="id">print_string</span><span class="text"> </span><span class="string">"called id\n"</span><span class="text">; </span><span class="id">x</span><span class="text">);;
+</span></code><code class="caml-output ok">- : unit = ()
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">g</span><span class="text"> </span><span class="id">r</span><span class="text">;;
-</span></div><div class="caml-output ok">called id
+<pre><code class="caml-input"><span class="text"> </span><span class="id">g</span><span class="text"> </span><span class="id">r</span><span class="text">;;
+</span></code><code class="caml-output ok">called id
 called id
 - : int * bool = (1, true)
-</div></pre>
+</code></pre>
 
 </div>
 <h2 class="section" id="sec13">6&nbsp;&nbsp;Exceptions</h2>
@@ -455,24 +455,24 @@ construct, and signalled with the <span class="c003">raise</span> operator. For 
 function below for taking the head of a list uses an exception to
 signal the case where an empty list is given.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Empty_list</span><span class="text">;;
-</span></div><div class="caml-output ok">exception Empty_list
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Empty_list</span><span class="text">;;
+</span></code><code class="caml-output ok">exception Empty_list
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">head</span><span class="text"> </span><span class="id">l</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">head</span><span class="text"> </span><span class="id">l</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">l</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       [] -&gt; </span><span class="id">raise</span><span class="text"> </span><span class="kw2">Empty_list</span><span class="text">
     | </span><span class="id">hd</span><span class="text"> :: </span><span class="id">tl</span><span class="text"> -&gt; </span><span class="id">hd</span><span class="text">;;
-</span></div><div class="caml-output ok">val head : 'a list -&gt; 'a = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val head : 'a list -&gt; 'a = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">head</span><span class="text"> [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">];;
-</span></div><div class="caml-output ok">- : int = 1
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">head</span><span class="text"> [</span><span class="numeric">1</span><span class="text">;</span><span class="numeric">2</span><span class="text">];;
+</span></code><code class="caml-output ok">- : int = 1
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">head</span><span class="text"> [];;
-</span></div><div class="caml-output ok">Exception: Empty_list.
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">head</span><span class="text"> [];;
+</span></code><code class="caml-output ok">Exception: Empty_list.
+</code></pre>
 
 </div><p>Exceptions are used throughout the standard library to signal cases
 where the library functions cannot complete normally. For instance,
@@ -480,31 +480,31 @@ the <span class="c003">List.assoc</span> function, which returns the data associ
 given key in a list of (key, data) pairs, raises the predefined
 exception <span class="c003">Not_found</span> when the key does not appear in the list:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="numeric">1</span><span class="text"> [(</span><span class="numeric">0</span><span class="text">, </span><span class="string">"zero"</span><span class="text">); (</span><span class="numeric">1</span><span class="text">, </span><span class="string">"one"</span><span class="text">)];;
-</span></div><div class="caml-output ok">- : string = "one"
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="numeric">1</span><span class="text"> [(</span><span class="numeric">0</span><span class="text">, </span><span class="string">"zero"</span><span class="text">); (</span><span class="numeric">1</span><span class="text">, </span><span class="string">"one"</span><span class="text">)];;
+</span></code><code class="caml-output ok">- : string = "one"
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="numeric">2</span><span class="text"> [(</span><span class="numeric">0</span><span class="text">, </span><span class="string">"zero"</span><span class="text">); (</span><span class="numeric">1</span><span class="text">, </span><span class="string">"one"</span><span class="text">)];;
-</span></div><div class="caml-output ok">Exception: Not_found.
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="numeric">2</span><span class="text"> [(</span><span class="numeric">0</span><span class="text">, </span><span class="string">"zero"</span><span class="text">); (</span><span class="numeric">1</span><span class="text">, </span><span class="string">"one"</span><span class="text">)];;
+</span></code><code class="caml-output ok">Exception: Not_found.
+</code></pre>
 
 </div><p>Exceptions can be trapped with the <span class="c003">try</span>…<span class="c003">with</span> construct:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> </span><span class="id">digit</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> </span><span class="id">digit</span><span class="text"> =
     </span><span class="kw1">try</span><span class="text">
       </span><span class="kw2">List</span><span class="text">.</span><span class="id">assoc</span><span class="text"> </span><span class="id">digit</span><span class="text"> [</span><span class="numeric">0</span><span class="text">, </span><span class="string">"zero"</span><span class="text">; </span><span class="numeric">1</span><span class="text">, </span><span class="string">"one"</span><span class="text">]
     </span><span class="kw1">with</span><span class="text"> </span><span class="kw2">Not_found</span><span class="text"> -&gt;
       </span><span class="string">"not a binary digit"</span><span class="text">;;
-</span></div><div class="caml-output ok">val name_of_binary_digit : int -&gt; string = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val name_of_binary_digit : int -&gt; string = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
-</span></div><div class="caml-output ok">- : string = "zero"
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> </span><span class="numeric">0</span><span class="text">;;
+</span></code><code class="caml-output ok">- : string = "zero"
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> (</span><span class="numeric">-1</span><span class="text">);;
-</span></div><div class="caml-output ok">- : string = "not a binary digit"
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">name_of_binary_digit</span><span class="text"> (</span><span class="numeric">-1</span><span class="text">);;
+</span></code><code class="caml-output ok">- : string = "not a binary digit"
+</code></pre>
 
 </div><p>The <span class="c003">with</span> part is actually a regular pattern-matching on the
 exception value. Thus, several exceptions can be caught by one
@@ -512,7 +512,7 @@ exception value. Thus, several exceptions can be caught by one
 trapping all exceptions, performing the finalization, then raising
 again the exception:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">temporarily_set_reference</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> </span><span class="id">newval</span><span class="text"> </span><span class="id">funct</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">temporarily_set_reference</span><span class="text"> </span><span class="kw1">ref</span><span class="text"> </span><span class="id">newval</span><span class="text"> </span><span class="id">funct</span><span class="text"> =
     </span><span class="kw">let</span><span class="text"> </span><span class="id">oldval</span><span class="text"> = !</span><span class="kw1">ref</span><span class="text"> </span><span class="kw">in</span><span class="text">
     </span><span class="kw1">try</span><span class="text">
       </span><span class="kw1">ref</span><span class="text"> := </span><span class="id">newval</span><span class="text">;
@@ -522,8 +522,8 @@ again the exception:
     </span><span class="kw1">with</span><span class="text"> </span><span class="id">x</span><span class="text"> -&gt;
       </span><span class="kw1">ref</span><span class="text"> := </span><span class="id">oldval</span><span class="text">;
       </span><span class="id">raise</span><span class="text"> </span><span class="id">x</span><span class="text">;;
-</span></div><div class="caml-output ok">val temporarily_set_reference : 'a ref -&gt; 'a -&gt; (unit -&gt; 'b) -&gt; 'b = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val temporarily_set_reference : 'a ref -&gt; 'a -&gt; (unit -&gt; 'b) -&gt; 'b = &lt;fun&gt;
+</code></pre>
 
 </div>
 <h2 class="section" id="sec14">7&nbsp;&nbsp;Symbolic processing of expressions</h2>
@@ -532,7 +532,7 @@ representative of the use of OCaml for symbolic processing: formal
 manipulations of arithmetic expressions containing variables. The
 following variant type describes the expressions we shall manipulate:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">expression</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">type</span><span class="text"> </span><span class="id">expression</span><span class="text"> =
       </span><span class="kw2">Const</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">float</span><span class="text">
     | </span><span class="kw2">Var</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">string</span><span class="text">
     | </span><span class="kw2">Sum</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="id">expression</span><span class="text"> * </span><span class="id">expression</span><span class="text">    </span><span class="comment">(* e1 + e2 *)</span><span class="text">
@@ -540,24 +540,24 @@ following variant type describes the expressions we shall manipulate:
     | </span><span class="kw2">Prod</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="id">expression</span><span class="text"> * </span><span class="id">expression</span><span class="text">   </span><span class="comment">(* e1 * e2 *)</span><span class="text">
     | </span><span class="kw2">Quot</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="id">expression</span><span class="text"> * </span><span class="id">expression</span><span class="text">   </span><span class="comment">(* e1 / e2 *)</span><span class="text">
   ;;
-</span></div><div class="caml-output ok">type expression =
+</span></code><code class="caml-output ok">type expression =
     Const of float
   | Var of string
   | Sum of expression * expression
   | Diff of expression * expression
   | Prod of expression * expression
   | Quot of expression * expression
-</div></pre>
+</code></pre>
 
 </div><p>We first define a function to evaluate an expression given an
 environment that maps variable names to their values. For simplicity,
 the environment is represented as an association list.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Unbound_variable</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">string</span><span class="text">;;
-</span></div><div class="caml-output ok">exception Unbound_variable of string
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">exception</span><span class="text"> </span><span class="kw2">Unbound_variable</span><span class="text"> </span><span class="kw">of</span><span class="text"> </span><span class="kw3">string</span><span class="text">;;
+</span></code><code class="caml-output ok">exception Unbound_variable of string
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">exp</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">exp</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">exp</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       </span><span class="kw2">Const</span><span class="text"> </span><span class="id">c</span><span class="text"> -&gt; </span><span class="id">c</span><span class="text">
     | </span><span class="kw2">Var</span><span class="text"> </span><span class="id">v</span><span class="text"> -&gt;
@@ -566,17 +566,17 @@ the environment is represented as an association list.
     | </span><span class="kw2">Diff</span><span class="text">(</span><span class="id">f</span><span class="text">, </span><span class="id">g</span><span class="text">) -&gt; </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">f</span><span class="text"> -. </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">g</span><span class="text">
     | </span><span class="kw2">Prod</span><span class="text">(</span><span class="id">f</span><span class="text">, </span><span class="id">g</span><span class="text">) -&gt; </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">f</span><span class="text"> *. </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">g</span><span class="text">
     | </span><span class="kw2">Quot</span><span class="text">(</span><span class="id">f</span><span class="text">, </span><span class="id">g</span><span class="text">) -&gt; </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">f</span><span class="text"> /. </span><span class="id">eval</span><span class="text"> </span><span class="id">env</span><span class="text"> </span><span class="id">g</span><span class="text">;;
-</span></div><div class="caml-output ok">val eval : (string * float) list -&gt; expression -&gt; float = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val eval : (string * float) list -&gt; expression -&gt; float = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">eval</span><span class="text"> [(</span><span class="string">"x"</span><span class="text">, </span><span class="numeric">1.0</span><span class="text">); (</span><span class="string">"y"</span><span class="text">, </span><span class="numeric">3.14</span><span class="text">)] (</span><span class="kw2">Prod</span><span class="text">(</span><span class="kw2">Sum</span><span class="text">(</span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">, </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">), </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"y"</span><span class="text">));;
-</span></div><div class="caml-output ok">- : float = 9.42
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="id">eval</span><span class="text"> [(</span><span class="string">"x"</span><span class="text">, </span><span class="numeric">1.0</span><span class="text">); (</span><span class="string">"y"</span><span class="text">, </span><span class="numeric">3.14</span><span class="text">)] (</span><span class="kw2">Prod</span><span class="text">(</span><span class="kw2">Sum</span><span class="text">(</span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">, </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">), </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"y"</span><span class="text">));;
+</span></code><code class="caml-output ok">- : float = 9.42
+</code></pre>
 
 </div><p>Now for a real symbolic processing, we define the derivative of an
 expression with respect to a variable <span class="c003">dv</span>:
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">deriv</span><span class="text"> </span><span class="id">exp</span><span class="text"> </span><span class="id">dv</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="kw">rec</span><span class="text"> </span><span class="id">deriv</span><span class="text"> </span><span class="id">exp</span><span class="text"> </span><span class="id">dv</span><span class="text"> =
     </span><span class="kw1">match</span><span class="text"> </span><span class="id">exp</span><span class="text"> </span><span class="kw1">with</span><span class="text">
       </span><span class="kw2">Const</span><span class="text"> </span><span class="id">c</span><span class="text"> -&gt; </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">0.0</span><span class="text">
     | </span><span class="kw2">Var</span><span class="text"> </span><span class="id">v</span><span class="text"> -&gt; </span><span class="kw1">if</span><span class="text"> </span><span class="id">v</span><span class="text"> = </span><span class="id">dv</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">1.0</span><span class="text"> </span><span class="kw1">else</span><span class="text"> </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">0.0</span><span class="text">
@@ -586,14 +586,14 @@ expression with respect to a variable <span class="c003">dv</span>:
     | </span><span class="kw2">Quot</span><span class="text">(</span><span class="id">f</span><span class="text">, </span><span class="id">g</span><span class="text">) -&gt; </span><span class="kw2">Quot</span><span class="text">(</span><span class="kw2">Diff</span><span class="text">(</span><span class="kw2">Prod</span><span class="text">(</span><span class="id">deriv</span><span class="text"> </span><span class="id">f</span><span class="text"> </span><span class="id">dv</span><span class="text">, </span><span class="id">g</span><span class="text">), </span><span class="kw2">Prod</span><span class="text">(</span><span class="id">f</span><span class="text">, </span><span class="id">deriv</span><span class="text"> </span><span class="id">g</span><span class="text"> </span><span class="id">dv</span><span class="text">)),
                          </span><span class="kw2">Prod</span><span class="text">(</span><span class="id">g</span><span class="text">, </span><span class="id">g</span><span class="text">))
   ;;
-</span></div><div class="caml-output ok">val deriv : expression -&gt; string -&gt; expression = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val deriv : expression -&gt; string -&gt; expression = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">deriv</span><span class="text"> (</span><span class="kw2">Quot</span><span class="text">(</span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">, </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">)) </span><span class="string">"x"</span><span class="text">;;
-</span></div><div class="caml-output ok">- : expression =
+<pre><code class="caml-input"><span class="text"> </span><span class="id">deriv</span><span class="text"> (</span><span class="kw2">Quot</span><span class="text">(</span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">, </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">)) </span><span class="string">"x"</span><span class="text">;;
+</span></code><code class="caml-output ok">- : expression =
 Quot (Diff (Prod (Const 0., Var "x"), Prod (Const 1., Const 1.)),
  Prod (Var "x", Var "x"))
-</div></pre>
+</code></pre>
 
 </div>
 <h2 class="section" id="sec15">8&nbsp;&nbsp;Pretty-printing</h2>
@@ -607,7 +607,7 @@ parentheses. To this end, we maintain the current operator precedence
 and print parentheses around an operator only if its precedence is
 less than the current precedence.
 </p><div class="caml-example">
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">print_expr</span><span class="text"> </span><span class="id">exp</span><span class="text"> =
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">print_expr</span><span class="text"> </span><span class="id">exp</span><span class="text"> =
     </span><span class="comment">(* Local function definitions *)</span><span class="text">
     </span><span class="kw">let</span><span class="text"> </span><span class="id">open_paren</span><span class="text"> </span><span class="id">prec</span><span class="text"> </span><span class="id">op_prec</span><span class="text"> =
       </span><span class="kw1">if</span><span class="text"> </span><span class="id">prec</span><span class="text"> &gt; </span><span class="id">op_prec</span><span class="text"> </span><span class="kw1">then</span><span class="text"> </span><span class="id">print_string</span><span class="text"> </span><span class="string">"("</span><span class="text"> </span><span class="kw">in</span><span class="text">
@@ -634,22 +634,22 @@ less than the current precedence.
           </span><span class="id">print</span><span class="text"> </span><span class="numeric">2</span><span class="text"> </span><span class="id">f</span><span class="text">; </span><span class="id">print_string</span><span class="text"> </span><span class="string">" / "</span><span class="text">; </span><span class="id">print</span><span class="text"> </span><span class="numeric">3</span><span class="text"> </span><span class="id">g</span><span class="text">;
           </span><span class="id">close_paren</span><span class="text"> </span><span class="id">prec</span><span class="text"> </span><span class="numeric">2</span><span class="text">
     </span><span class="kw">in</span><span class="text"> </span><span class="id">print</span><span class="text"> </span><span class="numeric">0</span><span class="text"> </span><span class="id">exp</span><span class="text">;;
-</span></div><div class="caml-output ok">val print_expr : expression -&gt; unit = &lt;fun&gt;
-</div></pre>
+</span></code><code class="caml-output ok">val print_expr : expression -&gt; unit = &lt;fun&gt;
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">e</span><span class="text"> = </span><span class="kw2">Sum</span><span class="text">(</span><span class="kw2">Prod</span><span class="text">(</span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">, </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">), </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">);;
-</span></div><div class="caml-output ok">val e : expression = Sum (Prod (Const 2., Var "x"), Const 1.)
-</div></pre>
+<pre><code class="caml-input"><span class="text"> </span><span class="kw">let</span><span class="text"> </span><span class="id">e</span><span class="text"> = </span><span class="kw2">Sum</span><span class="text">(</span><span class="kw2">Prod</span><span class="text">(</span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">2.0</span><span class="text">, </span><span class="kw2">Var</span><span class="text"> </span><span class="string">"x"</span><span class="text">), </span><span class="kw2">Const</span><span class="text"> </span><span class="numeric">1.0</span><span class="text">);;
+</span></code><code class="caml-output ok">val e : expression = Sum (Prod (Const 2., Var "x"), Const 1.)
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">print_expr</span><span class="text"> </span><span class="id">e</span><span class="text">; </span><span class="id">print_newline</span><span class="text"> ();;
-</span></div><div class="caml-output ok">2. * x + 1.
+<pre><code class="caml-input"><span class="text"> </span><span class="id">print_expr</span><span class="text"> </span><span class="id">e</span><span class="text">; </span><span class="id">print_newline</span><span class="text"> ();;
+</span></code><code class="caml-output ok">2. * x + 1.
 - : unit = ()
-</div></pre>
+</code></pre>
 
-<pre><div class="caml-input"><span class="text"> </span><span class="id">print_expr</span><span class="text"> (</span><span class="id">deriv</span><span class="text"> </span><span class="id">e</span><span class="text"> </span><span class="string">"x"</span><span class="text">); </span><span class="id">print_newline</span><span class="text"> ();;
-</span></div><div class="caml-output ok">2. * 1. + 0. * x + 0.
+<pre><code class="caml-input"><span class="text"> </span><span class="id">print_expr</span><span class="text"> (</span><span class="id">deriv</span><span class="text"> </span><span class="id">e</span><span class="text"> </span><span class="string">"x"</span><span class="text">); </span><span class="id">print_newline</span><span class="text"> ();;
+</span></code><code class="caml-output ok">2. * 1. + 0. * x + 0.
 - : unit = ()
-</div></pre>
+</code></pre>
 
 </div>
 <h2 class="section" id="sec16">9&nbsp;&nbsp;Standalone OCaml programs</h2>

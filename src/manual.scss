@@ -299,6 +299,10 @@ ul.translations {
 	padding: 0 0.3ex;
     }
 
+    pre code {
+	background-color: inherit;
+    }
+
     p a > code {
 	color: #92370A;
     }
@@ -307,7 +311,7 @@ ul.translations {
 /* Code blocks (e.g. Examples) */
 
 .manual {
-    pre code {
+    pre code.ocaml {
 	font-size: 0.893rem;
     }
 }
@@ -742,7 +746,20 @@ ul.translations {
 	    background: white;
 	}
 	body nav:first-child {
-	    visibility: hidden;
+	    position: absolute;
+	    background: transparent;
+	}
+	nav.toc {
+	    margin-right: 1em;
+	    float: left;
+	}
+	.toc {
+	    position: initial;
+	    background: #eee;
+	}
+	.content {
+	    margin-left: 3em;
+	    margin-right: 3em;
 	}
     }
 }
@@ -862,16 +879,16 @@ ul.translations {
     }
 
     div.caml-example, div.toplevel  {
-	// background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%);
-    }
-
-    div.caml-input {
+	/* background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */
     }
 
     div.caml-output.ok,
+    code.caml-output.ok,
     span.c006 {
 	color: #045804;
     }
+
+    code.caml-output.error,
     div.caml-output.error {
 	color: orangered;
     }
@@ -917,7 +934,9 @@ ul.translations {
 	border-radius: 6px;
     }
 
-    div.caml-example.toplevel div.caml-input::before{
+    div.caml-example code.caml-input::before, /* <= 4.06 */
+    div.caml-example.toplevel code.caml-input::before,
+    div.caml-example.toplevel div.caml-input::before {
 	content:"#";
 	color:#888;
     }
