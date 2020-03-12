@@ -10,7 +10,7 @@
 open Soup
 open Printf
 
-let debug = false
+let debug = true
 let pr = if debug then print_endline else fun _ -> ()
                                                    
 (* Set this to the directory where to find the html sources of all versions: *)
@@ -47,23 +47,23 @@ let remove_number s =
   Str.global_replace (Str.regexp ".+  ") "" s
 
 (* Scan the index and return the list of chapters (title, file) *)
-let index version =
-  let html = open_in (html_file version "index.html")
-             |> read_channel in
+let index version part =
+  sprintf "Reading part [%s]" part |> pr;
+  let html = read_file (html_file version "index.html") in
   let soup = parse html in
   (* Foreword. We do nothing. *)
-  (* Tutorials. We select the list of (html files, titles) for Part 1 *)
-  let tutorials =
-    let a = match select_one "a[id=\"p:tutorials\"]" soup with
+  (* We select the list of (html files, titles) for Part [part] *)
+  let part =
+    let a = match select_one ("a[id=\"p:" ^ part ^ "\"]") soup with
       | Some node -> node
-      | None -> R.select_one "a[name=\"p:tutorials\"]" soup in
+      | None -> R.select_one ("a[name=\"p:" ^part ^ "\"]") soup in
     let ul = next a in
     assert (name ul = "ul");
     ul $$ "a"
     |> fold (fun list a ->
         (R.leaf_text a |> remove_number, R.attribute "href" a) :: list) []
     |> List.rev in
-  tutorials   
+  part
 
 (* Some syntax... *)
 let do_option f = function
@@ -106,21 +106,23 @@ let convert version chapters (title, file) =
     ((html_file version file) ^ " ==> " ^ (docs_file version file));
 
   (* First we perform some direct find/replace in the html string. *)
-  (* Warning charset = ascii for 4.05 et utf8 for 4.09.  But the original html
+  (* Warning charset = ascii for 4.05 et utf8 for >=4.09.  But the original html
      is kind of buggy because 4.05 uses &#XA0; for non-breaking space in
      us-ascii encoding, although &#XA0; is latin encoding...  Finally we decide
-     to will force utf8 encoding.  *)
+     to force utf8 encoding.  *)
   let html =
-    open_in (html_file version file) |> read_channel
+    read_file (html_file version file)
     (* Normalize non-break spaces: *)
     |> Str.global_replace (Str.regexp_string "&#XA0;") " "
-    |> Str.global_replace (Str.regexp "Chapter \\([0-9]\\)")
-      "<span>Tutorial \\1</span>"
-    |> Str.global_replace (Str.regexp_string "chapter") "tutorial"
-    |> Str.global_replace (Str.regexp_string "Chapter") "Tutorial"
+    |> Str.global_replace (Str.regexp "Chapter \\([0-9]+\\)")
+      "<span>Chapter \\1</span>"
+    (* |> Str.global_replace (Str.regexp_string "chapter") "tutorial"
+     * |> Str.global_replace (Str.regexp_string "Chapter") "Tutorial" *)
     |> Str.global_replace (Str.regexp ">[0-9]\\.\\([0-9]+\\) ") ">\\1 "
     |> Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\.[0-9]+\\) ")
       "\\1 "
+    |> Str.global_replace (Str.regexp_string "\"libref/")
+      (sprintf "\"../../api/%s/" version)
     |> Str.global_replace (Str.regexp_string file) ""
     (* that one was not necessary; it's just cleaner not to link to oneself. *)
   in
@@ -156,32 +158,35 @@ let convert version chapters (title, file) =
    * prepend_child body dummy; *)
 
   (* Remove first three links "Previous, Up, Next" *)
-  soup $ "hr" |> delete;
+  do_option delete (soup $? "hr");
   ["Previous"; "Up"; "Next"]
   |> List.iter (fun s ->
       soup $$ ("img[alt=\"" ^ s ^ "\"]")
       |> iter (do_option delete << parent));
 
-  (* Create TOC *)
-  let toc = soup $ "ul" in
-  let nav = create_element "nav" ~class_:"toc" in
-  wrap toc nav;
-  let nav = soup $ "nav" in
-  wrap nav (create_element "header");
-  (* TOC - Create a "Top" entry in the menu *)
-  let a = create_element "a" ~inner_text:"Top"
-      ~attributes:["href", "#"] in
-  let li = create_element "li" ~class_:"top" in
-  append_child li a;
-  prepend_child toc li;
-  let toc_title = create_element "div" ~class_:"toc_title" in
-  let a = create_element "a" ~inner_text:("Version " ^ version)
-      ~attributes:["href", "../index.html"; "id", "version-select"] in
-  append_child toc_title a;
-  prepend_child toc toc_title;
+  (* Create TOC. Not applicable to Chapter 18 *)
+  begin match soup $? "ul" with
+    | None -> sprintf "No TOC for %s" file |> pr
+    | Some toc -> (
+        let nav = create_element "nav" ~class_:"toc" in
+        wrap toc nav;
+        let nav = soup $ "nav" in
+        wrap nav (create_element "header");
+        (* TOC - Create a "Top" entry in the menu *)
+        let a = create_element "a" ~inner_text:"Top"
+            ~attributes:["href", "#"] in
+        let li = create_element "li" ~class_:"top" in
+        append_child li a;
+        prepend_child toc li;
+        let toc_title = create_element "div" ~class_:"toc_title" in
+        let a = create_element "a" ~inner_text:("Version " ^ version)
+            ~attributes:["href", "../index.html"; "id", "version-select"] in
+        append_child toc_title a;
+        prepend_child toc toc_title)
+  end;
 
   (* Create new menu *)
-  let menu = create_element "ul" ~class_:"tutos_menu" in
+  let menu = create_element "ul" ~class_:"part_menu" in
   List.iter (fun (title, href) ->
       let a = create_element "a" ~inner_text:title ~attributes:["href", href] in
       let li = if href= file
@@ -193,9 +198,12 @@ let convert version chapters (title, file) =
   prepend_child body menu;
 
   (* Add logo *)
-  let logo_html = "<nav class=\"toc brand\"><a class=\"brand\" href=\"https://ocaml.org/\" ><img src=\"colour-logo-gray.svg\" class=\"svg\" alt=\"OCaml\" /></a></nav>" in
-  let header = soup $ "header" in
-  prepend_child header (parse logo_html);
+  begin match soup $? "header" with
+    | None -> sprintf "Warning: no <header> for %s" file |> pr
+    | Some header ->
+      let logo_html = "<nav class=\"toc brand\"><a class=\"brand\" href=\"https://ocaml.org/\" ><img src=\"colour-logo-gray.svg\" class=\"svg\" alt=\"OCaml\" /></a></nav>" in
+      prepend_child header (parse logo_html)
+  end;
 
   (* Move authors to the end. Versions >= 4.05 use c009.  4.04 and 4.03 use
      c012, while 4.02 and 4.01: c013; for 4.00, only <i>. *)
@@ -214,24 +222,26 @@ let convert version chapters (title, file) =
               add_class "authors" authors;
               append_child body authors));
 
-  (* Syntax highlighting *)
-  pr "Syntax highlighting";
-  (* The manual for 4.05 <= version <= 4.09 has some "div" inside a "pre", which
-     is forbidden. See (https://github.com/ocaml/ocaml/issues/9109) We replace
-     it by code or span. TODO check when this is corrected upstream. *)
-  soup $$ "pre div"
-  |> iter (set_name "code");
-  let camls = soup $$ "pre .caml-input" in
-  iter (fun e ->
-      match leaf_text e with
-      | Some code ->
-        let h = highlight code in
-        let cs = classes e in
-        let div = create_element (name e) ~classes:cs in
-        append_child div h;
-        insert_after e div;
-        delete e
-      | _ -> ()) camls;
+  (* Syntax highlighting. Done by LaTeX starting from 4.10 *)
+  if float_of_string version <= 4.09 then begin
+    pr "Syntax highlighting";
+    (* The manual for 4.05 <= version <= 4.09 has some "div" inside a "pre", which
+       is forbidden. See (https://github.com/ocaml/ocaml/issues/9109) We replace
+       it by code or span. TODO check when this is corrected upstream. *)
+    soup $$ "pre div"
+    |> iter (set_name "code");
+    let camls = soup $$ "pre .caml-input" in
+    iter (fun e ->
+        match leaf_text e with
+        | Some code ->
+          let h = highlight code in
+          let cs = classes e in
+          let div = create_element (name e) ~classes:cs in
+          append_child div h;
+          insert_after e div;
+          delete e
+        | _ -> ()) camls
+  end;
 
   (* Only for versions <= 4.00 *)
   if float_of_string version <= 4.0 then begin
@@ -247,7 +257,7 @@ let convert version chapters (title, file) =
   append_child body (copyright ());
 
   (* Save new html file *)
-  let new_html= to_string soup in
+  let new_html = to_string soup in
   write_file (docs_file version file) new_html;
   (* Save ocamlorg md file *)
   let md = Filename.basename file
@@ -263,10 +273,12 @@ let convert version chapters (title, file) =
 (* Create "index.html" (for standalone version) 
       and "index.md"   (for ocaml.org) *)
 let make_index versions =
-  let html = read_channel @@ open_in @@ Filename.concat "src" "index.html" in
+  let html = read_file @@ Filename.concat "src" "index.html" in
   let soup = parse html in
   let ul = soup $ "ul.versions" in
-  List.iter (fun (version, file) ->
+  List.iter (fun (version, files) ->
+      let file = List.rev files |> List.hd in
+      sprintf "Using file %s as entry for Version %s" file version |> pr;
       let v = "Version " ^ version in
       let file = Filename.concat version file in
       let li = create_element "li" in
@@ -319,7 +331,7 @@ let download_version version =
 let download_versions = List.iter download_version
 
 (* Completely process the given version of the manual.
-   Returns the name of the main html file. *)
+   Returns the names of the main html files. *)
 let process version =
   print_endline (sprintf "\nProcessing version %s...\n" version);
 
@@ -328,17 +340,26 @@ let process version =
   sys_mkdir (ocamlorg_dir version);
 
   pr "* Copying files";
-  let to_copy = ["colour-logo-gray.svg"; "manual.css"] in
-  List.iter (fun file ->
+  let css = let css = sprintf "manual-%s.css" version in
+    if Sys.file_exists (Filename.concat "src/" css)
+    then css, "manual.css" else "manual.css", "manual.css" in
+  let to_copy = css::["colour-logo-gray.svg", "colour-logo-gray.svg"] in
+  List.iter (fun (file, out) ->
       pr file;
-      sys_cp (Filename.concat "src/" file) (docs_file version file)
+      sys_cp (Filename.concat "src/" file) (docs_file version out)
     ) to_copy;
 
   pr "* Scanning index";
-  let chapters = index version in
+  let parts = ["tutorials"; "refman"; "commands"; "library" ] in
+  (* TODO "appendix" needs a special treatment *)
+  let main_files = List.fold_left (fun list part ->
+      let chapters = index version part in
 
-  pr "* Processing chapters";
-  List.iter (convert version chapters) chapters;
+      pr "* Processing chapters";
+      List.iter (convert version chapters) chapters;
+      (snd (List.hd chapters)) :: list) [] parts in
+
+  main_files
 
   (* pr "* Create main link";
    * let link = "part1.html" in
@@ -351,13 +372,13 @@ let process version =
    *       then failwith (sprintf "Could not create symlink to %s" (dir link)))
   *)
 
-  snd (List.hd chapters)
+  
   
   
 (*********************************************************************)
         
 let () = 
-  let all_versions = Array.init 10 (fun i -> sprintf "4.%02u" i)
+  let all_versions = Array.init 11 (fun i -> sprintf "4.%02u" i)
                      |> Array.to_list in
   download_versions all_versions;
   List.iter (fun file ->

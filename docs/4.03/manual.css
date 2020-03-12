@@ -849,13 +849,13 @@ div.caml-output.error {
     color: #ec6a0d;
 }
   
-ul.tutos_menu {
+ul.part_menu {
     font-family: "Fira Sans";
     text-align: right;
     list-style: none;
 }
 
-ul.tutos_menu li.active a {
+ul.part_menu li.active a {
     color: black;
 }
 

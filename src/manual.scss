@@ -36,7 +36,7 @@ ul.translations {
 }
 
 .manual {
-    div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, .pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -113,7 +113,7 @@ ul.translations {
 	margin-left: 0.2ex;
     }
 
-    pre {
+    pre, .pre {
 	margin-top: 0.8em;
 	margin-bottom: 1.2em;
     }
@@ -172,6 +172,7 @@ ul.translations {
 	background-color: rgba(255, 215, 181, 0.3) !important;
 	box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
 	border-radius: 1px;
+	z-index: 0;
     }
 
     *:hover>a.anchor {
@@ -281,12 +282,12 @@ ul.translations {
 /* Preformatted and code */
 
 .manual {
-    tt, code, pre {
+    tt, code, pre, .pre {
 	font-family: "Fira Mono", courier;
 	font-weight: 400;
     }
 
-    pre {
+    pre, .pre {
 	border-left: 4px solid #e69c7f;
 	overflow-x: auto;
 	padding-left: 1ex;
@@ -299,7 +300,7 @@ ul.translations {
 	padding: 0 0.3ex;
     }
 
-    pre code {
+    pre code, .pre code {
 	background-color: inherit;
     }
 
@@ -311,7 +312,7 @@ ul.translations {
 /* Code blocks (e.g. Examples) */
 
 .manual {
-    pre code.ocaml {
+    pre code.ocaml, .pre code.ocaml {
 	font-size: 0.893rem;
     }
 }
@@ -321,6 +322,7 @@ ul.translations {
 .manual {
     .keyword {
 	font-weight: 500;
+	color: inherit;
     }
 }
 
@@ -874,7 +876,7 @@ ul.translations {
 	display: inline-block;
     } 
 
-    pre {
+    pre, .pre {
 	background: linear-gradient(to left, white 0%, rgb(237, 232, 229) 100%);
     }
 
@@ -897,13 +899,13 @@ ul.translations {
 	color: #ec6a0d;
     }
     
-    ul.tutos_menu {
+    ul.part_menu {
 	font-family: "Fira Sans";
 	text-align: right;
 	list-style: none;
     }
 
-    ul.tutos_menu li.active a {
+    ul.part_menu li.active a {
 	color: black;
     }
 
