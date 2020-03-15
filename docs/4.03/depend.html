@@ -10,7 +10,7 @@
 
 
 <h1 class="chapter" id="sec312"><span>Chapter 13</span>&nbsp;&nbsp;Dependency generator (ocamldep)</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.03</a></div><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.03</a></div><div class="toc_title"><a href="#">Dependency generator (ocamldep)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec313">Options</a>
 </li><li><a href="#sec314">A typical Makefile</a>
 </li></ul></nav></header>
@@ -28,7 +28,7 @@ where <span class="c006">*.mli *.ml</span> expands to all source files in the cu
 directory and <span class="c006">.depend</span> is the file that should contain the
 dependencies. (See below for a typical <span class="c006">Makefile</span>.)</p><p>Dependencies are generated both for compiling with the bytecode
 compiler <span class="c006">ocamlc</span> and with the native-code compiler <span class="c006">ocamlopt</span>.</p>
-<h2 class="section" id="sec313">13.1&nbsp;&nbsp;Options</h2>
+<h2 class="section" id="sec313">1&nbsp;&nbsp;Options</h2>
 <p>The following command-line options are recognized by <span class="c006">ocamldep</span>.</p><dl class="description"><dt class="dt-description"><span class="c009">-absname</span></dt><dd class="dd-description">
 Show absolute filenames in error messages.</dd><dt class="dt-description"><span class="c009">-all</span></dt><dd class="dd-description">
 Generate dependencies on all required files, rather than assuming
@@ -88,7 +88,7 @@ Print version string and exit.</dd><dt class="dt-description"><span class="c009"
 Print short version number and exit.</dd><dt class="dt-description"><span class="c016"><span class="c006">-help</span> or <span class="c006">--help</span></span></dt><dd class="dd-description">
 Display a short usage summary and exit.
 </dd></dl>
-<h2 class="section" id="sec314">13.2&nbsp;&nbsp;A typical Makefile</h2>
+<h2 class="section" id="sec314">2&nbsp;&nbsp;A typical Makefile</h2>
 <p>Here is a template <span class="c006">Makefile</span> for a OCaml program.</p><pre>OCAMLC=ocamlc
 OCAMLOPT=ocamlopt
 OCAMLDEP=ocamldep

@@ -10,7 +10,7 @@
 
 
 <h1 class="chapter" id="sec379"><span>Chapter 18</span>&nbsp;&nbsp;The ocamlbuild compilation manager</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.02</a></div><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.02</a></div><div class="toc_title"><a href="#">The ocamlbuild compilation manager</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#sec380">Features of <span class="c007">ocamlbuild</span></a>
 </li><li><a href="#sec381">Limitations</a>
 </li><li><a href="#sec382">Using <span class="c007">ocamlbuild</span></a>
@@ -27,7 +27,7 @@ the extra effort needed to make it work with the more complex projects is in
 reasonable proportion with their added complexity. In practice, one will use a
 set of small text files, and, if needed, an OCaml compilation module that can
 fine-tune the behaviour and define custom rules.</p>
-<h2 class="section" id="sec380">18.1&nbsp;&nbsp;Features of <span class="c007">ocamlbuild</span></h2>
+<h2 class="section" id="sec380">1&nbsp;&nbsp;Features of <span class="c007">ocamlbuild</span></h2>
 <p>
 <em>This section is intended to read like a sales brochure or a datasheet.</em></p><ul class="itemize"><li class="li-itemize">
 Built-in compilation rules for OCaml projects handle all the nasty cases:
@@ -50,7 +50,7 @@ allow you to concisely define the tags that apply to a given file.
 </li><li class="li-itemize">Mechanisms for defining the mutual visibility of subdirectories.
 </li><li class="li-itemize">Cache mechanism avoiding unnecessary compilations where reasonably computable.
 </li></ul>
-<h2 class="section" id="sec381">18.2&nbsp;&nbsp;Limitations</h2>
+<h2 class="section" id="sec381">2&nbsp;&nbsp;Limitations</h2>
 <p>
 <em>Not perfect nor complete yet, but already pretty damn useful.</em></p><p>We were not expecting to write the ultimate compilation tool in a few man-months, however we believe we have
 a tool that solves many compilation problems, especially our own, in a satisfactory way. Hence there are a
@@ -72,7 +72,7 @@ the target names, names of the tags, and so on, are not expected to change in
 incompatible ways. We intend to keep a project that compiles without a plugin
 compilable without modifications in the future.
 </p>
-<h2 class="section" id="sec382">18.3&nbsp;&nbsp;Using <span class="c007">ocamlbuild</span></h2>
+<h2 class="section" id="sec382">3&nbsp;&nbsp;Using <span class="c007">ocamlbuild</span></h2>
 <p>
 <em>Learn how to use <span class="c007">ocamlbuild</span> with short, specific, straight-to-the-point examples.</em></p><p>The amount of time and effort spent on the compilation process of a project
 should be proportionate to that spent on the project itself. It should be easy
@@ -89,7 +89,7 @@ the same directory. As your project gets more complex, you will gradually
 start to use command-line options to specify libraries to link with, then
 configuration files, ultimately culminating in a custom OCaml plugin for
 complex projects with arbitrary dependencies and actions.</p>
-<h3 class="subsection" id="sec383">13.1&nbsp;&nbsp;Hygiene &amp; where is my code ?</h3>
+<h3 class="subsection" id="sec383">3.1&nbsp;&nbsp;Hygiene &amp; where is my code ?</h3>
 <p>
 Your code is in the <span class="c007">_build</span> directory, but <span class="c007">ocamlbuild</span> automatically creates
 a symbolic link to the executables it produces in the current directory.
@@ -107,7 +107,7 @@ This script will contain commands to remove them for you.</p><p>To disable these
 files that must elude the hygiene squad, just tag them with <span class="c007">precious</span>
 or <span class="c007">not_hygienic</span>.
 </p>
-<h3 class="subsection" id="sec384">13.2&nbsp;&nbsp;Hello, world !</h3>
+<h3 class="subsection" id="sec384">3.2&nbsp;&nbsp;Hello, world !</h3>
 <p>
 Assuming we are in a directory named <span class="c007">example1</span> containing one file <span class="c007">hello.ml</span>
 whose contents are
@@ -144,7 +144,7 @@ total 208
 -rw-rw---- 1 linus gallium    936 2007-01-17 16:24 hello.o
 -rw-rw---- 1 linus gallium     22 2007-01-17 16:24 ocamlc.where
 </pre>
-<h3 class="subsection" id="sec385">13.3&nbsp;&nbsp;Executing my code</h3>
+<h3 class="subsection" id="sec385">3.3&nbsp;&nbsp;Executing my code</h3>
 <p>
 You can execute your code the old-fashioned way (<span class="c007">./hello.native</span>).
 You may also type
@@ -155,7 +155,7 @@ which should display:
 Finished, 4 targets (0 cached) in 00:00:00.
 Hello, Caesar ! My name is _build/hello.native
 </pre>
-<h3 class="subsection" id="sec386">13.4&nbsp;&nbsp;The log file, verbosity and debugging</h3>
+<h3 class="subsection" id="sec386">3.4&nbsp;&nbsp;The log file, verbosity and debugging</h3>
 <p>
 By default, if you run <span class="c007">ocamlbuild</span> on a terminal, it will use some ANSI escape sequences
 to display a nice, one-line progress indicator. To see what commands <span class="c007">ocamlbuild</span> has actually run,
@@ -168,13 +168,13 @@ debugging information; a verbosity level of 1 (which can also be specified
 using the <span class="c007">-verbose</span> switch) prints generally useful information; higher
 levels produce much more output.
 </p>
-<h3 class="subsection" id="sec387">13.5&nbsp;&nbsp;Cleaning</h3>
+<h3 class="subsection" id="sec387">3.5&nbsp;&nbsp;Cleaning</h3>
 <p>
 <span class="c007">ocamlbuild</span> may leave a <span class="c007">_build</span> directory and symbolic links to executables in
 that directory (unless when using -no-links). All of these can be removed safely
 by hand, or by invoking <span class="c007">ocamlbuild</span> with the <span class="c007">-clean</span> flag.
 </p>
-<h3 class="subsection" id="sec388">13.6&nbsp;&nbsp;Where and how to run <span class="c007">ocamlbuild</span>?</h3>
+<h3 class="subsection" id="sec388">3.6&nbsp;&nbsp;Where and how to run <span class="c007">ocamlbuild</span>?</h3>
 <p>
 An important point is that <span class="c007">ocamlbuild</span> must be invoked from the root of the project,
 even if this project has multiple, nested subdirectories. This is because <span class="c007">ocamlbuild</span> likes to store the object files in a single <span class="c007">_build</span> directory. You
@@ -188,7 +188,7 @@ display. Under non-UNIX systems, or if the standard output is not a terminal,
 it will run in classic mode where it will echo the executed commands on its
 standard output. This selection can be overridden with the <span class="c007">-classic-display</span> option.
 </p>
-<h3 class="subsection" id="sec389">13.7&nbsp;&nbsp;Dependencies</h3>
+<h3 class="subsection" id="sec389">3.7&nbsp;&nbsp;Dependencies</h3>
 <p>
 <em>Dependencies are automatically discovered.</em></p><p>Most of the value of <span class="c007">ocamlbuild</span> lies in the fact that it often needs no extra
 information to compile a project besides the name of the top-level module.
@@ -222,13 +222,13 @@ let _ =
 </pre><p>Then the module <span class="c007">Hello</span> depends on the module <span class="c007">Greet</span> and <span class="c007">ocamlbuild</span> can
 figure this out for himself – we still only have to invoke <span class="c007">ocamlbuild hello.native</span>. Needless to say, this works for any number of modules.
 </p>
-<h3 class="subsection" id="sec390">13.8&nbsp;&nbsp;Native and byte-code</h3>
+<h3 class="subsection" id="sec390">3.8&nbsp;&nbsp;Native and byte-code</h3>
 <p>
 If we want to compile byte-code instead of native, we just a target name of
 <span class="c007">hello.byte</span> instead of <span class="c007">hello.native</span>, i.e., we type
 <span class="c007">ocamlbuild hello.byte</span>.
 </p>
-<h3 class="subsection" id="sec391">13.9&nbsp;&nbsp;Compile flags</h3>
+<h3 class="subsection" id="sec391">3.9&nbsp;&nbsp;Compile flags</h3>
 <p>
 To pass a flag to the compiler, such as the <span class="c007">-rectypes</span> option,
 use the <span class="c007">-cflag</span> option as in:
@@ -241,14 +241,14 @@ in the same order. You can also give them in a comma-separated list with the
 <span class="c007">.cmo</span>,<span class="c007">.cmx</span> and <span class="c007">.o</span> files from <span class="c007">.ml</span> or
 <span class="c007">.mli</span> files.
 </p>
-<h3 class="subsection" id="sec392">13.10&nbsp;&nbsp;Link flags</h3>
+<h3 class="subsection" id="sec392">3.10&nbsp;&nbsp;Link flags</h3>
 <p>
 Link flags apply when the various object files are collected and linked into
 one executable. These will typically be include directories for libraries.
 They are given using the <span class="c007">-lflag</span> and <span class="c007">-lflags</span> options, which
 work in the same way as the <span class="c007">-cflag</span> and <span class="c007">-cflags</span> options.
 </p>
-<h3 class="subsection" id="sec393">13.11&nbsp;&nbsp;Linking with external libraries</h3>
+<h3 class="subsection" id="sec393">3.11&nbsp;&nbsp;Linking with external libraries</h3>
 <p>
 In our third example, we use one Unix system call and functions from the <span class="c007">num</span>
 library:
@@ -268,7 +268,7 @@ Finished, 4 targets (4 cached) in 00:00:00.
 and <span class="c007">-lflags -I,/usr/local/lib/ocaml/</span> if the libraries you wish to
 link with are not in OCaml’s default search path.
 </p>
-<h3 class="subsection" id="sec394">13.12&nbsp;&nbsp;The <span class="c007">_tags</span> files</h3>
+<h3 class="subsection" id="sec394">3.12&nbsp;&nbsp;The <span class="c007">_tags</span> files</h3>
 <p>
 Finer control over the compiler flags applied to each source file, such as
 preprocessing, debugging, profiling and linking options, can be gained using
@@ -298,7 +298,7 @@ of the project are automatically defined for each file. For a file
 <span class="c007">extension:ml</span>.</p><p>If you do not have subdirectories, you can put <span class="c007">*.ml</span> instead of
 <span class="c007">**/*.ml</span>.
 </p>
-<h3 class="subsection" id="sec396">13.13&nbsp;&nbsp;Glob patterns and expressions</h3>
+<h3 class="subsection" id="sec396">3.13&nbsp;&nbsp;Glob patterns and expressions</h3>
 <p>
 <a id="subsec:glob"></a>
 Glob patterns have a syntax similar to those used by UNIX shells to select path
@@ -370,7 +370,7 @@ Syntax and semantics of glob expressions.
 </td></tr>
 </tbody></table></div>
 <div class="center"><hr class="c032"></div></blockquote>
-<h3 class="subsection" id="sec397">13.14&nbsp;&nbsp;Subdirectories</h3>
+<h3 class="subsection" id="sec397">3.14&nbsp;&nbsp;Subdirectories</h3>
 <p>
 If the files of your project are held in one or more subdirectories,
 <span class="c007">ocamlbuild</span> must be made aware of that fact using the <span class="c007">-I</span> or <span class="c007">-Is</span> options
@@ -400,7 +400,7 @@ make <span class="c007">ocamlbuild</span> recursive use one of these:
 Give the <span class="c007">-r</span> flag to ocamlbuild.
 </li><li class="li-enumerate">Have a <span class="c007">_tags</span> or myocamlbuild.ml file in your top directory.
 </li></ol>
-<h3 class="subsection" id="sec399">13.15&nbsp;&nbsp;Grouping targets with <span class="c007">.itarget</span></h3>
+<h3 class="subsection" id="sec399">3.15&nbsp;&nbsp;Grouping targets with <span class="c007">.itarget</span></h3>
 <p>
 You can create a file named <span class="c007">foo.itarget</span> containing
 a list of targets, one per line, such as
@@ -411,7 +411,7 @@ stuff.docdir/index.html
 listed in the file <span class="c007">foo.itarget</span>. Blank lines and lines starting
 with a sharp (<span class="c007">#</span>) are ignored.
 </p>
-<h3 class="subsection" id="sec400">13.16&nbsp;&nbsp;Packing subdirectories into modules</h3>
+<h3 class="subsection" id="sec400">3.16&nbsp;&nbsp;Packing subdirectories into modules</h3>
 <p>
 OCaml’s <span class="c007">-pack</span> option allows you to structure the contents of a
 module in a subdirectory. For instance, assume you have a directory
@@ -427,7 +427,7 @@ Baz
 </pre><p>Then when you will request for building <span class="c007">foo.cmo</span> the package will be
 made from <span class="c007">bar.cmo</span> and <span class="c007">baz.cmo</span>.
 </p>
-<h3 class="subsection" id="sec401">13.17&nbsp;&nbsp;Making an OCaml library</h3>
+<h3 class="subsection" id="sec401">3.17&nbsp;&nbsp;Making an OCaml library</h3>
 <p>
 In a similar way than for packaged modules you can make a library by putting
 it’s contents in a file (with the mllib extension). For instance, assume you
@@ -440,14 +440,14 @@ Baz
 </pre><p>Then when you will request for building <span class="c007">foo.cma</span> the library will be
 made from <span class="c007">bar.cmo</span> and <span class="c007">baz.cmo</span>.
 </p>
-<h3 class="subsection" id="sec402">13.18&nbsp;&nbsp;Making an OCaml toplevel</h3>
+<h3 class="subsection" id="sec402">3.18&nbsp;&nbsp;Making an OCaml toplevel</h3>
 <p>
 Making a toplevel is almost the same thing than making a packaged module or a
 library. Just write a file with the <span class="c007">mltop</span> extension (like
 <span class="c007">foo.mltop</span>) and request for building the toplevel using the
 <span class="c007">top</span> extension (<span class="c007">foo.top</span> in this example).
 </p>
-<h3 class="subsection" id="sec403">13.19&nbsp;&nbsp;Preprocessor options and tags</h3>
+<h3 class="subsection" id="sec403">3.19&nbsp;&nbsp;Preprocessor options and tags</h3>
 <p>
 You can specify preprocessor options with <span class="c007">-pp</span> followed by the
 preprocessor string, for instance <span class="c007">ocamlbuild -pp camlp4o.opt -unsafe</span>
@@ -463,7 +463,7 @@ preprocessor command<sup><a id="text3" href="#note3">1</a></sup> </td></tr>
 <tr><td class="c023"> <span class="c007">camlp4rf</span></td><td class="c023"><span class="c007">camlp4rf</span></td><td class="c023">Revised OCaml syntax with extensions </td></tr>
 </tbody></table>
 </div>
-<h3 class="subsection" id="sec404">13.20&nbsp;&nbsp;Debugging byte code and profiling native code</h3>
+<h3 class="subsection" id="sec404">3.20&nbsp;&nbsp;Debugging byte code and profiling native code</h3>
 <p>
 The preferred way of compiling code suitable for debugging with <span class="c007">ocamldebug</span> or
 profiling native code with <span class="c007">ocamlprof</span> is to use the appropriate target
@@ -476,7 +476,7 @@ on the command line, or add a
 Please note that the byte-code profiler works in a wholly different way
 and is not supported by <span class="c007">ocamlbuild</span>.
 </p>
-<h3 class="subsection" id="sec405">13.21&nbsp;&nbsp;Generating documentation using <span class="c007">ocamldoc</span></h3>
+<h3 class="subsection" id="sec405">3.21&nbsp;&nbsp;Generating documentation using <span class="c007">ocamldoc</span></h3>
 <p>
 Write the names of the modules whose interfaces will be documented in a file
 whose extension is <span class="c007">.odocl</span>, for example <span class="c007">foo.odocl</span>, then invoke
@@ -489,7 +489,7 @@ one per line, without extensions and correctly capitalized. Note that
 generating documentation in formats other than HTML or from implementations is
 not supported.
 </p>
-<h3 class="subsection" id="sec406">13.22&nbsp;&nbsp;The display line</h3>
+<h3 class="subsection" id="sec406">3.22&nbsp;&nbsp;The display line</h3>
 <p>
 Provided <span class="c007">ocamlbuild</span> runs in a terminal under a POSIX environment, it will
 display a sophisticated progress-indicator line that graciously interacts
@@ -532,7 +532,7 @@ the tags <span class="c007">ocaml</span>, <span class="c007">native</span>, <spa
 the tag string and the tags.</td></tr>
 </tbody></table></div>
 <div class="center"><hr class="c032"></div></blockquote>
-<h3 class="subsection" id="sec407">13.23&nbsp;&nbsp;<span class="c007">ocamllex</span>, <span class="c007">ocamlyacc</span> and <span class="c007">menhir</span></h3>
+<h3 class="subsection" id="sec407">3.23&nbsp;&nbsp;<span class="c007">ocamllex</span>, <span class="c007">ocamlyacc</span> and <span class="c007">menhir</span></h3>
 <p>
 <span class="c007">ocamlbuild</span> knows how to run the standard lexer and parser generator tools
 <span class="c007">ocamllex</span> and <span class="c007">ocamlyacc</span> when your files have the
@@ -544,7 +544,7 @@ launch <span class="c007">ocamlbuild</span> with the <span class="c007">-use-men
 of using <span class="c007">menhir</span> and <span class="c007">ocamlyacc</span> in the same execution
 of <span class="c007">ocamlbuild</span>.
 </p>
-<h3 class="subsection" id="sec408">13.24&nbsp;&nbsp;Changing the compilers or tools</h3>
+<h3 class="subsection" id="sec408">3.24&nbsp;&nbsp;Changing the compilers or tools</h3>
 <p>
 As <span class="c007">ocamlbuild</span> is part of your OCaml distribution, it knows if it can call the
 native compilers and tools (<span class="c007">ocamlc.opt</span>, <span class="c007">ocamlopt.opt</span>...)
@@ -561,7 +561,7 @@ for different reasons (such as cross-compiling or using a wrapper such as
 </li><li class="li-itemize"><span class="c007">-ocamlmktop &lt;command&gt;</span>
 </li><li class="li-itemize"><span class="c007">-ocamlrun &lt;command&gt;</span>
 </li></ul>
-<h3 class="subsection" id="sec409">13.25&nbsp;&nbsp;Interaction with version control systems</h3>
+<h3 class="subsection" id="sec409">3.25&nbsp;&nbsp;Interaction with version control systems</h3>
 <p>
 Here are tips for configuring your version control system to ignore the files
 and directories generated by <span class="c007">ocamlbuild</span>.</p><p>The directory <span class="c007">_build</span> and any symbolic links
@@ -578,7 +578,7 @@ For CVS, add the above lines to the <span class="c007">.cvsignore</span> file.
 For Subversion (SVN), type <span class="c007">svn propedit svn:ignore .</span> and add the
 above lines.
 </p>
-<h3 class="subsection" id="sec410">13.26&nbsp;&nbsp;A shell script for driving it all?</h3>
+<h3 class="subsection" id="sec410">3.26&nbsp;&nbsp;A shell script for driving it all?</h3>
 <p>
 <em>To shell or to make ?</em>
 Traditionally, makefiles have two major functions. The first one
@@ -638,7 +638,7 @@ else
   done
 fi
 </pre>
-<h2 class="section" id="sec411">18.4&nbsp;&nbsp;Appendix: Motivations</h2>
+<h2 class="section" id="sec411">4&nbsp;&nbsp;Appendix: Motivations</h2>
 <p>
 <em>This inflammatory appendix describes the frustration that led us to write <span class="c007">ocamlbuild</span>.</em></p><p>Many people have painfully found that the utilities of the <span class="c007">make</span>
 family, namely GNU Make, BSD Make, and their derivatives, fail to scale to
@@ -701,7 +701,7 @@ enthusiast’s way of giving a different look and feel to his projects – it ma
 be a good way of telling the computer that <span class="c007">foo.mli</span> is generated by
 <span class="c007">ocamlyacc</span> using <span class="c007">foo.mly</span> and can thus be removed.
 </p>
-<h2 class="section" id="sec412">18.5&nbsp;&nbsp;Appendix: Summary of default rules</h2>
+<h2 class="section" id="sec412">5&nbsp;&nbsp;Appendix: Summary of default rules</h2>
 <p>
 The contents of this table give a summary of the most important default rules.
 To get the most accurate and up-to-date information, launch <span class="c007">ocamlbuild</span> with the

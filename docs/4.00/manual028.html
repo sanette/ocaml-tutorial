@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc161"><span>Chapter 14</span></a>&nbsp;&nbsp;The browser/editor (ocamlbrowser)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc161"><span>Chapter 14</span></a>&nbsp;&nbsp;The browser/editor (ocamlbrowser)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The browser/editor (ocamlbrowser)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc114">Invocation</a>
 </li><li><a href="#toc115">Viewer</a>
 </li><li><a href="#toc116">Module browsing</a>
@@ -25,7 +25,7 @@ programmer.</p><p>Its functions are:
 navigation through OCaml’s modules (using compiled interfaces).
 </li><li class="li-itemize">source editing, type-checking, and browsing.
 </li><li class="li-itemize">integrated OCaml shell, running as a subprocess.
-</li></ul><h2 class="section"><a name="toc114"></a><a name="htoc162">11</a>&nbsp;&nbsp;Invocation</h2><p> <a name="s:browser-options"></a></p><p>The browser is started by the command <tt>ocamlbrowser</tt>, as follows:
+</li></ul><h2 class="section"><a name="toc114"></a><a name="htoc162">1</a>&nbsp;&nbsp;Invocation</h2><p> <a name="s:browser-options"></a></p><p>The browser is started by the command <tt>ocamlbrowser</tt>, as follows:
 </p><pre>        ocamlbrowser <i>options</i>
 </pre><p>The following command-line options are recognized by <tt>ocamlbrowser</tt>.</p><dl class="description"><dt class="dt-description"><b><tt>-I</tt> <i>directory</i></b></dt><dd class="dd-description">
 Add the given directory to the list of directories searched for
@@ -42,7 +42,7 @@ are supported.</dd><dt class="dt-description"><tt><b>-version</b></tt></dt><dd c
 Print version string and exit.</dd><dt class="dt-description"><tt><b>-vnum</b></tt></dt><dd class="dd-description">
 Print short version number and exit.</dd><dt class="dt-description"><b><tt>-w</tt> <i>warning-list</i></b></dt><dd class="dd-description">
 Enable or disable warnings according to the argument <i>warning-list</i>.</dd></dl><p>Most options can also be modified inside the application by the <b>Modules - Path editor</b> and <b>Compiler - Preferences</b> commands.
-They are inherited when you start a toplevel shell.</p><h2 class="section"><a name="toc115"></a><a name="htoc163">12</a>&nbsp;&nbsp;Viewer</h2><p>
+They are inherited when you start a toplevel shell.</p><h2 class="section"><a name="toc115"></a><a name="htoc163">2</a>&nbsp;&nbsp;Viewer</h2><p>
 This is the first window you get when you start OCamlBrowser.
 It displays a search window, and the list of modules in the load path.
 At the top a row of menus.</p><ul class="itemize"><li class="li-itemize">
@@ -65,7 +65,7 @@ search for an identifier in all modules (wildcards “?” and “*”
 allowed). If you choose the <tt>type</tt> option, the search is done by type
 inclusion (<em>cf.</em> Search Symbol - Included type).</li><li class="li-itemize">The <b>Close all</b> button is there to dismiss the windows
 created by the Detach button.
-By double-clicking on it you will quit the browser.</li></ul><h2 class="section"><a name="toc116"></a><a name="htoc164">13</a>&nbsp;&nbsp;Module browsing</h2><p>You select a module in the leftmost box by either cliking on it or
+By double-clicking on it you will quit the browser.</li></ul><h2 class="section"><a name="toc116"></a><a name="htoc164">3</a>&nbsp;&nbsp;Module browsing</h2><p>You select a module in the leftmost box by either cliking on it or
 pressing return when it is selected. Fast access is available in all
 boxes pressing the first few letter of the desired name.
 Double-clicking / double-return displays the whole signature for the
@@ -82,7 +82,7 @@ selectable, also brings you to its signature.</p><p>At the bottom, a series of b
 to keep it.
 </li><li class="li-itemize"><b>Impl</b> and <b>Intf</b> bring you to the implementation or
 interface of the currently displayed signature, if it is available.
-</li></ul><p>Control-S lets you search a string in the signature.</p><h2 class="section"><a name="toc117"></a><a name="htoc165">14</a>&nbsp;&nbsp;File editor</h2><p>
+</li></ul><p>Control-S lets you search a string in the signature.</p><h2 class="section"><a name="toc117"></a><a name="htoc165">4</a>&nbsp;&nbsp;File editor</h2><p>
 You can edit files with it, if you’re not yet used to emacs. Otherwise
 you can use it as a browser, making occasional corrections.</p><p>The <b>Edit</b> menu contains commands for jump (C-g), search (C-s),
 and sending the current phrase (or selection if some text is selected)
@@ -96,7 +96,7 @@ the error is computed.<p>After typechecking, pressing the right button pops up a
 the type of the pointed expression and, where applicable, provides
 some links that can be followed.</p></li><li class="li-itemize"><b>Clear errors</b> dismisses type-checker error messages and warnings.</li><li class="li-itemize"><b>Signature</b> shows the signature of the current file
 (after type checking).
-</li></ul><h2 class="section"><a name="toc118"></a><a name="htoc166">15</a>&nbsp;&nbsp;Shell</h2><p>
+</li></ul><h2 class="section"><a name="toc118"></a><a name="htoc166">5</a>&nbsp;&nbsp;Shell</h2><p>
 When you create a shell, a dialog is presented to you, letting you
 choose which command you want to run, and the title of the shell (to
 choose it in the Editor).</p><p>The executed subshell is given the current load path.</p><ul class="itemize"><li class="li-itemize">

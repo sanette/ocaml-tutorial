@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc158"><span>Chapter 13</span></a>&nbsp;&nbsp;Dependency generator (ocamldep)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc158"><span>Chapter 13</span></a>&nbsp;&nbsp;Dependency generator (ocamldep)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">Dependency generator (ocamldep)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc112">Options</a>
 </li><li><a href="#toc113">A typical Makefile</a>
 </li></ul></nav></header>
@@ -28,7 +28,7 @@ directory and <tt>.depend</tt> is the file that should contain the
 dependencies. (See below for a typical <tt>Makefile</tt>.)</p><p>Dependencies are generated both for compiling with the bytecode
 compiler <tt>ocamlc</tt> and with the native-code compiler <tt>ocamlopt</tt>.</p><p>The <tt>ocamlbuild</tt> compilation manager (see chapter&nbsp;<a href="manual032.html#c:ocamlbuild">18</a>)
 provide a higher-level, more automated alternative to the combination
-of <tt>make</tt> and <tt>ocamldep</tt>. </p><h2 class="section"><a name="toc112"></a><a name="htoc159">11</a>&nbsp;&nbsp;Options</h2><p>The following command-line options are recognized by <tt>ocamldep</tt>.</p><dl class="description"><dt class="dt-description"><b><tt>-I</tt> <i>directory</i></b></dt><dd class="dd-description">
+of <tt>make</tt> and <tt>ocamldep</tt>. </p><h2 class="section"><a name="toc112"></a><a name="htoc159">1</a>&nbsp;&nbsp;Options</h2><p>The following command-line options are recognized by <tt>ocamldep</tt>.</p><dl class="description"><dt class="dt-description"><b><tt>-I</tt> <i>directory</i></b></dt><dd class="dd-description">
 Add the given directory to the list of directories searched for
 source files. If a source file <tt>foo.ml</tt> mentions an external
 compilation unit <tt>Bar</tt>, a dependency on that unit’s interface
@@ -63,7 +63,7 @@ nothing.</dd><dt class="dt-description"><tt><b>-version</b></tt></dt><dd class="
 Print version string and exit.</dd><dt class="dt-description"><tt><b>-vnum</b></tt></dt><dd class="dd-description">
 Print short version number and exit.</dd><dt class="dt-description"><b><tt>-help</tt> or <tt>--help</tt></b></dt><dd class="dd-description">
 Display a short usage summary and exit.
-</dd></dl><h2 class="section"><a name="toc113"></a><a name="htoc160">12</a>&nbsp;&nbsp;A typical Makefile</h2><p>Here is a template <tt>Makefile</tt> for a OCaml program.</p><pre>OCAMLC=ocamlc
+</dd></dl><h2 class="section"><a name="toc113"></a><a name="htoc160">2</a>&nbsp;&nbsp;A typical Makefile</h2><p>Here is a template <tt>Makefile</tt> for a OCaml program.</p><pre>OCAMLC=ocamlc
 OCAMLOPT=ocamlopt
 OCAMLDEP=ocamldep
 INCLUDES=                 # all relevant -I options here

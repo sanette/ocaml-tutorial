@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc167"><span>Chapter 15</span></a>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc167"><span>Chapter 15</span></a>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The documentation generator (ocamldoc)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc119">Usage</a>
 </li><li><a href="#toc120">Syntax of documentation comments</a>
 </li><li><a href="#toc121">Custom generators</a>
@@ -27,7 +27,7 @@ section <a href="#s:ocamldoc-custom-generators">15.3</a>.</p><p>In this chapter,
 following parts of an OCaml source file: a type declaration, a value,
 a module, an exception, a module type, a type constructor, a record
 field, a class, a class type, a class method, a class value or a class
-inheritance clause.</p><h2 class="section"><a name="toc119"></a><a name="htoc168">11</a>&nbsp;&nbsp;Usage</h2><p> <a name="s:ocamldoc-usage"></a></p><h3 class="subsection"><a name="htoc169">15.1.1</a>&nbsp;&nbsp;Invocation</h3><p>OCamldoc is invoked via the command <tt>ocamldoc</tt>, as follows:
+inheritance clause.</p><h2 class="section"><a name="toc119"></a><a name="htoc168">1</a>&nbsp;&nbsp;Usage</h2><p> <a name="s:ocamldoc-usage"></a></p><h3 class="subsection"><a name="htoc169">15.1.1</a>&nbsp;&nbsp;Invocation</h3><p>OCamldoc is invoked via the command <tt>ocamldoc</tt>, as follows:
 </p><pre>        ocamldoc <i>options sourcefiles</i>
 </pre><h4 class="subsubsection">Options for choosing the output format</h4><p>The following options determine the format for the generated
 documentation.</p><dl class="description"><dt class="dt-description">
@@ -247,7 +247,7 @@ module Foo =
 </pre>In this case, OCamldoc will associate <tt>Bar.x</tt> to the <tt>x</tt> of module
 <tt>Foo</tt> defined just above, instead of to the <tt>Bar.x</tt> defined in the
 opened module <tt>Foo</tt>.
-</li></ul><h2 class="section"><a name="toc120"></a><a name="htoc172">12</a>&nbsp;&nbsp;Syntax of documentation comments</h2><p>
+</li></ul><h2 class="section"><a name="toc120"></a><a name="htoc172">2</a>&nbsp;&nbsp;Syntax of documentation comments</h2><p>
 <a name="s:ocamldoc-comments"></a></p><p>Comments containing documentation material are called <em>special
 comments</em> and are written between <tt>(**</tt> and <tt>*)</tt>. Special comments
 must start exactly with <tt>(**</tt>. Comments beginning with <tt>(</tt> and more
@@ -638,7 +638,7 @@ comment, as in:
 *)
 </pre><p>
 To handle custom tags, you need to define a custom generator,
-as explained in section <a href="#s:ocamldoc-handling-custom-tags">15.3.2</a>.</p><h2 class="section"><a name="toc121"></a><a name="htoc178">13</a>&nbsp;&nbsp;Custom generators</h2><p>
+as explained in section <a href="#s:ocamldoc-handling-custom-tags">15.3.2</a>.</p><h2 class="section"><a name="toc121"></a><a name="htoc178">3</a>&nbsp;&nbsp;Custom generators</h2><p>
 <a name="s:ocamldoc-custom-generators"></a></p><p>OCamldoc operates in two steps:
 </p><ol class="enumerate" type="1"><li class="li-enumerate">
 analysis of the source files;
@@ -728,7 +728,7 @@ Another method of the class <tt>Odoc_html.info</tt> will look for the
 function associated to a custom tag and apply it to the text given to
 the tag. If no function is associated to a custom tag, then the method
 prints a warning message on <tt>stderr</tt>.</p><h4 class="subsubsection">For other generators</h4><p>
-You can act the same way for other kinds of generators.</p><h2 class="section"><a name="toc122"></a><a name="htoc181">14</a>&nbsp;&nbsp;Adding command line options</h2><p>
+You can act the same way for other kinds of generators.</p><h2 class="section"><a name="toc122"></a><a name="htoc181">4</a>&nbsp;&nbsp;Adding command line options</h2><p>
 The command line analysis is performed after loading the module containing the
 documentation generator, thus allowing command line options to be added to the
 list of existing ones. Adding an option can be done with the function

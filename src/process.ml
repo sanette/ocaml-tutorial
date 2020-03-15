@@ -7,6 +7,12 @@
 
  *)
 
+(*
+
+TODO Warning the files included in chapters (like Chapters 7 and 8) are not
+   processed at the moment.
+
+*)
 open Soup
 open Printf
 
@@ -100,12 +106,10 @@ let copyright () =
    version can be obtained from <a \
    href=\"http://caml.inria.fr/pub/docs/manual-ocaml/\">this page</a>.</div>"
   |> parse
-  
-let convert version chapters (title, file) =
-  print_endline
-    ((html_file version file) ^ " ==> " ^ (docs_file version file));
 
-  (* First we perform some direct find/replace in the html string. *)
+let load_html ~version file =
+  pr file;
+   (* First we perform some direct find/replace in the html string. *)
   (* Warning charset = ascii for 4.05 et utf8 for >=4.09.  But the original html
      is kind of buggy because 4.05 uses &#XA0; for non-breaking space in
      us-ascii encoding, although &#XA0; is latin encoding...  Finally we decide
@@ -118,8 +122,8 @@ let convert version chapters (title, file) =
       "<span>Chapter \\1</span>"
     (* |> Str.global_replace (Str.regexp_string "chapter") "tutorial"
      * |> Str.global_replace (Str.regexp_string "Chapter") "Tutorial" *)
-    |> Str.global_replace (Str.regexp ">[0-9]\\.\\([0-9]+\\) ") ">\\1 "
-    |> Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\.[0-9]+\\) ")
+    |> Str.global_replace (Str.regexp ">[0-9]+\\.\\([0-9]+\\) ") ">\\1 "
+    |> Str.global_replace (Str.regexp "[0-9]+\\.\\([0-9]+\\.[0-9]+\\) ")
       "\\1 "
     |> Str.global_replace (Str.regexp_string "\"libref/")
       (sprintf "\"../../api/%s/" version)
@@ -129,17 +133,46 @@ let convert version chapters (title, file) =
 
   (* Set utf8 encoding directly in the html string *)
   let charset_regexp = Str.regexp "charset=\\([-A-Za-z0-9]+\\)\\(\\b\\|;\\)" in
+  
+  match Str.search_forward charset_regexp html 0 with
+  | exception Not_found -> pr "Warning, no charset found in html."; html
+  | _ -> match (String.lowercase_ascii (Str.matched_group 1 html)) with
+    | "utf-8" -> pr "Charset is UTF-8; good."; html
+    | "us-ascii" -> pr "Charset is US-ASCII. We change it to UTF-8";
+      Str.global_replace charset_regexp "charset=UTF-8\\2" html
+    | _ -> pr "Warning, charset not recognized."; html
 
-  let html = match Str.search_forward charset_regexp html 0 with
-    | exception Not_found -> pr "Warning, no charset found in html."; html
-    | _ -> match (String.lowercase_ascii (Str.matched_group 1 html)) with
-      | "utf-8" -> pr "Charset is UTF-8; good."; html
-      | "us-ascii" -> pr "Charset is US-ASCII. We change it to UTF-8";
-        Str.global_replace charset_regexp "charset=UTF-8\\2" html
-      | _ -> pr "Warning, charset not recognized."; html in
+let remove_navigation soup =
+  (* Remove first three links "Previous, Up, Next" *)
+  do_option delete (soup $? "hr");
+  ["Previous"; "Up"; "Next"]
+  |> List.iter (fun s ->
+      soup $$ ("img[alt=\"" ^ s ^ "\"]")
+      |> iter (do_option delete << parent))
 
-  (* Now we use lambdasoup *)
-  let soup = parse html in
+(* include external html file at the end of the currently processed [body] *)
+let include_file ~version ?(id_tag="h2") body file =
+  sprintf "*** appending file %s" file |> pr;
+  let xternal = parse (load_html ~version file) in
+  remove_navigation xternal;
+  do_option delete (xternal $? "hr");
+  let xbody = xternal $ "body" in
+  let id = xbody $ id_tag |> attribute "id" in
+  set_name "external" xbody;
+  append_child body xbody;
+  body $ "external" |> unwrap;
+  id
+  
+  
+
+(* [convert] has to be run for each "entry" [file] of the manual, making a
+   "Chapter".  (the list of [chapters] corresponds to a "Part" of the manual) *)
+let convert version chapters (title, file) =
+  print_endline
+    ((html_file version file) ^ " ==> " ^ (docs_file version file));
+
+  (* We use lambdasoup *)
+  let soup = parse (load_html ~version file) in
 
   (* Change title *)
   let title_tag = soup $ "title" in
@@ -154,36 +187,96 @@ let convert version chapters (title, file) =
   wrap dummy (create_element "div" ~classes:["manual"; "content"]);
   let body = body $ "body" in
   unwrap body;
+  let body = soup $ "div.content" in
   (* let dummy = create_element "div" ~attributes:["id", "top"] in
    * prepend_child body dummy; *)
 
-  (* Remove first three links "Previous, Up, Next" *)
-  do_option delete (soup $? "hr");
-  ["Previous"; "Up"; "Next"]
-  |> List.iter (fun s ->
-      soup $$ ("img[alt=\"" ^ s ^ "\"]")
-      |> iter (do_option delete << parent));
+  remove_navigation soup;
 
-  (* Create TOC. Not applicable to Chapter 18 *)
-  begin match soup $? "ul" with
+  (* Remove "translated from LaTeX" *)
+  if file = "index.html"
+  then soup $$ "blockquote" |> last |> do_option delete;
+
+  (* Create left sidebar for TOC.  *)
+  let toc = match soup $? "ul" with
+    | None -> None (* can be None, eg chapters 15,19...*)
+    | Some t -> if classes t <> [] (* as in libthreads.html or parsing.html *)
+      then (sprintf "We don't promote <UL> to TOC for file %s" file |> pr; None)
+      else Some t in 
+  let nav = create_element "nav" ~class_:"toc" in
+  let () = match toc with
+    | None -> prepend_child body nav
+    | Some toc -> wrap toc nav in
+  let nav = soup $ "nav" in
+  wrap nav (create_element "header");
+  begin match toc with
     | None -> sprintf "No TOC for %s" file |> pr
-    | Some toc -> (
-        let nav = create_element "nav" ~class_:"toc" in
-        wrap toc nav;
-        let nav = soup $ "nav" in
-        wrap nav (create_element "header");
+    | Some toc -> begin
         (* TOC - Create a "Top" entry in the menu *)
         let a = create_element "a" ~inner_text:"Top"
             ~attributes:["href", "#"] in
         let li = create_element "li" ~class_:"top" in
         append_child li a;
         prepend_child toc li;
-        let toc_title = create_element "div" ~class_:"toc_title" in
-        let a = create_element "a" ~inner_text:("Version " ^ version)
-            ~attributes:["href", "../index.html"; "id", "version-select"] in
-        append_child toc_title a;
-        prepend_child toc toc_title)
+
+        (* index of keywords *)
+        if file = "index.html"
+        then let keywords =
+               body $$ "ul"
+               |> fold (fun key ul ->
+                   match key with
+                   | None -> begin
+                       match ul $$ "li" |> last with
+                       | None -> None
+                       | Some l -> begin match l $ "a" |> leaf_text with
+                           | Some text -> sprintf "[%s]" text |> pr;
+                             if text = "Index of keywords"
+                             then l $ "a" |> attribute "href" else None
+                           | None -> None
+                         end
+                     end
+                   | _ -> key) None in
+          begin match keywords with
+            | None -> pr "Could not find Index of keywords"
+            | Some keywords ->
+              let a = create_element "a" ~inner_text:"Index of keywords"
+                  ~attributes:["href", keywords] in
+              let li = create_element "li" ~class_:"top" in
+              (append_child li a;
+               append_child toc li)
+          end else ();
+
+        (* Include external files *)
+        (* TODO ça a du bon d'inclure les fichiers, c'est pratique, mais
+           malheureusement on perd les liens d'autres fichiers qui pointeraient
+           vers eux. On va donc essayer de ne plus utiliser ça...*)
+        toc $$ "li"
+        |> iter (fun li ->
+            let ref = li $ "a" |> R.attribute "href" in
+            sprintf "TOC reference = %s " ref |> pr;
+            if not (String.contains ref '#') &&
+               not (String.length ref > 2 && String.sub ref 0 2 = "..")
+            then let id_tag = if file = "index.html" then "h1" else "h2" in
+              match include_file ~version ~id_tag body ref with
+              | None -> pr "Cannot find ID for included file"
+              | Some id -> li $ "a" |> set_attribute "href" ("#" ^ id))
+
+      end
   end;
+
+  (* Add title *)
+  let toc_title = create_element "div" ~class_:"toc_title" in
+  let a = create_element "a" ~inner_text:title
+      ~attributes:["href", "#"] in
+  append_child toc_title a;
+  prepend_child nav toc_title;
+
+  (* Add version number *)
+  let vnum = create_element "div" ~class_:"toc_version" in
+  let a = create_element "a" ~inner_text:("Version " ^ version)
+      ~attributes:["href", "../index.html"; "id", "version-select"] in
+  append_child vnum a;
+  prepend_child nav vnum;
 
   (* Create new menu *)
   let menu = create_element "ul" ~class_:"part_menu" in
@@ -194,7 +287,7 @@ let convert version chapters (title, file) =
         else create_element "li" in
       append_child li a;
       append_child menu li) chapters;
-  let body = soup $ "div.content" in
+  (* let body = soup $ "div.content" in *)
   prepend_child body menu;
 
   (* Add logo *)
@@ -248,7 +341,7 @@ let convert version chapters (title, file) =
     soup $$ "h2.section"
     |> iter (fun e ->
         to_string e |>
-        Str.global_replace (Str.regexp "[0-9]\\.\\([0-9]+\\)") "\\1"
+        Str.global_replace (Str.regexp "[0-9]+\\.\\([0-9]+\\)") "\\1"
         |> parse
         |> replace e)
   end;
@@ -270,8 +363,7 @@ let convert version chapters (title, file) =
   |> (^) md_head 
   |> write_file (ocamlorg_file version md)
 
-(* Create "index.html" (for standalone version) 
-      and "index.md"   (for ocaml.org) *)
+(* Create "index.html" (for standalone version only) *)
 let make_index versions =
   let html = read_file @@ Filename.concat "src" "index.html" in
   let soup = parse html in
@@ -285,10 +377,11 @@ let make_index versions =
       let a = create_element ~attributes:["href", file] ~inner_text:v "a" in
       append_child li a;
       append_child ul li) versions;
-  write_file (Filename.concat docs_maindir "index.html") (to_string soup);
-  soup $ "div.manual" |> to_string |> (^) md_head 
-  |> write_file (Filename.concat ocamlorg_maindir "index.md")
-  
+  write_file (Filename.concat docs_maindir "index.html") (to_string soup)
+(* ; soup $ "div.manual" |> to_string |> (^) md_head 
+    |> write_file (Filename.concat ocamlorg_maindir "index.md") *)
+    
+
 let sys_cp file dst =
   if Sys.command (sprintf "cp %s %s" file dst) <> 0
   then failwith ("Could not copy " ^ file)
@@ -348,11 +441,17 @@ let process version =
       pr file;
       sys_cp (Filename.concat "src/" file) (docs_file version out)
     ) to_copy;
+  sys_cp "src/colour-logo-gray.svg"
+    (Filename.concat (ocamlorg_dir version) "colour-logo-gray.svg");
 
-  pr "* Scanning index";
+  (* special case of the "index.html" file *)
+  convert version [] ("The OCaml Manual", "index.html");
+
+  
   let parts = ["tutorials"; "refman"; "commands"; "library" ] in
   (* TODO "appendix" needs a special treatment *)
   let main_files = List.fold_left (fun list part ->
+      pr "* Scanning index";
       let chapters = index version part in
 
       pr "* Processing chapters";
@@ -378,8 +477,9 @@ let process version =
 (*********************************************************************)
         
 let () = 
-  let all_versions = Array.init 11 (fun i -> sprintf "4.%02u" i)
+  let _all_versions = Array.init 11 (fun i -> sprintf "4.%02u" i)
                      |> Array.to_list in
+  let all_versions = ["4.10"] in
   download_versions all_versions;
   List.iter (fun file ->
       sys_cp (Filename.concat "src" file) (Filename.concat docs_maindir file))

@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc183"><span>Chapter 16</span></a>&nbsp;&nbsp;The debugger (ocamldebug)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc183"><span>Chapter 16</span></a>&nbsp;&nbsp;The debugger (ocamldebug)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The debugger (ocamldebug)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc123">Compiling for debugging</a>
 </li><li><a href="#toc124">Invocation</a>
 </li><li><a href="#toc125">Commands</a>
@@ -28,13 +28,13 @@
 BSD sockets.
 </blockquote><blockquote class="quote"><font color="purple">Windows:</font>&nbsp;&nbsp; The debugger is available under the Cygwin port of
 OCaml, but not under the native Win32 ports.
-</blockquote><h2 class="section"><a name="toc123"></a><a name="htoc184">11</a>&nbsp;&nbsp;Compiling for debugging</h2><p>Before the debugger can be used, the program must be compiled and
+</blockquote><h2 class="section"><a name="toc123"></a><a name="htoc184">1</a>&nbsp;&nbsp;Compiling for debugging</h2><p>Before the debugger can be used, the program must be compiled and
 linked with the <tt>-g</tt> option: all <tt>.cmo</tt> and <tt>.cma</tt> files that are part
 of the program should have been created with <tt>ocamlc -g</tt>, and they
 must be linked together with <tt>ocamlc -g</tt>.</p><p>Compiling with <tt>-g</tt> entails no penalty on the running time of
 programs: object files and bytecode executable files are bigger and
 take longer to produce, but the executable files run at
-exactly the same speed as if they had been compiled without <tt>-g</tt>.</p><h2 class="section"><a name="toc124"></a><a name="htoc185">12</a>&nbsp;&nbsp;Invocation</h2><h3 class="subsection"><a name="htoc186">16.2.1</a>&nbsp;&nbsp;Starting the debugger</h3><p>The OCaml debugger is invoked by running the program
+exactly the same speed as if they had been compiled without <tt>-g</tt>.</p><h2 class="section"><a name="toc124"></a><a name="htoc185">2</a>&nbsp;&nbsp;Invocation</h2><h3 class="subsection"><a name="htoc186">16.2.1</a>&nbsp;&nbsp;Starting the debugger</h3><p>The OCaml debugger is invoked by running the program
 <tt>ocamldebug</tt> with the name of the bytecode executable file as first
 argument:
 </p><pre>        ocamldebug [<i>options</i>] <i>program</i> [<i>arguments</i>]
@@ -61,7 +61,7 @@ Display a short usage summary and exit.
 </dd></dl><h3 class="subsection"><a name="htoc187">16.2.2</a>&nbsp;&nbsp;Exiting the debugger</h3><p>The command <tt>quit</tt> exits the debugger. You can also exit the debugger
 by typing an end-of-file character (usually <tt>ctrl-D</tt>).</p><p>Typing an interrupt character (usually <tt>ctrl-C</tt>) will not exit the
 debugger, but will terminate the action of any debugger command that is in
-progress and return to the debugger command level. </p><h2 class="section"><a name="toc125"></a><a name="htoc188">13</a>&nbsp;&nbsp;Commands</h2><p> <a name="s:debugger-commands"></a></p><p>A debugger command is a single line of input. It starts with a command
+progress and return to the debugger command level. </p><h2 class="section"><a name="toc125"></a><a name="htoc188">3</a>&nbsp;&nbsp;Commands</h2><p> <a name="s:debugger-commands"></a></p><p>A debugger command is a single line of input. It starts with a command
 name, which is followed by arguments depending on this name. Examples:
 </p><pre>        run
         goto 1000
@@ -87,7 +87,7 @@ Set the debugger variable <i>variable</i> to the value <i>value</i>.</dd><dt cla
 Print the value of the debugger variable <i>variable</i>.</dd><dt class="dt-description"><b><tt>info </tt><i>subject</i></b></dt><dd class="dd-description">
 Give information about the given subject.
 For instance, <tt>info breakpoints</tt> will print the list of all breakpoints.
-</dd></dl><h2 class="section"><a name="toc126"></a><a name="htoc191">14</a>&nbsp;&nbsp;Executing a program</h2><h3 class="subsection"><a name="htoc192">16.4.1</a>&nbsp;&nbsp;Events</h3><p>Events are “interesting” locations in the source code, corresponding
+</dd></dl><h2 class="section"><a name="toc126"></a><a name="htoc191">4</a>&nbsp;&nbsp;Executing a program</h2><h3 class="subsection"><a name="htoc192">16.4.1</a>&nbsp;&nbsp;Events</h3><p>Events are “interesting” locations in the source code, corresponding
 to the beginning or end of evaluation of “interesting”
 sub-expressions. Events are the unit of single-stepping (stepping goes
 to the next or previous event encountered in the program execution).
@@ -178,7 +178,7 @@ Set the size of the execution history.
 </dd></dl><h3 class="subsection"><a name="htoc196">16.4.5</a>&nbsp;&nbsp;Killing the program</h3><dl class="description"><dt class="dt-description">
 <tt><b>kill</b></tt></dt><dd class="dd-description"> Kill the program being executed. This command is mainly
 useful if you wish to recompile the program without leaving the debugger.
-</dd></dl><h2 class="section"><a name="toc127"></a><a name="htoc197">15</a>&nbsp;&nbsp;Breakpoints</h2><p> <a name="s:breakpoints"></a></p><p>A breakpoint causes the program to stop whenever a certain point in
+</dd></dl><h2 class="section"><a name="toc127"></a><a name="htoc197">5</a>&nbsp;&nbsp;Breakpoints</h2><p> <a name="s:breakpoints"></a></p><p>A breakpoint causes the program to stop whenever a certain point in
 the program is reached. It can be set in several ways using the
 <tt>break</tt> command. Breakpoints are assigned numbers when set, for
 further reference. The most comfortable way to set breakpoints is
@@ -203,7 +203,7 @@ character number <i>character</i>.</dd><dt class="dt-description"><b><tt>break <
 Set a breakpoint at the code address <i>address</i>.</dd><dt class="dt-description"><b><tt>delete </tt>[<i>breakpoint-numbers</i>]</b></dt><dd class="dd-description">
 Delete the specified breakpoints. Without argument, all breakpoints
 are deleted (after asking for confirmation).</dd><dt class="dt-description"><tt><b>info breakpoints</b></tt></dt><dd class="dd-description"> Print the list of all breakpoints.
-</dd></dl><h2 class="section"><a name="toc128"></a><a name="htoc198">16</a>&nbsp;&nbsp;The call stack</h2><p>Each time the program performs a function application, it saves the
+</dd></dl><h2 class="section"><a name="toc128"></a><a name="htoc198">6</a>&nbsp;&nbsp;The call stack</h2><p>Each time the program performs a function application, it saves the
 location of the application (the return address) in a block of data
 called a stack frame. The frame also contains the local variables of
 the caller function. All the frames are allocated in a region of
@@ -230,7 +230,7 @@ many frames to go up.</dd><dt class="dt-description"><b><tt>down </tt>[<i>count<
 Select and display the stack frame just “below” the selected frame,
 that is, the frame that was called by the selected frame. An argument
 says how many frames to go down.
-</dd></dl><h2 class="section"><a name="toc129"></a><a name="htoc199">17</a>&nbsp;&nbsp;Examining variable values</h2><p>The debugger can print the current value of simple expressions. The
+</dd></dl><h2 class="section"><a name="toc129"></a><a name="htoc199">7</a>&nbsp;&nbsp;Examining variable values</h2><p>The debugger can print the current value of simple expressions. The
 expressions can involve program variables: all the identifiers that
 are in scope at the selected program point can be accessed.</p><p>Expressions that can be printed are a subset of OCaml
 expressions, as described by the following grammar:
@@ -282,7 +282,7 @@ are forgotten as soon as the program resumes execution.</p><dl class="descriptio
 Limit the printing of values to a maximal depth of <i>d</i>. 
 </dd><dt class="dt-description"><b><tt>set print_length</tt> <i>l</i></b></dt><dd class="dd-description">
 Limit the printing of values to at most <i>l</i> nodes printed.
-</dd></dl><h2 class="section"><a name="toc130"></a><a name="htoc200">18</a>&nbsp;&nbsp;Controlling the debugger</h2><h3 class="subsection"><a name="htoc201">16.8.1</a>&nbsp;&nbsp;Setting the program name and arguments</h3><dl class="description"><dt class="dt-description">
+</dd></dl><h2 class="section"><a name="toc130"></a><a name="htoc200">8</a>&nbsp;&nbsp;Controlling the debugger</h2><h3 class="subsection"><a name="htoc201">16.8.1</a>&nbsp;&nbsp;Setting the program name and arguments</h3><dl class="description"><dt class="dt-description">
 <b><tt>set program</tt> <i>file</i></b></dt><dd class="dd-description">
 Set the program name to <i>file</i>.
 </dd><dt class="dt-description"><b><tt>set arguments</tt> <i>arguments</i></b></dt><dd class="dd-description">
@@ -391,7 +391,7 @@ correctly located in the values printed by the toplevel loop.<p>The value path <
 defined by the object files loaded using <tt>load_printer</tt>. It cannot
 reference the functions of the program being debugged.</p></dd><dt class="dt-description"><b><tt>remove_printer </tt><i>printer-name</i></b></dt><dd class="dd-description">
 Remove the named function from the table of value printers.
-</dd></dl><h2 class="section"><a name="toc131"></a><a name="htoc209">19</a>&nbsp;&nbsp;Miscellaneous commands</h2><dl class="description"><dt class="dt-description">
+</dd></dl><h2 class="section"><a name="toc131"></a><a name="htoc209">9</a>&nbsp;&nbsp;Miscellaneous commands</h2><dl class="description"><dt class="dt-description">
 <b><tt>list</tt> [<i>module</i>] [<i>beginning</i>] [<i>end</i>]</b></dt><dd class="dd-description">
 List the source of module <i>module</i>, from line number
 <i>beginning</i> to line number <i>end</i>. By default, 20 lines of the
@@ -399,7 +399,7 @@ current module are displayed, starting 10 lines before the current
 position.
 </dd><dt class="dt-description"><b><tt>source</tt> <i>filename</i></b></dt><dd class="dd-description">
 Read debugger commands from the script <i>filename</i>.
-</dd></dl><h2 class="section"><a name="toc132"></a><a name="htoc210">110</a>&nbsp;&nbsp;Running the debugger under Emacs</h2><p> <a name="s:inf-debugger"></a></p><p>The most user-friendly way to use the debugger is to run it under Emacs.
+</dd></dl><h2 class="section"><a name="toc132"></a><a name="htoc210">10</a>&nbsp;&nbsp;Running the debugger under Emacs</h2><p> <a name="s:inf-debugger"></a></p><p>The most user-friendly way to use the debugger is to run it under Emacs.
 See the file <tt>emacs/README</tt> in the distribution for information on how
 to load the Emacs Lisp files for OCaml support.</p><p>The OCaml debugger is started under Emacs by the command <tt>M-x camldebug</tt>, with argument the name of the executable file
 <i>progname</i> to debug. Communication with the debugger takes place

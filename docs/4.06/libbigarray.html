@@ -10,9 +10,9 @@
 
 
 <h1 class="chapter" id="sec560"><span>Chapter 34</span>&nbsp;&nbsp;The bigarray library</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.06</a></div><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec561">34.1&nbsp;&nbsp;Module <span class="c003">Bigarray</span>: large, multi-dimensional, numerical arrays</a>
-</li><li><a href="#sec562">34.2&nbsp;&nbsp;Big arrays in the OCaml-C interface</a>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.06</a></div><div class="toc_title"><a href="#">The bigarray library</a></div><ul><li class="top"><a href="#">Top</a></li>
+<li><a href="#sec561">1&nbsp;&nbsp;Module <span class="c003">Bigarray</span>: large, multi-dimensional, numerical arrays</a>
+</li><li><a href="#sec562">2&nbsp;&nbsp;Big arrays in the OCaml-C interface</a>
 </li></ul></nav></header>
 <p>The <span class="c003">bigarray</span> library implements large, multi-dimensional, numerical
 arrays. These arrays are called “big arrays” to distinguish them
@@ -54,19 +54,19 @@ For interactive use of the <span class="c003">bigarray</span> library, do:
 </pre><p>
 or (if dynamic linking of C libraries is supported on your platform),
 start <span class="c003">ocaml</span> and type <span class="c003">#load "bigarray.cma";;</span>.</p>
-<h2 class="section" id="sec561">34.1&nbsp;&nbsp;Module <span class="c003">Bigarray</span>: large, multi-dimensional, numerical arrays</h2>
+<h2 class="section" id="sec561">1&nbsp;&nbsp;Module <span class="c003">Bigarray</span>: large, multi-dimensional, numerical arrays</h2>
 <ul class="ftoc2"><li class="li-links">
 <a href="../../api/4.06/Bigarray.html">Module <span class="c003">Bigarray</span></a>
 </li></ul>
-<h2 class="section" id="sec562">34.2&nbsp;&nbsp;Big arrays in the OCaml-C interface</h2>
+<h2 class="section" id="sec562">2&nbsp;&nbsp;Big arrays in the OCaml-C interface</h2>
 <p>C stub code that interface C or Fortran code with OCaml code, as
 described in chapter&nbsp;<a href="intfc.html#c%3Aintf-c">20</a>, can exploit big arrays as
 follows.</p>
-<h3 class="subsection" id="sec563">32.1&nbsp;&nbsp;Include file</h3>
+<h3 class="subsection" id="sec563">2.1&nbsp;&nbsp;Include file</h3>
 <p>The include file <span class="c003">&lt;caml/bigarray.h&gt;</span> must be included in the C stub
 file. It declares the functions, constants and macros discussed
 below.</p>
-<h3 class="subsection" id="sec564">32.2&nbsp;&nbsp;Accessing an OCaml bigarray from C or Fortran</h3>
+<h3 class="subsection" id="sec564">2.2&nbsp;&nbsp;Accessing an OCaml bigarray from C or Fortran</h3>
 <p>If <span class="c009">v</span> is a OCaml <span class="c003">value</span> representing a big array, the expression
 <span class="c003">Caml_ba_data_val(</span><span class="c009">v</span><span class="c003">)</span> returns a pointer to the data part of the array.
 This pointer is of type <span class="c003">void *</span> and can be cast to the appropriate C
@@ -108,7 +108,7 @@ to a C function and a Fortran function.
       return Val_unit;
     }
 </pre>
-<h3 class="subsection" id="sec565">32.3&nbsp;&nbsp;Wrapping a C or Fortran array as an OCaml big array</h3>
+<h3 class="subsection" id="sec565">2.3&nbsp;&nbsp;Wrapping a C or Fortran array as an OCaml big array</h3>
 <p>A pointer <span class="c009">p</span> to an already-allocated C or Fortran array can be
 wrapped and returned to OCaml as a big array using the <span class="c003">caml_ba_alloc</span>
 or <span class="c003">caml_ba_alloc_dims</span> functions.

@@ -77,6 +77,10 @@ ul.translations {
     margin-bottom: 50px;
     font-family: "Noticia Text", Georgia, serif;
     line-height: 1.5;
+    .maintitle {
+	font-family: "Fira Sans", Helvetica, Arial, sans-serif;	
+    }
+
 
     >header {
 	margin-bottom: 30px;
@@ -169,12 +173,27 @@ ul.translations {
 /* Linked highlight */
 .manual {
     *:target {
-	background-color: rgba(255, 215, 181, 0.3) !important;
-	box-shadow: 0 0px 0 1px rgba(255, 215, 181, 0.8) !important;
 	border-radius: 1px;
+	box-shadow: 0 4px 0 0px rgb(255, 215, 181);
 	z-index: 0;
+	/* Because of fixed banner in the ocaml.org site, we have to offset the targets. See https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */
+	padding-top: 85px;
+	margin-top: -85px;
+	
+	/* When the navigation bar has reduced size */
+	@media (max-height: 600px) and (min-width: 980px) {
+	padding-top: 55px;
+	margin-top: -55px;    
+	}
     }
 
+    p a:target {
+	display: block;
+	/* this is used when a link target the start of a chapter using a "c-???" id, which is unfortunately below the title. If we use the default display:inline, the padding trick below does not work. */
+	padding-top: 150px;
+	margin-top: -150px;
+    }
+    
     *:hover>a.anchor {
 	visibility: visible;
     }
@@ -315,6 +334,9 @@ ul.translations {
     pre code.ocaml, .pre code.ocaml {
 	font-size: 0.893rem;
     }
+    .ocaml .pre {
+	white-space: pre;
+    } 
 }
 
 /* Code lexemes */
@@ -521,115 +543,7 @@ ul.translations {
 /* Odig package index */
 
 .manual {
-    .by-name ol, .by-tag ol, .errors ol {
-	list-style-type: none;
-	margin-left: 0;
-    }
-
-    .by-name ol ol, .by-tag ol ol {
-	margin-top: 0;
-	margin-bottom: 0
-    }
-
-    .by-name li, .by-tag li, .errors li {
-	margin-left: 0;
-    }
-
-    .by-name .version {
-	font-size: 10px;
-	color: #AAA
-    }
-
-    .by-name nav {
-	margin-bottom: 10px
-    }
-
-    .by-name nav a {
-	text-transform: uppercase;
-	font-size: 18px;
-	margin-right: 1ex;
-	color: #222;
-	display: inline-block;
-    }
-
-    .by-tag nav a {
-	margin-right: 1ex;
-	color: #222;
-	display: inline-block;
-    }
-
-    .by-tag>ol>li {
-	margin-top: 10px;
-    }
-
-    .by-tag>ol>li>span, .by-tag>ol>li>ol, .by-tag>ol>li>ol>li {
-	display: inline-block;
-	margin-right: 1ex;
-    }
-
-    /* Odig package page */
-
-    .package nav {
-	display: inline;
-	font-size: 14px;
-	font-weight: normal;
-    }
-
-    .package .version {
-	font-size: 14px;
-    }
-
-    h1+.modules, h1+.sel {
-	margin-top: 10px
-    }
-
-    .sel {
-	font-weight: normal;
-	font-style: italic;
-	font-size: 14px;
-	margin-top: 20px;
-    }
-
-    .sel+.modules {
-	margin-top: 10px;
-	margin-bottom: 20px;
-	margin-left: 1ex;
-    }
-
-    .modules {
-	margin: 0;
-    }
-
-    .modules .module {
-	min-width: 8ex;
-	padding-right: 2ex
-    }
-
-    .package.info {
-	margin: 0;
-    }
-
-    .package.info td:first-child {
-	font-style: italic;
-	padding-right: 2ex;
-    }
-
-    .package.info ul {
-	list-style-type: none;
-	display: inline;
-	margin: 0;
-    }
-
-    .package.info li {
-	display: inline-block;
-	margin: 0;
-	margin-right: 1ex;
-    }
-
-    #info-authors li, #info-maintainers li {
-	display: block;
-    }
-
+    
     /* lists in the main text */
     ul.itemize {
 	list-style: none;
@@ -646,6 +560,15 @@ ul.translations {
 /* Sidebar and TOC */
 
 .manual {
+
+    .toc_version {
+	font-size: smaller;
+	text-align: right;
+	a {
+	    color: #888;
+	}
+    }
+    
     .toc_title {
 	display: block;
 	margin: 0.5em 0 1.414em;  
@@ -657,7 +580,10 @@ ul.translations {
 	}
     }
 
-    .toc {
+    nav.toc {
+	/* warning, the manual001.html file from */
+	/* the Manual also has class="toc", so we need "nav" */
+	/* here to make this specific.  */
 	position: fixed;
 	top: 0px;
 	bottom: 0px;
@@ -714,6 +640,11 @@ ul.translations {
     }
 }
 
+
+#footer {
+    margin-left: 26ex;
+}
+
 /* Mobile adjustements. */
 // this should match with ocamlorg.css
 @media only screen and (max-width: 979px) {
@@ -724,11 +655,24 @@ ul.translations {
     .manual.content {
 	    margin: auto;
 	    padding: 2.0em;
-	}
+    }
+    .manual>header {
+	box-shadow:   0px 3px 9px 3px #ddd;
+    }
+    #footer {
+    margin-left: auto;
+}
+
 }
 .manual {
     @media only screen and (max-width: 979px) {
-	.toc {
+	*:target {
+	    padding-top: 0px;
+	    margin-top: 0px;
+	}
+
+	
+	nav.toc {
 	    position: static;
 	    width: auto;
 	    min-width: unset;
@@ -737,6 +681,10 @@ ul.translations {
 	    padding: 0.2em 1em;
 	    border-radius: 5px;
 	}
+
+	.ocaml .pre {
+	    white-space: pre-wrap;
+	} 
     }
 }
 /* Print adjustements. */
@@ -755,7 +703,7 @@ ul.translations {
 	    margin-right: 1em;
 	    float: left;
 	}
-	.toc {
+	nav.toc {
 	    position: initial;
 	    background: #eee;
 	}
@@ -766,17 +714,7 @@ ul.translations {
     }
 }
 
-/* Syntax highlighting (based on github-gist) */
-
 .manual {
-    .hljs {
-	display: block;
-	background: white;
-	padding: 0.5em;
-	color: #333333;
-	overflow-x: auto;
-    }
-
     .ocaml {
 	background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%);
     }
@@ -786,92 +724,14 @@ ul.translations {
 	line-height: 8pt;
 	font-family: "Fira Mono";
     }
-
-    .hljs-comment,
-    .hljs-meta {
-	color: #969896;
-    }
-
-    .hljs-string,
-    .hljs-variable,
-    .hljs-template-variable,
-    .hljs-strong,
-    .hljs-emphasis,
-    .hljs-quote {
-	color: #df5000;
-    }
-
-    .hljs-keyword,
-    .hljs-selector-tag {
-	color: #a71d5d;
-    }
-
-    .hljs-type,
-    .hljs-class .hljs-title {
-	color: #458;
-	font-weight: 500;
-    }
-
-    .hljs-literal,
-    .hljs-symbol,
-    .hljs-bullet,
-    .hljs-attribute {
-	color: #0086b3;
-    }
-
-    .hljs-section,
-    .hljs-name {
-	color: #63a35c;
-    }
-
-    .hljs-tag {
-	color: #333333;
-    }
-
-    .hljs-attr,
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-attr,
-    .hljs-selector-pseudo {
-	color: #795da3;
-    }
-
-    .hljs-addition {
-	color: #55a532;
-	background-color: #eaffea;
-    }
-
-    .hljs-deletion {
-	color: #bd2c00;
-	background-color: #ffecec;
-    }
-
-    .hljs-link {
-	text-decoration: underline;
-    }
 }
-
-// ---------------------------------------------------------------------------
-//    Copyright (c) 2016 The odoc contributors
-
-//    Permission to use, copy, modify, and/or distribute this software for any
-//    purpose with or without fee is hereby granted, provided that the above
-//    copyright notice and this permission notice appear in all copies.
-
-//    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-//    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-//    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-//    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-//    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-//    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-//    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-//   ---------------------------------------------------------------------------
 
 .manual {
     header nav {
 	display: none;
     } header nav.toc {
 	display: block;
+	padding-top: 10px;
     } header dl dd, header dl dt {
 	display: inline-block;
     } 
@@ -890,6 +750,12 @@ ul.translations {
 	color: #045804;
     }
 
+    .dt-description span.c006 {
+	font-family: "Fira Mono", courier;
+	font-weight: bold;
+	color: black;
+    }
+    
     code.caml-output.error,
     div.caml-output.error {
 	color: orangered;
@@ -909,17 +775,28 @@ ul.translations {
 	color: black;
     }
 
+    ul.part_menu li.active a::before {
+	content:"▶";
+	font-size: 10px;
+	margin-right: 1ex;
+    }
+
     .brand img {
 	margin-top: 16px;
 	height: 36px;
     }
 
     .toc.brand {
-	display: none; // for ocaml.org
+	display: none; 
+	// for ocaml.org
+	
     }
     
-    nav.toc { 	    // for ocaml.org
+    nav.toc { 	    
+	// for ocaml.org
+	
 	top: 75px;
+	/* When the navigation bar has reduced size */
 	@media (max-height: 600px) and (min-width: 980px) {
 	    top: 45px; 
 	}
@@ -951,6 +828,10 @@ ul.translations {
 	font-style: italic;
     }
 
+    span.c013 {
+	font-weight: bold;
+    }
+
     .caml-input span.kw {
 	font-weight: 500;
 	color: #444;
@@ -966,6 +847,11 @@ ul.translations {
 	color: #a28867;
     }
 
+    .caml-input span.ocamlhighlight {
+	font-weight: 500;
+	text-decoration: underline;
+    }
+    
     .caml-input span.numeric {
 	color: #0086b3;
     }
@@ -974,7 +860,11 @@ ul.translations {
 	color: #523b74;
     }
 
-    .caml-input span.string {
+    .ocaml span.ocamlerror {
+	font-weight: 500;
+    }
+    
+    .caml-input span.string, .caml-input span.ocamlstring  {
 	color: #df5000;
     }
 
@@ -991,6 +881,3 @@ ul.translations {
     }
 }
 
-#footer {
-    margin-left: 26ex;
-}

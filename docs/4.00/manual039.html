@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="manual.css">
 <title>Ocaml - The threads library</title>
 </head>
-<body><div class="manual content"><ul class="part_menu"><li><a href="manual034.html">The core library</a></li><li><a href="manual035.html">The standard library</a></li><li><a href="manual036.html">The unix library: Unix system calls</a></li><li><a href="manual037.html">The num library: arbitrary-precision rational arithmetic</a></li><li><a href="manual038.html">The str library: regular expressions and string processing</a></li><li class="active"><a href="manual039.html">The threads library</a></li><li><a href="manual040.html">The graphics library</a></li><li><a href="manual041.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="manual042.html">The LablTk library: Tcl/Tk GUI interface</a></li><li><a href="manual043.html">The bigarray library</a></li></ul>
+<body><div class="manual content"><ul class="part_menu"><li><a href="manual034.html">The core library</a></li><li><a href="manual035.html">The standard library</a></li><li><a href="manual036.html">The unix library: Unix system calls</a></li><li><a href="manual037.html">The num library: arbitrary-precision rational arithmetic</a></li><li><a href="manual038.html">The str library: regular expressions and string processing</a></li><li class="active"><a href="manual039.html">The threads library</a></li><li><a href="manual040.html">The graphics library</a></li><li><a href="manual041.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="manual042.html">The LablTk library: Tcl/Tk GUI interface</a></li><li><a href="manual043.html">The bigarray library</a></li></ul><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The threads library</a></div></nav></header>
 
 
 
@@ -22,7 +22,7 @@ Using this library will therefore never make programs run
 faster. However, many programs are easier to write when structured as
 several communicating processes.</p><p>Two implementations of the <tt>threads</tt> library are available, depending
 on the capabilities of the operating system:
-</p><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul class="itemize"><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li><li class="li-itemize">
+</p><ul class="itemize"><li class="li-itemize">
 System threads. This implementation builds on the OS-provided threads
 facilities: POSIX 1003.1c threads for Unix, and Win32 threads for
 Windows. When available, system threads support both bytecode and
@@ -31,7 +31,7 @@ native-code programs.
 context switching at the level of the OCaml virtual machine (bytecode
 interpreter). It is available on Unix systems, and supports only
 bytecode programs. It cannot be used with native-code programs.
-</li></ul></nav></header><p>
+</li></ul><p>
 Programs that use system threads must be linked as follows:
 </p><pre>        ocamlc -thread <i>other options</i> unix.cma threads.cma <i>other files</i>
         ocamlopt -thread <i>other options</i> unix.cmxa threads.cmxa <i>other files</i>

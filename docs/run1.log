@@ -1,0 +1,157 @@
+index.html : impossible de résoudre le lien incomplet manual.css.
+index.html : impossible de résoudre le lien incomplet colour-logo-gray.svg.
+index.html : impossible de résoudre le lien incomplet 4.10/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.09/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.08/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.07/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.06/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.05/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.04/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.03/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.02/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.01/coreexamples.html.
+index.html : impossible de résoudre le lien incomplet 4.00/manual003.html.
+2020-03-14 08:51:20 URL:https://ocaml.org/ [18862/18862] -> "index.html.1.tmp.tmp" [1]
+https://ocaml.org/robots.txt:
+2020-03-14 08:51:20 erreur 404 : Not Found.
+2020-03-14 08:51:20 URL:https://ocaml.org/index.fr.html [19919/19919] -> "index.fr.html.tmp.tmp" [1]
+URL 2020-03-14 08:51:20 : https://ocaml.org/img/favicon32x32.ico? 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:20 : https://ocaml.org/css/bootstrap.css 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:20 : https://ocaml.org/css/bootstrap_mod.css 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:20 : https://ocaml.org/css/ocamlorg.css 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:21 : https://ocaml.org/js/collapsed-menu.js 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:21 : https://ocaml.org/feed.xml 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:21 : https://ocaml.org/img/colour-logo-white.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:21 : https://ocaml.org/img/colour-logo-white.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:21 URL:https://ocaml.org/learn/ [19251/19251] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:21 URL:https://ocaml.org/docs/ [14876/14876] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:22 URL:https://ocaml.org/community/ [21197/21197] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:23 URL:https://ocaml.org/community/planet/ [291792/291792] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:23 URL:https://ocaml.org/docs/install.html [21458/21458] -> "install.html.tmp.tmp" [1]
+URL 2020-03-14 08:51:23 : https://ocaml.org/img/learn-large.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:23 : https://ocaml.org/img/learn-large.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:23 URL:https://ocaml.org/learn/description.html [22924/22924] -> "description.html.tmp.tmp" [1]
+2020-03-14 08:51:24 URL:https://ocaml.org/learn/companies.html [36964/36964] -> "companies.html.tmp.tmp" [1]
+2020-03-14 08:51:24 URL:https://ocaml.org/learn/taste.html [28914/28914] -> "taste.html.tmp.tmp" [1]
+2020-03-14 08:51:24 URL:https://ocaml.org/learn/tutorials/ [17446/17446] -> "index.html.1.tmp.tmp" [1]
+URL 2020-03-14 08:51:24 : https://ocaml.org/img/documentation-large.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:24 : https://ocaml.org/img/documentation-large.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:25 URL:https://ocaml.org/docs/cheat_sheets.html [9629/9629] -> "cheat_sheets.html.tmp.tmp" [1]
+URL 2020-03-14 08:51:25 : https://ocaml.org/img/platform-large.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:25 : https://ocaml.org/img/platform-large.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:25 : https://ocaml.org/img/community-large.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:25 : https://ocaml.org/img/community-large.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:25 URL:https://ocaml.org/community/mailing_lists.html [15244/15244] -> "mailing_lists.html.tmp.tmp" [1]
+2020-03-14 08:51:25 URL:https://ocaml.org/community/support.html [12670/12670] -> "support.html.tmp.tmp" [1]
+2020-03-14 08:51:26 URL:https://ocaml.org/meetings/ [12179/12179] -> "index.html.1.tmp.tmp" [1]
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/chat.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/chat.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/try-ocaml.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/try-ocaml.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/rss.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:26 : https://ocaml.org/img/rss.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:26 URL:https://ocaml.org/meetings/ocaml/2019/ [12084/12084] -> "index.html.1.tmp.tmp" [1]
+URL 2020-03-14 08:51:27 : https://ocaml.org/img/announcement.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:27 : https://ocaml.org/img/announcement.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+https://ocaml.org/releases/4.10.0.html:
+Le fichier distant n’existe pas — lien mort.
+2020-03-14 08:51:27 URL:https://ocaml.org/community/cwn/ [8918/8918] -> "index.html.1.tmp.tmp" [1]
+URL 2020-03-14 08:51:27 : https://ocaml.org/img/news.svg 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:27 : https://ocaml.org/img/news.png 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:27 URL:https://ocaml.org/learn/books.html [41799/41799] -> "books.html.tmp.tmp" [1]
+2020-03-14 08:51:28 URL:https://ocaml.org/learn/success.html [22710/22710] -> "success.html.tmp.tmp" [1]
+2020-03-14 08:51:28 URL:https://ocaml.org/releases/index.html [10660/10660] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:28 URL:https://ocaml.org/docs/logos.html [11067/11067] -> "logos.html.tmp.tmp" [1]
+2020-03-14 08:51:28 URL:https://ocaml.org/about.html [15303/15303] -> "about.html.tmp.tmp" [1]
+2020-03-14 08:51:29 URL:https://ocaml.org/contributors.html [14144/14144] -> "contributors.html.tmp.tmp" [1]
+https://ocaml.org/piwik/piwik.php?idsite=1:
+Le fichier distant n’existe pas — lien mort.
+2020-03-14 08:51:30 URL:https://github.com/sanette/ocaml-tutorial [79816] -> "ocaml-tutorial.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:https://github.com/robots.txt [31710/31710] -> "robots.txt" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/ [6048/6048] -> "index.html.1.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/robots.txt [318/318] -> "robots.txt" [1]
+URL 2020-03-14 08:51:30 : http://caml.inria.fr/pub/docs/manual-ocaml/manual.css 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:30 : http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.pdf 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:30 : http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.txt 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:30 : http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman-html.tar.gz 200 OK
+unlink: Aucun fichier ou dossier de ce type
+URL 2020-03-14 08:51:30 : http://caml.inria.fr/distrib/ocaml-4.10/ocaml-4.10-refman.info.tar.gz 200 OK
+unlink: Aucun fichier ou dossier de ce type
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/manual001.html [42810/42810] -> "manual001.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/foreword.html [3801/3801] -> "foreword.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/coreexamples.html [78169/78169] -> "coreexamples.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html [38759/38759] -> "moduleexamples.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/objectexamples.html [118871/118871] -> "objectexamples.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/lablexamples.html [41379/41379] -> "lablexamples.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/polymorphism.html [43148/43148] -> "polymorphism.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/advexamples.html [56775/56775] -> "advexamples.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/language.html [3119/3119] -> "language.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/extn.html [2706/2706] -> "extn.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/comp.html [80994/80994] -> "comp.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/toplevel.html [56717/56717] -> "toplevel.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/runtime.html [22144/22144] -> "runtime.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/native.html [63978/63978] -> "native.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/lexyacc.html [45433/45433] -> "lexyacc.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/depend.html [11852/11852] -> "depend.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/browser.html [1213/1213] -> "browser.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/ocamldoc.html [73826/73826] -> "ocamldoc.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/debugger.html [49259/49259] -> "debugger.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/profil.html [11090/11090] -> "profil.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/manual056.html [1184/1184] -> "manual056.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/intfc.html [168789/168789] -> "intfc.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/flambda.html [78180/78180] -> "flambda.html.tmp.tmp" [1]
+2020-03-14 08:51:30 URL:http://caml.inria.fr/pub/docs/manual-ocaml/spacetime.html [8933/8933] -> "spacetime.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/afl-fuzz.html [4356/4356] -> "afl-fuzz.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/core.html [11135/11135] -> "core.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/stdlib.html [9108/9108] -> "stdlib.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/parsing.html [3768/3768] -> "parsing.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libunix.html [7056/7056] -> "libunix.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libnum.html [1799/1799] -> "libnum.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libstr.html [2068/2068] -> "libstr.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libthreads.html [3840/3840] -> "libthreads.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libgraph.html [1539/1539] -> "libgraph.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libdynlink.html [2605/2605] -> "libdynlink.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libbigarray.html [2392/2392] -> "libbigarray.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libref/index_modules.html [21525/21525] -> "index_modules.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libref/index_module_types.html [10328/10328] -> "index_module_types.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libref/index_types.html [61932/61932] -> "index_types.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libref/index_exceptions.html [9781/9781] -> "index_exceptions.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/libref/index_values.html [670353/670353] -> "index_values.html.tmp.tmp" [1]
+2020-03-14 08:51:31 URL:http://caml.inria.fr/pub/docs/manual-ocaml/manual071.html [16701/16701] -> "manual071.html.tmp.tmp" [1]
+Found 2 broken links.
+
+https://ocaml.org/piwik/piwik.php?idsite=1
+https://ocaml.org/releases/4.10.0.html
+
+Terminé — 2020-03-14 08:51:31 —
+Temps total effectif : 12s
+Téléchargés : 68 fichiers, 2,6M en 1,8s (1,47 MB/s)

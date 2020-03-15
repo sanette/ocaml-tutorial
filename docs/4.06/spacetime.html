@@ -10,14 +10,14 @@
 
 
 <h1 class="chapter" id="sec528"><span>Chapter 22</span>&nbsp;&nbsp;Memory profiling with Spacetime</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.06</a></div><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec529">22.1&nbsp;&nbsp;Overview</a>
-</li><li><a href="#sec530">22.2&nbsp;&nbsp;How to use it</a>
-</li><li><a href="#sec534">22.3&nbsp;&nbsp;Runtime overhead</a>
-</li><li><a href="#sec535">22.4&nbsp;&nbsp;For developers</a>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.06</a></div><div class="toc_title"><a href="#">Memory profiling with Spacetime</a></div><ul><li class="top"><a href="#">Top</a></li>
+<li><a href="#sec529">1&nbsp;&nbsp;Overview</a>
+</li><li><a href="#sec530">2&nbsp;&nbsp;How to use it</a>
+</li><li><a href="#sec534">3&nbsp;&nbsp;Runtime overhead</a>
+</li><li><a href="#sec535">4&nbsp;&nbsp;For developers</a>
 </li></ul></nav></header>
 
-<h2 class="section" id="sec529">22.1&nbsp;&nbsp;Overview</h2>
+<h2 class="section" id="sec529">1&nbsp;&nbsp;Overview</h2>
 <p>Spacetime is the name given to functionality within the OCaml compiler that
 provides for accurate profiling of the memory behaviour of a program.
 Using Spacetime it is possible to determine the source of memory leaks
@@ -35,8 +35,8 @@ tested on Linux systems (although it is expected to work on most modern
 Unix-like systems and provision has been made for running under
 Windows). It is expected that the set of supported platforms will
 be extended in the future.</p>
-<h2 class="section" id="sec530">22.2&nbsp;&nbsp;How to use it</h2>
-<h3 class="subsection" id="sec531">22.1&nbsp;&nbsp;Building</h3>
+<h2 class="section" id="sec530">2&nbsp;&nbsp;How to use it</h2>
+<h3 class="subsection" id="sec531">2.1&nbsp;&nbsp;Building</h3>
 <p>To use Spacetime it is necessary to use an OCaml compiler that was
 configured with the <span class="c003">-spacetime</span> option. It is not possible to select
 Spacetime on a per-source-file basis or for a subset of files in a project;
@@ -54,7 +54,7 @@ it is essential). For many uses it will not be necessary to change the
 code of the program to use the profiler.</p><p>Spacetime-configured compilers run slower and occupy more memory than their
 counterparts. It is hoped this will be fixed in the future as part of
 improved cross compilation support.</p>
-<h3 class="subsection" id="sec532">22.2&nbsp;&nbsp;Running</h3>
+<h3 class="subsection" id="sec532">2.2&nbsp;&nbsp;Running</h3>
 <p>Programs built with Spacetime instrumentation have a dependency on
 the <span class="c003">libunwind</span> library unless that was unavailable at configure time or
 the <span class="c003">-disable-libunwind</span> option was specified
@@ -79,13 +79,13 @@ possible to manually control Spacetime profiling. (The environment variables
 are then not relevant.) Full documentation as regards this method of profiling
 is provided in the standard library documentation (section <a href="stdlib.html#c%3Astdlib">26</a>)
 for the <span class="c003">Spacetime</span> module.</p>
-<h3 class="subsection" id="sec533">22.3&nbsp;&nbsp;Analysis</h3>
+<h3 class="subsection" id="sec533">2.3&nbsp;&nbsp;Analysis</h3>
 <p>The compiler distribution does not itself provide the facility for analysing
 Spacetime output files; this is left to external tools. The first such tool
 will appear in OPAM as a package called <span class="c003">prof_spacetime</span>. That tool will
 provide interactive graphical and terminal-based visualisation of
 the results of profiling.</p>
-<h2 class="section" id="sec534">22.3&nbsp;&nbsp;Runtime overhead</h2>
+<h2 class="section" id="sec534">3&nbsp;&nbsp;Runtime overhead</h2>
 <p><a id="runtimeoverhead"></a></p><p>The runtime overhead imposed by Spacetime varies considerably depending on
 the particular program being profiled. The overhead may be as low as
 ten percent—but more usually programs should be expected to run at perhaps
@@ -95,7 +95,7 @@ configured with the <span class="c003">-disable-libunwind</span> option. This pr
 of profiling information from C stubs.</p><p>Programs running with Spacetime instrumentation consume significantly more
 memory than their non-instrumented counterparts. It is expected that this
 memory overhead will also be reduced in the future.</p>
-<h2 class="section" id="sec535">22.4&nbsp;&nbsp;For developers</h2>
+<h2 class="section" id="sec535">4&nbsp;&nbsp;For developers</h2>
 <p>The compiler distribution provides an “<span class="c003">otherlibs</span>” library called
 <span class="c003">raw_spacetime_lib</span> for decoding Spacetime files. This library
 provides facilities to read not only memory profiling information but also

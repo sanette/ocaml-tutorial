@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc138"><span>Chapter 12</span></a>&nbsp;&nbsp;Lexer and parser generators (ocamllex, ocamlyacc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc138"><span>Chapter 12</span></a>&nbsp;&nbsp;Lexer and parser generators (ocamllex, ocamlyacc)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">Lexer and parser generators (ocamllex, ocamlyacc)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc105">Overview of <tt>ocamllex</tt></a>
 </li><li><a href="#toc106">Syntax of lexer definitions</a>
 </li><li><a href="#toc107">Overview of <tt>ocamlyacc</tt></a>
@@ -33,7 +33,7 @@ of writing a lexer or parser description in <tt>lex</tt> and <tt>yacc</tt>. Read
 unfamiliar with <tt>lex</tt> and <tt>yacc</tt> are referred to “Compilers:
 principles, techniques, and tools” by Aho, Sethi and Ullman
 (Addison-Wesley, 1986), or “Lex &amp; Yacc”, by Levine, Mason and
-Brown (O’Reilly, 1992).</p><h2 class="section"><a name="toc105"></a><a name="htoc139">11</a>&nbsp;&nbsp;Overview of <tt>ocamllex</tt></h2><p>The <tt>ocamllex</tt> command produces a lexical analyzer from a set of regular
+Brown (O’Reilly, 1992).</p><h2 class="section"><a name="toc105"></a><a name="htoc139">1</a>&nbsp;&nbsp;Overview of <tt>ocamllex</tt></h2><p>The <tt>ocamllex</tt> command produces a lexical analyzer from a set of regular
 expressions with attached semantic actions, in the style of
 <tt>lex</tt>. Assuming the input file is <i>lexer</i><tt>.mll</tt>, executing
 </p><pre>        ocamllex <i>lexer</i>.mll
@@ -63,7 +63,7 @@ to standard output. They are suppressed if option <tt>-q</tt> is used.</dd><dt c
 Print version string and exit.</dd><dt class="dt-description"><tt><b>-vnum</b></tt></dt><dd class="dd-description">
 Print short version number and exit.</dd><dt class="dt-description"><b><tt>-help</tt> or <tt>--help</tt></b></dt><dd class="dd-description">
 Display a short usage summary and exit.
-</dd></dl><h2 class="section"><a name="toc106"></a><a name="htoc141">12</a>&nbsp;&nbsp;Syntax of lexer definitions</h2><p>The format of lexer definitions is as follows:
+</dd></dl><h2 class="section"><a name="toc106"></a><a name="htoc141">2</a>&nbsp;&nbsp;Syntax of lexer definitions</h2><p>The format of lexer definitions is as follows:
 </p><pre>{ <i>header</i> }
 let <i>ident</i> = <i>regexp</i> …
 rule <i>entrypoint</i> [<i>arg</i><sub>1</sub>… <i>arg<sub>n</sub></i>] =
@@ -207,7 +207,7 @@ The automata produced <tt>ocamllex</tt> on such ambiguous regular
 expressions will select one of the possible resulting sets of
 bindings.
 The selected set of bindings is purposely left unspecified.</p><h3 class="subsection"><a name="htoc148">12.2.7</a>&nbsp;&nbsp;Reserved identifiers</h3><p>All identifiers starting with <tt>__ocaml_lex</tt> are reserved for use by
-<tt>ocamllex</tt>; do not use any such identifier in your programs.</p><h2 class="section"><a name="toc107"></a><a name="htoc149">13</a>&nbsp;&nbsp;Overview of <tt>ocamlyacc</tt></h2><p>The <tt>ocamlyacc</tt> command produces a parser from a context-free grammar
+<tt>ocamllex</tt>; do not use any such identifier in your programs.</p><h2 class="section"><a name="toc107"></a><a name="htoc149">3</a>&nbsp;&nbsp;Overview of <tt>ocamlyacc</tt></h2><p>The <tt>ocamlyacc</tt> command produces a parser from a context-free grammar
 specification with attached semantic actions, in the style of <tt>yacc</tt>.
 Assuming the input file is <i>grammar</i><tt>.mly</tt>, executing
 </p><pre>        ocamlyacc <i>options grammar</i>.mly
@@ -222,7 +222,7 @@ functions are usually generated from a lexer specification by the
 <tt>ocamllex</tt> program. Lexer buffers are an abstract data type
 implemented in the standard library module <tt>Lexing</tt>. Tokens are values from
 the concrete type <tt>token</tt>, defined in the interface file
-<i>grammar</i><tt>.mli</tt> produced by <tt>ocamlyacc</tt>.</p><h2 class="section"><a name="toc108"></a><a name="htoc150">14</a>&nbsp;&nbsp;Syntax of grammar definitions</h2><p>Grammar definitions have the following format:
+<i>grammar</i><tt>.mli</tt> produced by <tt>ocamlyacc</tt>.</p><h2 class="section"><a name="toc108"></a><a name="htoc150">4</a>&nbsp;&nbsp;Syntax of grammar definitions</h2><p>Grammar definitions have the following format:
 </p><pre>%{
   <i>header</i>
 %}
@@ -329,7 +329,7 @@ tokens that can be accepted, and starts processing with the first of
 these. If no state can be uncovered where the error token can be
 shifted, then the parser aborts by raising the <tt>Parsing.Parse_error</tt>
 exception.</p><p>Refer to documentation on <tt>yacc</tt> for more details and guidance in how
-to use error recovery.</p><h2 class="section"><a name="toc109"></a><a name="htoc155">15</a>&nbsp;&nbsp;Options</h2><p>The <tt>ocamlyacc</tt> command recognizes the following options:</p><dl class="description"><dt class="dt-description"><b><tt>-b</tt><i>prefix</i></b></dt><dd class="dd-description">
+to use error recovery.</p><h2 class="section"><a name="toc109"></a><a name="htoc155">5</a>&nbsp;&nbsp;Options</h2><p>The <tt>ocamlyacc</tt> command recognizes the following options:</p><dl class="description"><dt class="dt-description"><b><tt>-b</tt><i>prefix</i></b></dt><dd class="dd-description">
 Name the output files <i>prefix</i><tt>.ml</tt>, <i>prefix</i><tt>.mli</tt>,
 <i>prefix</i><tt>.output</tt>, instead of the default naming convention.</dd><dt class="dt-description"><tt><b>-q</b></tt></dt><dd class="dd-description">
 This option has no effect.</dd><dt class="dt-description"><tt><b>-v</b></tt></dt><dd class="dd-description">
@@ -348,7 +348,7 @@ setting the <tt>p</tt> option in the <tt>OCAMLRUNPARAM</tt> environment variable
 automaton executing the parser to print a trace of its action (tokens
 shifted, rules reduced, etc). The trace mentions rule numbers and
 state numbers that can be interpreted by looking at the file
-<i>grammar</i><tt>.output</tt> generated by <tt>ocamlyacc -v</tt>.</p><h2 class="section"><a name="toc110"></a><a name="htoc156">16</a>&nbsp;&nbsp;A complete example</h2><p>The all-time favorite: a desk calculator. This program reads
+<i>grammar</i><tt>.output</tt> generated by <tt>ocamlyacc -v</tt>.</p><h2 class="section"><a name="toc110"></a><a name="htoc156">6</a>&nbsp;&nbsp;A complete example</h2><p>The all-time favorite: a desk calculator. This program reads
 arithmetic expressions on standard input, one per line, and prints
 their values. Here is the grammar definition:
 </p><pre>        /* File parser.mly */
@@ -410,7 +410,7 @@ their values. Here is the grammar definition:
         ocamlc -c parser.ml
         ocamlc -c calc.ml
         ocamlc -o calc lexer.cmo parser.cmo calc.cmo
-</pre><h2 class="section"><a name="toc111"></a><a name="htoc157">17</a>&nbsp;&nbsp;Common errors</h2><dl class="description"><dt class="dt-description"><b>ocamllex: transition table overflow, automaton is too big</b></dt><dd class="dd-description"><p>The deterministic automata generated by <tt>ocamllex</tt> are limited to at
+</pre><h2 class="section"><a name="toc111"></a><a name="htoc157">7</a>&nbsp;&nbsp;Common errors</h2><dl class="description"><dt class="dt-description"><b>ocamllex: transition table overflow, automaton is too big</b></dt><dd class="dd-description"><p>The deterministic automata generated by <tt>ocamllex</tt> are limited to at
 most 32767 transitions. The message above indicates that your lexer
 definition is too complex and overflows this limit. This is commonly
 caused by lexer definitions that have separate rules for each of the

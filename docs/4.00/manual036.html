@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="manual.css">
 <title>Ocaml - The unix library: Unix system calls</title>
 </head>
-<body><div class="manual content"><ul class="part_menu"><li><a href="manual034.html">The core library</a></li><li><a href="manual035.html">The standard library</a></li><li class="active"><a href="manual036.html">The unix library: Unix system calls</a></li><li><a href="manual037.html">The num library: arbitrary-precision rational arithmetic</a></li><li><a href="manual038.html">The str library: regular expressions and string processing</a></li><li><a href="manual039.html">The threads library</a></li><li><a href="manual040.html">The graphics library</a></li><li><a href="manual041.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="manual042.html">The LablTk library: Tcl/Tk GUI interface</a></li><li><a href="manual043.html">The bigarray library</a></li></ul>
+<body><div class="manual content"><ul class="part_menu"><li><a href="manual034.html">The core library</a></li><li><a href="manual035.html">The standard library</a></li><li class="active"><a href="manual036.html">The unix library: Unix system calls</a></li><li><a href="manual037.html">The num library: arbitrary-precision rational arithmetic</a></li><li><a href="manual038.html">The str library: regular expressions and string processing</a></li><li><a href="manual039.html">The threads library</a></li><li><a href="manual040.html">The graphics library</a></li><li><a href="manual041.html">The dynlink library: dynamic loading and linking of object files</a></li><li><a href="manual042.html">The LablTk library: Tcl/Tk GUI interface</a></li><li><a href="manual043.html">The bigarray library</a></li></ul><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The unix library: Unix system calls</a></div></nav></header>
 
 
 
@@ -28,11 +28,11 @@ start <tt>ocaml</tt> and type <tt>#load "unix.cma";;</tt>.</p><blockquote class=
 A fairly complete emulation of the Unix system calls is provided in
 the Windows version of OCaml. The end of this chapter gives
 more information on the functions that are not supported under Windows.
-</blockquote><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul class="ftoc2"><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li><li class="li-links">
+</blockquote><ul class="ftoc2"><li class="li-links">
 <a href="../../api/4.00/Unix.html">Module <tt>Unix</tt>: Unix system calls</a>
 </li><li class="li-links"><a href="../../api/4.00/UnixLabels.html">Module <tt>UnixLabels</tt>: Labeled
 Unix system calls</a>
-</li></ul></nav></header><blockquote class="quote"><font color="purple">Windows:</font>&nbsp;&nbsp;
+</li></ul><blockquote class="quote"><font color="purple">Windows:</font>&nbsp;&nbsp;
 The Cygwin port of OCaml fully implements all functions from
 the Unix module. The native Win32 ports implement a subset of them.
 Below is a list of the functions that are not implemented, or only

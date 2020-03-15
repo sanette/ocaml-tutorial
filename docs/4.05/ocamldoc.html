@@ -10,11 +10,11 @@
 
 
 <h1 class="chapter" id="sec320"><span>Chapter 15</span>&nbsp;&nbsp;The documentation generator (ocamldoc)</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.05</a></div><li class="top"><a href="#">Top</a></li>
-<li><a href="#sec321">15.1&nbsp;&nbsp;Usage</a>
-</li><li><a href="#sec333">15.2&nbsp;&nbsp;Syntax of documentation comments</a>
-</li><li><a href="#sec348">15.3&nbsp;&nbsp;Custom generators</a>
-</li><li><a href="#sec353">15.4&nbsp;&nbsp;Adding command line options</a>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.05</a></div><div class="toc_title"><a href="#">The documentation generator (ocamldoc)</a></div><ul><li class="top"><a href="#">Top</a></li>
+<li><a href="#sec321">1&nbsp;&nbsp;Usage</a>
+</li><li><a href="#sec333">2&nbsp;&nbsp;Syntax of documentation comments</a>
+</li><li><a href="#sec348">3&nbsp;&nbsp;Custom generators</a>
+</li><li><a href="#sec353">4&nbsp;&nbsp;Adding command line options</a>
 </li></ul></nav></header>
 <p> <a id="c:ocamldoc"></a>
 
@@ -29,9 +29,9 @@ following parts of an OCaml source file: a type declaration, a value,
 a module, an exception, a module type, a type constructor, a record
 field, a class, a class type, a class method, a class value or a class
 inheritance clause.</p>
-<h2 class="section" id="sec321">15.1&nbsp;&nbsp;Usage</h2>
+<h2 class="section" id="sec321">1&nbsp;&nbsp;Usage</h2>
 <p> <a id="s:ocamldoc-usage"></a></p>
-<h3 class="subsection" id="sec322">11.1&nbsp;&nbsp;Invocation</h3>
+<h3 class="subsection" id="sec322">1.1&nbsp;&nbsp;Invocation</h3>
 <p>OCamldoc is invoked via the command <span class="c003">ocamldoc</span>, as follows:
 </p><pre>        ocamldoc <span class="c009">options sourcefiles</span>
 </pre><h4 class="subsubsection" id="sec323">Options for choosing the output format</h4>
@@ -215,7 +215,7 @@ types, instead of pages for all elements.</dd><dt class="dt-description"><span c
 Set the suffix used for generated man filenames. Default is ’<span class="c003">3o</span>’,
 as in <span class="c003">List.3o</span>.</dd><dt class="dt-description"><span class="c013"><span class="c003">-man-section</span> <span class="c009">section</span></span></dt><dd class="dd-description">
 Set the section number used for generated man filenames. Default is ’<span class="c003">3</span>’.</dd></dl>
-<h3 class="subsection" id="sec331">11.2&nbsp;&nbsp;Merging of module information</h3>
+<h3 class="subsection" id="sec331">1.2&nbsp;&nbsp;Merging of module information</h3>
 <p>
 <a id="s:ocamldoc-merge"></a></p><p>Information on a module can be extracted either from the <span class="c003">.mli</span> or <span class="c003">.ml</span>
 file, or both, depending on the files given on the command line.
@@ -235,7 +235,7 @@ If a description is present in the <span class="c003">.ml</span> file and not in
 <span class="c003">.mli</span> file, the <span class="c003">.ml</span> description is kept.
 In either case, all the information given in the <span class="c003">.mli</span> file is kept.
 </li></ul>
-<h3 class="subsection" id="sec332">11.3&nbsp;&nbsp;Coding rules</h3>
+<h3 class="subsection" id="sec332">1.3&nbsp;&nbsp;Coding rules</h3>
 <p>
 <a id="s:ocamldoc-rules"></a>
 The following rules must be respected in order to avoid name clashes
@@ -265,13 +265,13 @@ module Foo =
 <span class="c003">Foo</span> defined just above, instead of to the <span class="c003">Bar.x</span> defined in the
 opened module <span class="c003">Foo</span>.
 </li></ul>
-<h2 class="section" id="sec333">15.2&nbsp;&nbsp;Syntax of documentation comments</h2>
+<h2 class="section" id="sec333">2&nbsp;&nbsp;Syntax of documentation comments</h2>
 <p>
 <a id="s:ocamldoc-comments"></a></p><p>Comments containing documentation material are called <em>special
 comments</em> and are written between <span class="c003">(**</span> and <span class="c003">*)</span>. Special comments
 must start exactly with <span class="c003">(**</span>. Comments beginning with <span class="c003">(</span> and more
 than two <span class="c003">*</span> are ignored.</p>
-<h3 class="subsection" id="sec334">12.1&nbsp;&nbsp;Placement of documentation comments</h3>
+<h3 class="subsection" id="sec334">2.1&nbsp;&nbsp;Placement of documentation comments</h3>
 <p>
 OCamldoc can associate comments to some elements of the language
 encountered in the source files. The association is made according to
@@ -481,7 +481,7 @@ module type my_module_type =
     (* ... *)
   end
 </pre>
-<h3 class="subsection" id="sec337">12.2&nbsp;&nbsp;The Stop special comment</h3>
+<h3 class="subsection" id="sec337">2.2&nbsp;&nbsp;The Stop special comment</h3>
 <p>
 The special comment <span class="c003">(**/**)</span> tells OCamldoc to discard
 elements placed after this comment, up to the end of the current
@@ -513,7 +513,7 @@ type t = string
 </pre><p>
 The <span class="c006">-no-stop</span> option to <span class="c003">ocamldoc</span> causes the Stop special
 comments to be ignored.</p>
-<h3 class="subsection" id="sec338">12.3&nbsp;&nbsp;Syntax of documentation comments</h3>
+<h3 class="subsection" id="sec338">2.3&nbsp;&nbsp;Syntax of documentation comments</h3>
 <p>The inside of documentation comments <span class="c003">(**</span>…<span class="c003">*)</span> consists of
 free-form text with optional formatting annotations, followed by
 optional <em>tags</em> giving more specific information about parameters,
@@ -530,7 +530,7 @@ relevant to the documented element are simply ignored. For instance,
 all tags are ignored when documenting type constructors, record
 fields, and class inheritance clauses. Similarly, a <span class="c003">@param</span> tag on a
 class instance variable is ignored.</p><p>At last, <span class="c003">(**)</span> is the empty documentation comment.</p>
-<h3 class="subsection" id="sec339">12.4&nbsp;&nbsp;Text formatting</h3>
+<h3 class="subsection" id="sec339">2.4&nbsp;&nbsp;Text formatting</h3>
 <p>Here is the BNF grammar for the simple markup language used to format
 text descriptions.</p><table class="display dcenter"><tbody><tr class="c019"><td class="dcell"><table class="c001 cellpading0"><tbody><tr><td class="c018">
 <a class="syntax" id="text"><span class="c010">text</span></a></td><td class="c015">::=</td><td class="c017">&nbsp;{<a class="syntax" href="#text-element"><span class="c010">text-element</span></a>}<sup>+</sup>
@@ -677,7 +677,7 @@ The HTML tags <span class="c003">&lt;b&gt;..&lt;/b&gt;</span>,
  <span class="c004">{li ..}</span> ,
  <span class="c004">{C ..}</span>  and
 <span class="c003">{[0-9] ..}</span>.</p>
-<h3 class="subsection" id="sec345">12.5&nbsp;&nbsp;Documentation tags (@-tags)</h3>
+<h3 class="subsection" id="sec345">2.5&nbsp;&nbsp;Documentation tags (@-tags)</h3>
 <p>
 <a id="s:ocamldoc-tags"></a></p>
 <h4 class="subsubsection" id="sec346">Predefined tags</h4>
@@ -734,7 +734,7 @@ comment, as in:
 </pre><p>
 To handle custom tags, you need to define a custom generator,
 as explained in section <a href="#s%3Aocamldoc-handling-custom-tags">15.3.2</a>.</p>
-<h2 class="section" id="sec348">15.3&nbsp;&nbsp;Custom generators</h2>
+<h2 class="section" id="sec348">3&nbsp;&nbsp;Custom generators</h2>
 <p>
 <a id="s:ocamldoc-custom-generators"></a></p><p>OCamldoc operates in two steps:
 </p><ol class="enumerate" type="1"><li class="li-enumerate">
@@ -749,7 +749,7 @@ the <span class="c003">Odoc_info</span> module, which gives access to all the ty
 representing the elements found in the given modules, with their associated
 description.</p><p>The files you can use to define custom generators are installed in the
 <span class="c003">ocamldoc</span> sub-directory of the OCaml standard library.</p>
-<h3 class="subsection" id="sec349">13.1&nbsp;&nbsp;The generator modules</h3>
+<h3 class="subsection" id="sec349">3.1&nbsp;&nbsp;The generator modules</h3>
 <p>
 The type of a generator module depends on the kind of generated documentation.
 Here is the list of generator module types, with the name of the generator
@@ -801,7 +801,7 @@ for HTML&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.05/ocamldoc/odoc_
 </li><li class="li-itemize">for man pages&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.05/ocamldoc/odoc_man.ml"><span class="c003">odoc_man.ml</span></a>,
 </li><li class="li-itemize">for graphviz (dot)&nbsp;: <a href="https://github.com/ocaml/ocaml/blob/4.05/ocamldoc/odoc_dot.ml"><span class="c003">odoc_dot.ml</span></a>.
 </li></ul>
-<h3 class="subsection" id="sec350">13.2&nbsp;&nbsp;Handling custom tags</h3>
+<h3 class="subsection" id="sec350">3.2&nbsp;&nbsp;Handling custom tags</h3>
 <p>
 <a id="s:ocamldoc-handling-custom-tags"></a></p><p>Making a custom generator handle custom tags (see
 <a href="#s%3Aocamldoc-custom-tags">15.2.5</a>) is very simple.</p><h4 class="subsubsection" id="sec351">For HTML</h4>
@@ -834,7 +834,7 @@ prints a warning message on <span class="c003">stderr</span>.</p>
 <h4 class="subsubsection" id="sec352">For other generators</h4>
 <p>
 You can act the same way for other kinds of generators.</p>
-<h2 class="section" id="sec353">15.4&nbsp;&nbsp;Adding command line options</h2>
+<h2 class="section" id="sec353">4&nbsp;&nbsp;Adding command line options</h2>
 <p>
 The command line analysis is performed after loading the module containing the
 documentation generator, thus allowing command line options to be added to the
@@ -842,7 +842,7 @@ list of existing ones. Adding an option can be done with the function
 </p><pre>        Odoc_args.add_option : string * Arg.spec * string -&gt; unit
 </pre><p>Note: Existing command line options can be redefined using
 this function.</p>
-<h3 class="subsection" id="sec354">14.1&nbsp;&nbsp;Compilation and usage</h3>
+<h3 class="subsection" id="sec354">4.1&nbsp;&nbsp;Compilation and usage</h3>
 <p>
 <a id="s:ocamldoc-compilation-and-usage"></a></p>
 <h4 class="subsubsection" id="sec355">Defining a custom generator class in one file</h4>

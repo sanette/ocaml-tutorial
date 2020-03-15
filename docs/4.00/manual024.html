@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc127"><span>Chapter 10</span></a>&nbsp;&nbsp;The runtime system (ocamlrun)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc127"><span>Chapter 10</span></a>&nbsp;&nbsp;The runtime system (ocamlrun)</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">The runtime system (ocamlrun)</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc96">Overview</a>
 </li><li><a href="#toc97">Options</a>
 </li><li><a href="#toc98">Dynamic loading of shared libraries</a>
@@ -18,7 +18,7 @@
 </li></ul></nav></header>
 <p> <a name="c:runtime"></a>
 </p><p>The <tt>ocamlrun</tt> command executes bytecode files produced by the
-linking phase of the <tt>ocamlc</tt> command.</p><h2 class="section"><a name="toc96"></a><a name="htoc128">11</a>&nbsp;&nbsp;Overview</h2><p>The <tt>ocamlrun</tt> command comprises three main parts: the bytecode
+linking phase of the <tt>ocamlc</tt> command.</p><h2 class="section"><a name="toc96"></a><a name="htoc128">1</a>&nbsp;&nbsp;Overview</h2><p>The <tt>ocamlrun</tt> command comprises three main parts: the bytecode
 interpreter, that actually executes bytecode files; the memory
 allocator and garbage collector; and a set of C functions that
 implement primitive operations such as input/output.</p><p>The usage for <tt>ocamlrun</tt> is:
@@ -45,7 +45,7 @@ Under several versions of Windows, bytecode executable files are
 self-executable only if their name ends in <tt>.exe</tt>. It is recommended
 to always give <tt>.exe</tt> names to bytecode executables, e.g. compile
 with <tt>ocamlc -o myprog.exe ...</tt> rather than <tt>ocamlc -o myprog ...</tt>.
-</blockquote><h2 class="section"><a name="toc97"></a><a name="htoc129">12</a>&nbsp;&nbsp;Options</h2><p> <a name="ocamlrun-options"></a></p><p>The following command-line options are recognized by <tt>ocamlrun</tt>.</p><dl class="description"><dt class="dt-description"><tt><b>-b</b></tt></dt><dd class="dd-description">
+</blockquote><h2 class="section"><a name="toc97"></a><a name="htoc129">2</a>&nbsp;&nbsp;Options</h2><p> <a name="ocamlrun-options"></a></p><p>The following command-line options are recognized by <tt>ocamlrun</tt>.</p><dl class="description"><dt class="dt-description"><tt><b>-b</b></tt></dt><dd class="dd-description">
 When the program aborts due to an uncaught exception, print a detailed
 “back trace” of the execution, showing where the exception was
 raised and which function calls were outstanding at this point. The
@@ -124,7 +124,7 @@ size changes, and when compaction is triggered.</dd><dt class="dt-description"><
 environment, then <tt>CAMLRUNPARAM</tt> will be used instead. If
 <tt>CAMLRUNPARAM</tt> is not found, then the default values will be used.</dd><dt class="dt-description"><tt><b>PATH</b></tt></dt><dd class="dd-description"> List of directories searched to find the bytecode
 executable file.
-</dd></dl><h2 class="section"><a name="toc98"></a><a name="htoc130">13</a>&nbsp;&nbsp;Dynamic loading of shared libraries</h2><p> <a name="s-ocamlrun-dllpath"></a></p><p>On platforms that support dynamic loading, <tt>ocamlrun</tt> can link
+</dd></dl><h2 class="section"><a name="toc98"></a><a name="htoc130">3</a>&nbsp;&nbsp;Dynamic loading of shared libraries</h2><p> <a name="s-ocamlrun-dllpath"></a></p><p>On platforms that support dynamic loading, <tt>ocamlrun</tt> can link
 dynamically with C shared libraries (DLLs) providing additional C primitives
 beyond those provided by the standard runtime system. The names for
 these libraries are provided at link time as described in
@@ -155,7 +155,7 @@ directories listed in the file <tt>/etc/ld.so.conf</tt> and the environment
 variable <tt>LD_LIBRARY_PATH</tt>. Under Windows, these include the Windows
 system directories, plus the directories listed in the <tt>PATH</tt>
 environment variable.
-</li></ol><h2 class="section"><a name="toc99"></a><a name="htoc131">14</a>&nbsp;&nbsp;Common errors</h2><p>This section describes and explains the most frequently encountered
+</li></ol><h2 class="section"><a name="toc99"></a><a name="htoc131">4</a>&nbsp;&nbsp;Common errors</h2><p>This section describes and explains the most frequently encountered
 error messages.</p><dl class="description"><dt class="dt-description"><b><i>filename</i><tt>: no such file or directory</tt></b></dt><dd class="dd-description">
 If <i>filename</i> is the name of a self-executable bytecode file, this
 means that either that file does not exist, or that it failed to run

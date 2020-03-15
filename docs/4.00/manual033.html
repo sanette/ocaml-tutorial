@@ -10,7 +10,7 @@
 
 
 
-<h1 class="chapter"><a name="htoc248"><span>Chapter 19</span></a>&nbsp;&nbsp;Interfacing<a name="c:intf-c"></a> C with OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><ul><div class="toc_title"><a id="version-select" href="../index.html">Version 4.00</a></div><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc248"><span>Chapter 19</span></a>&nbsp;&nbsp;Interfacing<a name="c:intf-c"></a> C with OCaml</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">Interfacing C with OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
 <li><a href="#toc142">Overview and compilation information</a>
 </li><li><a href="#toc143">The <tt>value</tt> type</a>
 </li><li><a href="#toc144">Representation of OCaml data types</a>
@@ -24,7 +24,7 @@
 </li><li><a href="#toc152">Building mixed C/OCaml libraries: <tt>ocamlmklib</tt></a>
 </li></ul></nav></header>
 <p>This chapter describes how user-defined primitives, written in C, can
-be linked with OCaml code and called from OCaml functions.</p><h2 class="section"><a name="toc142"></a><a name="htoc249">11</a>&nbsp;&nbsp;Overview and compilation information</h2><h3 class="subsection"><a name="htoc250">19.1.1</a>&nbsp;&nbsp;Declaring primitives</h3><p>
+be linked with OCaml code and called from OCaml functions.</p><h2 class="section"><a name="toc142"></a><a name="htoc249">1</a>&nbsp;&nbsp;Overview and compilation information</h2><h3 class="subsection"><a name="htoc250">19.1.1</a>&nbsp;&nbsp;Declaring primitives</h3><p>
 User primitives are declared in an implementation file or
 <tt>struct</tt>…<tt>end</tt> module expression using the <tt>external</tt> keyword:
 </p><pre>        external <i>name</i> : <i>type</i> = <i>C-function-name</i>
@@ -326,7 +326,7 @@ The bytecode executable <tt>myprog</tt> can then be launched as usual:
 be given twice: when building the runtime system (so that <tt>ocamlc</tt>
 knows which C primitives are required) and also when building the
 bytecode executable (so that the bytecode from <tt>unix.cma</tt> and
-<tt>threads.cma</tt> is actually linked in).</p><h2 class="section"><a name="toc143"></a><a name="htoc256">12</a>&nbsp;&nbsp;The <tt>value</tt> type</h2><p>All OCaml objects are represented by the C type <tt>value</tt>,
+<tt>threads.cma</tt> is actually linked in).</p><h2 class="section"><a name="toc143"></a><a name="htoc256">2</a>&nbsp;&nbsp;The <tt>value</tt> type</h2><p>All OCaml objects are represented by the C type <tt>value</tt>,
 defined in the include file <tt>caml/mlvalues.h</tt>, along with macros to
 manipulate values of that type. An object of type <tt>value</tt> is either:
 </p><ul class="itemize"><li class="li-itemize">
@@ -373,7 +373,7 @@ by <tt>free</tt> can later be reallocated as part of the OCaml heap; the
 pointer, formerly pointing outside the OCaml heap, now points inside
 the OCaml heap, and this can confuse the garbage collector. To avoid
 these problems, it is preferable to wrap the pointer in a OCaml block
-with tag <tt>Abstract_tag</tt> or <tt>Custom_tag</tt>.</p><h2 class="section"><a name="toc144"></a><a name="htoc260">13</a>&nbsp;&nbsp;Representation of OCaml data types</h2><p>This section describes how OCaml data types are encoded in the
+with tag <tt>Abstract_tag</tt> or <tt>Custom_tag</tt>.</p><h2 class="section"><a name="toc144"></a><a name="htoc260">3</a>&nbsp;&nbsp;Representation of OCaml data types</h2><p>This section describes how OCaml data types are encoded in the
 <tt>value</tt> type.</p><h3 class="subsection"><a name="htoc261">19.3.1</a>&nbsp;&nbsp;Atomic types</h3><div class="center"><table border="1" cellspacing="0" cellpadding="1" width="80%"><tbody><tr><td align="center" nowrap=""><b>OCaml type</b></td><td align="center" nowrap=""><b>Encoding</b></td></tr>
 <tr><td align="left" nowrap="">
 <tt>int</tt></td><td align="left" nowrap="">Unboxed integer values.</td></tr>
@@ -451,7 +451,7 @@ arguments are not flattened.
 That is, <tt>`VConstr(</tt><i>v</i><tt>, </tt><i>w</i><tt>)</tt> is represented by a block
 of size 2, whose field number 1 contains the representation of the
 pair <tt>(</tt><i>v</i><tt>, </tt><i>w</i><tt>)</tt>, rather than a block of size 3
-containing <i>v</i> and <i>w</i> in fields 1 and 2.</p><h2 class="section"><a name="toc145"></a><a name="htoc267">14</a>&nbsp;&nbsp;Operations on values</h2><h3 class="subsection"><a name="htoc268">19.4.1</a>&nbsp;&nbsp;Kind tests</h3><ul class="itemize"><li class="li-itemize">
+containing <i>v</i> and <i>w</i> in fields 1 and 2.</p><h2 class="section"><a name="toc145"></a><a name="htoc267">4</a>&nbsp;&nbsp;Operations on values</h2><h3 class="subsection"><a name="htoc268">19.4.1</a>&nbsp;&nbsp;Kind tests</h3><ul class="itemize"><li class="li-itemize">
 <tt>Is_long(</tt><i>v</i><tt>)</tt> is true if value <i>v</i> is an immediate integer,
 false otherwise
 </li><li class="li-itemize"><tt>Is_block(</tt><i>v</i><tt>)</tt> is true if value <i>v</i> is a pointer to a block,
@@ -595,7 +595,7 @@ raises the exception <i>id</i> with the OCaml values
 </li><li class="li-itemize"><tt>caml_raise_with_string(</tt><i>id</i><tt>, </tt><i>s</i><tt>)</tt>, where <i>s</i> is a
 null-terminated C string, raises the exception <i>id</i> with a copy of
 the C string <i>s</i> as argument.
-</li></ul><h2 class="section"><a name="toc146"></a><a name="htoc273">15</a>&nbsp;&nbsp;Living in harmony with the garbage collector</h2><p>Unused blocks in the heap are automatically reclaimed by the garbage
+</li></ul><h2 class="section"><a name="toc146"></a><a name="htoc273">5</a>&nbsp;&nbsp;Living in harmony with the garbage collector</h2><p>Unused blocks in the heap are automatically reclaimed by the garbage
 collector. This requires some cooperation from C code that
 manipulates heap-allocated blocks.</p><h3 class="subsection"><a name="htoc274">19.5.1</a>&nbsp;&nbsp;Simple interface</h3><p>All the macros described in this section are declared in the
 <tt>memory.h</tt> header file.</p><div class="theorem"><b>Rule&nbsp;1</b>&nbsp;&nbsp;<em>
@@ -777,7 +777,7 @@ illustrates the use of <tt>caml_modify</tt>.
 }
 </pre><p>It would be incorrect to perform
 <tt>Field(r, 1) = tail</tt> directly, because the allocation of <tt>tail</tt>
-has taken place since <tt>r</tt> was allocated.</p><h2 class="section"><a name="toc147"></a><a name="htoc276">16</a>&nbsp;&nbsp;A complete example</h2><p>This section outlines how the functions from the Unix <tt>curses</tt> library
+has taken place since <tt>r</tt> was allocated.</p><h2 class="section"><a name="toc147"></a><a name="htoc276">6</a>&nbsp;&nbsp;A complete example</h2><p>This section outlines how the functions from the Unix <tt>curses</tt> library
 can be made available to OCaml programs. First of all, here is
 the interface <tt>curses.mli</tt> that declares the <tt>curses</tt> primitives and
 data types:
@@ -910,7 +910,7 @@ let small_window = newwin 10 5 20 10 in
 </p><pre>        ocamlc -custom -o test unix.cma test.ml curses_stubs.o -cclib -lcurses
 </pre><p>(On some machines, you may need to put
 <tt>-cclib -lcurses -cclib -ltermcap</tt> or <tt>-cclib -ltermcap</tt>
-instead of <tt>-cclib -lcurses</tt>.)</p><h2 class="section"><a name="toc148"></a><a name="htoc277">17</a>&nbsp;&nbsp;Advanced topic: callbacks from C to OCaml</h2><p> <a name="s:callback"></a>
+instead of <tt>-cclib -lcurses</tt>.)</p><h2 class="section"><a name="toc148"></a><a name="htoc277">7</a>&nbsp;&nbsp;Advanced topic: callbacks from C to OCaml</h2><p> <a name="s:callback"></a>
 </p><p>So far, we have described how to call C functions from OCaml. In this
 section, we show how C functions can call OCaml functions, either as
 callbacks (OCaml calls C which calls OCaml), or because the main program
@@ -1119,7 +1119,7 @@ information is available, but the backtrace mechanism needs to be
 turned on programmatically. This can be achieved from the OCaml side
 by calling <tt>Printexc.record_backtrace true</tt> in the initialization of
 one of the OCaml modules. This can also be achieved from the C side
-by calling <tt>caml_record_backtrace(Val_int(1));</tt> in the OCaml-C glue code.</p><h2 class="section"><a name="toc149"></a><a name="htoc283">18</a>&nbsp;&nbsp;Advanced example with callbacks</h2><p>This section illustrates the callback facilities described in
+by calling <tt>caml_record_backtrace(Val_int(1));</tt> in the OCaml-C glue code.</p><h2 class="section"><a name="toc149"></a><a name="htoc283">8</a>&nbsp;&nbsp;Advanced example with callbacks</h2><p>This section illustrates the callback facilities described in
 section&nbsp;<a href="#s:callback">19.7</a>. We are going to package some OCaml functions
 in such a way that they can be linked with C code and called from C
 just like any C functions. The OCaml functions are defined in the
@@ -1186,7 +1186,7 @@ int main(int argc, char ** argv)
 To build the whole program, just invoke the C compiler as follows:
 </p><pre>        cc -o prog main.c mod.a -lcurses
 </pre><p>(On some machines, you may need to put <tt>-ltermcap</tt> or
-<tt>-lcurses -ltermcap</tt> instead of <tt>-lcurses</tt>.)</p><h2 class="section"><a name="toc150"></a><a name="htoc284">19</a>&nbsp;&nbsp;Advanced topic: custom blocks</h2><p> <a name="s:custom"></a>
+<tt>-lcurses -ltermcap</tt> instead of <tt>-lcurses</tt>.)</p><h2 class="section"><a name="toc150"></a><a name="htoc284">9</a>&nbsp;&nbsp;Advanced topic: custom blocks</h2><p> <a name="s:custom"></a>
 </p><p>Blocks with tag <tt>Custom_tag</tt> contain both arbitrary user data and a
 pointer to a C struct, with type <tt>struct custom_operations</tt>, that
 associates user-provided finalization, comparison, hashing,
@@ -1372,7 +1372,7 @@ size <i>n</i> words, with finalization function <i>f</i>. The first
 word is reserved for storing the custom operations; the other
 <i>n</i>-1 words are available for your data. The two parameters
 <i>used</i> and <i>max</i> are used to control the speed of garbage
-collection, as described for <tt>caml_alloc_custom</tt>.</p><h2 class="section"><a name="toc151"></a><a name="htoc291">110</a>&nbsp;&nbsp;Advanced topic: multithreading</h2><p>
+collection, as described for <tt>caml_alloc_custom</tt>.</p><h2 class="section"><a name="toc151"></a><a name="htoc291">10</a>&nbsp;&nbsp;Advanced topic: multithreading</h2><p>
 <a name="s:C-multithreading"></a></p><p>Using multiple threads (shared-memory concurrency) in a mixed OCaml/C
 application requires special precautions, which are described in this
 section.</p><h3 class="subsection"><a name="htoc292">19.10.1</a>&nbsp;&nbsp;Registering threads created from C</h3><p>Callbacks from C to OCaml are possible only if the calling thread is
@@ -1468,7 +1468,7 @@ names, declared in <tt>&lt;caml/signals.h&gt;</tt>:
 <tt>caml_acquire_runtime_system</tt>
 </li></ul><p>
 Intuition: a “blocking section” is a piece of C code that does not
-use the OCaml run-time system, typically a blocking input/output operation.</p><h2 class="section"><a name="toc152"></a><a name="htoc294">111</a>&nbsp;&nbsp;Building mixed C/OCaml libraries: <tt>ocamlmklib</tt></h2><p>
+use the OCaml run-time system, typically a blocking input/output operation.</p><h2 class="section"><a name="toc152"></a><a name="htoc294">11</a>&nbsp;&nbsp;Building mixed C/OCaml libraries: <tt>ocamlmklib</tt></h2><p>
 <a name="s-ocamlmklib"></a></p><p>The <tt>ocamlmklib</tt> command facilitates the construction of libraries
 containing both OCaml code and C code, and usable both in static
 linking and dynamic linking modes. This command is available under

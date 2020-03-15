@@ -503,6 +503,13 @@ ul.itemize li::before {
 
 /* Sidebar and TOC */
 
+ .toc_version {
+	font-size: smaller;
+	text-align: right;
+ }
+ .toc_version a {
+     color: #888;
+ }
 /*.toc ul:before */
 .toc_title
 {
@@ -519,7 +526,7 @@ ul.itemize li::before {
     font-weight: 500;
 }
 
-.toc {
+nav.toc {
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -582,7 +589,7 @@ ul.itemize li::before {
     margin: auto;
     padding: 2.0em;
   }
-  .toc {
+  nav.toc {
     position: static;
     width: auto;
     min-width: unset;
@@ -609,7 +616,7 @@ ul.itemize li::before {
       margin-right: 1em;
       float: left;
   }
-  .toc {
+  nav.toc {
       position: initial;
       background: #eee;
   }
@@ -654,6 +661,12 @@ div.caml-output.ok,
 code.caml-output.ok,
 span.c006 {
     color: #045804;
+}
+
+.dt-description span.c006 {
+    font-family: "Fira Mono", courier;
+    font-weight: bold;
+    color: black;
 }
 
 code.caml-output.error,
@@ -709,6 +722,10 @@ span.c004 {
 
 span.c009 {
     font-style: italic;
+}
+
+span.c013 {
+    font-weight: bold;
 }
 
 .caml-input span.kw, .caml-input span.ocamlkeyword {
