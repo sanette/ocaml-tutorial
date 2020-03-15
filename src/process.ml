@@ -26,7 +26,8 @@ let docs_maindir = "docs"
 let ocamlorg_maindir = "ocamlorg"
 (* Header for ocaml.org md files. *)
 let md_head = "<!-- ((! set title Manual !)) ((! set documentation !)) ((! set manual !)) ((! set nobreadcrumb !)) -->\n"
-  
+let archives = ["refman-html.tar.gz"; "refman.txt"; "refman.pdf"; "refman.info.tar.gz"]
+
 (* Where to get the original html files *)
 let html_dir version = Filename.concat version "htmlman"
                        |> Filename.concat html_maindir
@@ -127,7 +128,7 @@ let load_html ~version file =
       "\\1 "
     |> Str.global_replace (Str.regexp_string "\"libref/")
       (sprintf "\"../../api/%s/" version)
-    |> Str.global_replace (Str.regexp_string file) ""
+    (* |> Str.global_replace (Str.regexp_string file) "" *)
     (* that one was not necessary; it's just cleaner not to link to oneself. *)
   in
 
@@ -141,6 +142,21 @@ let load_html ~version file =
     | "us-ascii" -> pr "Charset is US-ASCII. We change it to UTF-8";
       Str.global_replace charset_regexp "charset=UTF-8\\2" html
     | _ -> pr "Warning, charset not recognized."; html
+
+let save_to_files ~version soup file =
+ (* Save new html file *)
+  let new_html = to_string soup in
+  write_file (docs_file version file) new_html;
+  (* Save ocamlorg md file *)
+  let md = Filename.basename file
+           |> Filename.remove_extension in
+  let md = md ^ ".md" in
+  (* for ocaml.org, we modify the link on the version number *)
+  soup $$ "a#version-select"
+  |> iter (set_attribute "href" "/docs");
+  soup $ "div.manual" |> to_string
+  |> (^) md_head 
+  |> write_file (ocamlorg_file version md)
 
 let remove_navigation soup =
   (* Remove first three links "Previous, Up, Next" *)
@@ -163,8 +179,28 @@ let include_file ~version ?(id_tag="h2") body file =
   body $ "external" |> unwrap;
   id
   
-  
+(* Alternative to [include_file]. Here we create a new file by cloning the
+   structure of "soup", and inserting the content of new file (hence preserving
+   TOC and headers) *)
+let clone_structure ~version soup xfile =
+  let xternal = parse (load_html ~version xfile) in
+  remove_navigation xternal;
+  do_option delete (xternal $? "hr");
+  let xbody = xternal $ "body" in
+  let clone = parse (to_string soup) in
+  let header = clone $ "header" in
+  insert_after header xbody;
+  create_element ~id:"start-section" "a"
+  |> insert_after header;
+  next_siblings xbody
+  |> iter delete;
+  insert_after xbody (copyright ());
+  set_name "section" xbody;
+  set_attribute "id" "section" xbody;
+  save_to_files ~version clone xfile
 
+
+  
 (* [convert] has to be run for each "entry" [file] of the manual, making a
    "Chapter".  (the list of [chapters] corresponds to a "Part" of the manual) *)
 let convert version chapters (title, file) =
@@ -245,22 +281,6 @@ let convert version chapters (title, file) =
               (append_child li a;
                append_child toc li)
           end else ();
-
-        (* Include external files *)
-        (* TODO ça a du bon d'inclure les fichiers, c'est pratique, mais
-           malheureusement on perd les liens d'autres fichiers qui pointeraient
-           vers eux. On va donc essayer de ne plus utiliser ça...*)
-        toc $$ "li"
-        |> iter (fun li ->
-            let ref = li $ "a" |> R.attribute "href" in
-            sprintf "TOC reference = %s " ref |> pr;
-            if not (String.contains ref '#') &&
-               not (String.length ref > 2 && String.sub ref 0 2 = "..")
-            then let id_tag = if file = "index.html" then "h1" else "h2" in
-              match include_file ~version ~id_tag body ref with
-              | None -> pr "Cannot find ID for included file"
-              | Some id -> li $ "a" |> set_attribute "href" ("#" ^ id))
-
       end
   end;
 
@@ -294,7 +314,7 @@ let convert version chapters (title, file) =
   begin match soup $? "header" with
     | None -> sprintf "Warning: no <header> for %s" file |> pr
     | Some header ->
-      let logo_html = "<nav class=\"toc brand\"><a class=\"brand\" href=\"https://ocaml.org/\" ><img src=\"colour-logo-gray.svg\" class=\"svg\" alt=\"OCaml\" /></a></nav>" in
+      let logo_html = {|<nav class="toc brand"><a class="brand" href="https://ocaml.org/" ><img src="colour-logo-gray.svg" class="svg" alt="OCaml" /></a></nav>|} in
       prepend_child header (parse logo_html)
   end;
 
@@ -346,23 +366,43 @@ let convert version chapters (title, file) =
         |> replace e)
   end;
 
+  if false then begin
+    (* Wrap content after header (hence not TOC) in a section tag *)
+    (* Not necessary here but could be useful later *)
+    let section = create_element "section" in
+    insert_after (body $ "header") section;
+    next_siblings section
+    |> iter (append_child section)
+  end;
+
+  (* Get the list of external files *)
+  (* Ça a du bon d'inclure les fichiers, c'est pratique, mais
+     malheureusement on perd les liens d'autres fichiers qui pointeraient
+     vers eux. On ne fait donc plus ça. *)
+  let xfiles = match toc with
+    | None -> []
+    | Some toc ->
+      toc $$ "li"
+      |> fold (fun list li ->
+          let ref = li $ "a" |> R.attribute "href" in
+          sprintf "TOC reference = %s " ref |> pr;
+          if not (String.contains ref '#') &&
+             not (String.length ref > 2 && String.sub ref 0 2 = "..")
+          then begin
+            li $ "a" |> set_attribute "href" (ref ^ "#start-section");
+            ref::list
+          end else list) []
+  in
+
   (* Add copyright *)
   append_child body (copyright ());
 
-  (* Save new html file *)
-  let new_html = to_string soup in
-  write_file (docs_file version file) new_html;
-  (* Save ocamlorg md file *)
-  let md = Filename.basename file
-           |> Filename.remove_extension in
-  let md = md ^ ".md" in
-  (* for ocaml.org, we modify the link on the version number *)
-  soup $$ "a#version-select"
-  |> iter (set_attribute "href" "/docs");
-  soup $ "div.manual" |> to_string
-  |> (^) md_head 
-  |> write_file (ocamlorg_file version md)
-
+  (* Generate external files *)
+  List.iter (clone_structure ~version soup) xfiles;
+  
+  (* And finally save *)
+  save_to_files ~version soup file
+  
 (* Create "index.html" (for standalone version only) *)
 let make_index versions =
   let html = read_file @@ Filename.concat "src" "index.html" in
@@ -399,22 +439,23 @@ let download_version version =
       if not (Sys.file_exists dir)
       then begin
         sys_mkdir dir;
-        let url = sprintf
-            "http://caml.inria.fr/distrib/ocaml-%s/ocaml-%s-refman-html.tar.gz"
-            version version in
-        let tmp = Filename.temp_file version ".tar.gz" in
-        let name = Filename.basename tmp in
-        if Sys.command (sprintf "wget %s -O %s" url tmp) <> 0
-        then failwith ("Could not download manual at " ^ url)
-        else begin
-          (* Sys.rename won't work between different partitions... *)
-          sys_cp tmp (Filename.concat dir name);
-          Sys.remove tmp;
-          Sys.chdir dir;
-          if Sys.command (sprintf "tar xvf %s" name) <> 0
-          then failwith (sprintf "Could not extract %s." name)
-          else Sys.remove name
-        end
+        archives
+        |> List.iter (fun name ->
+            let file = sprintf "ocaml-%s-%s" version name in
+            let url = sprintf "http://caml.inria.fr/distrib/ocaml-%s/%s"
+                version file in
+            let tmp = Filename.temp_file version name in
+            if Sys.command (sprintf "wget %s -O %s" url tmp) <> 0
+            then failwith ("Could not download manual at " ^ url)
+            else begin
+              (* Sys.rename won't work between different partitions... *)
+              sys_cp tmp (Filename.concat dir file);
+              Sys.remove tmp
+            end);
+        Sys.chdir dir;
+        let html =  sprintf "ocaml-%s-refman-html.tar.gz" version in
+        if Sys.command (sprintf "tar xvf %s" html) <> 0
+        then failwith (sprintf "Could not extract %s." html)
       end
     with
     | e -> Sys.chdir pwd; raise e
@@ -441,13 +482,23 @@ let process version =
       pr file;
       sys_cp (Filename.concat "src/" file) (docs_file version out)
     ) to_copy;
-  sys_cp "src/colour-logo-gray.svg"
-    (Filename.concat (ocamlorg_dir version) "colour-logo-gray.svg");
+  sys_cp "src/colour-logo-gray.svg" (ocamlorg_file version "colour-logo-gray.svg");
+  archives
+  |> List.iter (fun name ->
+      let file = sprintf "ocaml-%s-%s" version name in
+      sys_cp (html_file version ("../" ^ file)) (ocamlorg_file version file));
+  if float_of_string version < 4.09
+  then begin
+    sys_cp "src/libgraph.gif" (ocamlorg_file version "libgraph.gif");
+    sys_cp "src/libgraph.gif" (docs_file version "libgraph.gif")
+  end;
 
   (* special case of the "index.html" file *)
+  (* TODO: the inline css styling of this file is quite bad, we should propose
+     something else. *)
   convert version [] ("The OCaml Manual", "index.html");
 
-  
+
   let parts = ["tutorials"; "refman"; "commands"; "library" ] in
   (* TODO "appendix" needs a special treatment *)
   let main_files = List.fold_left (fun list part ->

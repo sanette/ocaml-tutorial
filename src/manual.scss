@@ -187,6 +187,9 @@ ul.translations {
 	}
     }
 
+    a#start-section:target {
+	display: block;
+    }
     p a:target {
 	display: block;
 	/* this is used when a link target the start of a chapter using a "c-???" id, which is unfortunately below the title. If we use the default display:inline, the padding trick below does not work. */
