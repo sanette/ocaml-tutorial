@@ -609,7 +609,15 @@ ul.itemize li::before {
 
 /* Sidebar and TOC */
 
-/*.toc ul:before */
+ .toc_version {
+	font-size: smaller;
+	text-align: right;
+ }
+ .toc_version a {
+     color: #888;
+ }
+ 
+ /*.toc ul:before */
 .toc_title
 {
   display: block;

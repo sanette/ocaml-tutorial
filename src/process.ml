@@ -477,9 +477,9 @@ let process version =
 (*********************************************************************)
         
 let () = 
-  let _all_versions = Array.init 11 (fun i -> sprintf "4.%02u" i)
+  let all_versions = Array.init 11 (fun i -> sprintf "4.%02u" i)
                      |> Array.to_list in
-  let all_versions = ["4.10"] in
+  let _all_versions = ["4.10"] in
   download_versions all_versions;
   List.iter (fun file ->
       sys_cp (Filename.concat "src" file) (Filename.concat docs_maindir file))
