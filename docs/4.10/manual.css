@@ -510,7 +510,8 @@ ul.itemize li::before {
  .toc_version a {
      color: #888;
  }
-/*.toc ul:before */
+ 
+ /*.toc ul:before */
 .toc_title
 {
   display: block;
@@ -674,7 +675,7 @@ div.caml-output.error {
     color: orangered;
     white-space: normal;
 }
-.tutorial span {
+.tutorial span, .chapter span {
     /* ocaml logo color */
     color: #ec6a0d;
 }

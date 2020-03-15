@@ -484,116 +484,6 @@ span.at-tag {
   margin-top: -20px;
 }
 
-/* Odig package index */
-
-.by-name ol, .by-tag ol, .errors ol {
-  list-style-type: none;
-  margin-left: 0;
-}
-
-.by-name ol ol, .by-tag ol ol {
-  margin-top: 0;
-  margin-bottom: 0
-}
-
-.by-name li, .by-tag li, .errors li {
-  margin-left: 0;
-}
-
-.by-name .version {
-  font-size: 10px;
-  color: #AAA
-}
-
-.by-name nav {
-  margin-bottom: 10px
-}
-
-.by-name nav a {
-  text-transform: uppercase;
-  font-size: 18px;
-  margin-right: 1ex;
-  color: #222;
-  display: inline-block;
-}
-
-.by-tag nav a {
-  margin-right: 1ex;
-  color: #222;
-  display: inline-block;
-}
-
-.by-tag>ol>li {
-  margin-top: 10px;
-}
-
-.by-tag>ol>li>span, .by-tag>ol>li>ol, .by-tag>ol>li>ol>li {
-  display: inline-block;
-  margin-right: 1ex;
-}
-
-/* Odig package page */
-
-.package nav {
-  display: inline;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-.package .version {
-  font-size: 14px;
-}
-
-h1+.modules, h1+.sel {
-  margin-top: 10px
-}
-
-.sel {
-  font-weight: normal;
-  font-style: italic;
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-.sel+.modules {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 1ex;
-}
-
-.modules {
-  margin: 0;
-}
-
-.modules .module {
-  min-width: 8ex;
-  padding-right: 2ex
-}
-
-.package.info {
-  margin: 0;
-}
-
-.package.info td:first-child {
-  font-style: italic;
-  padding-right: 2ex;
-}
-
-.package.info ul {
-  list-style-type: none;
-  display: inline;
-  margin: 0;
-}
-
-.package.info li {
-  display: inline-block;
-  margin: 0;
-  margin-right: 1ex;
-}
-
-#info-authors li, #info-maintainers li {
-  display: block;
-}
 
 /* lists in the main text */
 ul.itemize {
@@ -633,7 +523,7 @@ ul.itemize li::before {
     font-weight: 500;
 }
 
-.toc {
+nav.toc {
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -696,7 +586,7 @@ ul.itemize li::before {
     margin: auto;
     padding: 2.0em;
   }
-  .toc {
+  nav.toc {
     position: static;
     width: auto;
     min-width: unset;
@@ -723,7 +613,7 @@ ul.itemize li::before {
       margin-right: 1em;
       float: left;
   }
-  .toc {
+  nav.toc {
       position: initial;
       background: #eee;
   }
@@ -753,84 +643,6 @@ span.arrow {
     font-family: "Fira Mono";
 }
 
-.hljs-comment,
-.hljs-meta {
-  color: #969896;
-}
-
-.hljs-string,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-strong,
-.hljs-emphasis,
-.hljs-quote {
-  color: #df5000;
-}
-
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #a71d5d;
-}
-
-.hljs-type,
-.hljs-class .hljs-title {
-  color: #458;
-  font-weight: 500;
-}
-
-.hljs-literal,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-attribute {
-  color: #0086b3;
-}
-
-.hljs-section,
-.hljs-name {
-  color: #63a35c;
-}
-
-.hljs-tag {
-  color: #333333;
-}
-
-.hljs-attr,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo {
-  color: #795da3;
-}
-
-.hljs-addition {
-  color: #55a532;
-  background-color: #eaffea;
-}
-
-.hljs-deletion {
-  color: #bd2c00;
-  background-color: #ffecec;
-}
-
-.hljs-link {
-  text-decoration: underline;
-}
-
-/*---------------------------------------------------------------------------
-   Copyright (c) 2016 The odoc contributors
-
-   Permission to use, copy, modify, and/or distribute this software for any
-   purpose with or without fee is hereby granted, provided that the above
-   copyright notice and this permission notice appear in all copies.
-
-   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-  ---------------------------------------------------------------------------*/
 header nav {display: none;} header nav.toc {display: block;} header dl dd, header dl dt {display: inline-block;} 
 
 pre {
@@ -848,11 +660,18 @@ span.c006 {
     color: #045804;
 }
 
+.dt-description span.c006 {
+    font-family: "Fira Mono", courier;
+    font-weight: bold;
+    color: black;
+}
+
 code.caml-output.error,
 div.caml-output.error {
     color: orangered;
+    white-space: normal;
 }
-.tutorial span {
+.tutorial span, .chapter span {
     /* ocaml logo color */
     color: #ec6a0d;
 }
@@ -902,7 +721,11 @@ span.c009 {
     font-style: italic;
 }
 
-.caml-input span.kw {
+span.c013 {
+    font-weight: bold;
+}
+
+.caml-input span.kw, .caml-input span.ocamlkeyword {
     font-weight: 500;
     color: #444;
 }
