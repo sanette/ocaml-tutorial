@@ -10,7 +10,7 @@
 open Soup
 open Printf
 
-let debug = false
+let debug = true
 let pr = if debug then print_endline else fun _ -> ()
                                                    
 (* Set this to the directory where to find the html sources of all versions: *)
@@ -479,10 +479,13 @@ let process version =
       pr file;
       sys_cp (Filename.concat "src/" file) (docs_file version out)
     ) to_copy;
+  
   sys_cp "src/colour-logo-gray.svg" (ocamlorg_file version "colour-logo-gray.svg");
+
   archives
   |> List.iter (fun name ->
       let file = sprintf "ocaml-%s-%s" version name in
+      pr file;
       sys_cp (html_file version ("../" ^ file)) (ocamlorg_file version file));
   if float_of_string version < 4.09
   then begin
