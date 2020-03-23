@@ -7,16 +7,10 @@
 
  *)
 
-(*
-
-TODO Warning the files included in chapters (like Chapters 7 and 8) are not
-   processed at the moment.
-
-*)
 open Soup
 open Printf
 
-let debug = true
+let debug = false
 let pr = if debug then print_endline else fun _ -> ()
                                                    
 (* Set this to the directory where to find the html sources of all versions: *)
@@ -110,7 +104,7 @@ let copyright () =
 
 let load_html ~version file =
   pr file;
-   (* First we perform some direct find/replace in the html string. *)
+  (* First we perform some direct find/replace in the html string. *)
   (* Warning charset = ascii for 4.05 et utf8 for >=4.09.  But the original html
      is kind of buggy because 4.05 uses &#XA0; for non-breaking space in
      us-ascii encoding, although &#XA0; is latin encoding...  Finally we decide
@@ -128,13 +122,16 @@ let load_html ~version file =
       "\\1 "
     |> Str.global_replace (Str.regexp_string "\"libref/")
       (sprintf "\"../../api/%s/" version)
-    (* |> Str.global_replace (Str.regexp_string file) "" *)
-    (* that one was not necessary; it's just cleaner not to link to oneself. *)
+    |> Str.global_replace (Str.regexp_string "\"compilerlibref/")
+      (sprintf "\"../../api/%s/compilerlibref/" version)
+
+  (* |> Str.global_replace (Str.regexp_string file) "" *)
+  (* that one was not necessary; it's just cleaner not to link to oneself. *)
   in
 
   (* Set utf8 encoding directly in the html string *)
   let charset_regexp = Str.regexp "charset=\\([-A-Za-z0-9]+\\)\\(\\b\\|;\\)" in
-  
+
   match Str.search_forward charset_regexp html 0 with
   | exception Not_found -> pr "Warning, no charset found in html."; html
   | _ -> match (String.lowercase_ascii (Str.matched_group 1 html)) with
