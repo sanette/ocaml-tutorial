@@ -734,7 +734,7 @@ span.c013 {
     color: #444;
 }
 
-.caml-input span.kw1, .caml-input span.ocamlkeyword {
+.caml-input span.kw1 {
     font-weight: 500;
     color: #777;
 }
@@ -766,7 +766,7 @@ span.c013 {
     color: #df5000;
 }
 
-.caml-input span.comment {
+.caml-input span.comment, .caml-input span.ocamlcomment {
     color: #969896;
 }
 

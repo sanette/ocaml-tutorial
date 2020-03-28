@@ -62,7 +62,7 @@ ul.translations {
 }
 
 .manual {
-    //font-size: 15px;
+    font-size: 16px;
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     text-align: left;
     color: #333;
@@ -835,7 +835,7 @@ ul.translations {
 	font-weight: bold;
     }
 
-    .caml-input span.kw {
+    .caml-input span.kw, .caml-input span.ocamlkeyword {
 	font-weight: 500;
 	color: #444;
     }
@@ -871,7 +871,7 @@ ul.translations {
 	color: #df5000;
     }
 
-    .caml-input span.comment {
+    .caml-input span.comment, .caml-input span.ocamlcomment {
 	color: #969896;
     }
 
