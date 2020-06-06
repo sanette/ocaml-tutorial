@@ -1,886 +1,392 @@
 @charset "UTF-8";
 
 // SOURCE FILE
+
 /* If the above line does not say "SOURCE FILE", then do not edit. It
-   means this file is generated from [sass manual.scss] */
-      
-/* 
-CSS file for the Ocaml manual, part I,
-https://sanette.github.io/ocaml-tutorial/core_tutorial.html 
+means this file is generated from [sass manual.scss] */
 
-This file is built upon the "odoc.css" file,
-Copyright (c) 2016 The odoc contributors. All rights reserved.
-Distributed under the ISC license, see terms at the end of the file.
-odoc 1.4.2
+/* CSS file for the Ocaml manual, part I,
+https://sanette.github.io/ocaml-tutorial/core_tutorial.html */
 
-This new version also distributed under the ISC licence.
-San Vu Ngoc, 2019 */
-
-// TODO: many elements of this file are currently never used by the
-// ocaml manual, and should be removed.
+/* Distributed under the ISC licence.  San Vu Ngoc, 2019-2020 */
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,500');
-@import url('https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700');
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i');
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,500);
+@import url(https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i);
 
-
-/* Reset a few things. */
-.container {
-    margin-left: 0;
-    margin-right: 0;
+/* Reset */
+.pre,a,b,body,code,div,em,form,h1,h2,h3,h4,h5,h6,header,html,i,img,li,mark,menu,nav,object,output,p,pre,s,section,span,time,ul,var{
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:inherit;
+    font:inherit;
+    line-height:inherit;
+    vertical-align:baseline;
+    text-align:inherit;
+    color:inherit;
+    background:0 0
 }
-
-ul.translations {
-    display: none;
+*,:after,:before{
+    box-sizing:border-box
 }
-
-.manual {
-    div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, .pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: inherit;
-	font: inherit;
-	line-height: inherit;
-	vertical-align: baseline;
-	text-align: inherit;
-	color: inherit;
-	background: transparent;
-    }
+body{
+    font-family:"Fira Sans",Helvetica,Arial,sans-serif;
+    text-align:left;
+    color:#333;
+    background:#fff
 }
-
-.manual {
+html {
+    font-size: 16px;
+}
+.content{
+    max-width:90ex;
+    margin-left:calc(10vw + 20ex);
+    margin-right:4ex;
+    margin-top:20px;
+    margin-bottom:50px;
+    font-family:"Noticia Text",Georgia,serif;
+    line-height:1.5
+}
+.content>header{
+    margin-bottom:30px
+}
+.content>header nav{
+    font-family:"Fira Sans",Helvetica,Arial,sans-serif
+}
+b{
+    font-weight:500
+}
+em,i{
+    font-style:italic
+}
+.ocaml,pre{
+    margin-top:.8em;
+    margin-bottom:1.2em
+}
+.ocaml .pre{
+    white-space:pre
+}
+p,ul{
+    margin-top:.5em;
+    margin-bottom:1em
+}
+ul{
+    list-style-position:outside
+}
+ul>li{
+    margin-left:22px
+}
+li>:first-child{
+    margin-top:0
+}
+.left{
+    text-align:left
+}
+.right{
+    text-align:right
+}
+a{
+    text-decoration:none;
+    color:#92370a
+}
+a:hover{
+    box-shadow:0 1px 0 0 #92370a
+}
+:target{
+    background-color:rgba(255,215,181,.3)!important;
+    box-shadow:0 0 0 1px rgba(255,215,181,.8)!important;
+    border-radius:1px
+}
+:hover>a.anchor{
+    visibility:visible
+}
+a.anchor:before{
+    content:"#"
+}
+a.anchor:hover{
+    box-shadow:none;
+    text-decoration:none;
+    color:#555
+}
+a.anchor{
+    visibility:hidden;
+    position:absolute;
+    margin-left:-1.3em;
+    font-weight:400;
+    font-style:normal;
+    padding-right:.4em;
+    padding-left:.4em;
+    color:#d5d5d5
+}
+.h10,.h7,.h8,.h9,h1,h2,h3,h4,h5,h6{
+    font-family:"Fira Sans",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    margin:.5em 0 .5em 0;
+    padding-top:.1em;
+    line-height:1.2;
+    overflow-wrap:break-word
+}
+h1{
+    font-weight:500;
+    font-size:2.441em;
+    margin-top:1.214em
+}
+h1{
+    font-weight:500;
+    font-size:1.953em;
+    box-shadow:0 1px 0 0 #ddd
+}
+h2{
+    font-size:1.563em
+}
+h3{
+    font-size:1.25em
+}
+h1 code{
+    font-size:inherit;
+    font-weight:inherit
+}
+h2 code{
+    font-size:inherit;
+    font-weight:inherit
+}
+h3 code{
+    font-size:inherit;
+    font-weight:inherit
+}
+h3 code{
+    font-size:inherit;
+    font-weight:inherit
+}
+h4{
+    font-size:1.12em
+}
+.ocaml,.pre,code,pre,tt{
+    font-family:"Fira Mono",courier;
+    font-weight:400
+}
+.pre,pre{
+    border-left:4px solid #e69c7f;
+    overflow-x:auto;
+    padding-left:1ex
+}
+li code,p code{
+    background-color:#f6f8fa;
+    color:#0d2b3e;
+    border-radius:3px;
+    padding:0 .3ex
+}
+.pre .code,.pre.code,pre code{
+    background-color:inherit
+}
+p a>code{
+    color:#92370a}
+.pre code.ocaml,.pre.code.ocaml,pre code.ocaml{
+    font-size:.893rem}
+.keyword,.ocamlkeyword{
+    font-weight:500}
+section+section{
+    margin-top:25px}
+ul.itemize{
+    list-style:none}
+ul.itemize li::before{
+    content:"▶";
+    color:#ec6a0d;
+    margin-right:4px;
+    margin-left:-1em}
+.toc_version{
+    font-size:smaller;
+    text-align:right}
+.toc_version a{
+    color:#888}
+.toc_title{
+    display:block;
+    margin:.5em 0 1.414em}
+.toc_title a{
+    color:#777;
+    font-size:1em;
+    line-height:1.2;
+    font-weight:500}
+nav.toc{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    max-width:30ex;
+    min-width:26ex;
+    width:20%;
+    background:linear-gradient(to left,#ccc,transparent);
+    overflow:auto;
+    color:#1f2d3d;
+    padding-left:2ex;
+    padding-right:2ex}
+.toc ul li a{
+    font-family:"Fira Sans",sans-serif;
+    font-size:.95em;
+    color:#333;
+    font-weight:400;
+    line-height:1.6em;
+    display:block}
+.toc ul li a:hover{
+    box-shadow:none;
+    text-decoration:underline}
+.toc>ul>li>a{
+    font-weight:500}
+.toc li ul{
+    margin:0
+}
+.toc ul{
+    list-style-type:none
+}
+.toc ul li{
+    margin:0
+}
+.toc>ul>li{
+    margin-bottom:.3em
+}
+.toc ul li li{
+    border-left:1px solid #ccc;
+    margin-left:5px;
+    padding-left:12px
+}
+.tableau {
     table {
 	border-collapse: collapse;
-	border-spacing: 0;
     }
-
-    *, *:before, *:after {
-	box-sizing: border-box;
-    }
-}
-
-.manual {
-    font-size: 16px;
-    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-    text-align: left;
-    color: #333;
-    background: #FFFFFF;
-}
-
-.manual.content {
-    max-width: 90ex;
-    margin-left: calc(10vw + 20ex);
-    margin-right: 4ex;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    font-family: "Noticia Text", Georgia, serif;
-    line-height: 1.5;
-    .maintitle {
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;	
-    }
-
-
-    >header {
-	margin-bottom: 30px;
-    }
-
-    >header nav { 
-	font-family: "Fira Sans", Helvetica, Arial,
-	sans-serif; 
+    td {
+	background:linear-gradient(to left,#fff 0,#ede8e5 100%);
+	border:1px solid #ccc;
+	padding-left:3px;
+	padding-right:3px;
     }
 }
 
-/* Basic markup elements */
-
-.manual {
-    b, strong {
-	font-weight: 500;
+/* Mobile */
+@media only screen and (max-width:95ex){
+    .content{
+	margin:auto;
+	padding:2em
     }
-
-    i, em {
-	font-style: italic;
-    }
-
-    sup {
-	vertical-align: super;
-    }
-
-    sub {
-	vertical-align: sub;
-    }
-
-    sup, sub {
-	font-size: 12px;
-	line-height: 0;
-	margin-left: 0.2ex;
-    }
-
-    pre, .pre {
-	margin-top: 0.8em;
-	margin-bottom: 1.2em;
-    }
-
-    p, ul, ol {
-	margin-top: 0.5em;
-	margin-bottom: 1em;
-    }
-    ul, ol {
-	list-style-position: outside
-    }
-
-    ul>li {
-	margin-left: 22px;
-    }
-
-    ol>li {
-	margin-left: 27.2px;
-    }
-
-    li>*:first-child {
-	margin-top: 0
-    }
+    nav.toc{
+	position:static;
+	width:auto;
+	min-width:unset;
+	max-width:unset;
+	border:none;
+	padding:.2em 1em;
+	border-radius:5px}
 }
-/* Text alignements, this should be forbidden. */
 
-.manual {
-    .left {
-	text-align: left;
+/* Print (or PDF) */
+@media print{
+    body{
+	color:#000;
+	background:#fff
     }
-
-    .right {
-	text-align: right;
+    body nav:first-child{
+	position:absolute;
+	background:0 0
     }
-
-    .center {
-	text-align: center;
+    nav.toc{
+	margin-right:1em;
+	float:left
     }
-}
-/* Links and anchors */
-
-.manual {
-    a {
-	text-decoration: none;
-	color: #92370A
+    nav.toc{
+	position:initial;
+	background:#eee
     }
-
-    a:hover {
-	box-shadow: 0 1px 0 0 #92370A;
+    .content{
+	margin-left:3em;
+	margin-right:3em
     }
 }
 
-/* Linked highlight */
-.manual {
-    *:target {
-	border-radius: 1px;
-	box-shadow: 0 4px 0 0px rgb(255, 215, 181);
-	z-index: 0;
-	/* Because of fixed banner in the ocaml.org site, we have to offset the targets. See https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */
-	padding-top: 85px;
-	margin-top: -85px;
-	
-	/* When the navigation bar has reduced size */
-	@media (max-height: 600px) and (min-width: 980px) {
-	padding-top: 55px;
-	margin-top: -55px;    
-	}
-    }
-
-    a#start-section:target {
-	display: block;
-    }
-    p a:target {
-	display: block;
-	/* this is used when a link target the start of a chapter using a "c-???" id, which is unfortunately below the title. If we use the default display:inline, the padding trick below does not work. */
-	padding-top: 150px;
-	margin-top: -150px;
-    }
-    
-    *:hover>a.anchor {
-	visibility: visible;
-    }
-
-    a.anchor:before {
-	content: "#"
-    }
-
-    a.anchor:hover {
-	box-shadow: none;
-	text-decoration: none;
-	color: #555;
-    }
-
-    a.anchor {
-	visibility: hidden;
-	position: absolute;
-	/* top: 0px; */
-	/* margin-left: -3ex; */
-	margin-left: -1.3em;
-	font-weight: normal;
-	font-style: normal;
-	padding-right: 0.4em;
-	padding-left: 0.4em;
-	/* To remain selectable */
-	color: #d5d5d5;
-    }
-
-    .spec > a.anchor {
-	margin-left: -2.3em;
-	padding-right: 0.9em;
-    }
-
-    .xref-unresolved {
-	color: #92370A
-    }
-    .xref-unresolved:hover {
-	box-shadow: 0 1px 0 0 #CC6666;
-    }
+.ocaml{ 
+    background:linear-gradient(to left,#fff 0,#f3f7f6 100%)
 }
 
-/* Section and document divisions.
-   Until at least 4.03 many of the modules of the stdlib start at .h7,
-   we restart the sequence there like h2  */
-
-.manual {
-    h1, h2, h3, h4, h5, h6, .h7, .h8, .h9, .h10 {
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-	font-weight: 400;
-	margin: 0.5em 0 0.5em 0;
-	padding-top: 0.1em;
-	line-height: 1.2;
-	overflow-wrap: break-word;
-    }
-
-    h1 {
-	font-weight: 500;
-	font-size: 2.441em;
-	margin-top: 1.214em;
-    }
-
-    h1 {
-	font-weight: 500;
-	font-size: 1.953em;
-	box-shadow: 0 1px 0 0 #ddd;
-    }
-
-    h2 {
-	font-size: 1.563em;
-    }
-
-    h3 {
-	font-size: 1.25em;
-    }
-
-    small, .font_small {
-	font-size: 0.8em;
-    }
-
-    h1 code, h1 tt {
-	font-size: inherit;
-	font-weight: inherit;
-    }
-
-    h2 code, h2 tt {
-	font-size: inherit;
-	font-weight: inherit;
-    }
-
-    h3 code, h3 tt {
-	font-size: inherit;
-	font-weight: inherit;
-    }
-
-    h3 code, h3 tt {
-	font-size: inherit;
-	font-weight: inherit;
-    }
-
-    h4 {
-	font-size: 1.12em;
-    }
+header nav{
+    display:none
 }
-
-/* Preformatted and code */
-
-.manual {
-    tt, code, pre, .pre {
-	font-family: "Fira Mono", courier;
-	font-weight: 400;
-    }
-
-    pre, .pre {
-	border-left: 4px solid #e69c7f;
-	overflow-x: auto;
-	padding-left: 1ex;
-    }
-
-    p code, li code {
-	background-color: #f6f8fa;
-	color: #0d2b3e;
-	border-radius: 3px;
-	padding: 0 0.3ex;
-    }
-
-    pre code, .pre code {
-	background-color: inherit;
-    }
-
-    p a > code {
-	color: #92370A;
-    }
+header nav.toc{
+    display:block
 }
-
-/* Code blocks (e.g. Examples) */
-
-.manual {
-    pre code.ocaml, .pre code.ocaml {
-	font-size: 0.893rem;
-    }
-    .ocaml .pre {
-	white-space: pre;
-    } 
+.pre,pre{
+    background:linear-gradient(to left,#fff 0,#ede8e5 100%)
 }
-
-/* Code lexemes */
-
-.manual {
-    .keyword {
-	font-weight: 500;
-	color: inherit;
-    }
+code.caml-output.ok,div.caml-output.ok,span.c006{
+    color:#045804
 }
-
-/* Module member specification */
-
-.manual {
-    .spec:not(.include), .spec.include details summary {
-	background: linear-gradient(to left, rgb(253, 252, 252) 0%, rgb(234, 246, 250) 100%);
-	border-radius: 3px;
-	border-left: 4px solid #5c9cf5;
-	border-right: 5px solid transparent;
-	padding: 0.35em 0.5em;
-    }
-
-    .spec.include details summary:hover {
-	background-color: #ebeff2;
-    }
-
-    dl, div.spec, .doc, aside {
-	margin-bottom: 20px;
-    }
-
-    dl > dd {
-	padding: 0.5em;
-    }
-
-    dd> :first-child {
-	margin-top: 0;
-    }
-
-    dd > p:first-child > code:first-child {
-	color: teal;
-    }
-
-    dl:last-child, dd> :last-child, aside:last-child, article:last-child {
-	margin-bottom: 0;
-    }
-
-    dt+dt {
-	margin-top: 15px;
-    }
-
-    section+section, section > header + dl {
-	margin-top: 25px;
-    }
-
-    .spec.type .variant {
-	margin-left: 2ch;
-    }
-    .spec.type .variant p {
-	margin: 0;
-	font-style: italic;
-    }
-    .spec.type .record {
-	margin-left: 2ch;
-    }
-    .spec.type .record p {
-	margin: 0;
-	font-style: italic;
-    }
-
-    div.def {
-	margin-top: 0;
-	text-indent: -2ex;
-	padding-left: 2ex;
-    }
-
-    div.def+div.doc {
-	margin-left: 1ex;
-	margin-top: 2.5px
-    }
-
-    div.doc>*:first-child {
-	margin-top: 0;
-    }
+code.caml-output.error,div.caml-output.error{
+    color:#ff4500;
+    white-space:normal
 }
-
-/* The elements other than heading should be wrapped in <aside> elements. */
-/* heading, body>p, body>ul, body>ol, h3, h4, body>pre { */
-/*   margin-bottom: 30px; */
-/* } */
-
-/* Collapsible inlined include and module */
-
-.manual {
-    .spec.include details {
-	position: relative;
-    }
-
-    .spec.include details:after {
-	z-index: -100;
-	display: block;
-	content: " ";
-	position: absolute;
-	border-radius: 0 1ex 1ex 0;
-	right: -20px;
-	top: 1px;
-	bottom: 1px;
-	width: 15px;
-	background: rgba(0, 4, 15, 0.05);
-	box-shadow: 0 0px 0 1px rgba(204, 204, 204, 0.53);
-    }
-
-    .spec.include details summary {
-	position: relative;
-	margin-bottom: 20px;
-	cursor: pointer;
-	outline: none;
-    }
-
-    /* FIXME: Does not work in Firefox. */
-    details summary::-webkit-details-marker {
-	color: #888;
-	transform: scaleX(-1);
-	position: absolute;
-	top: calc(50% - 5px);
-	height: 11px;
-	right: -29px;
-    }
+.chapter span,.tutorial span{
+    color:#ec6a0d
 }
-
-/* Records and variants FIXME */
-
-.manual {
-    div.def table {
-	text-indent: 0em;
-	padding: 0;
-	margin-left: -2ex;
-    }
-
-    td.def {
-	padding-right: 2ex
-    }
-
-    .record td.def {
-	padding-left: 2ex;
-    }
-
-    td.doc *:first-child {
-	margin-top: 0em
-    }
-
-    /* @ tags */
-
-    ul.at-tag {
-	list-style-type: none;
-	margin-left: 0;
-	padding: 0;
-    }
-
-    ul.at-tag li {
-	margin-left: 0;
-	padding: 0;
-    }
-
-    ul.at-tag li p:first-child {
-	margin-top: 0
-    }
-
-    /* FIXME remove */
-
-    span.at-tag {
-	font-weight: bold
-    }
-
-    .at-tag.deprecated {
-	font-weight: normal;
-	color: crimson
-    }
-
-    .at-tag.raise {
-	font-weight: bold;
-    }
-
-    /* FIXME random other things to review. */
-
-    .heading {
-	margin-top: 10px;
-	border-bottom: solid;
-	border-width: 1px;
-	border-color: #DDD;
-	text-align: right;
-	font-weight: normal;
-	font-style: italic;
-    }
-
-    .heading+.sig {
-	margin-top: -20px;
-    }
-
-    .heading+.parameters {
-	margin-top: -20px;
-    }
+ul.part_menu{
+    font-family:"Fira Sans";
+    text-align:right;
+    list-style:none
 }
-
-/* Odig package index */
-
-.manual {
-    
-    /* lists in the main text */
-    ul.itemize {
-	list-style: none;
-    }
-
-    ul.itemize li::before {
-	content: "▶";
-	color: #ec6a0d;
-	margin-right: 4px;
-	margin-left: -1em;
-    }
+ul.part_menu li.active a{
+    color:#000
 }
-
-/* Sidebar and TOC */
-
-.manual {
-
-    .toc_version {
-	font-size: smaller;
-	text-align: right;
-	a {
-	    color: #888;
-	}
-    }
-    
-    .toc_title {
-	display: block;
-	margin: 0.5em 0 1.414em;  
-	a {
-	    font-size: 1em;
-	    font-weight: 500;
-	    color: #777;
-	    line-height: 1.2;
-	}
-    }
-
-    nav.toc {
-	/* warning, the manual001.html file from */
-	/* the Manual also has class="toc", so we need "nav" */
-	/* here to make this specific.  */
-	position: fixed;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	max-width: 30ex;
-	min-width: 26ex;
-	width: 20%;
-	background: linear-gradient(to left, #ccc, white);
-	overflow: auto;
-	color: #1F2D3D;
-	padding-left: 2ex;
-	padding-right: 2ex;
-    }
-
-    .toc ul li a {
-	font-family: "Fira Sans", sans-serif;
-	font-size: 0.95em;
-	color: #333;
-	font-weight: 400;
-	line-height: 1.6em;
-	display: block;
-    }
-
-    .toc ul li a:hover {
-	box-shadow: none;
-	text-decoration: underline;
-    }
-
-    /* First level titles */
-
-    .toc>ul>li>a {
-	font-weight: 500;
-    }
-
-    .toc li ul {
-	margin: 0px;
-    }
-
-    .toc ul {
-	list-style-type: none;
-    }
-
-    .toc ul li {
-	margin: 0;
-    }
-    .toc>ul>li {
-	margin-bottom: 0.3em;
-    }
-
-    .toc ul li li {
-	border-left: 1px solid #ccc;
-	margin-left: 5px;
-	padding-left: 12px;
-    }
+.brand img{
+    margin-top:16px;
+    height:36px
+}
+nav.toc{
+    top:66px
+}
+nav.brand{
+    top:0;
+    height:66px
+}
+span.c003{
+    font-family:"Fira Mono",courier;
+    background-color:#f3ece6;
+    border-radius:6px
+}
+div.caml-example.toplevel code.caml-input::before,
+div.caml-example.toplevel div.caml-input::before{
+    content:"#";
+    color:#888
+}
+span.c004{
+    color:#888
+}
+span.c009{
+    font-style:italic
+}
+span.c013{
+    font-weight:700
+}
+.caml-input span.ocamlkeyword{
+    font-weight:500;
+    color:#444
+}
+.caml-input span.ocamlhighlight{
+    font-weight:500;
+    text-decoration:underline
+}
+.caml-input span.id{
+    color:#523b74
+}
+.ocaml span.ocamlerror{
+    font-weight:500
+}
+.caml-input span.ocamlstring,.caml-input span.string{
+    color:#df5000
+}
+.caml-input span.comment, .caml-input span.ocamlcomment{
+    color:#969896
+}
+.copyright{
+    font-size:smaller
 }
 
 
-#footer {
-    margin-left: 26ex;
-}
-
-/* Mobile adjustements. */
-// this should match with ocamlorg.css
-@media only screen and (max-width: 979px) {
-    .container {
-	margin-left: auto;
-	margin-right: auto;
-    }
-    .manual.content {
-	    margin: auto;
-	    padding: 2.0em;
-    }
-    .manual>header {
-	box-shadow:   0px 3px 9px 3px #ddd;
-    }
-    #footer {
-    margin-left: auto;
-}
-
-}
-.manual {
-    @media only screen and (max-width: 979px) {
-	*:target {
-	    padding-top: 0px;
-	    margin-top: 0px;
-	}
-
-	
-	nav.toc {
-	    position: static;
-	    width: auto;
-	    min-width: unset;
-	    max-width: unset;
-	    border: none;
-	    padding: 0.2em 1em;
-	    border-radius: 5px;
-	}
-
-	.ocaml .pre {
-	    white-space: pre-wrap;
-	} 
-    }
-}
-/* Print adjustements. */
-
-.manual {
-    @media print {
-	body {
-	    color: black;
-	    background: white;
-	}
-	body nav:first-child {
-	    position: absolute;
-	    background: transparent;
-	}
-	nav.toc {
-	    margin-right: 1em;
-	    float: left;
-	}
-	nav.toc {
-	    position: initial;
-	    background: #eee;
-	}
-	.content {
-	    margin-left: 3em;
-	    margin-right: 3em;
-	}
-    }
-}
-
-.manual {
-    .ocaml {
-	background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%);
-    }
-
-    span.arrow {
-	font-size: 20px;
-	line-height: 8pt;
-	font-family: "Fira Mono";
-    }
-}
-
-.manual {
-    header nav {
-	display: none;
-    } header nav.toc {
-	display: block;
-	padding-top: 10px;
-    } header dl dd, header dl dt {
-	display: inline-block;
-    } 
-
-    pre, .pre {
-	background: linear-gradient(to left, white 0%, rgb(237, 232, 229) 100%);
-    }
-
-    div.caml-example, div.toplevel  {
-	/* background: linear-gradient(to left, white 0%, rgb(243, 247, 246) 100%); */
-    }
-
-    div.caml-output.ok,
-    code.caml-output.ok,
-    span.c006 {
-	color: #045804;
-    }
-
-    .dt-description span.c006 {
-	font-family: "Fira Mono", courier;
-	font-weight: bold;
-	color: black;
-    }
-    
-    code.caml-output.error,
-    div.caml-output.error {
-	color: orangered;
-    }
-    .tutorial span, .chapter span {
-	/* ocaml logo color */
-	color: #ec6a0d;
-    }
-    
-    ul.part_menu {
-	font-family: "Fira Sans";
-	text-align: right;
-	list-style: none;
-    }
-
-    ul.part_menu li.active a {
-	color: black;
-    }
-
-    ul.part_menu li.active a::before {
-	content:"▶";
-	font-size: 10px;
-	margin-right: 1ex;
-    }
-
-    .brand img {
-	margin-top: 16px;
-	height: 36px;
-    }
-
-    .toc.brand {
-	display: none; 
-	// for ocaml.org
-	
-    }
-    
-    nav.toc { 	    
-	// for ocaml.org
-	
-	top: 75px;
-	/* When the navigation bar has reduced size */
-	@media (max-height: 600px) and (min-width: 980px) {
-	    top: 45px; 
-	}
-    }
-
-    nav.brand {
-	top: 0px;
-	height: 66px;
-    }
-
-    span.c003 {
-	font-family: "Fira Mono", courier;
-	background-color: #f3ece6;
-	border-radius: 6px;
-    }
-
-    div.caml-example code.caml-input::before, /* <= 4.06 */
-    div.caml-example.toplevel code.caml-input::before,
-    div.caml-example.toplevel div.caml-input::before {
-	content:"#";
-	color:#888;
-    }
-
-    span.c004 {
-	color: #888;
-    }
-
-    span.c009 {
-	font-style: italic;
-    }
-
-    span.c013 {
-	font-weight: bold;
-    }
-
-    .caml-input span.kw, .caml-input span.ocamlkeyword {
-	font-weight: 500;
-	color: #444;
-    }
-
-    .caml-input span.kw1 {
-	font-weight: 500;
-	color: #777;
-    }
-
-    .caml-input span.kw2 {
-	font-weight: 500;
-	color: #a28867;
-    }
-
-    .caml-input span.ocamlhighlight {
-	font-weight: 500;
-	text-decoration: underline;
-    }
-    
-    .caml-input span.numeric {
-	color: #0086b3;
-    }
-
-    .caml-input span.id {
-	color: #523b74;
-    }
-
-    .ocaml span.ocamlerror {
-	font-weight: 500;
-    }
-    
-    .caml-input span.string, .caml-input span.ocamlstring  {
-	color: #df5000;
-    }
-
-    .caml-input span.comment, .caml-input span.ocamlcomment {
-	color: #969896;
-    }
-
-    .copyright {
-	font-size: smaller;
-    }
-
-    .dt-thefootnotes {
-	float: left;
-    }
-}
 
