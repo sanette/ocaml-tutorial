@@ -1,4 +1,11 @@
 (executable
  (name process)
  (flags "-rectypes")
+ (modules process)
+ (libraries str lambdasoup higlo higlo.ocaml higlo.xml))
+
+(executable
+ (name process_standalone)
+ (flags "-rectypes")
+ (modules process_standalone)
  (libraries str lambdasoup higlo higlo.ocaml higlo.xml))

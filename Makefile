@@ -1,8 +1,9 @@
-local:
-	dune exec src/process.exe
-
 css: 
-	sass src/manual.scss > ocamlorg/manual_ocamlorg.css
+	sass src/manual_ocamlorg.scss > ocamlorg/manual_ocamlorg.css
+	sass src/manual.scss > src/manual.css
+
+local: css
+	dune exec src/process_standalone.exe
 
 ocamlorg: css
 	cp src/main.mpp ocamlorg/main.mpp
