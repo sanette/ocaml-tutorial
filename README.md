@@ -17,7 +17,7 @@ Automatique (INRIA).
 ## Running the script
 
 ```
-dune exec src/process.exe
+dune exec src/process_standalone.exe
 
 ```
 
