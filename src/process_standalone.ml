@@ -1,4 +1,15 @@
-(* Post-processing the HTML of the OCaml Manual, Part 1: "The Tutorials"
+(* Post-processing the HTML of the OCaml Manual. This file is part of
+   https://github.com/sanette/ocaml-tutorial
+
+   * Processed parts: ["tutorials"; "refman"; "commands"; "library" ]
+
+   * TODO: Appendix
+
+   * TODO: General index for all parts (currently, only part 1 'Tutorials' is
+   accessible via the index.)
+
+   * The "API" side is treated by another script:
+   https://github.com/sanette/ocaml-api
 
    requires Lambdasoup
 
@@ -475,7 +486,7 @@ let process version =
   main_files
   
   
-(*********************************************************************)
+(******************************************************************************)
 (* Run the whole processing for all version. If the directory indicated by the
    variable [html_maindir] is absent, the original html files will be
    automatically downloaded. *)
