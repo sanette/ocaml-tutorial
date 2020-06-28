@@ -43,9 +43,21 @@ let html_file version = Filename.concat (html_dir version)
 let docs_dir version = Filename.concat docs_maindir version
 let docs_file version = Filename.concat (docs_dir version)
 
+(* API pages *)
+let api_page_url = "https://sanette.github.io/ocaml-api"
+  
+(**** utilities ****)
 
+let starts_with substring s =
+  let l = String.length substring in
+  l <= String.length s &&
+  String.sub s 0 l = substring
+
+let string_of_opt = function
+  | None -> ""
+  | Some s -> s
+    
 (**** html processing ****)
-
 
 (* Return next html element. *)
 let rec next node =
@@ -113,7 +125,8 @@ let load_html ~version file =
     (* Normalize non-break spaces: *)
     |> Str.global_replace (Str.regexp_string "&#XA0;") " "
     |> Str.global_replace (Str.regexp "Chapter \\([0-9]+\\)")
-      "<span>Chapter \\1</span>"
+      (if file = "index.html" then "<span>\\1.</span>"
+      else "<span>Chapter \\1</span>")
 
     (* I think it would be good to replace "chapter" by "tutorial" for part
        I. The problem of course is how we number chapters in the other parts. *)
@@ -130,13 +143,19 @@ let load_html ~version file =
     (* The API (libref and compilerlibref directories) should be separate
        entities, to better distinguish them from the manual. *)
     |> Str.global_replace (Str.regexp_string "\"libref/")
-      (sprintf "\"../../api/%s/" version)
+      (sprintf "\"%s/%s/" api_page_url version)
     |> Str.global_replace (Str.regexp_string "\"compilerlibref/")
-      (sprintf "\"../../api/%s/compilerlibref/" version)
+      (sprintf "\"%s/compilerlibref/%s/" api_page_url version)
 
   (* |> Str.global_replace (Str.regexp_string file) "" *)
   (* that one was not necessary; it's just cleaner not to link to oneself. *)
   in
+
+  (* For the main index file, we do a few adjustments *)
+  let html = if file = "index.html"
+    then Str.global_replace (Str.regexp "Part \\([I|V]+\\)<br>")
+        "<span>\\1. </span>" html
+    else html in
 
   (* Set utf8 encoding directly in the html string *)
   let charset_regexp = Str.regexp "charset=\\([-A-Za-z0-9]+\\)\\(\\b\\|;\\)" in
@@ -180,7 +199,35 @@ let clone_structure ~version soup xfile =
   set_attribute "id" "section" xbody;
   save_to_file ~version clone xfile
 
-
+(* Extract the date from the maintitle block in "index.html" *)
+let extract_date maintitle =
+  let months = ["January"; "February"; "March"; "April";
+                "May"; "June"; "July"; "August"; "September";
+                "October"; "November"; "December"] in
+  texts maintitle
+  |> List.map String.trim
+  |> List.filter (fun s -> List.exists (fun month -> starts_with month s) months)
+  |> function | [s] -> Some s
+              | _ -> print_endline "Warning, date not found"; None
+    
+(* Special treatment of the main index.html file *)
+let convert_index version soup =
+  (* Remove "translated from LaTeX" *)
+  soup $$ "blockquote" |> last |> do_option delete;
+  let title_selector = if float_of_string version < 4.07
+    then "div.center" else "div.maintitle" in
+  let maintitle = soup $ title_selector in
+  sprintf "<div class=\"maintitle\"><h1><span>The OCaml system</span>  release %s </h1><h3>%s</h3></div>"
+    version (extract_date maintitle |> string_of_opt)
+  |> parse
+  |> insert_after maintitle ;
+  delete maintitle;
+  let body = soup $ ".index" in
+  {|<span class="authors">Xavier Leroy,<br> Damien Doligez, Alain Frisch, Jacques Garrigue, Didier Rémy and Jérôme Vouillon</span>|}
+  |> parse
+  |> append_child body
+  
+    
 (* This is the main script for processing a specified file. [convert] has to be
    run for each "entry" [file] of the manual, making a "Chapter".  (the list of
    [chapters] corresponds to a "Part" of the manual) *)
@@ -193,7 +240,7 @@ let convert version chapters (title, file) =
 
   (* Change title *)
   let title_tag = soup $ "title" in
-  let new_title = create_element "title" ~inner_text:("Ocaml - " ^ title) in
+  let new_title = create_element "title" ~inner_text:("OCaml - " ^ title) in
   replace title_tag new_title;
 
   (* Wrap body. TODO use set_name instead *)
@@ -201,7 +248,9 @@ let convert version chapters (title, file) =
   wrap body (create_element "body");
   let body = soup $ "body" in
   let dummy = body $ "body" in
-  wrap dummy (create_element "div" ~classes:["manual"; "content"]);
+  let c = if file = "index.html" then ["manual"; "content"; "index"]
+    else ["manual"; "content"] in
+  wrap dummy (create_element "div" ~classes:c);
   let body = body $ "body" in
   unwrap body;
   let body = soup $ "div.content" in
@@ -210,9 +259,7 @@ let convert version chapters (title, file) =
 
   remove_navigation soup;
 
-  (* Remove "translated from LaTeX" *)
-  if file = "index.html"
-  then soup $$ "blockquote" |> last |> do_option delete;
+  if file = "index.html" then convert_index version soup;
 
   (* Create left sidebar for TOC.  *)
   let toc = match soup $? "ul" with
@@ -229,8 +276,8 @@ let convert version chapters (title, file) =
   begin match toc with
     | None -> sprintf "No TOC for %s" file |> pr
     | Some toc -> begin
-        (* TOC - Create a "Top" entry in the menu *)
-        let a = create_element "a" ~inner_text:"Top"
+        (* TOC - Create a title entry in the menu *)
+        let a = create_element "a" ~inner_text:title
             ~attributes:["href", "#"] in
         let li = create_element "li" ~class_:"top" in
         append_child li a;
@@ -238,43 +285,55 @@ let convert version chapters (title, file) =
 
         (* index of keywords *)
         if file = "index.html"
-        then let keywords =
-               body $$ "ul"
-               |> fold (fun key ul ->
-                   match key with
-                   | None -> begin
-                       match ul $$ "li" |> last with
-                       | None -> None
-                       | Some l -> begin match l $ "a" |> leaf_text with
-                           | Some text -> sprintf "[%s]" text |> pr;
-                             if text = "Index of keywords"
-                             then l $ "a" |> attribute "href" else None
-                           | None -> None
-                         end
-                     end
-                   | _ -> key) None in
+        then begin
+          let keywords =
+            body $$ "ul"
+            |> fold (fun key ul ->
+                match key with
+                | None -> begin
+                    match ul $$ "li" |> last with
+                    | None -> None
+                    | Some l -> begin match l $ "a" |> leaf_text with
+                        | Some text -> sprintf "[%s]" text |> pr;
+                          if text = "Index of keywords"
+                          then l $ "a" |> attribute "href" else None
+                        | None -> None
+                      end
+                  end
+                | _ -> key) None in
           begin match keywords with
             | None -> pr "Could not find Index of keywords"
             | Some keywords ->
               let a = create_element "a" ~inner_text:"Index of keywords"
                   ~attributes:["href", keywords] in
-              let li = create_element "li" ~class_:"top" in
+              let li = create_element "li" in
               (append_child li a;
                append_child toc li)
-          end else ();
+          end;
+          (* Link to API *)
+          let a = create_element "a" ~inner_text:"OCaml API"
+              ~attributes:["href", api_page_url ^ "/" ^ version] in
+          let li = create_element "li" in
+          (append_child li a;
+           append_child toc li)
+        end
       end
   end;
 
-  (* Add title *)
-  let toc_title = create_element "div" ~class_:"toc_title" in
-  let a = create_element "a" ~inner_text:title
-      ~attributes:["href", "#"] in
-  append_child toc_title a;
-  prepend_child nav toc_title;
+  (* Add back link to "OCaml Manual" *)
+  if file <> "index.html" then begin
+    let toc_title = create_element "div" ~class_:"toc_title" in
+    let a = create_element "a" ~inner_text:"< The OCaml Manual"
+        ~attributes:["href", "index.html"] in
+    append_child toc_title a;
+    prepend_child nav toc_title
+  end;
 
   (* Add version number *)
   let vnum = create_element "div" ~class_:"toc_version" in
-  let a = create_element "a" ~inner_text:("Version " ^ version)
+  let version_text = if file = "index.html" then "Select another version"
+    else "Version " ^ version in
+  let a = create_element "a" ~inner_text:version_text
       ~attributes:["href", "../index.html"; "id", "version-select"] in
   append_child vnum a;
   prepend_child nav vnum;
@@ -283,7 +342,7 @@ let convert version chapters (title, file) =
   let menu = create_element "ul" ~class_:"part_menu" in
   List.iter (fun (title, href) ->
       let a = create_element "a" ~inner_text:title ~attributes:["href", href] in
-      let li = if href= file
+      let li = if href = file
         then create_element "li" ~class_:"active"
         else create_element "li" in
       append_child li a;
@@ -363,13 +422,14 @@ let convert version chapters (title, file) =
     | Some toc ->
       toc $$ "li"
       |> fold (fun list li ->
-          let ref = li $ "a" |> R.attribute "href" in
-          sprintf "TOC reference = %s " ref |> pr;
-          if not (String.contains ref '#') &&
-             not (String.length ref > 2 && String.sub ref 0 2 = "..")
+          let rf = li $ "a" |> R.attribute "href" in
+          sprintf "TOC reference = %s" rf |> pr;
+          if not (String.contains rf '#') &&
+             not (starts_with ".." rf) &&
+             not (starts_with "http" rf)
           then begin
-            li $ "a" |> set_attribute "href" (ref ^ "#start-section");
-            ref::list
+            li $ "a" |> set_attribute "href" (rf ^ "#start-section");
+            rf::list
           end else list) []
   in
 
@@ -382,11 +442,11 @@ let convert version chapters (title, file) =
   (* And finally save *)
   save_to_file ~version soup file
   
-(* Create "index.html" for selecting the version. This is not necessary if the
-   manual is integrated in ocaml.org, but some people in the ocaml discuss said
-   they liked this index. I don't know why. *)
-let make_index versions =
-  let html = read_file @@ Filename.concat "src" "index.html" in
+(* Create html index based on template for selecting the version. This is not
+   necessary if the manual is integrated in ocaml.org, but some people in the
+   ocaml discuss said they liked this index. I don't know why. *)
+let make_index index_file versions =
+  let html = read_file @@ Filename.concat "src" index_file in
   let soup = parse html in
   let ul = soup $ "ul.versions" in
   List.iter (fun (version, files) ->
@@ -398,7 +458,7 @@ let make_index versions =
       let a = create_element ~attributes:["href", file] ~inner_text:v "a" in
       append_child li a;
       append_child ul li) versions;
-  write_file (Filename.concat docs_maindir "index.html") (to_string soup)    
+  write_file (Filename.concat docs_maindir index_file) (to_string soup)    
 
 (* Some wrappers around linux system commands*)
 let sys_cp file dst =
@@ -504,8 +564,10 @@ let () =
       sys_cp (Filename.concat "src" file) (Filename.concat docs_maindir file))
     ["colour-logo-gray.svg"; "index.html"; "manual.css"];
 
-  let versions = List.map (fun v -> v, process v) all_versions in
+  let tut_versions = List.map (fun v -> v, process v) all_versions in
   pr "* Make index";
-  make_index (List.rev versions);
+  make_index "tut_index.html" (List.rev tut_versions);
+  make_index "index.html" (List.map (fun v -> v, ["index.html"])
+                             all_versions |> List.rev);
   
   pr "DONE."

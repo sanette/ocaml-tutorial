@@ -10,6 +10,9 @@ https://sanette.github.io/ocaml-tutorial/core_tutorial.html */
 
 /* Distributed under the ISC licence.  San Vu Ngoc, 2019-2020 */
 
+/* ocaml logo color */
+$logocolor: #ec6a0d;
+
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,500);
 @import url(https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700);
@@ -54,6 +57,17 @@ html {
 }
 .content>header nav{
     font-family:"Fira Sans",Helvetica,Arial,sans-serif
+}
+.index{ /* index.html */
+    ul{
+	list-style: none;
+	li {
+	    margin-left: 0.5ex;
+	    span {
+		color:#c88b5f;
+	    }
+	}
+    }
 }
 b{
     font-weight:500
@@ -193,7 +207,7 @@ ul.itemize{
     list-style:none}
 ul.itemize li::before{
     content:"▶";
-    color:#ec6a0d;
+    color:$logocolor;
     margin-right:4px;
     margin-left:-1em}
 .toc_version{
@@ -204,11 +218,11 @@ ul.itemize li::before{
 .toc_title{
     display:block;
     margin:.5em 0 1.414em}
-.toc_title a{
-    color:#777;
-    font-size:1em;
-    line-height:1.2;
-    font-weight:500}
+/* .toc_title a{ */
+/*     color:#777; */
+/*     font-size:1em; */
+/*     line-height:1.2; */
+/*     font-weight:500} */
 nav.toc{
     position:fixed;
     top:0;
@@ -238,10 +252,13 @@ nav.toc{
     margin:0
 }
 .toc ul{
-    list-style-type:none
+    list-style-type:none;
+    li.top a{
+	color: #848484;
+    }
 }
 .toc ul li{
-    margin:0
+    margin:0;
 }
 .toc>ul>li{
     margin-bottom:.3em
@@ -323,8 +340,18 @@ code.caml-output.error,div.caml-output.error{
     color:#ff4500;
     white-space:normal
 }
-.chapter span,.tutorial span{
-    color:#ec6a0d
+.chapter span,.tutorial span,.maintitle h1 span{
+    color:$logocolor
+}
+h1 span{
+    color: #d28853;
+}
+blockquote.quote{
+    margin:0;
+    /*font-size: smaller;*/
+    hr{
+	display:none;
+    }
 }
 ul.part_menu{
     font-family:"Fira Sans";

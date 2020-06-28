@@ -331,8 +331,11 @@ code.caml-output.error, div.caml-output.error {
   color: #ff4500;
   white-space: normal; }
 
-.chapter span, .tutorial span, .maintitle span, h1 span {
+.chapter span, .tutorial span, .maintitle h1 span {
   color: #ec6a0d; }
+
+h1 span {
+  color: #d28853; }
 
 blockquote.quote {
   margin: 0;
