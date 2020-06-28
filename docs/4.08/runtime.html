@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - The runtime system (ocamlrun)</title>
+<title>OCaml - The runtime system (ocamlrun)</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li class="active"><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="browser.html">The browser/editor (ocamlbrowser)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="manual057.html">The ocamlbuild compilation manager</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="spacetime.html">Memory profiling with Spacetime</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="plugins.html">Compiler plugins</a></li></ul>
 
@@ -13,7 +13,7 @@
 
 
 <h1 class="chapter" id="sec304"><span>Chapter 11</span>&nbsp;&nbsp;The runtime system (ocamlrun)</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.08</a></div><div class="toc_title"><a href="#">The runtime system (ocamlrun)</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.08</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The runtime system (ocamlrun)</a></li>
 <li><a href="runtime.html#sec305">1&nbsp;&nbsp;Overview</a>
 </li><li><a href="runtime.html#sec306">2&nbsp;&nbsp;Options</a>
 </li><li><a href="runtime.html#sec307">3&nbsp;&nbsp;Dynamic loading of shared libraries</a>
@@ -95,7 +95,7 @@ sign, a decimal number (or an hexadecimal number prefixed by <span class="c003">
 and an optional multiplier. The options are documented below;
 the last six correspond to the fields of the
 <span class="c003">control</span> record documented in
-<a href="../../api/4.08/Gc.html">Module <span class="c003">Gc</span></a>.
+<a href="https://sanette.github.io/ocaml-api/4.08/Gc.html">Module <span class="c003">Gc</span></a>.
 <dl class="description"><dt class="dt-description">
 <span class="c013">b</span></dt><dd class="dd-description"> (backtrace) Trigger the printing of a stack backtrace
 when an uncaught exception aborts the program.
@@ -106,7 +106,7 @@ the pushdown automaton that executes the parsers prints a
 trace of its actions. This option takes no argument.
 </dd><dt class="dt-description"><span class="c013">R</span></dt><dd class="dd-description"> (randomize) Turn on randomization of all hash tables by default
 (see
-<a href="../../api/4.08/Hashtbl.html">Module <span class="c003">Hashtbl</span></a>).
+<a href="https://sanette.github.io/ocaml-api/4.08/Hashtbl.html">Module <span class="c003">Hashtbl</span></a>).
 This option takes no argument.
 </dd><dt class="dt-description"><span class="c013">h</span></dt><dd class="dd-description"> The initial size of the major heap (in words).
 </dd><dt class="dt-description"><span class="c013">a</span></dt><dd class="dd-description"> (<span class="c003">allocation_policy</span>) The policy used for allocating in the

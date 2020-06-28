@@ -2,7 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="hevea 2.18">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - Language extensions</title>
+<title>OCaml - Language extensions</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
 
@@ -10,7 +10,7 @@
 
 
 <h1 class="chapter" id="sec210"><span>Chapter 7</span>&nbsp;&nbsp;Language extensions</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.02</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.02</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
 <li><a href="extn.html#sec211">Integer literals for types <span class="c007">int32</span>, <span class="c007">int64</span>
 and <span class="c007">nativeint</span></a>
 </li><li><a href="extn.html#sec212">Streams and stream parsers</a>
@@ -75,15 +75,15 @@ respectively, instead of the default type <span class="c007">int</span> for inte
 <a id="hevea_manual3"></a>
 <a id="hevea_manual4"></a>
 <a id="hevea_manual5"></a>
-The library modules <span class="c007">Int32</span>[<a href="../../api/4.02/Int32.html"><span class="c007">Int32</span></a>],
-<span class="c007">Int64</span>[<a href="../../api/4.02/Int64.html"><span class="c007">Int64</span></a>] and <span class="c007">Nativeint</span>[<a href="../../api/4.02/Nativeint.html"><span class="c007">Nativeint</span></a>]
+The library modules <span class="c007">Int32</span>[<a href="https://sanette.github.io/ocaml-api/4.02/Int32.html"><span class="c007">Int32</span></a>],
+<span class="c007">Int64</span>[<a href="https://sanette.github.io/ocaml-api/4.02/Int64.html"><span class="c007">Int64</span></a>] and <span class="c007">Nativeint</span>[<a href="https://sanette.github.io/ocaml-api/4.02/Nativeint.html"><span class="c007">Nativeint</span></a>]
 provide operations on these integer types.</p>
 <h2 class="section" id="sec212">2&nbsp;&nbsp;Streams and stream parsers</h2>
 <p> <a id="s:streams"></a></p><p>(Removed in Objective Caml 3.03)</p><p>The syntax for streams and stream parsers is no longer part of the
 OCaml language, but available through a Camlp4 syntax
 extension. See the Camlp4 reference manual for more information.
 Support for basic operations on streams is still available through the
-<span class="c007">Stream</span>[<a href="../../api/4.02/Stream.html"><span class="c007">Stream</span></a>] module of the standard library.
+<span class="c007">Stream</span>[<a href="https://sanette.github.io/ocaml-api/4.02/Stream.html"><span class="c007">Stream</span></a>] module of the standard library.
 OCaml programs
 that use the stream parser syntax should be compiled with the
 <span class="c007">-pp camlp4o</span> option to <span class="c007">ocamlc</span> and <span class="c007">ocamlopt</span>. For interactive use,
@@ -220,7 +220,7 @@ Matching a value with a <a class="syntax" href="expr.html#pattern-matching"><spa
 contain <span class="c008">lazy</span> sub-patterns may imply forcing parts of the value,
 even when the pattern selected in the end has no <span class="c008">lazy</span> sub-pattern.</p><p>For more information, see the description of module <span class="c007">Lazy</span> in the
 standard library (
-<a href="../../api/4.02/Lazy.html">Module <span class="c007">Lazy</span></a>).
+<a href="https://sanette.github.io/ocaml-api/4.02/Lazy.html">Module <span class="c007">Lazy</span></a>).
 <a id="hevea_manual7"></a><a id="hevea_manual8"></a></p>
 <h2 class="section" id="sec219">7&nbsp;&nbsp;Local modules</h2>
 <p>
@@ -1106,7 +1106,7 @@ to implement dynamic types.
 </tbody></table></td></tr>
 </tbody></table><p>This extension provides syntactic sugar for getting and setting
 elements in the arrays provided by the
-<span class="c007">Bigarray</span>[<a href="../../api/4.02/Bigarray.html"><span class="c007">Bigarray</span></a>] library.</p><p>The short expressions are translated into calls to functions of the
+<span class="c007">Bigarray</span>[<a href="https://sanette.github.io/ocaml-api/4.02/Bigarray.html"><span class="c007">Bigarray</span></a>] library.</p><p>The short expressions are translated into calls to functions of the
 <span class="c007">Bigarray</span> module as described in the following table.</p><div class="center"><table class="c001 cellpadding1" border="1"><tbody><tr><td class="c021"><span class="c019">expression</span></td><td class="c021"><span class="c019">translation</span> </td></tr>
 <tr><td class="c023">
 <a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>0</sub><span class="c008">.{</span>&nbsp;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>1</sub><span class="c008">}</span></td><td class="c023"><span class="c007">Bigarray.Array1.get </span><a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>0</sub> &nbsp;<a class="syntax" href="expr.html#expr"><span class="c014">expr</span></a><sub>1</sub> </td></tr>

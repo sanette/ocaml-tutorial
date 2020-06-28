@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - Language extensions</title>
+<title>OCaml - Language extensions</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="extn.html">Language extensions</a></li></ul>
 
@@ -13,7 +13,7 @@
 
 
 <h1 class="chapter" id="sec232"><span>Chapter 8</span>&nbsp;&nbsp;Language extensions</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
 <li><a href="extn.html#sec233">1&nbsp;&nbsp;Integer literals for types <span class="c003">int32</span>, <span class="c003">int64</span>
 and <span class="c003">nativeint</span></a>
 </li><li><a href="extn.html#sec234">2&nbsp;&nbsp;Recursive definitions of values</a>
@@ -78,8 +78,8 @@ respectively, instead of the default type <span class="c003">int</span> for inte
 <a id="hevea_manual4"></a>
 <a id="hevea_manual5"></a>
 <a id="hevea_manual6"></a>
-The library modules <span class="c003">Int32</span>[<a href="../../api/4.07/Int32.html"><span class="c003">Int32</span></a>],
-<span class="c003">Int64</span>[<a href="../../api/4.07/Int64.html"><span class="c003">Int64</span></a>] and <span class="c003">Nativeint</span>[<a href="../../api/4.07/Nativeint.html"><span class="c003">Nativeint</span></a>]
+The library modules <span class="c003">Int32</span>[<a href="https://sanette.github.io/ocaml-api/4.07/Int32.html"><span class="c003">Int32</span></a>],
+<span class="c003">Int64</span>[<a href="https://sanette.github.io/ocaml-api/4.07/Int64.html"><span class="c003">Int64</span></a>] and <span class="c003">Nativeint</span>[<a href="https://sanette.github.io/ocaml-api/4.07/Nativeint.html"><span class="c003">Nativeint</span></a>]
 provide operations on these integer types.</p>
 <h2 class="section" id="sec234">2&nbsp;&nbsp;Recursive definitions of values</h2>
 <p> <a id="s:letrecvalues"></a></p><p>(Introduced in Objective Caml 1.00)</p><p>As mentioned in section&nbsp;<a href="expr.html#s%3Alocaldef">7.7.1</a>, the <span class="c002"><span class="c003">let</span> <span class="c003">rec</span></span> binding
@@ -155,7 +155,7 @@ Matching a value with a <a class="syntax" href="expr.html#pattern-matching"><spa
 contain <span class="c004">lazy</span> sub-patterns may imply forcing parts of the value,
 even when the pattern selected in the end has no <span class="c004">lazy</span> sub-pattern.</p><p>For more information, see the description of module <span class="c003">Lazy</span> in the
 standard library (
-<a href="../../api/4.07/Lazy.html">Module <span class="c003">Lazy</span></a>).
+<a href="https://sanette.github.io/ocaml-api/4.07/Lazy.html">Module <span class="c003">Lazy</span></a>).
 <a id="hevea_manual7"></a><a id="hevea_manual8"></a></p>
 <h2 class="section" id="sec236">4&nbsp;&nbsp;Recursive modules</h2>
 <p> <a id="s-recursive-modules"></a>
@@ -1256,7 +1256,7 @@ as such cause a type error rather than introduce an equation.</p>
 </tbody></table></td></tr>
 </tbody></table></div><p>This extension provides syntactic sugar for getting and setting
 elements in the arrays provided by the
-<span class="c003">Bigarray</span>[<a href="../../api/4.07/Bigarray.html"><span class="c003">Bigarray</span></a>] library.</p><p>The short expressions are translated into calls to functions of the
+<span class="c003">Bigarray</span>[<a href="https://sanette.github.io/ocaml-api/4.07/Bigarray.html"><span class="c003">Bigarray</span></a>] library.</p><p>The short expressions are translated into calls to functions of the
 <span class="c003">Bigarray</span> module as described in the following table.</p><div class="tableau">
 <div class="center"><table class="c000 cellpadding1" border="1"><tbody><tr><td class="c014"><span class="c013">expression</span></td><td class="c014"><span class="c013">translation</span> </td></tr>
 <tr><td class="c016">

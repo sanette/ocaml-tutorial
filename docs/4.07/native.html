@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - Native-code compilation (ocamlopt)</title>
+<title>OCaml - Native-code compilation (ocamlopt)</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li class="active"><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="browser.html">The browser/editor (ocamlbrowser)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="manual033.html">The ocamlbuild compilation manager</a></li><li><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="spacetime.html">Memory profiling with Spacetime</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li><li><a href="plugins.html">Compiler plugins</a></li></ul>
 
@@ -13,7 +13,7 @@
 
 
 <h1 class="chapter" id="sec304"><span>Chapter 12</span>&nbsp;&nbsp;Native-code compilation (ocamlopt)</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="#">Native-code compilation (ocamlopt)</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Native-code compilation (ocamlopt)</a></li>
 <li><a href="native.html#sec305">1&nbsp;&nbsp;Overview of the compiler</a>
 </li><li><a href="native.html#sec306">2&nbsp;&nbsp;Options</a>
 </li><li><a href="native.html#sec310">3&nbsp;&nbsp;Common errors</a>
@@ -342,7 +342,7 @@ errors, the intermediate file is deleted afterwards.
 </dd><dt class="dt-description"><span class="c013"><span class="c003">-ppx</span> <span class="c009">command</span></span></dt><dd class="dd-description">
 After parsing, pipe the abstract syntax tree through the preprocessor
 <span class="c009">command</span>. The module <span class="c003">Ast_mapper</span>, described in
-chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">27</a>: <a href="../../api/4.07/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
+chapter&nbsp;<a href="parsing.html#c%3Aparsinglib">27</a>: <a href="https://sanette.github.io/ocaml-api/4.07/Ast_mapper.html"> <span class="c003">Ast_mapper</span> </a>
 ,
 implements the external interface of a preprocessor.</dd><dt class="dt-description"><span class="c006">-principal</span></dt><dd class="dd-description">
 Check information path during type-checking, to make sure that all

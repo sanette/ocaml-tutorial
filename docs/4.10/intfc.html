@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - Interfacing C with OCaml</title>
+<title>OCaml - Interfacing C with OCaml</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="comp.html">Batch compilation (ocamlc)</a></li><li><a href="toplevel.html">The toplevel system or REPL (ocaml)</a></li><li><a href="runtime.html">The runtime system (ocamlrun)</a></li><li><a href="native.html">Native-code compilation (ocamlopt)</a></li><li><a href="lexyacc.html">Lexer and parser generators (ocamllex, ocamlyacc)</a></li><li><a href="depend.html">Dependency generator (ocamldep)</a></li><li><a href="browser.html">The browser/editor (ocamlbrowser)</a></li><li><a href="ocamldoc.html">The documentation generator (ocamldoc)</a></li><li><a href="debugger.html">The debugger (ocamldebug)</a></li><li><a href="profil.html">Profiling (ocamlprof)</a></li><li><a href="manual056.html">The ocamlbuild compilation manager</a></li><li class="active"><a href="intfc.html">Interfacing C with OCaml</a></li><li><a href="flambda.html">Optimisation with Flambda</a></li><li><a href="spacetime.html">Memory profiling with Spacetime</a></li><li><a href="afl-fuzz.html">Fuzzing with afl-fuzz</a></li></ul>
 
@@ -13,7 +13,7 @@
 
 
 <h1 class="chapter" id="c:intf-c"><span>Chapter 20</span>&nbsp;&nbsp;Interfacing C with OCaml</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.10</a></div><div class="toc_title"><a href="#">Interfacing C with OCaml</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.10</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Interfacing C with OCaml</a></li>
 <li><a href="intfc.html#s%3Ac-overview">1&nbsp;&nbsp;Overview and compilation information</a>
 </li><li><a href="intfc.html#s%3Ac-value">2&nbsp;&nbsp;The <span class="c003">value</span> type</a>
 </li><li><a href="intfc.html#s%3Ac-ocaml-datatype-repr">3&nbsp;&nbsp;Representation of OCaml data types</a>
@@ -1473,7 +1473,7 @@ argument, and a positive integer if the first argument compares
 greater than the second argument.<p>The <span class="c003">compare_ext</span> field can be set to <span class="c003">custom_compare_ext_default</span>; this
 default comparison function simply raises <span class="c003">Failure</span>.</p></li><li class="li-itemize"><span class="c003">intnat (*hash)(value v)</span> <br>
 The <span class="c003">hash</span> field contains a pointer to a C function that is called
-whenever OCaml’s generic hash operator (see module <a href="../../api/4.10/Hashtbl.html"><span class="c003">Hashtbl</span></a>) is
+whenever OCaml’s generic hash operator (see module <a href="https://sanette.github.io/ocaml-api/4.10/Hashtbl.html"><span class="c003">Hashtbl</span></a>) is
 applied to a custom block. The C function can return an arbitrary
 integer representing the hash value of the data contained in the
 given custom block. The hash value must be compatible with the

@@ -4,6 +4,7 @@ means this file is generated from [sass manual.scss] */
 /* CSS file for the Ocaml manual, part I,
 https://sanette.github.io/ocaml-tutorial/core_tutorial.html */
 /* Distributed under the ISC licence.  San Vu Ngoc, 2019-2020 */
+/* ocaml logo color */
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,500);
 @import url(https://fonts.googleapis.com/css?family=Noticia+Text:400,400i,700);
@@ -47,6 +48,15 @@ html {
 
 .content > header nav {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif; }
+
+.index {
+  /* index.html */ }
+  .index ul {
+    list-style: none; }
+    .index ul li {
+      margin-left: 0.5ex; }
+      .index ul li span {
+        color: #c88b5f; }
 
 b {
   font-weight: 500; }
@@ -206,12 +216,11 @@ ul.itemize li::before {
   display: block;
   margin: .5em 0 1.414em; }
 
-.toc_title a {
-  color: #777;
-  font-size: 1em;
-  line-height: 1.2;
-  font-weight: 500; }
-
+/* .toc_title a{ */
+/*     color:#777; */
+/*     font-size:1em; */
+/*     line-height:1.2; */
+/*     font-weight:500} */
 nav.toc {
   position: fixed;
   top: 0;
@@ -246,6 +255,8 @@ nav.toc {
 
 .toc ul {
   list-style-type: none; }
+  .toc ul li.top a {
+    color: #848484; }
 
 .toc ul li {
   margin: 0; }
@@ -320,8 +331,14 @@ code.caml-output.error, div.caml-output.error {
   color: #ff4500;
   white-space: normal; }
 
-.chapter span, .tutorial span {
+.chapter span, .tutorial span, .maintitle span, h1 span {
   color: #ec6a0d; }
+
+blockquote.quote {
+  margin: 0;
+  /*font-size: smaller;*/ }
+  blockquote.quote hr {
+    display: none; }
 
 ul.part_menu {
   font-family: "Fira Sans";

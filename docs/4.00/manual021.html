@@ -3,14 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="GENERATOR" content="hevea 1.10">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - Language extensions</title>
+<title>OCaml - Language extensions</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li><a href="language.html">The OCaml language</a></li><li class="active"><a href="manual021.html">Language extensions</a></li></ul>
 
 
 
 
-<h1 class="chapter"><a name="htoc92"><span>Chapter 7</span></a>&nbsp;&nbsp;Language extensions</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="#">Language extensions</a></div><ul><li class="top"><a href="#">Top</a></li>
+<h1 class="chapter"><a name="htoc92"><span>Chapter 7</span></a>&nbsp;&nbsp;Language extensions</h1><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.00</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">Language extensions</a></li>
 <li><a href="manual021.html#toc68">Integer literals for types <tt>int32</tt>, <tt>int64</tt>
 and <tt>nativeint</tt></a>
 </li><li><a href="manual021.html#toc69">Streams and stream parsers</a>
@@ -53,14 +53,14 @@ respectively, instead of the default type <tt>int</tt> for integer literals.
 <a name="@manual3"></a>
 <a name="@manual4"></a>
 <a name="@manual5"></a>
-The library modules <tt>Int32</tt>[<tt><a href="../../api/4.00/Int32.html">Int32</a></tt>],
-<tt>Int64</tt>[<tt><a href="../../api/4.00/Int64.html">Int64</a></tt>] and <tt>Nativeint</tt>[<tt><a href="../../api/4.00/Nativeint.html">Nativeint</a></tt>]
+The library modules <tt>Int32</tt>[<tt><a href="https://sanette.github.io/ocaml-api/4.00/Int32.html">Int32</a></tt>],
+<tt>Int64</tt>[<tt><a href="https://sanette.github.io/ocaml-api/4.00/Int64.html">Int64</a></tt>] and <tt>Nativeint</tt>[<tt><a href="https://sanette.github.io/ocaml-api/4.00/Nativeint.html">Nativeint</a></tt>]
 provide operations on these integer types.</p><h2 class="section"><a name="toc69"></a><a name="htoc94">2</a>&nbsp;&nbsp;Streams and stream parsers</h2><p>
 <a name="s:streams"></a></p><p>(Removed in Objective Caml 3.03)</p><p>The syntax for streams and stream parsers is no longer part of the
 OCaml language, but available through a Camlp4 syntax
 extension. See the Camlp4 reference manual for more information.
 Support for basic operations on streams is still available through the
-<tt>Stream</tt>[<tt><a href="../../api/4.00/Stream.html">Stream</a></tt>] module of the standard library.
+<tt>Stream</tt>[<tt><a href="https://sanette.github.io/ocaml-api/4.00/Stream.html">Stream</a></tt>] module of the standard library.
 OCaml programs
 that use the stream parser syntax should be compiled with the
 <tt>-pp camlp4o</tt> option to <tt>ocamlc</tt> and <tt>ocamlopt</tt>. For interactive use,
@@ -156,7 +156,7 @@ Matching a value with a <i><a href="expr.html#pattern-matching" class="syntax"><
 contain <tt>lazy</tt> sub-patterns may imply forcing parts of the value,
 even when the pattern selected in the end has no <tt>lazy</tt> sub-pattern.</p><p>For more information, see the description of module <tt>Lazy</tt> in the
 standard library (see
-<a href="../../api/4.00/Lazy.html">Module <tt>Lazy</tt></a>).
+<a href="https://sanette.github.io/ocaml-api/4.00/Lazy.html">Module <tt>Lazy</tt></a>).
 <a name="@manual7"></a><a name="@manual8"></a></p><h2 class="section"><a name="toc74"></a><a name="htoc99">7</a>&nbsp;&nbsp;Local modules</h2><p>
 <a name="@manual.kwd175"></a>
 <a name="@manual.kwd176"></a></p><p>(Introduced in Objective Caml 2.00)</p><p>The expression

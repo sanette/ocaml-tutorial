@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - The core language</title>
+<title>OCaml - The core language</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li class="active"><a href="coreexamples.html">The core language</a></li><li><a href="moduleexamples.html">The module system</a></li><li><a href="objectexamples.html">Objects in OCaml</a></li><li><a href="lablexamples.html">Labels and variants</a></li><li><a href="polymorphism.html">Polymorphism and its limitations</a></li><li><a href="advexamples.html">Advanced examples with classes and modules</a></li></ul>
 
@@ -13,7 +13,7 @@
 
 
 <h1 class="chapter" id="sec7"><span>Chapter 1</span>&nbsp;&nbsp;The core language</h1>
-<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.10</a></div><div class="toc_title"><a href="#">The core language</a></div><ul><li class="top"><a href="#">Top</a></li>
+<header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.10</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The core language</a></li>
 <li><a href="coreexamples.html#s%3Abasics">1&nbsp;&nbsp;Basics</a>
 </li><li><a href="coreexamples.html#s%3Adatatypes">2&nbsp;&nbsp;Data types</a>
 </li><li><a href="coreexamples.html#s%3Afunctions-as-values">3&nbsp;&nbsp;Functions as values</a>
@@ -1479,7 +1479,7 @@ expression is being evaluated.</p><p>The value of <span class="c003">lazy_two</s
 has not been evaluated yet, and its final value is unknown.</p><p>Note that <span class="c003">lazy_two</span> has type <span class="c003">int lazy_t</span>. However, the type <span class="c003">'a lazy_t</span> is an 
 internal type name, so the type <span class="c003">'a Lazy.t</span> should be preferred when possible.</p><p>When we finally need the result of a lazy expression, we can call <span class="c003">Lazy.force</span> 
 on that expression to force its evaluation. The function <span class="c003">force</span> comes from 
-standard-library module <a href="../../api/4.10/Lazy.html"><span class="c003">Lazy</span></a>.</p><div class="caml-example toplevel">
+standard-library module <a href="https://sanette.github.io/ocaml-api/4.10/Lazy.html"><span class="c003">Lazy</span></a>.</p><div class="caml-example toplevel">
 
 <div class="ocaml">
 
@@ -1755,7 +1755,7 @@ less than the current precedence.
 
 </div>
 <h2 class="section" id="s:printf"><a class="section-anchor" href="#s:printf" aria-hidden="true">﻿</a>10&nbsp;&nbsp;Printf formats</h2>
-<p>There is a <span class="c003">printf</span> function in the <a href="../../api/4.10/Printf.html"><span class="c003">Printf</span></a> module
+<p>There is a <span class="c003">printf</span> function in the <a href="https://sanette.github.io/ocaml-api/4.10/Printf.html"><span class="c003">Printf</span></a> module
 (see chapter&nbsp;<a href="moduleexamples.html#c%3Amoduleexamples">2</a>) that allows you to make formatted
 output more concisely.
 It follows the behavior of the <span class="c003">printf</span> function from the C standard library.

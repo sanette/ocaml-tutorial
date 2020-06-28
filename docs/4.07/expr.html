@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="manual.css">
-<title>Ocaml - The OCaml language</title>
+<title>OCaml - The OCaml language</title>
 </head>
 <body><div class="manual content"><ul class="part_menu"><li class="active"><a href="language.html">The OCaml language</a></li><li><a href="extn.html">Language extensions</a></li></ul>
 
@@ -32,7 +32,7 @@ Square brackets […] denote optional components. Curly brackets
 {…} denotes zero, one or several repetitions of the enclosed
 components. Curly brackets with a trailing plus sign {…}<sup>+</sup>
 denote one or several repetitions of the enclosed components.
-Parentheses (…) denote grouping.</p><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="#">The OCaml language</a></div><ul><li class="top"><a href="#">Top</a></li>
+Parentheses (…) denote grouping.</p><header><nav class="toc brand"><a class="brand" href="https://ocaml.org/"><img src="colour-logo-gray.svg" class="svg" alt="OCaml"></a></nav><nav class="toc"><div class="toc_version"><a id="version-select" href="../index.html">Version 4.07</a></div><div class="toc_title"><a href="index.html">&lt; The OCaml Manual</a></div><ul><li class="top"><a href="#">The OCaml language</a></li>
 <li><a href="lex.html#start-section">1&nbsp;&nbsp;Lexical conventions</a>
 </li><li><a href="values.html#start-section">2&nbsp;&nbsp;Values</a>
 </li><li><a href="names.html#start-section">3&nbsp;&nbsp;Names</a>
@@ -732,7 +732,7 @@ variable <a class="syntax" href="names.html#inst-var-name"><span class="c010">in
 <a class="syntax" href="names.html#inst-var-name"><span class="c010">inst-var-name</span></a> <span class="c004">&lt;-</span> &nbsp;<a class="syntax" href="#expr"><span class="c010">expr</span></a> evaluates to <span class="c004">()</span>.</p><h4 class="subsubsection" id="sec158">Object duplication</h4>
 <p>An object can be duplicated using the library function <span class="c003">Oo.copy</span>
 (see
-<a href="../../api/4.07/Oo.html">Module <span class="c003">Oo</span></a>). Inside a method, the expression
+<a href="https://sanette.github.io/ocaml-api/4.07/Oo.html">Module <span class="c003">Oo</span></a>). Inside a method, the expression
  <span class="c004">{&lt;</span> <a class="syntax" href="names.html#inst-var-name"><span class="c010">inst-var-name</span></a> <span class="c004">=</span> &nbsp;<a class="syntax" href="#expr"><span class="c010">expr</span></a> &nbsp;{ <span class="c004">;</span> <a class="syntax" href="names.html#inst-var-name"><span class="c010">inst-var-name</span></a> <span class="c004">=</span> &nbsp;<a class="syntax" href="#expr"><span class="c010">expr</span></a> } <span class="c004">&gt;}</span>
 returns a copy of self with the given instance variables replaced by
 the values of the associated expressions; other instance variables
