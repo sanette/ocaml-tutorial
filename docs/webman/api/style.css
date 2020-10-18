@@ -171,7 +171,8 @@ html {
       background: none;
       border-left: 0; }
   .api pre .sig_block {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    border-left: 0; }
   .api *, .api *:before, .api *:after {
     box-sizing: border-box; }
   .api b, .api strong {
@@ -607,6 +608,8 @@ html {
   .api .caml-input span.kw {
     font-weight: 500;
     color: #444; }
+  .api code span.keywordsign {
+    color: #92370a; }
   .api .caml-input span.kw1 {
     font-weight: 500;
     color: #777; }
